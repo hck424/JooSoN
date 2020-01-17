@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="AddPhoneNumberField">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="43"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="7bm-pD-fKY">
+                    <rect key="frame" x="0.0" y="0.0" width="420" height="43"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRK-Lc-uaU">
+                            <rect key="frame" x="8" y="0.0" width="412" height="31"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guC-fp-g2k">
+                                    <rect key="frame" x="0.0" y="8" width="75" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" priority="999" constant="75" id="7Av-au-nMH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="휴대폰" image="find_add">
+                                        <color key="titleColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onClickedButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="SxP-L0-QrU"/>
+                                    </connections>
+                                </button>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOY-UX-4sn">
+                                    <rect key="frame" x="75" y="8" width="277" height="23"/>
+                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                    <connections>
+                                        <action selector="textFieldEdtingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="7D9-RK-4ZJ"/>
+                                        <outlet property="delegate" destination="iN0-l3-epB" id="zFY-jC-KE5"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaq-Jj-D1I">
+                                    <rect key="frame" x="352" y="8" width="30" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="Z03-8S-CPo"/>
+                                    </constraints>
+                                    <state key="normal" image="item_close"/>
+                                    <connections>
+                                        <action selector="onClickedButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="8fL-jr-I4R"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D48-Bx-RX2">
+                                    <rect key="frame" x="382" y="8" width="30" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="YTq-De-xk3"/>
+                                    </constraints>
+                                    <state key="normal" image="edit_menu"/>
+                                    <connections>
+                                        <action selector="onClickedButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="34v-Zd-JHQ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="35" id="z6p-VY-jDK"/>
+                            </constraints>
+                            <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="0.0" right="0.0"/>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Or6-9g-TJl">
+                            <rect key="frame" x="8" y="34" width="412" height="1"/>
+                            <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="1" id="oGx-ip-A4N"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <edgeInsets key="layoutMargins" top="0.0" left="8" bottom="8" right="0.0"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="7bm-pD-fKY" secondAttribute="bottom" id="E4Z-1a-qUi"/>
+                <constraint firstAttribute="trailing" secondItem="7bm-pD-fKY" secondAttribute="trailing" id="K3Z-wg-D3Q"/>
+                <constraint firstItem="7bm-pD-fKY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PIf-nc-i2Y"/>
+                <constraint firstItem="7bm-pD-fKY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QAm-DV-pTa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnDel" destination="jaq-Jj-D1I" id="qIX-oH-War"/>
+                <outlet property="btnMore" destination="D48-Bx-RX2" id="WYf-m9-UFB"/>
+                <outlet property="btnPhoneTitle" destination="guC-fp-g2k" id="Q2D-HK-oTV"/>
+                <outlet property="tfPhoneNumber" destination="gOY-UX-4sn" id="sNc-To-atR"/>
+            </connections>
+            <point key="canvasLocation" x="-59.420289855072468" y="-36.495535714285715"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="edit_menu" width="5.5" height="20"/>
+        <image name="find_add" width="10" height="10"/>
+        <image name="item_close" width="20" height="20"/>
+    </resources>
+</document>

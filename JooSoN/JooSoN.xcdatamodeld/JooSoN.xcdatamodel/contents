@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="GroupName" representedClassName="GroupName" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="History" representedClassName="History" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="callCnt" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="callState" optional="YES" attributeType="String"/>
+        <attribute name="callType" optional="YES" attributeType="String"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="geoLat" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="geoLng" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="historyType" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="takeCalling" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="JooSo" representedClassName="JooSo" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="contactIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="departmentName" optional="YES" attributeType="String"/>
+        <attribute name="emailAddresses" optional="YES" attributeType="String"/>
+        <attribute name="geoLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="geoLng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="groupName" optional="YES" attributeType="String"/>
+        <attribute name="jobTitle" optional="YES" attributeType="String"/>
+        <attribute name="like" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="localIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="organizationName" optional="YES" attributeType="String"/>
+        <attribute name="roadAddress" optional="YES" attributeType="String"/>
+        <relationship name="toPhoneNumber" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PhoneNumber" inverseName="toJooSo" inverseEntity="PhoneNumber"/>
+        <relationship name="toThumnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumnail" inverseName="toJooSo" inverseEntity="Thumnail"/>
+    </entity>
+    <entity name="MapSearchHistory" representedClassName="MapSearchHistory" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PhoneNumber" representedClassName="PhoneNumber" syncable="YES">
+        <attribute name="isMainPhone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="String"/>
+        <relationship name="toJooSo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JooSo" inverseName="toPhoneNumber" inverseEntity="JooSo"/>
+    </entity>
+    <entity name="Thumnail" representedClassName="Thumnail" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Transformable" customClassName="UIImage"/>
+        <relationship name="toJooSo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JooSo" inverseName="toThumnail" inverseEntity="JooSo"/>
+    </entity>
+    <elements>
+        <element name="GroupName" positionX="-539.52734375" positionY="361.65234375" width="128" height="73"/>
+        <element name="History" positionX="-507.65234375" positionY="84.38671875" width="128" height="208"/>
+        <element name="JooSo" positionX="-266.76171875" positionY="36.0625" width="128" height="268"/>
+        <element name="MapSearchHistory" positionX="-333" positionY="189" width="128" height="73"/>
+        <element name="PhoneNumber" positionX="-32.30859375" positionY="327.765625" width="128" height="103"/>
+        <element name="Thumnail" positionX="-18" positionY="108" width="128" height="73"/>
+    </elements>
+</model>

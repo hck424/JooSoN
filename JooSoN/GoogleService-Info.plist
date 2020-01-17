@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1089355377217-kbot1m5tbla1kh7efut0f4sssrcsks2a.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1089355377217-kbot1m5tbla1kh7efut0f4sssrcsks2a</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDAPY19CT9PwyPQ3kWm4VufgMZrVD1_x1c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1089355377217</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sangchange.JooSoN</string>
+	<key>PROJECT_ID</key>
+	<string>jooson-4fbc9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jooson-4fbc9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1089355377217:ios:e6450b8ed4b503939974c0</string>
+	<key>DATABASE_URL</key>
+	<string>https://jooson-4fbc9.firebaseio.com</string>
+</dict>
+</plist>

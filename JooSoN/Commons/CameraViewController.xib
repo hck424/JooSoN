@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController">
+            <connections>
+                <outlet property="btnCancel" destination="5N7-bf-J81" id="kbA-GA-xaH"/>
+                <outlet property="btnShot" destination="POA-3H-GpC" id="Y90-0Q-PBU"/>
+                <outlet property="overlayView" destination="A75-ws-roK" id="NgD-fT-V1a"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="4s1-K4-9UY"/>
+            <point key="canvasLocation" x="94.5" y="91.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="A75-ws-roK">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5N7-bf-J81">
+                    <rect key="frame" x="20" y="584" width="48" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="LiI-BF-u9H"/>
+                    </constraints>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="onClickedButtonAction:" destination="-1" eventType="touchUpInside" id="lzl-NE-MMo"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POA-3H-GpC">
+                    <rect key="frame" x="159.5" y="581" width="56" height="56"/>
+                    <state key="normal" backgroundImage="photoBtn"/>
+                    <connections>
+                        <action selector="onClickedButtonAction:" destination="-1" eventType="touchUpInside" id="ICb-uj-SS1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="5N7-bf-J81" firstAttribute="leading" secondItem="9Lo-jH-zrj" secondAttribute="leading" constant="20" id="i36-UQ-rVi"/>
+                <constraint firstItem="POA-3H-GpC" firstAttribute="centerX" secondItem="9Lo-jH-zrj" secondAttribute="centerX" id="ljw-lt-qma"/>
+                <constraint firstItem="9Lo-jH-zrj" firstAttribute="bottom" secondItem="POA-3H-GpC" secondAttribute="bottom" constant="30" id="ojQ-Gz-6O9"/>
+                <constraint firstItem="5N7-bf-J81" firstAttribute="centerY" secondItem="POA-3H-GpC" secondAttribute="centerY" id="wMc-5b-wz2"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="9Lo-jH-zrj"/>
+            <point key="canvasLocation" x="94" y="753"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="photoBtn" width="56" height="56"/>
+    </resources>
+</document>

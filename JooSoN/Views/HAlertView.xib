@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAlertView">
+            <connections>
+                <outlet property="bgView" destination="iN0-l3-epB" id="AVc-9h-sL3"/>
+                <outlet property="containerView" destination="rev-Re-CLi" id="SxP-ih-CRm"/>
+                <outlet property="heightSvButton" destination="LJO-hU-qgW" id="ujC-Ku-CwO"/>
+                <outlet property="heightTextView" destination="5hN-nv-DDI" id="f5x-wD-KuA"/>
+                <outlet property="lbTitle" destination="01l-DY-CAW" id="X1Q-pa-Yjz"/>
+                <outlet property="shadowView" destination="iWh-dL-1K0" id="kjY-57-b0R"/>
+                <outlet property="svButton" destination="RcO-aj-88d" id="Ih3-ea-lIi"/>
+                <outlet property="svContent" destination="j90-Mw-2Hf" id="Qws-B7-BON"/>
+                <outlet property="svTitle" destination="V9K-R4-c8O" id="CwR-Za-ELK"/>
+                <outlet property="textView" destination="JCI-kP-oHh" id="D79-7f-Nb3"/>
+                <outlet property="topUnderLine" destination="LP7-ZC-O5t" id="fQw-BZ-d7W"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWh-dL-1K0">
+                    <rect key="frame" x="31" y="272.66666666666669" width="352" height="191"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rev-Re-CLi">
+                            <rect key="frame" x="0.0" y="0.0" width="352" height="191"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iux-G8-6Q8">
+                                    <rect key="frame" x="0.0" y="0.0" width="352" height="191"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9K-R4-c8O" customClass="BGStackView">
+                                            <rect key="frame" x="0.0" y="0.0" width="352" height="59"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01l-DY-CAW">
+                                                    <rect key="frame" x="16" y="21" width="320" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="21" left="16" bottom="14" right="16"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                    <color key="value" red="0.32156862745098036" green="0.65495038029999997" blue="0.63921266789999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LP7-ZC-O5t">
+                                            <rect key="frame" x="0.0" y="59" width="352" height="1"/>
+                                            <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="IqG-H6-6mn"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j90-Mw-2Hf">
+                                            <rect key="frame" x="0.0" y="60" width="352" height="80"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" bouncesZoom="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCI-kP-oHh" customClass="CTextView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="80"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" priority="999" constant="80" id="5hN-nv-DDI"/>
+                                                    </constraints>
+                                                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in im ad minim veniam, quis nostrud </string>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="insetTop">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="insetBottom">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                            <real key="value" value="16"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                            <real key="value" value="16"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="1" constant="50" id="Xet-gE-CwC"/>
+                                            </constraints>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohg-Vu-iew">
+                                            <rect key="frame" x="0.0" y="140" width="352" height="1"/>
+                                            <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="rRi-X4-J19"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="RcO-aj-88d" customClass="BGStackView">
+                                            <rect key="frame" x="0.0" y="141" width="352" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" constant="50" id="LJO-hU-qgW"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                    <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Iux-G8-6Q8" secondAttribute="bottom" id="2YL-hC-AhD"/>
+                                <constraint firstAttribute="trailing" secondItem="Iux-G8-6Q8" secondAttribute="trailing" id="8Eg-TP-eDz"/>
+                                <constraint firstItem="Iux-G8-6Q8" firstAttribute="top" secondItem="rev-Re-CLi" secondAttribute="top" id="KdQ-bo-jom"/>
+                                <constraint firstItem="Iux-G8-6Q8" firstAttribute="leading" secondItem="rev-Re-CLi" secondAttribute="leading" id="Zl6-DQ-AQK"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="rev-Re-CLi" firstAttribute="top" secondItem="iWh-dL-1K0" secondAttribute="top" id="3Da-W3-V7n"/>
+                        <constraint firstItem="rev-Re-CLi" firstAttribute="leading" secondItem="iWh-dL-1K0" secondAttribute="leading" id="Ruf-RE-xw2"/>
+                        <constraint firstAttribute="bottom" secondItem="rev-Re-CLi" secondAttribute="bottom" id="sgp-dA-fV0"/>
+                        <constraint firstAttribute="trailing" secondItem="rev-Re-CLi" secondAttribute="trailing" id="zug-ni-NYu"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iWh-dL-1K0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2kB-ah-r5m"/>
+                <constraint firstItem="iWh-dL-1K0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.85" id="6fk-WV-JFR"/>
+                <constraint firstItem="iWh-dL-1K0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="9KI-Nt-Qgk"/>
+                <constraint firstItem="iWh-dL-1K0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OII-9c-SN6"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-59" y="149"/>
+        </view>
+    </objects>
+</document>

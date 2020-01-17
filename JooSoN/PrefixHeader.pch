@@ -1,0 +1,45 @@
+//
+//  PrefixHeader.pch
+//  JooSoN
+//
+//  Created by 김학철 on 2019/12/15.
+//  Copyright © 2019 김학철. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define RGB(r, g, b)[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBA(r, g, b, a)[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+#define Tutorial_Once_Show @"Tutorial_Once_Show"
+#define MapIdNaver @"MapIdNaver"
+#define MapIdTmap @"MapIdTmap"
+#define MapIdKakao @"MapIdKakao"
+#define MapIdGoogle @"MapIdGoogle"
+
+#define SelectedMapId @"SelectedMapId"
+
+#define HaveUploadedToLocalDB @"HaveUploadedToLocalDB"
+#define NotiNameHitTestView   @"NotiNameHitTestView"
+#define NotiNameCallState  @"NotiNameCallState"
+#define NotiChangeMapId  @"NotiChangeMapId"
+
+
+#define EntityJooSo @"JooSo"
+#define EntityHistory @"History"
+#define EntityGroupName @"GroupName"
+#define EntityThumnail @"Thumnail"
+#define EntityPhoneNumber @"PhoneNumber"
+#define EntityApointGroupName @"ApointGroupName"
+#define EntityMapSearchHistory @"MapSearchHistory"
+
+#define NMFClientId @"btf0gu7efc"       //네이버 내아이디
+#define NMFSecretKey @"9gJEKqTLwfwZJNiHJ6iNUHb8jtS0iVZ5Wlt7oKlV"
+#define NMFOldSecretKey @"ISNwIIUMNnIINZ55dE8u"   //네이버 가가멜 id ggmsoft@naver.com pw: hyung0
+#define NMOldSecretKey @"Hr7Nbqxcg9"
+
+#define GoogleMapApiKey @"AIzaSyBa95k51V2uelEiQUfqw0zCw5YZsH8tak8"
+
+
+#endif
