@@ -11,7 +11,7 @@ target 'JooSoN' do
 pod 'LGSideMenuController'
 pod 'libPhoneNumber-iOS', '~> 0.8'
 pod 'Toast', '~> 4.0.0'
-#git-lfs install            // git-lfs 이니셜라이즈
+#git-lfs install            //네이버 맵은 lfs 설치후  git-lfs 이니셜라이즈
 #pod install --repo-update
 pod 'NMapsMap'
 pod 'LMGeocoder'

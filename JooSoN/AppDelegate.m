@@ -36,8 +36,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [FIRApp configure];
-//    [[NSUserDefaults standardUserDefaults] setObject:MapIdNaver forKey:SelectedMapId];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId] length] == 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:MapIdNaver forKey:SelectedMapId];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     [[NMFAuthManager shared] setClientId:NMFClientId];
     [GMSServices provideAPIKey:GoogleMapApiKey];
     [GMSPlacesClient provideAPIKey:GoogleMapApiKey];
