@@ -16,6 +16,7 @@
 #import "ContactsManager.h"
 #import "PlaceInfo.h"
 #import "NfcViewController.h"
+#import "SceneDelegate.h"
 
 @interface HistoryViewController () <UITableViewDelegate, UITableViewDataSource, CallkitControllerDelegate>
 @property (weak, nonatomic) IBOutlet HTextField *textField;
@@ -161,11 +162,11 @@
         
         if (action == HistoryCellActionCall) {
             NSString *url = [NSString stringWithFormat:@"tel://%@" ,hisory.phoneNumber];
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
         else if (action == HistoryCellActionSms) {
             NSString *url = [NSString stringWithFormat:@"sms://%@" ,hisory.phoneNumber];
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
         else if (action == HistoryCellActionNavi) {
             NSString *url = nil;
@@ -179,7 +180,7 @@
             }
             url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
             if (url.length > 0) {
-                [[AppDelegate instance] openSchemeUrl:url];
+                [[SceneDelegate instance] openSchemeUrl:url];
             }
         }
         else if (action == HistoryCellActionNfc) {
@@ -191,7 +192,7 @@
             
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
             vc.passPlaceInfo = info;
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
     }];
     return cell;
@@ -244,7 +245,7 @@
     [[DBManager instance] findJoosoWithPhoneNumber:history.phoneNumber name:history.name success:^(NSArray *arrData) {
         InfoJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoJooSoViewController"];
         vc.passJooso = [arrData firstObject];
-        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     } fail:^(NSError *error) {
         NSLog(@"error: not find jooso > %@", error);
     }];

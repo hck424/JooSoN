@@ -9,7 +9,7 @@
 #import "SearchJooSoListViewController.h"
 #import "JooSoCell.h"
 #import "NSString+Utility.h"
-#import "AppDelegate.h"
+#import "SceneDelegate.h"
 #import "CallkitController.h"
 #import "DBManager.h"
 #import "NfcViewController.h"
@@ -175,11 +175,11 @@
         if (actionType == CellActionCall) {
             url = [NSString stringWithFormat:@"tel://%@", [jooso getMainPhone]];
             self.callType = @"1";
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
         else if (actionType == CellActionSms) {
             url = [NSString stringWithFormat:@"sms://%@", [jooso getMainPhone]];
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
         else if (actionType == CellActionCheck) {
             if (self.viewType == SearchViewTypeSelect) {
@@ -205,14 +205,14 @@
             info.road_address = self.selJooso.roadAddress;
             info.name = self.selJooso.placeName;
             vc.passPlaceInfo = info;
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
             NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
             if ([selMapId isEqualToString:MapIdNaver]) {
                 url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", jooso.geoLat, jooso.geoLng, jooso.address, [[NSBundle mainBundle] bundleIdentifier]];
                 url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-                [[AppDelegate instance] openSchemeUrl:url];
+                [[SceneDelegate instance] openSchemeUrl:url];
             }
             else if ([selMapId isEqualToString:MapIdGoogle]) {
                 url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", jooso.address, jooso.geoLat, jooso.geoLng];
@@ -232,7 +232,7 @@
     if (_viewType == SearchViewTypeDefault) {
         NSString *url = [NSString stringWithFormat:@"tel://%@", [_selJooso getMainPhone]];
         _callType = @"1";
-        [[AppDelegate instance] openSchemeUrl:url];
+        [[SceneDelegate instance] openSchemeUrl:url];
     }
     else if (_viewType == SearchViewTypeSelect) {
         if ([_arrSelectedJooso containsObject:_selJooso]) {

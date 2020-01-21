@@ -15,6 +15,7 @@
 #import "AddJooSoViewController.h"
 #import "SearchJooSoListViewController.h"
 #import "CallkitController.h"
+#import "SceneDelegate.h"
 
 @interface DailingViewController () <CallkitControllerDelegate, SearchJooSoListViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lbInputCall;
@@ -118,7 +119,7 @@
         self.selJooso = tmpView.data;
         NSString *url = [NSString stringWithFormat:@"tel://%@", [_selJooso getMainPhone]];
         self.callType = @"1";
-        [[AppDelegate instance] openSchemeUrl:url];
+        [[SceneDelegate instance] openSchemeUrl:url];
     }
 }
 
@@ -182,7 +183,7 @@
                 url = [NSString stringWithFormat:@"sms://%@", _selPhoneNumber];
             }
             
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
     }
     else if (sender == _btnDel) {
@@ -206,7 +207,7 @@
             AddJooSoViewController *vc = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
             vc.passPhoneNumber = [weakSelf.lbInputCall.text delPhoneFormater];
             vc.viewType = ViewTypeAdd;
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }];
         
         
@@ -218,7 +219,7 @@
             vc.arrOrigin = self.arrOrigin;
             vc.selPhoneNumber = [weakSelf.lbInputCall.text delPhoneFormater];
             vc.title = @"연락처 선택";
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }];
         
         UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -237,7 +238,7 @@
         vc.viewType = SearchViewTypeDefault;
         vc.arrOrigin = _arrSearch;
         vc.title = @"검색 결과";
-        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
 }
 
@@ -434,8 +435,9 @@
             vc.viewType = ViewTypeModi;
             vc.passJooso = [arrCheck firstObject];
             vc.passPhoneNumber = [self.lbInputCall.text delPhoneFormater];
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
     });
 }
+
 @end

@@ -15,6 +15,7 @@
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "MapSearchResultListController.h"
+#import "SceneDelegate.h"
 
 @interface AroundSearchViewController () <LocationViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bgBlock1;
@@ -149,7 +150,7 @@
         vc.arrData = self.arrSearchResult;
         vc.searchQuery = searQuery;
         vc.curPlaceInfo = self.curPlaceInfo;
-        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
 }
 - (void)requestNaverSearchQuery:(NSString *)searQuery isViewChange:(BOOL)isViewChange {

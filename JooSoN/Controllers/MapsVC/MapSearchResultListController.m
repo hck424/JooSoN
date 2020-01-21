@@ -12,6 +12,7 @@
 #import "AddJooSoViewController.h"
 #import "AppDelegate.h"
 #import "NfcViewController.h"
+#import "SceneDelegate.h"
 
 @interface MapSearchResultListController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
@@ -73,12 +74,12 @@
             AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
             vc.viewType = ViewTypeAdd;
             vc.placeInfo = self.selPlaceInfo;
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (action == MapSearchCellActionNfc) {
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
             vc.passPlaceInfo = self.selPlaceInfo;
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (action == MapSearchCellActionNavi) {
             NSString *url = nil;
@@ -93,7 +94,7 @@
             }
 
             if (url.length > 0) {
-                [[AppDelegate instance] openSchemeUrl:url];
+                [[SceneDelegate instance] openSchemeUrl:url];
             }
         }
     }];

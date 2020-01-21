@@ -15,6 +15,7 @@
 #import "CallkitController.h"
 #import "UIView+Toast.h"
 #import "InfoJooSoViewController.h"
+#import "SceneDelegate.h"
 
 @interface GroupListViewController () <CallkitControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
@@ -166,7 +167,7 @@
             url = [NSString stringWithFormat:@"sms://%@", [jooso getMainPhone]];
         }
         self.selJooso = jooso;
-        [[AppDelegate instance] openSchemeUrl:url];
+        [[SceneDelegate instance] openSchemeUrl:url];
     }];
     return cell;
 }
@@ -187,7 +188,7 @@
     JooSo *jooso = [[[_arrData objectAtIndex:indexPath.section] objectForKey:@"sec_list"] objectAtIndex:indexPath.row];
     InfoJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoJooSoViewController"];
     vc.passJooso = jooso;
-    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+    [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
 }
 
 #pragma mark - CallkitControllerDelegate

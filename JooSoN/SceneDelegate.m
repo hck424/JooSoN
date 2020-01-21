@@ -1,9 +1,19 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
+
 #import "TutorialViewController.h"
+#import "RootNavigationController.h"
+#import "MainViewController.h"
+#import "SceneDelegate.h"
+#import "UIView+Utility.h"
+#import "UIView+Toast.h"
+#import "MainViewController.h"
+#import <NMapsMap/NMapsMap.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <GooglePlaces/GooglePlaces.h>
 
 @interface SceneDelegate ()
-
+@property (nonatomic, strong) UIView *loadingView;
 @end
 
 @implementation SceneDelegate
@@ -14,7 +24,22 @@
     return nil;
 }
 
+- (RootNavigationController *)rootNavigationController {
+    MainViewController *mainViewController = (MainViewController *)[self.window rootViewController];
+    return (RootNavigationController *)mainViewController.rootViewController;
+}
+
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions  API_AVAILABLE(ios(13.0)) {
+  
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId] length] == 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:MapIdNaver forKey:SelectedMapId];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    [[NMFAuthManager shared] setClientId:NMFClientId];
+    [GMSServices provideAPIKey:GoogleMapApiKey];
+    [GMSPlacesClient provideAPIKey:GoogleMapApiKey];
+    
+
     if (@available(iOS 13.0, *)) {
 
         UIWindowScene *windowScene = (UIWindowScene *)scene;
@@ -31,10 +56,8 @@
 }
 
 - (void)callTutorialViewController {
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     TutorialViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
-    
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
 }
@@ -52,6 +75,44 @@
     [self.window makeKeyAndVisible];
 }
 
+- (void)startIndicator {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.loadingView == nil) {
+            self.loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            self.loadingView.backgroundColor = RGBA(0, 0, 0, 0.2);
+        }
+        
+        [self.window addSubview:self.loadingView];
+        [self.loadingView startAnimationWithRaduis:25];
+    });
+}
+- (void)stopIndicator {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.loadingView) {
+            [self.loadingView stopAnimation];
+        }
+        [self.loadingView removeFromSuperview];
+    });
+}
+
+- (void)openSchemeUrl:(NSString *)urlStr {
+    
+    if ([urlStr hasPrefix:@"tel"] || [urlStr hasPrefix:@"facetime"]) {
+        
+    }
+    
+    NSURL *phoneUrl = [NSURL URLWithString:urlStr];
+    UIApplication *application = [UIApplication sharedApplication];
+    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        [application openURL:phoneUrl options:@{}
+           completionHandler:^(BOOL success) {
+            
+        }];
+    }
+    else {
+        [self.window makeToast:@"전화번호 형식이 아닙니다." duration:1.0 position:CSToastPositionTop];
+    }
+}
 
 - (void)sceneDidDisconnect:(UIScene *)scene  API_AVAILABLE(ios(13.0)){
     // Called as the scene is being released by the system.

@@ -15,6 +15,7 @@
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
 #import "KakaoMapView.h"
+#import "SceneDelegate.h"
 
 @interface MapSearchViewController () <LocationViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
@@ -175,7 +176,7 @@
             else if (actionType == MapCellActionNfc) {
                 NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
                 vc.passPlaceInfo = self.selPlaceInfo;
-                [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+                [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
             }
             else if (actionType == MapCellActionNavi) {
                 NSString *url = nil;
@@ -185,7 +186,7 @@
                 }
                 
                 if (url.length > 0) {
-                    [[AppDelegate instance] openSchemeUrl:url];
+                    [[SceneDelegate instance] openSchemeUrl:url];
                 }
             }
         }];

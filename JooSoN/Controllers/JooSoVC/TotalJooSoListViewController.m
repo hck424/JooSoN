@@ -11,7 +11,7 @@
 #import "JooSoCell.h"
 #import "DBManager.h"
 #import "NSString+Utility.h"
-#import "AppDelegate.h"
+#import "SceneDelegate.h"
 #import "CallkitController.h"
 #import "Utility.h"
 #import "InfoJooSoViewController.h"
@@ -170,7 +170,7 @@
             info.road_address = self.selJooso.roadAddress;
             info.name = self.selJooso.placeName;
             vc.passPlaceInfo = info;
-            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
             NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
@@ -186,7 +186,7 @@
         
         
         if (url.length > 0) {
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
     }];
     
@@ -210,7 +210,7 @@
     
     InfoJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoJooSoViewController"];
     vc.passJooso = selJooso;
-    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+    [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
 }
 
 

@@ -19,7 +19,7 @@
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
 #import "KakaoMapView.h"
-
+#import "SceneDelegate.h"
 
 typedef enum : NSUInteger {
     Closed,
@@ -231,12 +231,12 @@ typedef enum : NSUInteger {
                 AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
                 vc.viewType = ViewTypeAdd;
                 vc.placeInfo = self.selPlaceInfo;
-                [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+                [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
             }
             else if (actionType == MapCellActionNfc) {
                 NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
                 vc.passPlaceInfo = self.selPlaceInfo;
-                [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+                [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
             }
             else if (actionType == MapCellActionNavi) {
                 NSString *url = nil;
@@ -250,7 +250,7 @@ typedef enum : NSUInteger {
                 }
                 
                 if (url.length > 0) {
-                    [[AppDelegate instance] openSchemeUrl:url];
+                    [[SceneDelegate instance] openSchemeUrl:url];
                 }
             }
             else if (actionType == MapCellActionDefault) {
@@ -292,7 +292,7 @@ typedef enum : NSUInteger {
         AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
         vc.viewType = ViewTypeAdd;
         vc.placeInfo = _selPlaceInfo;
-        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
     else if (sender == _btnKeyboardDown) {
         [_tfSearch resignFirstResponder];

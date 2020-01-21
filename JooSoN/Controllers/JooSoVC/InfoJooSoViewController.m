@@ -17,6 +17,7 @@
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
 #import "KakaoMapView.h"
+#import "SceneDelegate.h"
 
 @interface InfoJooSoViewController () <CallkitControllerDelegate>
 
@@ -189,7 +190,7 @@
                 url = [NSString stringWithFormat:@"sms://%@", [_passJooso getMainPhone]];
             }
             
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
     }
     else if (sender == _btnLike) {
@@ -212,7 +213,7 @@
         info.road_address = self.passJooso.roadAddress;
         info.name = self.passJooso.placeName;
         vc.passPlaceInfo = info;
-        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
     else if (sender == _btnNavi) {
         NSString *url = nil;
@@ -227,7 +228,7 @@
         }
         url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         if (url.length > 0) {
-            [[AppDelegate instance] openSchemeUrl:url];
+            [[SceneDelegate instance] openSchemeUrl:url];
         }
     }
     else if (sender == _btnShare) {

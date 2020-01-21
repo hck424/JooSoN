@@ -61,14 +61,7 @@
         || sender == _btnStart) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:Tutorial_Once_Show];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        if (@available(iOS 13.0, *)) {
-            [[SceneDelegate instance] callMainViewController];
-        }
-        else {
-            [[AppDelegate instance] callMainViewController];
-        }
-        
+        [[SceneDelegate instance] callMainViewController];
     }
     else if (sender == _btnNext) {
         self.curPageIdx = self.curPageIdx + 1;

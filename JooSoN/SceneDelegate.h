@@ -7,13 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
+#import "UIViewController+LGSideMenuController.h"
+#import "RootNavigationController.h"
 
 @interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
 
-@property (strong, nonatomic) UIWindow * window;
+@property (strong, nonatomic) UIWindow *window;
 + (SceneDelegate *)instance;
-- (void)callMainViewController;
+- (RootNavigationController *)rootNavigationController;
 - (void)callTutorialViewController;
+- (void)callMainViewController;
+- (void)startIndicator;
+- (void)stopIndicator;
+- (void)openSchemeUrl:(NSString *)urlStr;
 
 @end
 
