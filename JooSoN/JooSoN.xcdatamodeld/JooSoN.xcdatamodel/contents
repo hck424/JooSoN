@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="GroupName" representedClassName="GroupName" syncable="YES">
         <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -30,6 +30,7 @@
         <attribute name="localIdentifier" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="organizationName" optional="YES" attributeType="String"/>
+        <attribute name="placeName" optional="YES" attributeType="String"/>
         <attribute name="roadAddress" optional="YES" attributeType="String"/>
         <relationship name="toPhoneNumber" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PhoneNumber" inverseName="toJooSo" inverseEntity="PhoneNumber"/>
         <relationship name="toThumnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumnail" inverseName="toJooSo" inverseEntity="Thumnail"/>
@@ -51,7 +52,7 @@
     <elements>
         <element name="GroupName" positionX="-539.52734375" positionY="361.65234375" width="128" height="73"/>
         <element name="History" positionX="-507.65234375" positionY="84.38671875" width="128" height="208"/>
-        <element name="JooSo" positionX="-266.76171875" positionY="36.0625" width="128" height="268"/>
+        <element name="JooSo" positionX="-266.76171875" positionY="36.0625" width="128" height="283"/>
         <element name="MapSearchHistory" positionX="-333" positionY="189" width="128" height="73"/>
         <element name="PhoneNumber" positionX="-32.30859375" positionY="327.765625" width="128" height="103"/>
         <element name="Thumnail" positionX="-18" positionY="108" width="128" height="73"/>

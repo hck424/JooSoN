@@ -1,46 +1,21 @@
 //
-//  GoogleMapView.m
+//  LocationView.m
 //  JooSoN
 //
-//  Created by 김학철 on 2020/01/15.
+//  Created by 김학철 on 2020/01/20.
 //  Copyright © 2020 김학철. All rights reserved.
 //
 
-#import "GoogleMapView.h"
-#import <LMGeocoder/LMGeocoder.h>
+#import "LocationView.h"
 
-@interface GoogleMapView () <GMSMapViewDelegate, CLLocationManagerDelegate>
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, assign) CLLocationCoordinate2D curCoordinate;
-@property (nonatomic, strong) PlaceInfo *curPlaceInfo;
-
-@end
-
-@implementation GoogleMapView
-
+@implementation LocationView
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:37.5666102
-                                                            longitude:126.9783881
-                                                                 zoom:15];
-    [_gmsMapView setCamera:camera];
-    self.gmsMapView.delegate = self;
-    _gmsMapView.myLocationEnabled = NO;
-
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.distanceFilter = 10;
     [self.locationManager requestWhenInUseAuthorization];
-    
-    
-    // Creates a marker in the center of the map.
-//    GMSMarker *marker = [[GMSMarker alloc] init];
-//    marker.position = CLLocationCoordinate2DMake(37.5666102, 126.9783881);
-//    marker.title = @"";
-//    marker.snippet = @"Australia";
-//    marker.map = mapView;
 }
 
 - (void)startCurrentLocationUpdatingLocation {
@@ -49,7 +24,6 @@
 - (void)stopCurrentLocationUpdatingLocation {
     [self.locationManager stopUpdatingLocation];
 }
-
 
 - (void)passingAdress:(LMAddress *)address codinate:(CLLocationCoordinate2D)codinate {
     
@@ -110,8 +84,9 @@
     }
     
     _curPlaceInfo.jibun_address = curAddr;
-    if ([self.delegate respondsToSelector:@selector(googleMapView:curPlaceInfo:)]) {
-        [_delegate googleMapView:self curPlaceInfo:_curPlaceInfo];
+    
+    if ([self.delegate respondsToSelector:@selector(locationView:curPlaceInfo:)]) {
+        [_delegate locationView:self curPlaceInfo:_curPlaceInfo];
     }
 }
 

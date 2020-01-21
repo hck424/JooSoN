@@ -130,6 +130,7 @@
     JooSo *jooso = [_arrData objectAtIndex:indexPath.row];
     [cell configurationData:jooso];
     [cell setOnBtnTouchUpInside:^(CellActionType actionType, JooSo *jooso, id data) {
+        self.selJooso = jooso;
         NSString *url = nil;
         if (actionType == CellActionCall) {
             url = [NSString stringWithFormat:@"tel://%@", [jooso getMainPhone]];
@@ -140,7 +141,13 @@
         }
         else if (actionType == CellActionNfc) {
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
-            vc.passJooso = self.selJooso;
+            PlaceInfo *info = [[PlaceInfo alloc] init];
+            info.x = self.selJooso.geoLng;
+            info.y = self.selJooso.geoLat;
+            info.jibun_address = self.selJooso.address;
+            info.road_address = self.selJooso.roadAddress;
+            info.name = self.selJooso.placeName;
+            vc.passPlaceInfo = info;
             [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
@@ -155,7 +162,7 @@
             }
         }
 
-        self.selJooso = jooso;
+        
         if (url.length > 0) {
             [[AppDelegate instance] openSchemeUrl:url];
         }

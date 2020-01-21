@@ -10,13 +10,13 @@
 #import "NaverMapView.h"
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
-#import "CustomInfoView.h"
 #import "DBManager.h"
 #import "MapSearchView.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
+#import "KakaoMapView.h"
 
-@interface MapSearchViewController () <NMFOverlayImageDataSource, NaverMapViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, GoogleMapViewDelegate>
+@interface MapSearchViewController () <LocationViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
 @property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
@@ -30,15 +30,15 @@
 
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
 @property (nonatomic, strong) NSMutableArray *arrMarkers;
-@property (nonatomic, strong) NMFMarker *curNaverMarker;
-@property (nonatomic, strong) GMSMarker *curGoogleMarker;
 @property (nonatomic, strong) NaverMapView *naverMapView;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
+@property (nonatomic, strong) KakaoMapView *kakaoMapView;
+@property (nonatomic, strong) UIView *selMapView;
+
 @property (nonatomic, strong) PlaceInfo *selPlaceInfo;
 @property (nonatomic, strong) NSMutableArray *arrSearchResult;
 @property (nonatomic, assign) CGFloat widthMapSearchView;
-@property (nonatomic, strong) NMFInfoWindow *infoWindow;
-@property (nonatomic, assign) CGFloat spaceX;
+
 
 @end
 
@@ -47,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tfSearch.delegate = self;
-    
+    self.arrSearchResult = [NSMutableArray array];
     self.arrMarkers = [NSMutableArray array];
     _lbCurrentLoc.text = @"";
     NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
@@ -56,6 +56,9 @@
     }
     else if ([selMapId isEqualToString:MapIdGoogle]) {
         [self addSubViewGoogleMapView];
+    }
+    else if ([selMapId isEqualToString:MapIdKakao]) {
+        [self addSubViewKakaoMapView];
     }
 }
 
@@ -96,39 +99,58 @@
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = _passPlaceInfo.y;
     coordinate.longitude = _passPlaceInfo.x;
+    NSString *searQuery = _tfSearch.text;
     
     __weak typeof(self) weakSelf = self;
-    [[DBManager instance] nmapSearchPlace:_tfSearch.text coordinate:coordinate orderBy:nil success:^(NSDictionary *dataDic) {
-        
-        if ([[dataDic objectForKey:@"places"] count] > 0) {
-            if (self.arrSearchResult == nil) {
-                self.arrSearchResult = [NSMutableArray array];
+    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
+    if ([selMapId isEqualToString:MapIdNaver]) {
+        [[DBManager instance] nmapSearchPlace:searQuery coordinate:coordinate orderBy:NMAP_ORDERBY_WEIGHT success:^(NSDictionary *dataDic) {
+            
+            if ([[dataDic objectForKey:@"places"] count] > 0) {
+                self.scrollView.hidden = NO;
+                [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
+                [weakSelf makeSearchResultView];
             }
-            self.scrollView.hidden = NO;
-            [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
-            [weakSelf makeSearchResultView];
-        }
-        else {
-            self.scrollView.hidden = YES;
-            [self.view makeToast:@"검색 결과가 없습니다." duration:1.0 position:CSToastPositionTop];
-        }
-
-    } fail:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-
+            else {
+                self.scrollView.hidden = YES;
+                [self.view makeToast:@"검색 결과가 없습니다." duration:1.0 position:CSToastPositionTop];
+            }
+        } fail:^(NSError *error) {
+            NSLog(@"error : %@", error);
+        }];
+    }
+    else {
+        [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
+            if ([[dataDic objectForKey:@"places"] count] > 0) {
+                self.scrollView.hidden = NO;
+                [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
+                [weakSelf makeSearchResultView];
+            }
+            else {
+                self.scrollView.hidden = YES;
+                if ([[dataDic objectForKey:@"status"] isEqualToString:@"OVER_QUERY_LIMIT"]) {
+                    [self.view makeToast:@"검색 최소시간 이내에 요청하셨습니다. 잠시 후 다시 시도해 주세요." duration:1.0 position:CSToastPositionTop];
+                }
+                else {
+                    [self.view makeToast:@"검색 결과 없습니다." duration:1.0 position:CSToastPositionTop];
+                }
+            }
+        } fail:^(NSError *error) {
+            
+        }];
+        
+    }
 }
 - (void)makeSearchResultView {
     self.widthMapSearchView = _scrollView.frame.size.width;
     
+    if ([self.selMapView respondsToSelector:@selector(hideAllMarker)]) {
+        [self.selMapView performSelector:@selector(hideAllMarker)];
+    }
+    
     for (UIView *subView in _svContent.subviews) {
         [subView removeFromSuperview];
     }
-    
-    for (NMFMarker *marker in _arrMarkers) {
-        marker.hidden = YES;
-    }
-    [_arrMarkers removeAllObjects];
     
 //    __weak typeof (self)weakSelf = self;
     for (PlaceInfo *info in _arrSearchResult) {
@@ -137,6 +159,9 @@
         [cell.widthAnchor constraintEqualToConstant:self.widthMapSearchView].active = YES;
         [cell configurationData:info];
         
+        if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
+            [self.selMapView performSelector:@selector(setMarker:) withObject:info];
+        }
         
         [cell setOnTouchUpInSideAction:^(MapCellAction actionType, PlaceInfo * _Nonnull data) {
             self.selPlaceInfo = data;
@@ -166,8 +191,8 @@
         }];
         [_svContent addArrangedSubview:cell];
     }
-    
 }
+
 #pragma mark - Map AddSubview
 - (void)addSubViewGoogleMapView {
     self.googleMapView = [[NSBundle mainBundle] loadNibNamed:@"GoogleMapView" owner:self options:nil].firstObject;
@@ -176,211 +201,62 @@
     _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [_mapContainer addSubview:_googleMapView];
     
+    self.selMapView = _googleMapView;
     [_googleMapView startCurrentLocationUpdatingLocation];
 }
- 
+
+- (void)addSubViewKakaoMapView {
+    self.kakaoMapView = [[NSBundle mainBundle] loadNibNamed:@"KakaoMapView" owner:self options:nil].firstObject;
+    _kakaoMapView.frame = _mapContainer.bounds;
+    _kakaoMapView.delegate = self;
+    _kakaoMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [_mapContainer addSubview:_kakaoMapView];
+    
+    self.selMapView = _kakaoMapView;
+    [_kakaoMapView startCurrentLocationUpdatingLocation];
+}
+
 - (void)addSubViewNaverMapView {
     self.naverMapView = [[NSBundle mainBundle] loadNibNamed:@"NaverMapView" owner:self options:nil].firstObject;
     _naverMapView.frame = _mapContainer.bounds;
     _naverMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [_mapContainer addSubview:_naverMapView];
     _naverMapView.delegate = self;
-    self.infoWindow = NMFInfoWindow.infoWindow;
-    self.infoWindow.dataSource = self;
-    _infoWindow.offsetX = -20;
-    _infoWindow.offsetY = -3;
-    _infoWindow.anchor = CGPointMake(0, 1);
-    _infoWindow.mapView = _naverMapView.map;
+
+    self.selMapView = _naverMapView;
     [_naverMapView startCurrentLocationUpdatingLocation];
     
     if (_searchAddress.length > 0) {
         _tfSearch.text = _searchAddress;
-    }
-    else if (_passPlaceInfo.x > 0 && _passPlaceInfo.y > 0) {
-        [self setMark:_passPlaceInfo isCurLocation:NO selection:YES];
+    } else if (_passPlaceInfo.x > 0 && _passPlaceInfo.y > 0) {
         _tfSearch.text = _passPlaceInfo.jibun_address;
     }
 }
 
-- (void)setMark:(PlaceInfo *)placeInfo isCurLocation:(BOOL)isCurLocation selection:(BOOL)selection {
-    
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        NMGLatLng *latLng = NMGLatLngMake(placeInfo.y, placeInfo.x);
-        __block NMFMarker *marker = [NMFMarker markerWithPosition:latLng];
-        UIImage *img = nil;
-        if (isCurLocation) {
-            img = selection? [UIImage imageNamed:@"icon_location_my"] : [UIImage imageNamed:@"icon_location_now_s"];
-        }
-        else {
-            img = selection? [UIImage imageNamed:@"icon_location_now"] : [UIImage imageNamed:@"icon_location_now_s"];
-        }
-        
-        NMFOverlayImage *overlayImg = [NMFOverlayImage overlayImageWithImage:img];
-        marker.iconImage = overlayImg;
-        
-        marker.angle = 0;
-        marker.iconPerspectiveEnabled = YES;
-        marker.mapView = _naverMapView.map;
-        
-        [_naverMapView.map moveCamera:[NMFCameraUpdate cameraUpdateWithScrollTo:latLng] completion:nil];
-        
-        NSString *title = placeInfo.name;
-        if (title == nil) {
-            title = placeInfo.street;
-        }
-        
-        if (title.length == 0) {
-            return;
-        }
-        
-        marker.userInfo = @{@"tag" : title, @"placeInfo" : placeInfo};
-        __weak typeof(self) wealSelf = self;
-        __weak typeof(marker) weakMark = marker;
-        
-        [marker setTouchHandler:^BOOL(NMFOverlay *__weak _Nonnull overay) {
-            if (isCurLocation == NO) {
-                for (NMFMarker *nm in self.arrMarkers) {
-                    [wealSelf selectedMark:nm selected:NO];
-                }
-                [wealSelf selectedMark:weakMark selected:YES];
-            }
-            [self.infoWindow openWithMarker:weakMark];
-            self.infoWindow.hidden = NO;
-            return YES;
-        }];
-        
-        if (selection) {
-            _infoWindow.hidden = NO;
-        }
-        else {
-            _infoWindow.hidden = YES;
-        }
-        
-        marker.mapView = _naverMapView.map;
-        
-        if (isCurLocation == NO) {
-            if (_arrMarkers == nil) {
-                self.arrMarkers = [NSMutableArray array];
-            }
-            [_arrMarkers addObject:marker];
-        }
-        else {
-            self.curNaverMarker = marker;
-            self.selPlaceInfo = placeInfo;
-        }
-    }
-    else if ([selMapId isEqualToString:MapIdGoogle]) {
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = placeInfo.y;
-        coordinate.longitude = placeInfo.x;
-        if (isCurLocation) {
-            self.curGoogleMarker = [[GMSMarker alloc] init];
-            _curGoogleMarker.position = CLLocationCoordinate2DMake(_curPlaceInfo.y, _curPlaceInfo.x);
-            _curGoogleMarker.title = placeInfo.name;
-            _curGoogleMarker.snippet = placeInfo.jibun_address;
-            _curGoogleMarker.map = _googleMapView.gmsMapView;
-            
-            UIImage *img = selection? [UIImage imageNamed:@"icon_location_my"] : [UIImage imageNamed:@"icon_location_now_s"];
-            _curGoogleMarker.icon = img;
-            
-            GMSCameraUpdate *move = [GMSCameraUpdate setTarget:coordinate zoom:17];
-            [_googleMapView.gmsMapView animateWithCameraUpdate:move];
-        }
-        else {
-            UIImage *img = selection? [UIImage imageNamed:@"icon_location_now"] : [UIImage imageNamed:@"icon_location_now_s"];
-            GMSMarker *marker = [[GMSMarker alloc] init];
-            marker.icon = img;
-            marker.position = coordinate;
-            marker.title = placeInfo.name;
-            marker.snippet = placeInfo.jibun_address;
-            marker.map = _googleMapView.gmsMapView;
-            
-            marker.userData = @{@"tag" : placeInfo.name, @"placeInfo" : placeInfo};
-            if (_arrMarkers == nil) {
-                self.arrMarkers = [NSMutableArray array];
-            }
-            
-            [_arrMarkers addObject:marker];
-            
-            GMSCameraUpdate *move = [GMSCameraUpdate setTarget:coordinate zoom:14];
-            [_googleMapView.gmsMapView animateWithCameraUpdate:move];
-        }
-    }
-}
-
-- (void)selectedMark:(id)marker selected:(BOOL)selected {
-    
-    UIImage  *img = selected? [UIImage imageNamed:@"icon_location_now"] : [UIImage imageNamed:@"icon_location_now_s"];
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        NMFMarker *mk = marker;
-        NMFOverlayImage *overlayImg = [NMFOverlayImage overlayImageWithImage:img];
-        mk.iconImage = overlayImg;
-        if (selected) {
-            [NMFInfoWindow.infoWindow openWithMarker:mk];
-            mk.infoWindow.hidden = NO;
-            self.selPlaceInfo = [mk.userInfo objectForKey:@"placeInfo"];
-        }
-        else {
-            mk.infoWindow.hidden = YES;
-        }
-        mk.isForceShowIcon = YES;
-    }
-    else if ([selMapId isEqualToString:MapIdGoogle]) {
-        GMSMarker *mk = marker;
-        mk.icon = img;
-        if (selected) {
-            self.selPlaceInfo = [mk.userData objectForKey:@"placeInfo"];
-        }
-    }
-}
-
-#pragma mark - NMFOverlayImageDataSource
-- (UIView *)viewWithOverlay:(NMFOverlay *)overlay {
-    CustomInfoView *infoView = [[NSBundle mainBundle] loadNibNamed:@"CustomInfoView" owner:nil options:0].firstObject;
-    infoView.lbTitle.text = [self.infoWindow.marker.userInfo objectForKey:@"tag"];
-    
-    CGSize fitSize = [infoView.lbTitle sizeThatFits:CGSizeMake(150, CGFLOAT_MAX)];
-    infoView.translatesAutoresizingMaskIntoConstraints = NO;
-    infoView.heightTitle.constant = fitSize.height;
-    infoView.widthTitle.constant = fitSize.width;
-    [infoView setNeedsLayout];
-    [infoView layoutIfNeeded];
-    
-    return infoView;
-}
-
-#pragma mark - NaverMapViewDelegate
-- (void)naverMapView:(id)naverMapView curPlaceInfo:(PlaceInfo *)curPlaceInfo {
+#pragma mark - LocationViewDelegate
+- (void)locationView:(id)locationView curPlaceInfo:(PlaceInfo *)curPlaceInfo {
     self.curPlaceInfo = curPlaceInfo;
-    _lbCurrentLoc.text = _curPlaceInfo.jibun_address;
-    [_naverMapView stopCurrentLocationUpdatingLocation];
+    if ([_curPlaceInfo.jibun_address length] > 0) {
+        _lbCurrentLoc.text = _curPlaceInfo.jibun_address;
+    }
+    [locationView stopCurrentLocationUpdatingLocation];
+    self.selPlaceInfo = _curPlaceInfo;
     
-    [self setMark:_curPlaceInfo isCurLocation:YES selection:YES];
+    if ([self.selMapView respondsToSelector:@selector(setCurrentMarker:)]) {
+        [self.selMapView performSelector:@selector(setCurrentMarker:) withObject:[NSNumber numberWithBool:YES]];
+    }
 }
-
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSInteger curPage = scrollView.contentOffset.x / scrollView.frame.size.width;
     
     PlaceInfo *info = [_arrSearchResult objectAtIndex:curPage];
-    for (NMFMarker *marker in _arrMarkers) {
-        [self selectedMark:marker selected:NO];
+    self.selPlaceInfo = info;
+    
+    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
+        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:self.selPlaceInfo];
     }
-    
-    [self setMark:info isCurLocation:NO selection:YES];
-    
 }
 
-#pragma mark - GoogleMapViewDelegate
-- (void)googleMapView:(id)googleMapView curPlaceInfo:(PlaceInfo *)curPlaceInfo {
-    self.curPlaceInfo = curPlaceInfo;
-    if ([_curPlaceInfo.jibun_address length] > 0) {
-        _lbCurrentLoc.text = _curPlaceInfo.jibun_address;
-    }
-    [_googleMapView stopCurrentLocationUpdatingLocation];
-    [self setMark:_curPlaceInfo isCurLocation:YES selection:YES];
-}
 
 @end

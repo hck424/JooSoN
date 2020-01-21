@@ -19,9 +19,17 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>KAKAO_APP_KEY</key>
-	<string>63470c4183abbb047e1aec27323b01df</string>
+	<string>f25766cd01f5f664cdd8080bbcd0b029</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+		<string>comgooglemaps-x-callback</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>NFC를 사용하려고 합니다.</string>
 	<key>NMFClientId</key>
 	<string>btf0gu7efc</string>
 	<key>NSAppTransportSecurity</key>
@@ -83,13 +91,5 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>NFCReaderUsageDescription</key>
-	<string>This app creates fish tags</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>googlechromes</string>
-		<string>comgooglemaps</string>
-		<string>comgooglemaps-x-callback</string>
-	</array>
 </dict>
 </plist>

@@ -14,11 +14,11 @@
 #import "CallkitController.h"
 #import "AddJooSoViewController.h"
 #import "NaverMapView.h"
-#import "CustomInfoView.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
+#import "KakaoMapView.h"
 
-@interface InfoJooSoViewController () <CallkitControllerDelegate, NMFOverlayImageDataSource>
+@interface InfoJooSoViewController () <CallkitControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UIButton *btnModi;
@@ -44,6 +44,8 @@
 @property (nonatomic, strong) NSMutableArray *arrCallState;
 @property (nonatomic, strong) NaverMapView *naverMapView;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
+@property (nonatomic, strong) KakaoMapView *kakaoMapView;
+@property (nonatomic, strong) UIView *selMapView;
 @end
 
 @implementation InfoJooSoViewController
@@ -121,13 +123,16 @@
         && _passJooso.geoLng > 0) {
         
         NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
+        _btnEmptyMarker.hidden = YES;
+        
         if ([selMapId isEqualToString:MapIdNaver]) {
-            _btnEmptyMarker.hidden = YES;
             [self addSubViewNaverMap];
         }
         else if ([selMapId isEqualToString:MapIdGoogle]) {
-            _btnEmptyMarker.hidden = YES;
             [self addSubViewGoogleMap];
+        }
+        else if ([selMapId isEqualToString:MapIdKakao]) {
+            [self addSubViewKakaoMap];
         }
     }
     
@@ -200,7 +205,13 @@
     }
     else if (sender == _btnNfc) {
         NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
-        vc.passJooso = _passJooso;
+        PlaceInfo *info = [[PlaceInfo alloc] init];
+        info.x = self.passJooso.geoLng;
+        info.y = self.passJooso.geoLat;
+        info.jibun_address = self.passJooso.address;
+        info.road_address = self.passJooso.roadAddress;
+        info.name = self.passJooso.placeName;
+        vc.passPlaceInfo = info;
         [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
     else if (sender == _btnNavi) {
@@ -337,92 +348,48 @@
     }
 }
 
+#pragma mark - mapview add
 - (void)addSubViewGoogleMap {
     self.googleMapView = [[NSBundle mainBundle] loadNibNamed:@"GoogleMapView" owner:self options:nil].firstObject;
     _googleMapView.frame = _mapView.bounds;
     _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [_mapView addSubview:_googleMapView];
-    
+    self.selMapView = _googleMapView;
     [self setMarker];
 }
 
-#pragma mark - naverMap
+- (void)addSubViewKakaoMap {
+    self.kakaoMapView = [[NSBundle mainBundle] loadNibNamed:@"KakaoMapView" owner:self options:nil].firstObject;
+    _kakaoMapView.frame = _mapView.bounds;
+    _kakaoMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [_mapView addSubview:_kakaoMapView];
+    self.selMapView = _kakaoMapView;
+    [self setMarker];
+}
+
 - (void)addSubViewNaverMap {
     self.naverMapView = [[NSBundle mainBundle] loadNibNamed:@"NaverMapView" owner:self options:nil].firstObject;
     _naverMapView.frame = _mapView.bounds;
     _naverMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [_mapView addSubview:_naverMapView];
-    
-    NMFInfoWindow.infoWindow.dataSource = self;
-    NMFInfoWindow.infoWindow.offsetX = -20;
-    NMFInfoWindow.infoWindow.offsetY = -3;
-    NMFInfoWindow.infoWindow.anchor = CGPointMake(0, 1);
-    NMFInfoWindow.infoWindow.mapView = _naverMapView.map;
-    
+    self.selMapView = _naverMapView;
     [self setMarker];
 }
 
 - (void)setMarker {
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        NMGLatLng *latLng = NMGLatLngMake(_passJooso.geoLat, _passJooso.geoLng);
-        
-        __block NMFMarker *marker = [NMFMarker markerWithPosition:latLng];
-        UIImage *img = [UIImage imageNamed:@"icon_location_now"];
-        NMFOverlayImage *overlayImg = [NMFOverlayImage overlayImageWithImage:img];
-        marker.iconImage = overlayImg;
-        
-        marker.angle = 0;
-        marker.iconPerspectiveEnabled = YES;
-        marker.mapView = _naverMapView.map;
-        
-        [_naverMapView.map moveCamera:[NMFCameraUpdate cameraUpdateWithScrollTo:latLng] completion:nil];
-        
-        NSString *title = _passJooso.address;
-        if (title == nil) {
-            title = _passJooso.roadAddress;
-        }
-        
-        marker.userInfo = @{@"tag" : title};
-        __weak typeof(marker) weakMark = marker;
-        
-        [marker setTouchHandler:^BOOL(NMFOverlay *__weak _Nonnull overay) {
-            [NMFInfoWindow.infoWindow openWithMarker:weakMark];
-            NMFInfoWindow.infoWindow.hidden = NO;
-            return YES;
-        }];
-        
-        marker.mapView = _naverMapView.map;
+    PlaceInfo *info = [[PlaceInfo alloc] init];
+    info.x = _passJooso.geoLng;
+    info.y = _passJooso.geoLat;
+    info.jibun_address = _passJooso.address;
+    info.name = _passJooso.placeName;
+    
+    if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
+        [self.selMapView performSelector:@selector(setMarker:) withObject:info];
     }
-    else {
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = _passJooso.geoLat;
-        coordinate.longitude = _passJooso.geoLng;
-        
-        UIImage *img = [UIImage imageNamed:@"icon_location_now"];
-        GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.icon = img;
-        marker.position = coordinate;
-        marker.title = _passJooso.name;
-        marker.snippet = _passJooso.address;
-        marker.map = _googleMapView.gmsMapView;
+    
+    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
+        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:info];
     }
 }
-
-#pragma mark - NMFOverlayImageDataSource
-- (UIView *)viewWithOverlay:(NMFOverlay *)overlay {
-    CustomInfoView *infoView = [[NSBundle mainBundle] loadNibNamed:@"CustomInfoView" owner:nil options:0].firstObject;
-    infoView.lbTitle.text = [NMFInfoWindow.infoWindow.marker.userInfo objectForKey:@"tag"];
-    
-    CGSize fitSize = [infoView.lbTitle sizeThatFits:CGSizeMake(150, CGFLOAT_MAX)];
-    infoView.translatesAutoresizingMaskIntoConstraints = NO;
-    infoView.heightTitle.constant = fitSize.height;
-    infoView.widthTitle.constant = fitSize.width;
-    [infoView setNeedsLayout];
-    [infoView layoutIfNeeded];
-    
-    return infoView;
-}
-
 
 @end

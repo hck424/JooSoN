@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="KakaoMapView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSg-Vy-26a" customClass="MTMapView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="VSg-Vy-26a" secondAttribute="bottom" id="7e0-8p-wxD"/>
+                <constraint firstAttribute="trailing" secondItem="VSg-Vy-26a" secondAttribute="trailing" id="WKh-9W-Dr5"/>
+                <constraint firstItem="VSg-Vy-26a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WgI-Oz-yx1"/>
+                <constraint firstItem="VSg-Vy-26a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wSl-Lc-tCG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mapView" destination="VSg-Vy-26a" id="fUF-bQ-ksg"/>
+            </connections>
+            <point key="canvasLocation" x="-291" y="105"/>
+        </view>
+    </objects>
+</document>

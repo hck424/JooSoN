@@ -22,8 +22,9 @@
 #import "CustomInfoView.h"
 #import "MapSearchViewController.h"
 #import "GoogleMapView.h"
+#import "KakaoMapView.h"
 
-@interface AddJooSoViewController () <AddPhoneNumberFieldDelegate, CameraViewControllerDelegate, UIScrollViewDelegate, PopupListViewControllerDelegate, NMFOverlayImageDataSource, MapSearchViewControllerDelegate>
+@interface AddJooSoViewController () <AddPhoneNumberFieldDelegate, CameraViewControllerDelegate, UIScrollViewDelegate, PopupListViewControllerDelegate, MapSearchViewControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIView *mapView;
@@ -60,6 +61,9 @@
 
 @property (nonatomic, strong) NaverMapView *naverMapView;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
+@property (nonatomic, strong) KakaoMapView *kakaoMapView;
+@property (nonatomic, strong) UIView *selMapView;
+
 @end
 
 @implementation AddJooSoViewController
@@ -161,6 +165,9 @@
         else if ([selMapId isEqualToString:MapIdGoogle]) {
             [self addSubViewGoogleMap];
         }
+        else if ([selMapId isEqualToString:MapIdKakao]) {
+            [self addSubViewKakaoMap];
+        }
         
     }
     
@@ -227,7 +234,7 @@
             info.x = _passJooso.geoLng;
             info.y = _passJooso.geoLat;
             info.jibun_address = _passJooso.address;
-            info.name = _passJooso.name;
+            info.name = _passJooso.placeName;
             info.road_address = _passJooso.roadAddress;
         }
         else {
@@ -349,10 +356,12 @@
         [param setObject:[Utility createLocalIdentifier] forKey:@"localIdentifier"];
         
         if (_placeInfo != nil) {
-            if ([_placeInfo.road_address length] > 0) {
-                [param setObject:_placeInfo.road_address forKey:@"roadAddress"];
+            if ([_placeInfo.jibun_address length] > 0) {
+                [param setObject:_placeInfo.jibun_address forKey:@"roadAddress"];
             }
-            
+            if ([_placeInfo.name length] > 0) {
+                [param setObject:_placeInfo.name forKey:@"placeName"];
+            }
             [param setObject:[NSNumber numberWithFloat:_placeInfo.y] forKey:@"geoLat"];
             [param setObject:[NSNumber numberWithFloat:_placeInfo.x] forKey:@"geoLng"];
         }
@@ -671,99 +680,69 @@
     }
 }
 
+#pragma mark - mapview add
 - (void)addSubViewGoogleMap {
+    if (_googleMapView != nil) {
+        [_googleMapView removeFromSuperview];
+    }
     self.googleMapView = [[NSBundle mainBundle] loadNibNamed:@"GoogleMapView" owner:self options:nil].firstObject;
     _googleMapView.frame = _mapView.bounds;
     _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [_mapView addSubview:_googleMapView];
+    self.selMapView = _googleMapView;
+    [self setMarker];
+}
+- (void)addSubViewKakaoMap {
+    if (_kakaoMapView != nil) {
+        [_kakaoMapView removeFromSuperview];
+    }
     
+    self.kakaoMapView = [[NSBundle mainBundle] loadNibNamed:@"KakaoMapView" owner:self options:nil].firstObject;
+    _kakaoMapView.frame = _mapView.bounds;
+    _kakaoMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [_mapView addSubview:_kakaoMapView];
+    self.selMapView = _kakaoMapView;
     [self setMarker];
 }
 
-#pragma mark - naverMap
 - (void)addSubViewNaverMap {
+    if (_naverMapView != nil) {
+        [_naverMapView removeFromSuperview];
+    }
     self.naverMapView = [[NSBundle mainBundle] loadNibNamed:@"NaverMapView" owner:self options:nil].firstObject;
     _naverMapView.frame = _mapView.bounds;
     _naverMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [_mapView addSubview:_naverMapView];
     
-    NMFInfoWindow.infoWindow.dataSource = self;
-    NMFInfoWindow.infoWindow.offsetX = -20;
-    NMFInfoWindow.infoWindow.offsetY = -3;
-    NMFInfoWindow.infoWindow.anchor = CGPointMake(0, 1);
-    NMFInfoWindow.infoWindow.mapView = _naverMapView.map;
+    self.selMapView = _naverMapView;
     
     [self setMarker];
 }
 
 - (void)setMarker {
     
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    CGFloat geoLat = _passJooso.geoLat;
-    CGFloat geoLng = _passJooso.geoLng;
-    NSString *title = _passJooso.address;;
-    
-    if (geoLng == 0.0 && geoLng == 0.0) {
-        geoLat = _placeInfo.y;
-        geoLng = _placeInfo.x;
-        title = _placeInfo.jibun_address;
+    PlaceInfo *info = nil;
+    if (_placeInfo != nil) {
+        info = _placeInfo;
+    }
+    else if (_passJooso != nil) {
+        info = [[PlaceInfo alloc] init];
+        info.jibun_address = _passJooso.address;
+        info.x = _passJooso.geoLng;
+        info.y = _passJooso.geoLat;
+        info.name = _passJooso.placeName;
+    }
+    else {
+        return;
     }
     
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        
-        NMGLatLng *latLng = NMGLatLngMake(geoLat, geoLng);
-        
-        __block NMFMarker *marker = [NMFMarker markerWithPosition:latLng];
-        UIImage *img = [UIImage imageNamed:@"icon_location_now"];
-        NMFOverlayImage *overlayImg = [NMFOverlayImage overlayImageWithImage:img];
-        marker.iconImage = overlayImg;
-        
-        marker.angle = 0;
-        marker.iconPerspectiveEnabled = YES;
-        marker.mapView = _naverMapView.map;
-        
-        [_naverMapView.map moveCamera:[NMFCameraUpdate cameraUpdateWithScrollTo:latLng] completion:nil];
-        
-        if (title.length > 0) {
-            marker.userInfo = @{@"tag" : title};
-            __weak typeof(marker) weakMark = marker;
-            
-            [marker setTouchHandler:^BOOL(NMFOverlay *__weak _Nonnull overay) {
-                [NMFInfoWindow.infoWindow openWithMarker:weakMark];
-                NMFInfoWindow.infoWindow.hidden = NO;
-                return YES;
-            }];
-        }
-        marker.mapView = _naverMapView.map;
+    if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
+        [self.selMapView performSelector:@selector(setMarker:) withObject:info];
     }
-    else if ([selMapId isEqualToString:MapIdGoogle]) {
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = geoLat;
-        coordinate.longitude = geoLng;
-        
-        UIImage *img = [UIImage imageNamed:@"icon_location_now"];
-        GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.icon = img;
-        marker.position = coordinate;
-        marker.title = title;
-        marker.snippet = title;
-        marker.map = _googleMapView.gmsMapView;
+    
+    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
+        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:info];
     }
-}
-
-#pragma mark - NMFOverlayImageDataSource
-- (UIView *)viewWithOverlay:(NMFOverlay *)overlay {
-    CustomInfoView *infoView = [[NSBundle mainBundle] loadNibNamed:@"CustomInfoView" owner:nil options:0].firstObject;
-    infoView.lbTitle.text = [NMFInfoWindow.infoWindow.marker.userInfo objectForKey:@"tag"];
-    
-    CGSize fitSize = [infoView.lbTitle sizeThatFits:CGSizeMake(150, CGFLOAT_MAX)];
-    infoView.translatesAutoresizingMaskIntoConstraints = NO;
-    infoView.heightTitle.constant = fitSize.height;
-    infoView.widthTitle.constant = fitSize.width;
-    [infoView setNeedsLayout];
-    [infoView layoutIfNeeded];
-    
-    return infoView;
 }
 
 #pragma mark - MapSearchViewControllerDelegate
@@ -780,6 +759,9 @@
     }
     else if ([selMapId isEqualToString:MapIdGoogle]) {
         [self addSubViewGoogleMap];
+    }
+    else if ([selMapId isEqualToString:MapIdKakao]) {
+        [self addSubViewKakaoMap];
     }
 }
 @end

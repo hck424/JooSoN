@@ -24,7 +24,7 @@
 #define NotiNameHitTestView   @"NotiNameHitTestView"
 #define NotiNameCallState  @"NotiNameCallState"
 #define NotiChangeMapId  @"NotiChangeMapId"
-
+#define NotiSelectPlaceInfo @"NotiSelectPlaceInfo"
 
 #define EntityJooSo @"JooSo"
 #define EntityHistory @"History"

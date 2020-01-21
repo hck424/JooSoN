@@ -95,7 +95,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     
     NSString *organizationName = [itemDic objectForKey:@"organizationName"];
     NSString *roadAddress = [itemDic objectForKey:@"roadAddress"];
-    
+    NSString *placeName = [itemDic objectForKey:@"placeName"];
     NSArray *phoneNumbers = [itemDic objectForKey:@"phoneNumbers"];
     UIImage *thumnail = [itemDic objectForKey:@"thumnail"];
     
@@ -114,6 +114,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     js.like = like;
     js.organizationName = organizationName;
     js.roadAddress = roadAddress;
+    js.placeName = placeName;
     
     for (NSDictionary *itemDic in phoneNumbers) {
         NSString *label = [itemDic objectForKey:@"label"];
@@ -219,7 +220,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     
     oldJooso.organizationName = [param objectForKey:@"organizationName"];
     oldJooso.roadAddress = [param objectForKey:@"roadAddress"];
-
+    oldJooso.placeName = [param objectForKey:@"placeName"];
     UIImage *thumnail = [param objectForKey:@"thumnail"];
     oldJooso.toThumnail.image = thumnail;
         
@@ -809,6 +810,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     NSMutableString *result = [NSMutableString string];
     [result setString:@"https://maps.googleapis.com/maps/api/place/textsearch/json?"];
     [result appendFormat:@"query=%@", query];
+    [result appendFormat:@"&fields=%@", @"formatted_address,formatted_phone_number"];
     [result appendFormat:@"&language=%@", @"ko"];
     [result appendFormat:@"&key=%@", GoogleMapApiKey];
     

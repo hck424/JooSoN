@@ -11,5 +11,6 @@
 @implementation CustomInfoView
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.userInteractionEnabled = NO;
 }
 @end

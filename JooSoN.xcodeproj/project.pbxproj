@@ -10,6 +10,7 @@
 		5B968855E935016FE258D099 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B994264401F3FD7426EBC1 /* Pods_JooSoN.framework */; };
 		E9314AAF23CDA39400A98A9A /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9314AAE23CDA39400A98A9A /* CoreNFC.framework */; };
 		E9351F7223C9C3EB00E96DD1 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */; };
+		E94BFAF923D54C5F00FD6E7B /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94BFAF823D54C5F00FD6E7B /* LocationView.m */; };
 		E951AC7423C83D67006DA22E /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E951AC7323C83D67006DA22E /* CustomInfoView.m */; };
 		E951AC7623C83D72006DA22E /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E951AC7523C83D72006DA22E /* CustomInfoView.xib */; };
 		E951AC7923C8817B006DA22E /* NfcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E951AC7823C8817B006DA22E /* NfcViewController.m */; };
@@ -19,6 +20,8 @@
 		E990288123C6352800C691AB /* MapSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990288023C6352800C691AB /* MapSearchView.m */; };
 		E990288323C6353700C691AB /* MapSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990288223C6353700C691AB /* MapSearchView.xib */; };
 		E99028BA23C72B2200C691AB /* InstantPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */; };
+		E99B346223D549040047B7CA /* KakaoMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99B346123D549040047B7CA /* KakaoMapView.m */; };
+		E99B346423D5490E0047B7CA /* KakaoMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99B346323D5490E0047B7CA /* KakaoMapView.xib */; };
 		E99F5F4823BECB260014D13C /* InfoJooSoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99F5F4723BECB260014D13C /* InfoJooSoViewController.m */; };
 		E9AFD4C123BB93D5005210C8 /* PhoneNumber+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4B223BB93D4005210C8 /* PhoneNumber+CoreDataClass.m */; };
 		E9AFD4C323BB93D5005210C8 /* PhoneNumber+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4B923BB93D5005210C8 /* PhoneNumber+CoreDataProperties.m */; };
@@ -129,6 +132,8 @@
 		E9314AB023CDA5FF00A98A9A /* JooSoN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JooSoN.entitlements; sourceTree = "<group>"; };
 		E9351F7023C9C3EB00E96DD1 /* MapSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchViewController.h; sourceTree = "<group>"; };
 		E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchViewController.m; sourceTree = "<group>"; };
+		E94BFAF723D54C5F00FD6E7B /* LocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationView.h; sourceTree = "<group>"; };
+		E94BFAF823D54C5F00FD6E7B /* LocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationView.m; sourceTree = "<group>"; };
 		E951AC7223C83D67006DA22E /* CustomInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomInfoView.h; sourceTree = "<group>"; };
 		E951AC7323C83D67006DA22E /* CustomInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomInfoView.m; sourceTree = "<group>"; };
 		E951AC7523C83D72006DA22E /* CustomInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
@@ -144,6 +149,9 @@
 		E990288223C6353700C691AB /* MapSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchView.xib; sourceTree = "<group>"; };
 		E99028B823C72B2200C691AB /* InstantPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstantPanGestureRecognizer.h; sourceTree = "<group>"; };
 		E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstantPanGestureRecognizer.m; sourceTree = "<group>"; };
+		E99B346023D549040047B7CA /* KakaoMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KakaoMapView.h; sourceTree = "<group>"; };
+		E99B346123D549040047B7CA /* KakaoMapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KakaoMapView.m; sourceTree = "<group>"; };
+		E99B346323D5490E0047B7CA /* KakaoMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KakaoMapView.xib; sourceTree = "<group>"; };
 		E99F5F4623BECB260014D13C /* InfoJooSoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoJooSoViewController.h; sourceTree = "<group>"; };
 		E99F5F4723BECB260014D13C /* InfoJooSoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoJooSoViewController.m; sourceTree = "<group>"; };
 		E9AFD4B223BB93D4005210C8 /* PhoneNumber+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhoneNumber+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -496,6 +504,16 @@
 			path = JooSoVC;
 			sourceTree = "<group>";
 		};
+		E99B346523D549140047B7CA /* KakaoMap */ = {
+			isa = PBXGroup;
+			children = (
+				E99B346023D549040047B7CA /* KakaoMapView.h */,
+				E99B346123D549040047B7CA /* KakaoMapView.m */,
+				E99B346323D5490E0047B7CA /* KakaoMapView.xib */,
+			);
+			path = KakaoMap;
+			sourceTree = "<group>";
+		};
 		E9B9962923C438C100139273 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,7 +523,7 @@
 			path = Tutorial;
 			sourceTree = "<group>";
 		};
-		E9B9964023C55FC100139273 /* NaverMapView */ = {
+		E9B9964023C55FC100139273 /* NaverMap */ = {
 			isa = PBXGroup;
 			children = (
 				E9B9964C23C5694D00139273 /* NaverMapView.h */,
@@ -515,17 +533,17 @@
 				E951AC7323C83D67006DA22E /* CustomInfoView.m */,
 				E951AC7523C83D72006DA22E /* CustomInfoView.xib */,
 			);
-			path = NaverMapView;
+			path = NaverMap;
 			sourceTree = "<group>";
 		};
-		E9BA5B1A23CEEC880083415B /* GoogleMapView */ = {
+		E9BA5B1A23CEEC880083415B /* GoogleMap */ = {
 			isa = PBXGroup;
 			children = (
 				E9BA5B1623CEEC6F0083415B /* GoogleMapView.h */,
 				E9BA5B1723CEEC6F0083415B /* GoogleMapView.m */,
 				E9BA5B1B23CEECB30083415B /* GoogleMapView.xib */,
 			);
-			path = GoogleMapView;
+			path = GoogleMap;
 			sourceTree = "<group>";
 		};
 		E9DB05E323B7C55E00BD22C1 = {
@@ -793,8 +811,8 @@
 				E9DB064123B7CA6400BD22C1 /* AroundSearchViewController.m */,
 				E9DB062923B7CA6400BD22C1 /* DestinationViewController.h */,
 				E9DB064023B7CA6400BD22C1 /* DestinationViewController.m */,
-				E9BA5B1A23CEEC880083415B /* GoogleMapView */,
-				E9B9964023C55FC100139273 /* NaverMapView */,
+				E9BA5B1A23CEEC880083415B /* GoogleMap */,
+				E9B9964023C55FC100139273 /* NaverMap */,
 				E9C952DF23C416E200B7E922 /* MapSearchHistoryController.h */,
 				E9C952E023C416E300B7E922 /* MapSearchHistoryController.m */,
 				E9B9962A23C44AEE00139273 /* MapSearchResultListController.h */,
@@ -809,6 +827,9 @@
 				E9B9965523C5DAA800139273 /* PlaceInfo.m */,
 				E9351F7023C9C3EB00E96DD1 /* MapSearchViewController.h */,
 				E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */,
+				E99B346523D549140047B7CA /* KakaoMap */,
+				E94BFAF723D54C5F00FD6E7B /* LocationView.h */,
+				E94BFAF823D54C5F00FD6E7B /* LocationView.m */,
 			);
 			path = MapsVC;
 			sourceTree = "<group>";
@@ -927,6 +948,7 @@
 				E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */,
 				E9DB06E023B7CA6500BD22C1 /* TabContainerController.xib in Resources */,
 				E9DB05FA23B7C55E00BD22C1 /* Main.storyboard in Resources */,
+				E99B346423D5490E0047B7CA /* KakaoMapView.xib in Resources */,
 				E9DB06F123B7CA6500BD22C1 /* PopupCell.xib in Resources */,
 				E9DB06E523B7CA6500BD22C1 /* TOCropViewControllerLocalizable.strings in Resources */,
 			);
@@ -1039,6 +1061,7 @@
 				E9DB06BA23B7CA6500BD22C1 /* ContactsManager.m in Sources */,
 				E9AFD4DF23BD91DF005210C8 /* GroupName+CoreDataClass.m in Sources */,
 				E9DB06D723B7CA6500BD22C1 /* JooSoCell.m in Sources */,
+				E99B346223D549040047B7CA /* KakaoMapView.m in Sources */,
 				E9AFD4DE23BD91DF005210C8 /* GroupName+CoreDataProperties.m in Sources */,
 				E9B9964E23C5694D00139273 /* NaverMapView.m in Sources */,
 				E9DB06D223B7CA6500BD22C1 /* LeftSlideViewController.m in Sources */,
@@ -1077,6 +1100,7 @@
 				E9DB06E623B7CA6500BD22C1 /* TOActivityCroppedImageProvider.m in Sources */,
 				E9DB06DA23B7CA6500BD22C1 /* ShareData.m in Sources */,
 				E9DB06C923B7CA6500BD22C1 /* JooSoListViewController.m in Sources */,
+				E94BFAF923D54C5F00FD6E7B /* LocationView.m in Sources */,
 				E9DB06C523B7CA6500BD22C1 /* RootViewController.m in Sources */,
 				E9DB06E823B7CA6500BD22C1 /* TOCroppedImageAttributes.m in Sources */,
 				E9B9963023C44C3B00139273 /* MapSearchResultCell.m in Sources */,
@@ -1265,6 +1289,7 @@
 			baseConfigurationReference = 3396445DB926BF8917DFE91E /* Pods-JooSoN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1306,6 +1331,7 @@
 			baseConfigurationReference = FA9F845342C013C93DCD6B36 /* Pods-JooSoN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

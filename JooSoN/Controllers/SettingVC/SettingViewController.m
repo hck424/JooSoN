@@ -119,8 +119,7 @@
     NSDictionary *itemDic = [[_arrData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     NSString *newMapId = [itemDic objectForKey:@"mapId"];
     if ([_selectedMapId isEqualToString:newMapId] == NO) {
-        if ([newMapId isEqualToString:MapIdKakao]
-            || [newMapId isEqualToString:MapIdTmap]) {
+        if ([newMapId isEqualToString:MapIdTmap]) {
             [self.view makeToast:@"서비스 준비중입니다." duration:1.0 position:CSToastPositionTop];
         }
         else {

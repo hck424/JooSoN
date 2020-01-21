@@ -29,5 +29,6 @@
 @dynamic roadAddress;
 @dynamic toPhoneNumber;
 @dynamic toThumnail;
+@dynamic placeName;
 
 @end

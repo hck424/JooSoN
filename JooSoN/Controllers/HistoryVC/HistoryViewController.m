@@ -112,10 +112,12 @@
     
     NSString *preDateStr = nil;
     NSMutableArray *arrSection = nil;
+    
     for (History *history in arrSearch) {
         NSDate *date = history.createDate;
         NSString *curDateStr = [df stringFromDate:date];
         if ([preDateStr isEqualToString:curDateStr] == NO) {
+            
             arrSection = [NSMutableArray array];
             NSMutableDictionary *sectionDic = [NSMutableDictionary dictionary];
             [sectionDic setObject:curDateStr forKey:@"sec_title"];
@@ -127,6 +129,7 @@
         
         preDateStr = curDateStr;
     }
+    
     if (_arrData.count > 0) {
         _tblView.hidden = NO;
         [_tblView reloadData];
@@ -184,6 +187,7 @@
             info.jibun_address = self.selHistory.address;
             info.x = self.selHistory.geoLng;
             info.y = self.selHistory.geoLat;
+            info.name = self.selHistory.address;
             
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
             vc.passPlaceInfo = info;

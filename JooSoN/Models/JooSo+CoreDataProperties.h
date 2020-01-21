@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *localIdentifier;
 @property (nullable, nonatomic, copy) NSString *organizationName;
 @property (nullable, nonatomic, copy) NSString *roadAddress;
+@property (nullable, nonatomic, copy) NSString *placeName;
 @property (nullable, nonatomic, retain) NSOrderedSet<PhoneNumber *> *toPhoneNumber;
 @property (nullable, nonatomic, retain) Thumnail *toThumnail;
 

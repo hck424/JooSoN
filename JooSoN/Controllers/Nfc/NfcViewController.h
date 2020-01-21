@@ -13,7 +13,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NfcViewController : UIViewController
-@property (nonatomic, strong) JooSo *passJooso;
 @property (nonatomic, strong) PlaceInfo *passPlaceInfo;
 @end
 
