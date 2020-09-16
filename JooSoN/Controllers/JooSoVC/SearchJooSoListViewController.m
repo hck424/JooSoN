@@ -208,7 +208,7 @@
             [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
-            NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
+            NSString *selMapId = AppDelegate.instance.selMapId;
             if ([selMapId isEqualToString:MapIdNaver]) {
                 url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", jooso.geoLat, jooso.geoLng, jooso.address, [[NSBundle mainBundle] bundleIdentifier]];
                 url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];

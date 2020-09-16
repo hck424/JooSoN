@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface LocationView : UIView <CLLocationManagerDelegate>
+- (void)getPlaceInfoByCoordinate:(CLLocationCoordinate2D)coordinate completion:(void(^)(PlaceInfo *placeInfo))completion;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign) CLLocationCoordinate2D curCoordinate;
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;

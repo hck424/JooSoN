@@ -207,7 +207,7 @@
     [super leftViewWillLayoutSubviewsWithSize:size];
     
     if (!self.isLeftViewStatusBarHidden) {
-        self.leftView.frame = CGRectMake(0.0, 20.0, size.width, size.height-20.0);
+        self.leftView.frame = CGRectMake(0.0, 0.0, size.width, size.height);
     }
 }
 
@@ -219,7 +219,7 @@
          UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad &&
          UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)))
     {
-        self.rightView.frame = CGRectMake(0.0, 20.0, size.width, size.height-20.0);
+        self.rightView.frame = CGRectMake(0.0, 0.0, size.width, size.height);
     }
 }
 

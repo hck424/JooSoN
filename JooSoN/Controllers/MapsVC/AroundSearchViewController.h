@@ -13,5 +13,5 @@
 
 IB_DESIGNABLE
 @interface AroundSearchViewController : UIViewController
-
+- (void)reloadData;
 @end

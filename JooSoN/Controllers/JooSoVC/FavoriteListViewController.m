@@ -151,12 +151,12 @@
             [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
-            NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-            if ([selMapId isEqualToString:MapIdNaver]) {
+            
+            if ([AppDelegate.instance.selMapId isEqualToString:MapIdNaver]) {
                 url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", jooso.geoLat, jooso.geoLng, jooso.address, [[NSBundle mainBundle] bundleIdentifier]];
                 url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
             }
-            else if ([selMapId isEqualToString:MapIdGoogle]) {
+            else if ([AppDelegate.instance.selMapId isEqualToString:MapIdGoogle]) {
                 url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", jooso.address, jooso.geoLat, jooso.geoLng];
                 url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
             }

@@ -23,91 +23,86 @@
 }
 - (void)stopCurrentLocationUpdatingLocation {
     [self.locationManager stopUpdatingLocation];
+
 }
 
-- (void)passingAdress:(LMAddress *)address codinate:(CLLocationCoordinate2D)codinate {
-    
-    //    NSString *tmpStr = address.formattedAddress;
-    NSDictionary *adDic = [address.rawSource valueForKey:@"addressDictionary"];
-    NSString *street = [adDic objectForKey:@"Street"];
-    NSString *subLocality = [adDic objectForKey:@"SubLocality"];
-    NSString *state = [adDic objectForKey:@"State"];
-    NSString *subThoroughfare = [adDic objectForKey:@"SubThoroughfare"];
-    NSString *city = [adDic objectForKey:@"City"];
-    NSString *thoroughfare = [adDic objectForKey:@"Thoroughfare"];
-    NSString *name = [adDic objectForKey:@"Name"];
-    //    NSString *countryCode = [adDic objectForKey:@"CountryCode"];
-    //    NSString *country = [adDic objectForKey:@"Country"];
-    //    NSString *zip = [adDic objectForKey:@"ZIP"];
-    
-    self.curPlaceInfo = [[PlaceInfo alloc] init];
-    
-    _curPlaceInfo.x = codinate.longitude;
-    _curPlaceInfo.y = codinate.latitude;
-    
-    NSMutableString *curAddr = [NSMutableString string];
-    if (state.length > 0) {
-        [curAddr setString:state];
-        _curPlaceInfo.state = state;
-    }
-    
-    if (city.length > 0) {
-        [curAddr appendFormat:@" %@", city];
-        _curPlaceInfo.city = city;
-    }
-    
-    if (street.length > 0) {
-        [curAddr appendFormat:@" %@", street];
-        _curPlaceInfo.street = street;
-        _curPlaceInfo.name = name;
-    }
-    else if (name.length > 0) {
-        [curAddr appendFormat:@" %@", name];
-        _curPlaceInfo.name = name;
-    }
-    else {
-        if (thoroughfare.length > 0) {
-            [curAddr appendFormat:@" %@", thoroughfare];
-            _curPlaceInfo.name = thoroughfare;
-        }
-        if (subThoroughfare.length > 0) {
-            _curPlaceInfo.name = thoroughfare;
-            [curAddr appendFormat:@" %@", subThoroughfare];
-        }
-    }
-    
-    if (subLocality.length > 0) {
-        _curPlaceInfo.subLocality = subLocality;
-    }
-    else if (thoroughfare.length > 0) {
-        _curPlaceInfo.subLocality = thoroughfare;
-    }
-    
-    _curPlaceInfo.jibun_address = curAddr;
-    
-    if ([self.delegate respondsToSelector:@selector(locationView:curPlaceInfo:)]) {
-        [_delegate locationView:self curPlaceInfo:_curPlaceInfo];
-    }
-}
+- (void)getPlaceInfoByCoordinate:(CLLocationCoordinate2D)coordinate completion:(void(^)(PlaceInfo *placeInfo))completion {
 
-- (void)getAddressToCoordinate:(CLLocationCoordinate2D)coordinate {
-    
     [[LMGeocoder sharedInstance] cancelGeocode];
-    
-    
-    __weak typeof (self) weakSelf = self;
     [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:coordinate
                                                   service:LMGeocoderServiceGoogle
                                        alternativeService:LMGeocoderServiceApple
                                         completionHandler:^(NSArray *results, NSError *error) {
         
         // Parse formatted address
-        NSString *formattedAddress = @"-";
         if (results.count && !error) {
             LMAddress *address = [results firstObject];
-            [weakSelf passingAdress:address codinate:coordinate];
+            
+            NSDictionary *adDic = [address.rawSource valueForKey:@"addressDictionary"];
+            NSString *street = [adDic objectForKey:@"Street"];
+            NSString *subLocality = [adDic objectForKey:@"SubLocality"];
+            NSString *state = [adDic objectForKey:@"State"];
+            NSString *subThoroughfare = [adDic objectForKey:@"SubThoroughfare"];
+            NSString *city = [adDic objectForKey:@"City"];
+            NSString *thoroughfare = [adDic objectForKey:@"Thoroughfare"];
+            NSString *name = [adDic objectForKey:@"Name"];
+            //    NSString *countryCode = [adDic objectForKey:@"CountryCode"];
+            //    NSString *country = [adDic objectForKey:@"Country"];
+            //    NSString *zip = [adDic objectForKey:@"ZIP"];
+            
+            PlaceInfo *info = [[PlaceInfo alloc] init];
+            
+            info.x = coordinate.longitude;
+            info.y = coordinate.latitude;
+            
+            NSMutableString *curAddr = [NSMutableString string];
+            if (state.length > 0) {
+                [curAddr setString:state];
+                info.state = state;
+            }
+            
+            if (city.length > 0) {
+                [curAddr appendFormat:@" %@", city];
+                info.city = city;
+            }
+            
+            if (street.length > 0) {
+                [curAddr appendFormat:@" %@", street];
+                info.street = street;
+                info.name = name;
+            }
+            else if (name.length > 0) {
+                [curAddr appendFormat:@" %@", name];
+                info.name = name;
+            }
+            else {
+                if (thoroughfare.length > 0) {
+                    [curAddr appendFormat:@" %@", thoroughfare];
+                    info.name = thoroughfare;
+                }
+                if (subThoroughfare.length > 0) {
+                    info.name = thoroughfare;
+                    [curAddr appendFormat:@" %@", subThoroughfare];
+                }
+            }
+            
+            if (subLocality.length > 0) {
+                info.subLocality = subLocality;
+            }
+            else if (thoroughfare.length > 0) {
+                info.subLocality = thoroughfare;
+            }
+            info.jibun_address = curAddr;
+            
+            if (completion) {
+                completion(info);
+            }
         }
-        NSLog(@"%@", formattedAddress);
+        else {
+            if (completion) {
+                completion(nil);
+            }
+        }
         
     }];
 }
@@ -121,7 +116,15 @@
     
     //    NSLog(@"curent location x : @%lf, y : %lf", coordinate.latitude, coordinate.longitude);
     self.curCoordinate = coordinate;
-    [self getAddressToCoordinate:coordinate];
+    [self getPlaceInfoByCoordinate:coordinate completion:^(PlaceInfo *placeInfo) {
+        if (placeInfo != nil) {
+            self.curPlaceInfo = placeInfo;
+            if ([self.delegate respondsToSelector:@selector(locationView:curPlaceInfo:)]) {
+                [self.delegate locationView:self curPlaceInfo:self.curPlaceInfo];
+            }
+        }
+    }];
+    
 }
 
 /*

@@ -18,7 +18,9 @@
 #import "History+CoreDataProperties.h"
 #import "GroupName+CoreDataProperties.h"
 #import "MapSearchHistory+CoreDataProperties.h"
-#import <NMapsMap/NMapsMap.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <GooglePlaces/GooglePlaces.h>
+
 
 typedef void(^SUCCESS_ARR)(NSArray *arrData);
 typedef void(^SUCCESS_VOID)(void);
@@ -60,14 +62,6 @@ extern NSString *NMAP_ORDERBY_POPULARITY;
 - (void)insertMapSearchHistory:(NSString *)text success:(SUCCESS_VOID)success fail:(FAIL_ERROR)fail;
 - (void)deleteMapSearchHistory:(MapSearchHistory *)history success:(SUCCESS_VOID)success fail:(FAIL_ERROR)fail;
 
-
-
-//!네이버 맵 장소 검색 api
-- (void)nmapSearchPlace:(NSString *)query
-                 coordinate:(CLLocationCoordinate2D)coordinate
-                orderBy:(NSString *)orderBy
-                success:(SUCCESS_DIC)success
-                   fail:(FAIL_ERROR)fail;
 
 - (void)googleMapSearchPlace:(NSString *)query
                   coordinate:(CLLocationCoordinate2D)coordinate

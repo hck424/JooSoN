@@ -17,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GoogleMapView : LocationView
 @property (weak, nonatomic) IBOutlet GMSMapView *gmsMapView;
 
-- (void)setCurrentMarker:(NSNumber *)selected;
-- (void)setMarker:(PlaceInfo *)placeInfo;
-- (void)selectedMarker:(GMSMarker *)marker selected:(BOOL)selected;
+- (void)setCurrentMarker:(BOOL)selected;
+//- (void)setMarker:(PlaceInfo *)placeInfo;
 - (void)hideAllMarker;
-
-- (void)selectedMarkerWithPlaceInfo:(PlaceInfo *)info;
+- (GMSMarker *)setMarker:(PlaceInfo *)info icon:(UIImage *)icon;
+- (void)moveMarker:(PlaceInfo *)info zoom:(NSInteger)zoom;
+//- (void)selectedMarkerWithPlaceInfo:(PlaceInfo *)info;
 
 @end
 

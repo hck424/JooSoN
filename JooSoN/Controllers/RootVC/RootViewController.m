@@ -259,6 +259,12 @@
 //    else if (index == 1) {
 //        [_drHistoryViewController reloadData];
 //    }
+    if (index == 2) {
+        [_destinationVC reloadData];
+    }
+    else if (index == 4) {
+        [_aroundSearchVC reloadData];
+    }
 }
 
 #pragma mark - notificationHandler:

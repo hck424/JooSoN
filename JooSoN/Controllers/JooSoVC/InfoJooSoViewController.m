@@ -13,10 +13,8 @@
 #import "NSString+Utility.h"
 #import "CallkitController.h"
 #import "AddJooSoViewController.h"
-#import "NaverMapView.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
-#import "KakaoMapView.h"
 #import "SceneDelegate.h"
 
 @interface InfoJooSoViewController () <CallkitControllerDelegate>
@@ -43,9 +41,7 @@
 @property (nonatomic, strong) NSString *callType;
 @property (nonatomic, assign) NSTimeInterval callConectedTimeInterval;
 @property (nonatomic, strong) NSMutableArray *arrCallState;
-@property (nonatomic, strong) NaverMapView *naverMapView;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
-@property (nonatomic, strong) KakaoMapView *kakaoMapView;
 @property (nonatomic, strong) UIView *selMapView;
 @end
 
@@ -123,18 +119,9 @@
         && _passJooso.geoLng > 0
         && _passJooso.geoLng > 0) {
         
-        NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
         _btnEmptyMarker.hidden = YES;
         
-        if ([selMapId isEqualToString:MapIdNaver]) {
-            [self addSubViewNaverMap];
-        }
-        else if ([selMapId isEqualToString:MapIdGoogle]) {
-            [self addSubViewGoogleMap];
-        }
-        else if ([selMapId isEqualToString:MapIdKakao]) {
-            [self addSubViewKakaoMap];
-        }
+        [self addSubViewGoogleMap];
     }
     
     [self.view layoutIfNeeded];
@@ -217,7 +204,7 @@
     }
     else if (sender == _btnNavi) {
         NSString *url = nil;
-        NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
+        NSString *selMapId = AppDelegate.instance.selMapId;
         
         if ([selMapId isEqualToString:MapIdNaver]) {
             url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.passJooso.geoLat, self.passJooso.geoLng, self.passJooso.address, [[NSBundle mainBundle] bundleIdentifier]];
@@ -356,24 +343,6 @@
     _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [_mapView addSubview:_googleMapView];
     self.selMapView = _googleMapView;
-    [self setMarker];
-}
-
-- (void)addSubViewKakaoMap {
-    self.kakaoMapView = [[NSBundle mainBundle] loadNibNamed:@"KakaoMapView" owner:self options:nil].firstObject;
-    _kakaoMapView.frame = _mapView.bounds;
-    _kakaoMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [_mapView addSubview:_kakaoMapView];
-    self.selMapView = _kakaoMapView;
-    [self setMarker];
-}
-
-- (void)addSubViewNaverMap {
-    self.naverMapView = [[NSBundle mainBundle] loadNibNamed:@"NaverMapView" owner:self options:nil].firstObject;
-    _naverMapView.frame = _mapView.bounds;
-    _naverMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [_mapView addSubview:_naverMapView];
-    self.selMapView = _naverMapView;
     [self setMarker];
 }
 

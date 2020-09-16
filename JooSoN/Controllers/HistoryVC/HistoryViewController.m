@@ -170,7 +170,7 @@
         }
         else if (action == HistoryCellActionNavi) {
             NSString *url = nil;
-            NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
+            NSString *selMapId = AppDelegate.instance.selMapId;
         
             if ([selMapId isEqualToString:MapIdNaver]) {
                 url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selHistory.geoLat, self.selHistory.geoLng, self.selHistory.address, [[NSBundle mainBundle] bundleIdentifier]];

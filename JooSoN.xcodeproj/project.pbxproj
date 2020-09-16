@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B968855E935016FE258D099 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B994264401F3FD7426EBC1 /* Pods_JooSoN.framework */; };
+		01D05E41C5CEAD8F11C85668 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */; };
 		E9314AAF23CDA39400A98A9A /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9314AAE23CDA39400A98A9A /* CoreNFC.framework */; };
 		E9351F7223C9C3EB00E96DD1 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */; };
 		E94BFAF923D54C5F00FD6E7B /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94BFAF823D54C5F00FD6E7B /* LocationView.m */; };
-		E951AC7423C83D67006DA22E /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E951AC7323C83D67006DA22E /* CustomInfoView.m */; };
-		E951AC7623C83D72006DA22E /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E951AC7523C83D72006DA22E /* CustomInfoView.xib */; };
 		E951AC7923C8817B006DA22E /* NfcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E951AC7823C8817B006DA22E /* NfcViewController.m */; };
 		E989E01F23C1CE9400EF3FD2 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E989E01D23C1CE9400EF3FD2 /* GroupCell.m */; };
 		E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E989E01E23C1CE9400EF3FD2 /* GroupCell.xib */; };
@@ -20,8 +18,6 @@
 		E990288123C6352800C691AB /* MapSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990288023C6352800C691AB /* MapSearchView.m */; };
 		E990288323C6353700C691AB /* MapSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990288223C6353700C691AB /* MapSearchView.xib */; };
 		E99028BA23C72B2200C691AB /* InstantPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */; };
-		E99B346223D549040047B7CA /* KakaoMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99B346123D549040047B7CA /* KakaoMapView.m */; };
-		E99B346423D5490E0047B7CA /* KakaoMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99B346323D5490E0047B7CA /* KakaoMapView.xib */; };
 		E99F5F4823BECB260014D13C /* InfoJooSoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99F5F4723BECB260014D13C /* InfoJooSoViewController.m */; };
 		E9AFD4C123BB93D5005210C8 /* PhoneNumber+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4B223BB93D4005210C8 /* PhoneNumber+CoreDataClass.m */; };
 		E9AFD4C323BB93D5005210C8 /* PhoneNumber+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4B923BB93D5005210C8 /* PhoneNumber+CoreDataProperties.m */; };
@@ -36,15 +32,12 @@
 		E9B9962C23C44AEE00139273 /* MapSearchResultListController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9962B23C44AEE00139273 /* MapSearchResultListController.m */; };
 		E9B9963023C44C3B00139273 /* MapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9962E23C44C3B00139273 /* MapSearchResultCell.m */; };
 		E9B9963123C44C3B00139273 /* MapSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9962F23C44C3B00139273 /* MapSearchResultCell.xib */; };
-		E9B9963323C55E6600139273 /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963223C55E6600139273 /* DaumMap.framework */; };
 		E9B9963523C55ED500139273 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963423C55ED500139273 /* OpenGLES.framework */; };
 		E9B9963723C55EDE00139273 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963623C55EDE00139273 /* CoreLocation.framework */; };
 		E9B9963923C55EEA00139273 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963823C55EEA00139273 /* QuartzCore.framework */; };
 		E9B9963B23C55F0400139273 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963A23C55EFA00139273 /* libc++.tbd */; };
 		E9B9963E23C55F3700139273 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963C23C55F0E00139273 /* libxml2.tbd */; };
 		E9B9963F23C55F4200139273 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B9963D23C55F1B00139273 /* libsqlite3.tbd */; };
-		E9B9964E23C5694D00139273 /* NaverMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9964D23C5694D00139273 /* NaverMapView.m */; };
-		E9B9965023C5696A00139273 /* NaverMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9964F23C5696A00139273 /* NaverMapView.xib */; };
 		E9B9965623C5DAA800139273 /* PlaceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9965523C5DAA800139273 /* PlaceInfo.m */; };
 		E9BA5B1823CEEC6F0083415B /* GoogleMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BA5B1723CEEC6F0083415B /* GoogleMapView.m */; };
 		E9BA5B1C23CEECB30083415B /* GoogleMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BA5B1B23CEECB30083415B /* GoogleMapView.xib */; };
@@ -126,17 +119,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12B994264401F3FD7426EBC1 /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3396445DB926BF8917DFE91E /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
+		0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
+		A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
+		E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9314AAE23CDA39400A98A9A /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		E9314AB023CDA5FF00A98A9A /* JooSoN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JooSoN.entitlements; sourceTree = "<group>"; };
 		E9351F7023C9C3EB00E96DD1 /* MapSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchViewController.h; sourceTree = "<group>"; };
 		E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchViewController.m; sourceTree = "<group>"; };
 		E94BFAF723D54C5F00FD6E7B /* LocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationView.h; sourceTree = "<group>"; };
 		E94BFAF823D54C5F00FD6E7B /* LocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationView.m; sourceTree = "<group>"; };
-		E951AC7223C83D67006DA22E /* CustomInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomInfoView.h; sourceTree = "<group>"; };
-		E951AC7323C83D67006DA22E /* CustomInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomInfoView.m; sourceTree = "<group>"; };
-		E951AC7523C83D72006DA22E /* CustomInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
 		E951AC7723C8817B006DA22E /* NfcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NfcViewController.h; sourceTree = "<group>"; };
 		E951AC7823C8817B006DA22E /* NfcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NfcViewController.m; sourceTree = "<group>"; };
 		E989E01C23C1CE9400EF3FD2 /* GroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
@@ -149,9 +140,6 @@
 		E990288223C6353700C691AB /* MapSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchView.xib; sourceTree = "<group>"; };
 		E99028B823C72B2200C691AB /* InstantPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstantPanGestureRecognizer.h; sourceTree = "<group>"; };
 		E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstantPanGestureRecognizer.m; sourceTree = "<group>"; };
-		E99B346023D549040047B7CA /* KakaoMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KakaoMapView.h; sourceTree = "<group>"; };
-		E99B346123D549040047B7CA /* KakaoMapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KakaoMapView.m; sourceTree = "<group>"; };
-		E99B346323D5490E0047B7CA /* KakaoMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KakaoMapView.xib; sourceTree = "<group>"; };
 		E99F5F4623BECB260014D13C /* InfoJooSoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoJooSoViewController.h; sourceTree = "<group>"; };
 		E99F5F4723BECB260014D13C /* InfoJooSoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoJooSoViewController.m; sourceTree = "<group>"; };
 		E9AFD4B223BB93D4005210C8 /* PhoneNumber+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhoneNumber+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -179,16 +167,12 @@
 		E9B9962D23C44C3B00139273 /* MapSearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchResultCell.h; sourceTree = "<group>"; };
 		E9B9962E23C44C3B00139273 /* MapSearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchResultCell.m; sourceTree = "<group>"; };
 		E9B9962F23C44C3B00139273 /* MapSearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchResultCell.xib; sourceTree = "<group>"; };
-		E9B9963223C55E6600139273 /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
 		E9B9963423C55ED500139273 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E9B9963623C55EDE00139273 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E9B9963823C55EEA00139273 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E9B9963A23C55EFA00139273 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E9B9963C23C55F0E00139273 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E9B9963D23C55F1B00139273 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E9B9964C23C5694D00139273 /* NaverMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaverMapView.h; sourceTree = "<group>"; };
-		E9B9964D23C5694D00139273 /* NaverMapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaverMapView.m; sourceTree = "<group>"; };
-		E9B9964F23C5696A00139273 /* NaverMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NaverMapView.xib; sourceTree = "<group>"; };
 		E9B9965423C5DAA800139273 /* PlaceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceInfo.h; sourceTree = "<group>"; };
 		E9B9965523C5DAA800139273 /* PlaceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceInfo.m; sourceTree = "<group>"; };
 		E9BA5B1623CEEC6F0083415B /* GoogleMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapView.h; sourceTree = "<group>"; };
@@ -367,7 +351,6 @@
 		E9F0603F23C0561500852F95 /* JooSo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JooSo+CoreDataClass.h"; sourceTree = "<group>"; };
 		E9F0604023C0561600852F95 /* JooSo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JooSo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E9F0604123C0561600852F95 /* JooSo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JooSo+CoreDataClass.m"; sourceTree = "<group>"; };
-		FA9F845342C013C93DCD6B36 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,9 +364,8 @@
 				E9B9963F23C55F4200139273 /* libsqlite3.tbd in Frameworks */,
 				E9B9963723C55EDE00139273 /* CoreLocation.framework in Frameworks */,
 				E9B9963E23C55F3700139273 /* libxml2.tbd in Frameworks */,
-				E9B9963323C55E6600139273 /* DaumMap.framework in Frameworks */,
-				5B968855E935016FE258D099 /* Pods_JooSoN.framework in Frameworks */,
 				E9B9963523C55ED500139273 /* OpenGLES.framework in Frameworks */,
+				01D05E41C5CEAD8F11C85668 /* Pods_JooSoN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +382,7 @@
 				E9B9963823C55EEA00139273 /* QuartzCore.framework */,
 				E9B9963623C55EDE00139273 /* CoreLocation.framework */,
 				E9B9963423C55ED500139273 /* OpenGLES.framework */,
-				12B994264401F3FD7426EBC1 /* Pods_JooSoN.framework */,
+				E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -408,8 +390,8 @@
 		B47206EB8F11F5FD331A7287 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3396445DB926BF8917DFE91E /* Pods-JooSoN.debug.xcconfig */,
-				FA9F845342C013C93DCD6B36 /* Pods-JooSoN.release.xcconfig */,
+				A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */,
+				0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -504,16 +486,6 @@
 			path = JooSoVC;
 			sourceTree = "<group>";
 		};
-		E99B346523D549140047B7CA /* KakaoMap */ = {
-			isa = PBXGroup;
-			children = (
-				E99B346023D549040047B7CA /* KakaoMapView.h */,
-				E99B346123D549040047B7CA /* KakaoMapView.m */,
-				E99B346323D5490E0047B7CA /* KakaoMapView.xib */,
-			);
-			path = KakaoMap;
-			sourceTree = "<group>";
-		};
 		E9B9962923C438C100139273 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,19 +493,6 @@
 				E9DB062023B7CA6400BD22C1 /* TutorialViewController.m */,
 			);
 			path = Tutorial;
-			sourceTree = "<group>";
-		};
-		E9B9964023C55FC100139273 /* NaverMap */ = {
-			isa = PBXGroup;
-			children = (
-				E9B9964C23C5694D00139273 /* NaverMapView.h */,
-				E9B9964D23C5694D00139273 /* NaverMapView.m */,
-				E9B9964F23C5696A00139273 /* NaverMapView.xib */,
-				E951AC7223C83D67006DA22E /* CustomInfoView.h */,
-				E951AC7323C83D67006DA22E /* CustomInfoView.m */,
-				E951AC7523C83D72006DA22E /* CustomInfoView.xib */,
-			);
-			path = NaverMap;
 			sourceTree = "<group>";
 		};
 		E9BA5B1A23CEEC880083415B /* GoogleMap */ = {
@@ -667,7 +626,6 @@
 		E9DB066523B7CA6400BD22C1 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
-				E9B9963223C55E6600139273 /* DaumMap.framework */,
 				E9DB066623B7CA6400BD22C1 /* TOCropViewController */,
 			);
 			path = Librarys;
@@ -812,7 +770,6 @@
 				E9DB062923B7CA6400BD22C1 /* DestinationViewController.h */,
 				E9DB064023B7CA6400BD22C1 /* DestinationViewController.m */,
 				E9BA5B1A23CEEC880083415B /* GoogleMap */,
-				E9B9964023C55FC100139273 /* NaverMap */,
 				E9C952DF23C416E200B7E922 /* MapSearchHistoryController.h */,
 				E9C952E023C416E300B7E922 /* MapSearchHistoryController.m */,
 				E9B9962A23C44AEE00139273 /* MapSearchResultListController.h */,
@@ -827,7 +784,6 @@
 				E9B9965523C5DAA800139273 /* PlaceInfo.m */,
 				E9351F7023C9C3EB00E96DD1 /* MapSearchViewController.h */,
 				E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */,
-				E99B346523D549140047B7CA /* KakaoMap */,
 				E94BFAF723D54C5F00FD6E7B /* LocationView.h */,
 				E94BFAF823D54C5F00FD6E7B /* LocationView.m */,
 			);
@@ -841,12 +797,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9DB060823B7C55F00BD22C1 /* Build configuration list for PBXNativeTarget "JooSoN" */;
 			buildPhases = (
-				12DC15A27578568ECBF6A42B /* [CP] Check Pods Manifest.lock */,
+				28AE7C4F0060866E52EFF52C /* [CP] Check Pods Manifest.lock */,
 				E9DB05E823B7C55E00BD22C1 /* Sources */,
 				E9DB05E923B7C55E00BD22C1 /* Frameworks */,
 				E9DB05EA23B7C55E00BD22C1 /* Resources */,
-				5D5EA2D32006CFE746FDE5B6 /* [CP] Embed Pods Frameworks */,
-				007A56EBA29493B164F61137 /* [CP] Copy Pods Resources */,
+				4F2FFD248CE9FF3883427FC6 /* [CP] Embed Pods Frameworks */,
+				E2EFA507CDB0C1F7C9425D28 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -933,8 +889,6 @@
 				E9B9963123C44C3B00139273 /* MapSearchResultCell.xib in Resources */,
 				E9DB06F723B7CA6500BD22C1 /* PopupListViewController.xib in Resources */,
 				E990288323C6353700C691AB /* MapSearchView.xib in Resources */,
-				E9B9965023C5696A00139273 /* NaverMapView.xib in Resources */,
-				E951AC7623C83D72006DA22E /* CustomInfoView.xib in Resources */,
 				E9DB060223B7C55F00BD22C1 /* LaunchScreen.storyboard in Resources */,
 				E9DB06D923B7CA6500BD22C1 /* CameraViewController.xib in Resources */,
 				E9DB06F923B7CA6500BD22C1 /* AddPhoneNumberField.xib in Resources */,
@@ -948,7 +902,6 @@
 				E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */,
 				E9DB06E023B7CA6500BD22C1 /* TabContainerController.xib in Resources */,
 				E9DB05FA23B7C55E00BD22C1 /* Main.storyboard in Resources */,
-				E99B346423D5490E0047B7CA /* KakaoMapView.xib in Resources */,
 				E9DB06F123B7CA6500BD22C1 /* PopupCell.xib in Resources */,
 				E9DB06E523B7CA6500BD22C1 /* TOCropViewControllerLocalizable.strings in Resources */,
 			);
@@ -957,24 +910,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		007A56EBA29493B164F61137 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		12DC15A27578568ECBF6A42B /* [CP] Check Pods Manifest.lock */ = {
+		28AE7C4F0060866E52EFF52C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -996,7 +932,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5D5EA2D32006CFE746FDE5B6 /* [CP] Embed Pods Frameworks */ = {
+		4F2FFD248CE9FF3883427FC6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1011,6 +947,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2EFA507CDB0C1F7C9425D28 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1033,7 +986,6 @@
 				E9DB06CA23B7CA6500BD22C1 /* HistoryCell.m in Sources */,
 				E99028BA23C72B2200C691AB /* InstantPanGestureRecognizer.m in Sources */,
 				E9DB06DB23B7CA6500BD22C1 /* CameraViewController.m in Sources */,
-				E951AC7423C83D67006DA22E /* CustomInfoView.m in Sources */,
 				E9DB06BE23B7CA6500BD22C1 /* Utility.m in Sources */,
 				E9DB06D323B7CA6500BD22C1 /* TotalJooSoListViewController.m in Sources */,
 				E9DB06C123B7CA6500BD22C1 /* TutorialViewController.m in Sources */,
@@ -1061,9 +1013,7 @@
 				E9DB06BA23B7CA6500BD22C1 /* ContactsManager.m in Sources */,
 				E9AFD4DF23BD91DF005210C8 /* GroupName+CoreDataClass.m in Sources */,
 				E9DB06D723B7CA6500BD22C1 /* JooSoCell.m in Sources */,
-				E99B346223D549040047B7CA /* KakaoMapView.m in Sources */,
 				E9AFD4DE23BD91DF005210C8 /* GroupName+CoreDataProperties.m in Sources */,
-				E9B9964E23C5694D00139273 /* NaverMapView.m in Sources */,
 				E9DB06D223B7CA6500BD22C1 /* LeftSlideViewController.m in Sources */,
 				E9B9962823C4385700139273 /* MapSearchHistory+CoreDataProperties.m in Sources */,
 				E9DB06EC23B7CA6500BD22C1 /* TOCropOverlayView.m in Sources */,
@@ -1286,7 +1236,7 @@
 		};
 		E9DB060923B7C55F00BD22C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3396445DB926BF8917DFE91E /* Pods-JooSoN.debug.xcconfig */;
+			baseConfigurationReference = A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1328,7 +1278,7 @@
 		};
 		E9DB060A23B7C55F00BD22C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA9F845342C013C93DCD6B36 /* Pods-JooSoN.release.xcconfig */;
+			baseConfigurationReference = 0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;

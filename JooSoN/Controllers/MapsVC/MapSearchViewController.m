@@ -7,14 +7,12 @@
 //
 
 #import "MapSearchViewController.h"
-#import "NaverMapView.h"
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "DBManager.h"
 #import "MapSearchView.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
-#import "KakaoMapView.h"
 #import "SceneDelegate.h"
 
 @interface MapSearchViewController () <LocationViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
@@ -31,9 +29,7 @@
 
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
 @property (nonatomic, strong) NSMutableArray *arrMarkers;
-@property (nonatomic, strong) NaverMapView *naverMapView;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
-@property (nonatomic, strong) KakaoMapView *kakaoMapView;
 @property (nonatomic, strong) UIView *selMapView;
 
 @property (nonatomic, strong) PlaceInfo *selPlaceInfo;
@@ -51,16 +47,8 @@
     self.arrSearchResult = [NSMutableArray array];
     self.arrMarkers = [NSMutableArray array];
     _lbCurrentLoc.text = @"";
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        [self addSubViewNaverMapView];
-    }
-    else if ([selMapId isEqualToString:MapIdGoogle]) {
-        [self addSubViewGoogleMapView];
-    }
-    else if ([selMapId isEqualToString:MapIdKakao]) {
-        [self addSubViewKakaoMapView];
-    }
+    
+    [self addSubViewGoogleMapView];
 }
 
 - (IBAction)onClickedButtonActins:(id)sender {
@@ -78,7 +66,7 @@
         [self requestMapSearchQuery];
     }
     else if (sender == _btnCurLocation) {
-        [_naverMapView startCurrentLocationUpdatingLocation];
+//        [_naverMapView startCurrentLocationUpdatingLocation];
     }
     else if (sender == _btnKeyboardDown) {
         
@@ -103,44 +91,25 @@
     NSString *searQuery = _tfSearch.text;
     
     __weak typeof(self) weakSelf = self;
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        [[DBManager instance] nmapSearchPlace:searQuery coordinate:coordinate orderBy:NMAP_ORDERBY_WEIGHT success:^(NSDictionary *dataDic) {
-            
-            if ([[dataDic objectForKey:@"places"] count] > 0) {
-                self.scrollView.hidden = NO;
-                [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
-                [weakSelf makeSearchResultView];
+    [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
+        if ([[dataDic objectForKey:@"places"] count] > 0) {
+            self.scrollView.hidden = NO;
+            [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
+            [weakSelf makeSearchResultView];
+        }
+        else {
+            self.scrollView.hidden = YES;
+            if ([[dataDic objectForKey:@"status"] isEqualToString:@"OVER_QUERY_LIMIT"]) {
+                [self.view makeToast:@"검색 최소시간 이내에 요청하셨습니다. 잠시 후 다시 시도해 주세요." duration:1.0 position:CSToastPositionTop];
             }
             else {
-                self.scrollView.hidden = YES;
-                [self.view makeToast:@"검색 결과가 없습니다." duration:1.0 position:CSToastPositionTop];
+                [self.view makeToast:@"검색 결과 없습니다." duration:1.0 position:CSToastPositionTop];
             }
-        } fail:^(NSError *error) {
-            NSLog(@"error : %@", error);
-        }];
-    }
-    else {
-        [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
-            if ([[dataDic objectForKey:@"places"] count] > 0) {
-                self.scrollView.hidden = NO;
-                [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
-                [weakSelf makeSearchResultView];
-            }
-            else {
-                self.scrollView.hidden = YES;
-                if ([[dataDic objectForKey:@"status"] isEqualToString:@"OVER_QUERY_LIMIT"]) {
-                    [self.view makeToast:@"검색 최소시간 이내에 요청하셨습니다. 잠시 후 다시 시도해 주세요." duration:1.0 position:CSToastPositionTop];
-                }
-                else {
-                    [self.view makeToast:@"검색 결과 없습니다." duration:1.0 position:CSToastPositionTop];
-                }
-            }
-        } fail:^(NSError *error) {
-            
-        }];
+        }
+    } fail:^(NSError *error) {
         
-    }
+    }];
+
 }
 - (void)makeSearchResultView {
     self.widthMapSearchView = _scrollView.frame.size.width;
@@ -180,7 +149,7 @@
             }
             else if (actionType == MapCellActionNavi) {
                 NSString *url = nil;
-                if ([[[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId] isEqualToString:MapIdNaver]) {
+                if ([AppDelegate.instance.selMapId isEqualToString:MapIdNaver]) {
                     url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selPlaceInfo.y, self.selPlaceInfo.x, self.selPlaceInfo.jibun_address, [[NSBundle mainBundle] bundleIdentifier]];
                     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
                 }
@@ -206,33 +175,6 @@
     [_googleMapView startCurrentLocationUpdatingLocation];
 }
 
-- (void)addSubViewKakaoMapView {
-    self.kakaoMapView = [[NSBundle mainBundle] loadNibNamed:@"KakaoMapView" owner:self options:nil].firstObject;
-    _kakaoMapView.frame = _mapContainer.bounds;
-    _kakaoMapView.delegate = self;
-    _kakaoMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [_mapContainer addSubview:_kakaoMapView];
-    
-    self.selMapView = _kakaoMapView;
-    [_kakaoMapView startCurrentLocationUpdatingLocation];
-}
-
-- (void)addSubViewNaverMapView {
-    self.naverMapView = [[NSBundle mainBundle] loadNibNamed:@"NaverMapView" owner:self options:nil].firstObject;
-    _naverMapView.frame = _mapContainer.bounds;
-    _naverMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [_mapContainer addSubview:_naverMapView];
-    _naverMapView.delegate = self;
-
-    self.selMapView = _naverMapView;
-    [_naverMapView startCurrentLocationUpdatingLocation];
-    
-    if (_searchAddress.length > 0) {
-        _tfSearch.text = _searchAddress;
-    } else if (_passPlaceInfo.x > 0 && _passPlaceInfo.y > 0) {
-        _tfSearch.text = _passPlaceInfo.jibun_address;
-    }
-}
 
 #pragma mark - LocationViewDelegate
 - (void)locationView:(id)locationView curPlaceInfo:(PlaceInfo *)curPlaceInfo {
@@ -242,10 +184,7 @@
     }
     [locationView stopCurrentLocationUpdatingLocation];
     self.selPlaceInfo = _curPlaceInfo;
-    
-    if ([self.selMapView respondsToSelector:@selector(setCurrentMarker:)]) {
-        [self.selMapView performSelector:@selector(setCurrentMarker:) withObject:[NSNumber numberWithBool:YES]];
-    }
+    [_googleMapView setCurrentMarker:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

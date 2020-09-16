@@ -18,11 +18,8 @@
 #import "NSString+Utility.h"
 #import "Utility.h"
 #import "NSObject+Utility.h"
-#import "NaverMapView.h"
-#import "CustomInfoView.h"
 #import "MapSearchViewController.h"
 #import "GoogleMapView.h"
-#import "KakaoMapView.h"
 
 @interface AddJooSoViewController () <AddPhoneNumberFieldDelegate, CameraViewControllerDelegate, UIScrollViewDelegate, PopupListViewControllerDelegate, MapSearchViewControllerDelegate>
 
@@ -59,9 +56,7 @@
 @property (nonatomic, strong) NSMutableArray <GroupName *> *arrGroup;
 @property (nonatomic, strong) ContactsManager *contactsManager;
 
-@property (nonatomic, strong) NaverMapView *naverMapView;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
-@property (nonatomic, strong) KakaoMapView *kakaoMapView;
 @property (nonatomic, strong) UIView *selMapView;
 
 @end
@@ -157,18 +152,7 @@
         
         _lbEmptyLoc.hidden = YES;
         _btnEmptyLoc.hidden = YES;
-        
-        NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-        if ([selMapId isEqualToString:MapIdNaver]) {
-            [self addSubViewNaverMap];
-        }
-        else if ([selMapId isEqualToString:MapIdGoogle]) {
-            [self addSubViewGoogleMap];
-        }
-        else if ([selMapId isEqualToString:MapIdKakao]) {
-            [self addSubViewKakaoMap];
-        }
-        
+        [self addSubViewGoogleMap];
     }
     
     [self requestGroupNameList];
@@ -692,32 +676,6 @@
     self.selMapView = _googleMapView;
     [self setMarker];
 }
-- (void)addSubViewKakaoMap {
-    if (_kakaoMapView != nil) {
-        [_kakaoMapView removeFromSuperview];
-    }
-    
-    self.kakaoMapView = [[NSBundle mainBundle] loadNibNamed:@"KakaoMapView" owner:self options:nil].firstObject;
-    _kakaoMapView.frame = _mapView.bounds;
-    _kakaoMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [_mapView addSubview:_kakaoMapView];
-    self.selMapView = _kakaoMapView;
-    [self setMarker];
-}
-
-- (void)addSubViewNaverMap {
-    if (_naverMapView != nil) {
-        [_naverMapView removeFromSuperview];
-    }
-    self.naverMapView = [[NSBundle mainBundle] loadNibNamed:@"NaverMapView" owner:self options:nil].firstObject;
-    _naverMapView.frame = _mapView.bounds;
-    _naverMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [_mapView addSubview:_naverMapView];
-    
-    self.selMapView = _naverMapView;
-    
-    [self setMarker];
-}
 
 - (void)setMarker {
     
@@ -753,15 +711,7 @@
     _lbEmptyLoc.hidden = YES;
     _btnEmptyLoc.hidden = YES;
     
-    NSString *selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
-    if ([selMapId isEqualToString:MapIdNaver]) {
-        [self addSubViewNaverMap];
-    }
-    else if ([selMapId isEqualToString:MapIdGoogle]) {
-        [self addSubViewGoogleMap];
-    }
-    else if ([selMapId isEqualToString:MapIdKakao]) {
-        [self addSubViewKakaoMap];
-    }
+    [self addSubViewGoogleMap];
+    
 }
 @end

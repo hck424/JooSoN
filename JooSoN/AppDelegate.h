@@ -10,10 +10,11 @@
 #import <CoreData/CoreData.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@property (nonatomic, strong) NSString *selMapId;
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 - (void)saveContext;
 + (AppDelegate *)instance;
+
 
 @end
 

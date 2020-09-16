@@ -11,6 +11,7 @@
 #import "UIViewController+LGSideMenuController.h"
 #import "SettingCell.h"
 #import "UIView+Toast.h"
+#import "AppDelegate.h"
 
 @interface SettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
@@ -126,6 +127,7 @@
             self.selectedMapId = newMapId;
             [[NSUserDefaults standardUserDefaults] setObject:_selectedMapId forKey:SelectedMapId];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            AppDelegate.instance.selMapId = _selectedMapId;
             [[NSNotificationCenter defaultCenter] postNotificationName:NotiChangeMapId object:nil];
         }
     }

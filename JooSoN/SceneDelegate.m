@@ -8,7 +8,7 @@
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "MainViewController.h"
-#import <NMapsMap/NMapsMap.h>
+//#import <NMapsMap/NMapsMap.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 
@@ -32,10 +32,11 @@
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions  API_AVAILABLE(ios(13.0)) {
   
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId] length] == 0) {
-        [[NSUserDefaults standardUserDefaults] setObject:MapIdNaver forKey:SelectedMapId];
+        [[NSUserDefaults standardUserDefaults] setObject:MapIdGoogle forKey:SelectedMapId];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        AppDelegate.instance.selMapId = MapIdGoogle;
     }
-    [[NMFAuthManager shared] setClientId:NMFClientId];
+//    [[NMFAuthManager shared] setClientId:NMFClientId];
     [GMSServices provideAPIKey:GoogleMapApiKey];
     [GMSPlacesClient provideAPIKey:GoogleMapApiKey];
     

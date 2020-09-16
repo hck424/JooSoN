@@ -11,6 +11,7 @@
 #import "NSString+Utility.h"
 #import "NSObject+Utility.h"
 #import "PlaceInfo.h"
+#import "AFNetworking.h"
 
 #define MAX_COUNT_SEARCHQUERY 10
 
@@ -56,12 +57,12 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
                 NSString *name2 = [obj2 objectForKey:@"name"];
                 
                 name1 = [NSString stringWithFormat:@"%@%@",
-                         [name1 localizedCaseInsensitiveCompare:@"ㄱ"]+1 ? @"0" :
+                         ([name1 localizedCaseInsensitiveCompare:@"ㄱ"]+1) ? @"0" :
                          !([name1 localizedCaseInsensitiveCompare:@"a"]+1) ? @"2" :
                          @"1", name1];
                 
                 name2 = [NSString stringWithFormat:@"%@%@",
-                         [name2 localizedCaseInsensitiveCompare:@"ㄱ"]+1? @"0" :
+                         ([name2 localizedCaseInsensitiveCompare:@"ㄱ"]+1) ? @"0" :
                          !([name2 localizedCaseInsensitiveCompare:@"a"]+1) ? @"2" :
                          @"1", name2];
                 
@@ -696,106 +697,6 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     }
 }
 
-#pragma mark - naver map Search place
-- (void)nmapSearchPlace:(NSString *)query
-                 coordinate:(CLLocationCoordinate2D)coordinate
-                orderBy:(NSString *)orderBy
-                success:(SUCCESS_DIC)success
-                   fail:(FAIL_ERROR)fail {
-    
-    //    curl "https://naveropenapi.apigw.ntruss.com/map-place/v1/search?query={장소_명칭}&coordinate={검색_중심_좌표}" \
-    //    -H "X-NCP-APIGW-API-KEY-ID: {애플리케이션 등록 시 발급받은 client id값}" \
-    //    -H "X-NCP-APIGW-API-KEY: {애플리케이션 등록 시 발급받은 client secret값}" -v
-    //     (37.5666102, 126.9783881)
-    
-    if (CLLocationCoordinate2DIsValid(coordinate)) {
-        coordinate.latitude = 37.5666102;
-        coordinate.longitude = 126.9783881;
-    }
-    
-    NSMutableString *result = [NSMutableString string];
-    [result setString:@"https://naveropenapi.apigw.ntruss.com/map-place/v1/search?"];
-    [result appendFormat:@"query=%@", query];
-    [result appendFormat:@"&coordinate=%lf,%lf", coordinate.longitude, coordinate.latitude];
-
-    if ([orderBy isEqualToString:NMAP_ORDERBY_POPULARITY]) {
-        orderBy = NMAP_ORDERBY_POPULARITY;
-        [result appendFormat:@"&orderBy=%@", orderBy];
-    }
-//    else {
-//        orderBy = NMAP_ORDERBY_WEIGHT;
-//    }
-    
-
-    NSLog(@"=== search place url : %@", result);
-    NSString *enResult = [result stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:enResult]];
-    
-    NSLog(@"=== search place url encoding : %@", enResult);
-    [req setValue:NMFClientId forHTTPHeaderField:@"X-NCP-APIGW-API-KEY-ID"];
-    [req setValue:NMFSecretKey forHTTPHeaderField:@"X-NCP-APIGW-API-KEY"];
-    [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-            NSLog(@"=== search place response state : %ld", httpResponse.statusCode);
-            if(httpResponse.statusCode >= 200 && httpResponse.statusCode <= 300) {
-                
-                NSError *parseError = nil;
-                NSDictionary *resDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                NSLog(@"=== search place : %@", resDic);
-                if (parseError != nil) {
-                    if (fail) {
-                        fail(parseError);
-                    }
-                }
-                else {
-                    if (success) {
-                        NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
-                        
-                        NSString *count = [[resDic objectForKey:@"meta"] objectForKey:@"count"];
-                        NSString *totalCount = [[resDic objectForKey:@"meta"] objectForKey:@"totalCount"];
-                
-                        if (count != nil) {
-                            [resultDic setObject:count forKey:@"count"];
-                        }
-                        
-                        if (totalCount != nil) {
-                            [resultDic setObject:totalCount forKey:@"totalCount"];
-                        }
-                        NSMutableArray *arr = [NSMutableArray array];
-                        
-                        for (NSDictionary *itemDic in [resDic objectForKey:@"places"]) {
-                            
-                            PlaceInfo *info = [[PlaceInfo alloc] init];
-                            info.distance = [[itemDic objectForKey:@"distance"] floatValue];
-                            info.jibun_address = [itemDic objectForKey:@"jibun_address"];
-                            info.name = [itemDic objectForKey:@"name"];
-                            info.phone_number = [itemDic objectForKey:@"phone_number"];
-                            info.road_address = [itemDic objectForKey:@"road_address"];
-                            info.sessionId = [itemDic objectForKey:@"sessionId"];
-                            info.x = [[itemDic objectForKey:@"x"] floatValue];
-                            info.y = [[itemDic objectForKey:@"y"] floatValue];
-                            [arr addObject:info];
-                        }
-                        [resultDic setObject:arr forKey:@"places"];
-                        success(resultDic);
-                    }
-                }
-            }
-            else {
-                if (fail) {
-                    fail(error);
-                }
-            }
-        });
-    }];
-    
-    [dataTask resume];
-}
-
 - (void)googleMapSearchPlace:(NSString *)query
                   coordinate:(CLLocationCoordinate2D)coordinate
                       circle:(NSUInteger)circle
@@ -812,7 +713,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     [result appendFormat:@"query=%@", query];
     [result appendFormat:@"&fields=%@", @"formatted_address,formatted_phone_number"];
     [result appendFormat:@"&language=%@", @"ko"];
-    [result appendFormat:@"&key=%@", GoogleMapApiKey];
+    [result appendFormat:@"&key=%@", GoogleMapWebApiKey];
     
     NSString *enResult = [result stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:enResult]];
@@ -874,6 +775,5 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     }];
     
     [dataTask resume];
-
 }
 @end

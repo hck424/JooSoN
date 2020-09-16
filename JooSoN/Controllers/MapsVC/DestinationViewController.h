@@ -13,5 +13,5 @@
 
 IB_DESIGNABLE
 @interface DestinationViewController : UIViewController
-
+- (void)reloadData;
 @end
