@@ -1,0 +1,1799 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		0C1885900810601510E0C632060FAF26 /* GooglePlaces */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E215DFB4EAE26646AFED2C4861A55C32 /* Build configuration list for PBXAggregateTarget "GooglePlaces" */;
+			buildPhases = (
+			);
+			dependencies = (
+				747B7A395611C3CD029E9084BBD93B10 /* PBXTargetDependency */,
+			);
+			name = GooglePlaces;
+		};
+		E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 46921981F609C5BA3CB72EC4EA41299D /* Build configuration list for PBXAggregateTarget "GoogleMaps" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = GoogleMaps;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		003A446142930455E73BB5F5A49FBAB2 /* LGSideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BE5F38B66AB931B6607DB85D31D741 /* LGSideMenuView.m */; };
+		02B06FFAFAB8FE17CFA539E9DAF80341 /* Toast-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2967B1FEB8606CAB32450C49EA47132F /* Toast-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073A26E42F835AD68C8B60AD26BD6092 /* VYNFCNDEFMessageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C797C2CBD3EFD6C6B036EDBFCA4610DA /* VYNFCNDEFMessageHeader.m */; };
+		08377DBF55532ED4D626D7E02ACF3B92 /* NBPhoneNumberDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 42356A42D4518260EBFD4FEC2B93C5D2 /* NBPhoneNumberDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14403BAE34680B55467D622D941164A1 /* LMGeocoder-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5718A35C8D7349CE8461D90A5FF557BE /* LMGeocoder-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C2B8D8701E70F5A4D9CAD7350C7917 /* NBPhoneNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC02B30F8D6CCCFCFB310E49D57A08A /* NBPhoneNumber.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A3AB65455C8285032B6D18D6C7994DB /* UIView+Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = E873BEDB5EA241F82006DC5906F72C57 /* UIView+Toast.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A96D400A8A13CA1622955D41E4D0875 /* NSArray+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3728EAA8A1F8E8B1F85B094A84F80C /* NSArray+NBAdditions.m */; };
+		239AD452C55541546CF0B5755C3B2CCC /* LMGeocodingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A725E6FB2B4D270C6D93AA552ABD35A /* LMGeocodingOperation.m */; };
+		23C3AEEDF7C13B512EB64DA243E057AE /* LGSideMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 38716A6BE13B77C7D75B4AB72EF3AC46 /* LGSideMenuController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		257C54B1652245EEE7B3C0A9678AB683 /* Toast-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F7919B0584EC8F79EBAD7B45D60F49DD /* Toast-dummy.m */; };
+		27F3B0221915A780361D7257169328E1 /* LGSideMenuBorderView.h in Headers */ = {isa = PBXBuildFile; fileRef = CCAF1CA63C0B2963301CC3ABD71ECBDB /* LGSideMenuBorderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29B49BC8F6982001D1719907F5C0BEB1 /* LMGeocodingOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = ED32EDD323798DCACE03E54C1696E967 /* LMGeocodingOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32898A510CC55DD5A06B469184B8A792 /* UIViewController+LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 340823B71DCAABBB2F28A4AD629487E8 /* UIViewController+LGSideMenuController.m */; };
+		367A73738228E6DF9A17CB709747BA0E /* NBNumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EBCFB8563514553C7324A2A4C2B0 /* NBNumberFormat.m */; };
+		36EEE8A65AC14D0B369AF7D1B19CBB78 /* NSArray+NBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CB06B493380A12B55BF615BF629631A /* NSArray+NBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C24517B42E32F313BAB2A05E6A570DD /* NBAsYouTypeFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 29061A4EF7BADD6EA6631D2F3DDF232C /* NBAsYouTypeFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F8566379714D5702C1491AF9A14634E /* NBNumberFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = BD0B392FF385B38249CD99264EEA73B5 /* NBNumberFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4885E95B895EF687531724FA4FE8D535 /* NBPhoneNumberUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E879031D26E2130BDD35700C92CBD /* NBPhoneNumberUtil.m */; };
+		49055225374CEDB798D4B7D5FBF1E628 /* LGSideMenuGesturesHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A5DE535AFF60BE6A5D4A3568E893041 /* LGSideMenuGesturesHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		492CB91D75C4F86887C2D888761C55AD /* NBRegExMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 90208B4DFAEA05E8EDC0F84997355439 /* NBRegExMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5836B924915C4F421A9ED28A625409D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */; };
+		5CA3D015BBA67C8C33CE8E7BC2A32516 /* NBPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C021DAA0C79A39546A82073CAB011A /* NBPhoneNumber.m */; };
+		5E3C8F1B09058AFBFBFE30D941C3D42C /* Pods-JooSoN-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F9822F84391896ACC91B99CCE131F2 /* Pods-JooSoN-dummy.m */; };
+		6DAE5ED8042351DD8E7F8AA429073C38 /* VYNFCNDEFMessageHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD27F79A898FE8CF6B9D2322FAD551D /* VYNFCNDEFMessageHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F3EFDD16E1BC9AC31F7C17D0AF57D9E /* VYNFCKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE4119C73A8DAD40C6191F36E3AA01 /* VYNFCKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		764FD885D7676402D1522862DC702A53 /* NBPhoneNumberUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2030A7E0369F067488DA838D0D3363FB /* NBPhoneNumberUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		791284FC6C93D6E3F3420F718C5138EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */; };
+		7E8E456441E70666B0977BB858899FE3 /* LMGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 604DD3C22849735F557B9E4D5C54DE99 /* LMGeocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80024EB0D9DAD51150D51866C62E5F9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */; };
+		83A99E20918F0D48ADE8805241E737F2 /* NBRegularExpressionCache.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BA2C60166A8365557BFA359FE54BD2 /* NBRegularExpressionCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8571DBD6E32388E312F435634274C28A /* LGSideMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AA612406ED561F109E7311194E998 /* LGSideMenuHelper.m */; };
+		86FC5DF89C528C61785C91401B11B910 /* VYNFCNDEFPayloadTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E22769F5F90FE17D20CAA5AEB9C1F3 /* VYNFCNDEFPayloadTypes.m */; };
+		8BEEC37CB06CF3068D69E6F3569F28AE /* NBPhoneMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A7DE3119C16815E5AA28AB037AC4D /* NBPhoneMetaData.m */; };
+		8EB2161DF2D8695DA8F3A68ECFAAE749 /* NBPhoneNumberDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 08305124A38EC51BE0016E105BEBED3D /* NBPhoneNumberDesc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		996B4D62EF8DD425A1C8B74D1AC19746 /* LGSideMenuHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = A205706E33FA2BD3C50C7631ACFA9427 /* LGSideMenuHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C14A9B2523AFF4E3E25B1083A028F15 /* LGSideMenuController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56E66A3F6F18D305B102DDD68DB35C /* LGSideMenuController-dummy.m */; };
+		9E791FB6A54EF3AEC8C78BAD856B1388 /* VYNFCNDEFPayloadParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B960381F463CC21E04AB8FB98185FD57 /* VYNFCNDEFPayloadParser.m */; };
+		A25B594375876EA90DD68A7A0801BFA5 /* LGSideMenuController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B6D2E57A0902F4FC015EC86908EA75DB /* LGSideMenuController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A46CE5FDCB0771A4A35CB24D9FF89060 /* LGSideMenuView.h in Headers */ = {isa = PBXBuildFile; fileRef = B1C3D21C6ED619F9D470A75CE76C89E9 /* LGSideMenuView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9C58464C84C6ACE936E4FEA7932F07D /* VYNFCNDEFPayloadParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C84A4492F9880F62A978D7D357740C74 /* VYNFCNDEFPayloadParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC7746290A5E6E665BC4F079C56DAFBD /* LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AACE1126F5D3138CF5F31C80E9B03A8 /* LGSideMenuController.m */; };
+		AEC17DDAF4619E3FEE4ABD7AC825C0F9 /* Pods-JooSoN-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E689F3F13B256DB9AB6A5BA576959CE0 /* Pods-JooSoN-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B33CB16E2B442226CF962708E8ED877E /* libPhoneNumber-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C30799428A9CD4935F2F663F504A41 /* libPhoneNumber-iOS-dummy.m */; };
+		B34D5958BB1BA7DAC54D92280931D39A /* LGSideMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144897CB6052FD65962740D1A112ABD /* LGSideMenuSegue.m */; };
+		BE2EA64598C0E813036D90ADA033E8C9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8055D85AC7D94F69463E5922514E092B /* CoreTelephony.framework */; };
+		BF3842C89535A2AF743CF5762D4025AD /* LGSideMenuGesturesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE1E1E5BB9809A263DC84B897BAFBEA /* LGSideMenuGesturesHandler.m */; };
+		BFEDCED1AAF1F4820161B2D50E6A9839 /* NBPhoneMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AB009578F63EC374A2336F8E5E1BDDD /* NBPhoneMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1010CBB67EDF28BD4E7DE6486CB3BF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */; };
+		C30A6C92E3781E3AFD8D2B3A8FC306B8 /* libPhoneNumber-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E8301E9CED9DA68E66A438EE4DBDC538 /* libPhoneNumber-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C55E3F63449C747E9F3B4BB430F78BA3 /* NBPhoneNumberDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 757ADCD5B7917FB6F015FFF16AD3D9F1 /* NBPhoneNumberDefines.m */; };
+		C74B836C23C2163891E813B30809F4D4 /* LGSideMenuSegue.h in Headers */ = {isa = PBXBuildFile; fileRef = B4DB0EDA6B011E05EB7CBA53C2CB694E /* LGSideMenuSegue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8422AEA99BFA8B088D38E2BB8E6C0E6 /* LMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = E38C72BFFB107FE2DAFEC2D121C0D0ED /* LMAddress.m */; };
+		C944E0B64395265D1714F89DA3481230 /* NBMetadataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EE359CA1A566C7F33736C6875B3299 /* NBMetadataHelper.m */; };
+		CAC3636753C7D04712F7E2B276FD5620 /* Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BBB483A78A195B27AA1D53DE15E6B68 /* Toast.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CACAF4F4B67D69E989E1ABD8C562A856 /* NBGeneratedPhoneNumberMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9756A52C516E5187FF1B6D5DB35D571E /* NBGeneratedPhoneNumberMetaData.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CC5F7B2A43F870325EC7CA588237E840 /* VYNFCKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CAC98C1B8971DE89AF52F26D76D9F4 /* VYNFCKit-dummy.m */; };
+		CF6E910ED03FEE018E31216A4B0B45A9 /* VYNFCNDEFPayloadTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3BFD49509856A1A3F49D1D396EB009 /* VYNFCNDEFPayloadTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D411623C355D10D7756CF2FCA71A173D /* VYNFCKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5935E87DDAC77AFF1DFDB9180052CEA4 /* VYNFCKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DACE58BCC297773BC07B368DEEE6A3C5 /* LMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 886CF4A972B9FA2F828CD1E088C0E6ED /* LMGeocoder.m */; };
+		DF81DA5D2CF6488CC73062E98C07808D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */; };
+		E340EFE7244D60CAAE0BB654545E846C /* LGSideMenuBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43846232A316E96201CE77DC0F7E139A /* LGSideMenuBorderView.m */; };
+		E5FA7F22DDD92428053AB02E66A910E0 /* NBMetadataHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C3472B466D0709A92E6E23C342881CB /* NBMetadataHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E6A252325A0CD70CDF6BF1DD7B1CA620 /* NBPhoneNumberDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 236D888DD103CC6FD9F0F987E755A6CE /* NBPhoneNumberDesc.m */; };
+		E70B64B78DFA2F3367F1E50E0450A8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */; };
+		E96853F0A9B15DABF2E3D9372A2CC677 /* NBRegExMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F4BA5A5B4F623327475F838ADE2ECE /* NBRegExMatcher.m */; };
+		EA038EA76AB978510B2E91933600082A /* LMGeocoder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B5C40B01F38CEF66B6C0B650F05C /* LMGeocoder-dummy.m */; };
+		EABB5FE4633AD93D2EF55946A7E2D09F /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 880A18C1FDDEDF60BEF3C84BEEDFD411 /* UIView+Toast.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EB54867F4ED7C503464892DF6D20E06E /* NBAsYouTypeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1027795770BE0AD854D3F991059F2B70 /* NBAsYouTypeFormatter.m */; };
+		EE77C44DC1638F0460709C6F960873DD /* LMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 540134CF4B964C7B7D797C7A9BEE40CA /* LMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F89EA0223858711AF9CFBAC81AC00412 /* NBRegularExpressionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 683BAF1B4DA2D8E2D5402922001AA0C0 /* NBRegularExpressionCache.m */; };
+		FB6783190F14FB26DA413A86F549C8E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC595B431787ED4CE1EE2D7E200F1C62 /* QuartzCore.framework */; };
+		FCDE1CF96D840908111BBD75CB34B9BF /* UIViewController+LGSideMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6FB133F781244AEE9DF2941B61745 /* UIViewController+LGSideMenuController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05F2EC7E35B67B49CF65B615C17E3B6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 226FB1A48B3510E6B4662EC49788486B;
+			remoteInfo = LMGeocoder;
+		};
+		0C16047A30D43040452A895ABA481CA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E1EC8CEFCB04F48D36C12CD11425CAC;
+			remoteInfo = LGSideMenuController;
+		};
+		1CC66FCBC82939BD8EDFCECAA5551AA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C13E3D866A64D9CDC8AF077F078CA828;
+			remoteInfo = VYNFCKit;
+		};
+		4615D934BF63E91685A029420DF4B7D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5B4BBC6DD552AC8943C7E22772FC1D3;
+			remoteInfo = GoogleMaps;
+		};
+		65B502B8D78E03C7458CDF7002AFA2C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5B4BBC6DD552AC8943C7E22772FC1D3;
+			remoteInfo = GoogleMaps;
+		};
+		CDBDB23BC1AD179D6460BD1B9E4D98AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C1885900810601510E0C632060FAF26;
+			remoteInfo = GooglePlaces;
+		};
+		DF2BF0FAA2E7EA2A579ED1DE7280E2C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BECD36891A8DC297700F9296F5634B97;
+			remoteInfo = "libPhoneNumber-iOS";
+		};
+		DF736AB1E18830CD38DF62A541B71997 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A80A4D6B185BA43BC06122FED0C15F94;
+			remoteInfo = Toast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		026767A0774F7BDD73DC38CF0DD35524 /* Toast-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-prefix.pch"; sourceTree = "<group>"; };
+		039277E48EAC4C92D04756759C4D8579 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
+		0634EA4CE2332A3F2E3C179E99B89705 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
+		08305124A38EC51BE0016E105BEBED3D /* NBPhoneNumberDesc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumberDesc.h; path = libPhoneNumber/NBPhoneNumberDesc.h; sourceTree = "<group>"; };
+		1027795770BE0AD854D3F991059F2B70 /* NBAsYouTypeFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBAsYouTypeFormatter.m; path = libPhoneNumber/NBAsYouTypeFormatter.m; sourceTree = "<group>"; };
+		124C27D7626BE379A4F9417769890BBC /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
+		1569795EF15DADAFE6F7E0B65C1F1566 /* Toast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Toast.release.xcconfig; sourceTree = "<group>"; };
+		1A30172AE9F0660847BC807A6F15A494 /* LGSideMenuController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LGSideMenuController.framework; path = LGSideMenuController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A725E6FB2B4D270C6D93AA552ABD35A /* LMGeocodingOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LMGeocodingOperation.m; path = LMGeocoder/Classes/LMGeocodingOperation.m; sourceTree = "<group>"; };
+		2030A7E0369F067488DA838D0D3363FB /* NBPhoneNumberUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumberUtil.h; path = libPhoneNumber/NBPhoneNumberUtil.h; sourceTree = "<group>"; };
+		20440B165FD3F147A4220D90A5BEE2A4 /* GooglePlaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GooglePlaces.release.xcconfig; sourceTree = "<group>"; };
+		236D888DD103CC6FD9F0F987E755A6CE /* NBPhoneNumberDesc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneNumberDesc.m; path = libPhoneNumber/NBPhoneNumberDesc.m; sourceTree = "<group>"; };
+		25C20F82448B4484978348FA208AA106 /* VYNFCKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VYNFCKit-prefix.pch"; sourceTree = "<group>"; };
+		26B1612340B1049D2E9A63D24E741B78 /* LMGeocoder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LMGeocoder.release.xcconfig; sourceTree = "<group>"; };
+		29061A4EF7BADD6EA6631D2F3DDF232C /* NBAsYouTypeFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBAsYouTypeFormatter.h; path = libPhoneNumber/NBAsYouTypeFormatter.h; sourceTree = "<group>"; };
+		2967B1FEB8606CAB32450C49EA47132F /* Toast-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-umbrella.h"; sourceTree = "<group>"; };
+		2BC02B30F8D6CCCFCFB310E49D57A08A /* NBPhoneNumber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumber.h; path = libPhoneNumber/NBPhoneNumber.h; sourceTree = "<group>"; };
+		2D0420BB11B88E6FF2C7FD65A7C7A0BF /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		30F4BA5A5B4F623327475F838ADE2ECE /* NBRegExMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBRegExMatcher.m; path = libPhoneNumber/Internal/NBRegExMatcher.m; sourceTree = "<group>"; };
+		340823B71DCAABBB2F28A4AD629487E8 /* UIViewController+LGSideMenuController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+LGSideMenuController.m"; path = "LGSideMenuController/UIViewController+LGSideMenuController.m"; sourceTree = "<group>"; };
+		38716A6BE13B77C7D75B4AB72EF3AC46 /* LGSideMenuController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGSideMenuController.h; path = LGSideMenuController/LGSideMenuController.h; sourceTree = "<group>"; };
+		3CDB1C2DD560E50FCBE99E0AFC27B4A9 /* VYNFCKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "VYNFCKit-Info.plist"; sourceTree = "<group>"; };
+		3FB3EBCFB8563514553C7324A2A4C2B0 /* NBNumberFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBNumberFormat.m; path = libPhoneNumber/NBNumberFormat.m; sourceTree = "<group>"; };
+		421ABAD2F376C4185F388A387E2E4655 /* libPhoneNumber_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = libPhoneNumber_iOS.framework; path = "libPhoneNumber-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42356A42D4518260EBFD4FEC2B93C5D2 /* NBPhoneNumberDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumberDefines.h; path = libPhoneNumber/NBPhoneNumberDefines.h; sourceTree = "<group>"; };
+		43846232A316E96201CE77DC0F7E139A /* LGSideMenuBorderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuBorderView.m; path = LGSideMenuController/LGSideMenuBorderView.m; sourceTree = "<group>"; };
+		4A87024105B69ED96C4E2342E2102DC1 /* Toast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Toast.debug.xcconfig; sourceTree = "<group>"; };
+		4AE48F348583EC8E6A3B5E35E3A72456 /* Toast.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Toast.modulemap; sourceTree = "<group>"; };
+		4BBB483A78A195B27AA1D53DE15E6B68 /* Toast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Toast.h; path = "Toast-Framework/Toast.h"; sourceTree = "<group>"; };
+		4C0C8CF80883AAA024DF6CC2A5E508F3 /* LMGeocoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LMGeocoder.framework; path = LMGeocoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DD27F79A898FE8CF6B9D2322FAD551D /* VYNFCNDEFMessageHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VYNFCNDEFMessageHeader.h; path = VYNFCKit/VYNFCNDEFMessageHeader.h; sourceTree = "<group>"; };
+		4E0243170D10023839496E3B511181BB /* LGSideMenuController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LGSideMenuController.modulemap; sourceTree = "<group>"; };
+		52DE16D1074D85A955B38D8D1B9E2873 /* VYNFCKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VYNFCKit.release.xcconfig; sourceTree = "<group>"; };
+		540134CF4B964C7B7D797C7A9BEE40CA /* LMAddress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LMAddress.h; path = LMGeocoder/Classes/LMAddress.h; sourceTree = "<group>"; };
+		54CAC98C1B8971DE89AF52F26D76D9F4 /* VYNFCKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VYNFCKit-dummy.m"; sourceTree = "<group>"; };
+		55E0AFD333353D71ACC2207149E879D6 /* Toast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Toast.framework; path = Toast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5718A35C8D7349CE8461D90A5FF557BE /* LMGeocoder-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LMGeocoder-umbrella.h"; sourceTree = "<group>"; };
+		586D905659CECE953049F9EE772FD6DE /* LGSideMenuController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LGSideMenuController-Info.plist"; sourceTree = "<group>"; };
+		5935E87DDAC77AFF1DFDB9180052CEA4 /* VYNFCKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VYNFCKit.h; path = VYNFCKit/VYNFCKit.h; sourceTree = "<group>"; };
+		5A5DE535AFF60BE6A5D4A3568E893041 /* LGSideMenuGesturesHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGSideMenuGesturesHandler.h; path = LGSideMenuController/LGSideMenuGesturesHandler.h; sourceTree = "<group>"; };
+		5C3472B466D0709A92E6E23C342881CB /* NBMetadataHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataHelper.h; path = libPhoneNumber/NBMetadataHelper.h; sourceTree = "<group>"; };
+		5C9DAD9CE6E954E525759F3E03FB879A /* VYNFCKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = VYNFCKit.modulemap; sourceTree = "<group>"; };
+		604DD3C22849735F557B9E4D5C54DE99 /* LMGeocoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LMGeocoder.h; path = LMGeocoder/Classes/LMGeocoder.h; sourceTree = "<group>"; };
+		60C021DAA0C79A39546A82073CAB011A /* NBPhoneNumber.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneNumber.m; path = libPhoneNumber/NBPhoneNumber.m; sourceTree = "<group>"; };
+		6671A5D9E1AC8CAFEDA4BB16D877646C /* LGSideMenuController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LGSideMenuController-prefix.pch"; sourceTree = "<group>"; };
+		683BAF1B4DA2D8E2D5402922001AA0C0 /* NBRegularExpressionCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBRegularExpressionCache.m; path = libPhoneNumber/Internal/NBRegularExpressionCache.m; sourceTree = "<group>"; };
+		6B56E66A3F6F18D305B102DDD68DB35C /* LGSideMenuController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LGSideMenuController-dummy.m"; sourceTree = "<group>"; };
+		6D18F24669370609A309F13DF11F202D /* libPhoneNumber-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "libPhoneNumber-iOS-prefix.pch"; sourceTree = "<group>"; };
+		6F30EC3A4395CC42913A6A3B50FDCCD1 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
+		7144897CB6052FD65962740D1A112ABD /* LGSideMenuSegue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuSegue.m; path = LGSideMenuController/LGSideMenuSegue.m; sourceTree = "<group>"; };
+		753A7DE3119C16815E5AA28AB037AC4D /* NBPhoneMetaData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneMetaData.m; path = libPhoneNumber/NBPhoneMetaData.m; sourceTree = "<group>"; };
+		757ADCD5B7917FB6F015FFF16AD3D9F1 /* NBPhoneNumberDefines.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneNumberDefines.m; path = libPhoneNumber/NBPhoneNumberDefines.m; sourceTree = "<group>"; };
+		7760CC2BF42BF1AF319E0341A94923F7 /* LMGeocoder-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LMGeocoder-prefix.pch"; sourceTree = "<group>"; };
+		776850B5B623470BC36D99DA8019AC3A /* GoogleMaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleMaps.debug.xcconfig; sourceTree = "<group>"; };
+		7AE19B70D66D4445E191361290A6A9B0 /* Pods-JooSoN-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JooSoN-acknowledgements.plist"; sourceTree = "<group>"; };
+		7B2826CA4B46E53D6B1CF873DCF58401 /* libPhoneNumber-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libPhoneNumber-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7B3728EAA8A1F8E8B1F85B094A84F80C /* NSArray+NBAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+NBAdditions.m"; path = "libPhoneNumber/NSArray+NBAdditions.m"; sourceTree = "<group>"; };
+		8055D85AC7D94F69463E5922514E092B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
+		82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		848FE40F9C097F4927904CF0F7BFE2CC /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
+		880A18C1FDDEDF60BEF3C84BEEDFD411 /* UIView+Toast.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Toast.m"; path = "Toast/UIView+Toast.m"; sourceTree = "<group>"; };
+		886CF4A972B9FA2F828CD1E088C0E6ED /* LMGeocoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LMGeocoder.m; path = LMGeocoder/Classes/LMGeocoder.m; sourceTree = "<group>"; };
+		89C2B5C40B01F38CEF66B6C0B650F05C /* LMGeocoder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LMGeocoder-dummy.m"; sourceTree = "<group>"; };
+		8AACE1126F5D3138CF5F31C80E9B03A8 /* LGSideMenuController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuController.m; path = LGSideMenuController/LGSideMenuController.m; sourceTree = "<group>"; };
+		8AB009578F63EC374A2336F8E5E1BDDD /* NBPhoneMetaData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneMetaData.h; path = libPhoneNumber/NBPhoneMetaData.h; sourceTree = "<group>"; };
+		8BF92BADBC3EBE74732470CFE6E53020 /* Pods-JooSoN-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JooSoN-Info.plist"; sourceTree = "<group>"; };
+		8E6F4FBA5C879692150EE49C7A5DA798 /* Pods-JooSoN-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JooSoN-acknowledgements.markdown"; sourceTree = "<group>"; };
+		90208B4DFAEA05E8EDC0F84997355439 /* NBRegExMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBRegExMatcher.h; path = libPhoneNumber/Internal/NBRegExMatcher.h; sourceTree = "<group>"; };
+		915DED4CB34CF6CC09A25868B76F04E7 /* GooglePlaces.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GooglePlaces.debug.xcconfig; sourceTree = "<group>"; };
+		9418836551757410144C772CA87CB550 /* LGSideMenuController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LGSideMenuController.debug.xcconfig; sourceTree = "<group>"; };
+		9756A52C516E5187FF1B6D5DB35D571E /* NBGeneratedPhoneNumberMetaData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBGeneratedPhoneNumberMetaData.h; path = libPhoneNumber/NBGeneratedPhoneNumberMetaData.h; sourceTree = "<group>"; };
+		995578130BEBB54A631C5708850DBACE /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JooSoN.framework; path = "Pods-JooSoN.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0942CDB9EC3EDA646D83CFEF55EAF4 /* libPhoneNumber-iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "libPhoneNumber-iOS-Info.plist"; sourceTree = "<group>"; };
+		9BF83B8D31C4E7DF832D2034A05D0C64 /* LMGeocoder-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LMGeocoder-Info.plist"; sourceTree = "<group>"; };
+		9CB06B493380A12B55BF615BF629631A /* NSArray+NBAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+NBAdditions.h"; path = "libPhoneNumber/NSArray+NBAdditions.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E5ACA7D9569040A69490C5BE9388665 /* LMGeocoder.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LMGeocoder.modulemap; sourceTree = "<group>"; };
+		A205706E33FA2BD3C50C7631ACFA9427 /* LGSideMenuHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGSideMenuHelper.h; path = LGSideMenuController/LGSideMenuHelper.h; sourceTree = "<group>"; };
+		A6C30799428A9CD4935F2F663F504A41 /* libPhoneNumber-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "libPhoneNumber-iOS-dummy.m"; sourceTree = "<group>"; };
+		A8BE5F38B66AB931B6607DB85D31D741 /* LGSideMenuView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuView.m; path = LGSideMenuController/LGSideMenuView.m; sourceTree = "<group>"; };
+		AF37E0D6A51D9AEC2E5DD2612469F1D1 /* Toast-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Toast-Info.plist"; sourceTree = "<group>"; };
+		AF7AA612406ED561F109E7311194E998 /* LGSideMenuHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuHelper.m; path = LGSideMenuController/LGSideMenuHelper.m; sourceTree = "<group>"; };
+		B1C3D21C6ED619F9D470A75CE76C89E9 /* LGSideMenuView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGSideMenuView.h; path = LGSideMenuController/LGSideMenuView.h; sourceTree = "<group>"; };
+		B3BC0C9502C20FD620CA8CBB44E48538 /* Pods-JooSoN.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JooSoN.modulemap"; sourceTree = "<group>"; };
+		B4DB0EDA6B011E05EB7CBA53C2CB694E /* LGSideMenuSegue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGSideMenuSegue.h; path = LGSideMenuController/LGSideMenuSegue.h; sourceTree = "<group>"; };
+		B6D2E57A0902F4FC015EC86908EA75DB /* LGSideMenuController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LGSideMenuController-umbrella.h"; sourceTree = "<group>"; };
+		B8EE359CA1A566C7F33736C6875B3299 /* NBMetadataHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBMetadataHelper.m; path = libPhoneNumber/NBMetadataHelper.m; sourceTree = "<group>"; };
+		B960381F463CC21E04AB8FB98185FD57 /* VYNFCNDEFPayloadParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VYNFCNDEFPayloadParser.m; path = VYNFCKit/VYNFCNDEFPayloadParser.m; sourceTree = "<group>"; };
+		B9696E37B98B7AB7F46B9E62F7841652 /* Pods-JooSoN-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JooSoN-frameworks.sh"; sourceTree = "<group>"; };
+		BC595B431787ED4CE1EE2D7E200F1C62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		BD0B392FF385B38249CD99264EEA73B5 /* NBNumberFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBNumberFormat.h; path = libPhoneNumber/NBNumberFormat.h; sourceTree = "<group>"; };
+		BE7CD4B5AF075B8B02499CD3EE33B114 /* LMGeocoder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LMGeocoder.debug.xcconfig; sourceTree = "<group>"; };
+		BFC6FB133F781244AEE9DF2941B61745 /* UIViewController+LGSideMenuController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+LGSideMenuController.h"; path = "LGSideMenuController/UIViewController+LGSideMenuController.h"; sourceTree = "<group>"; };
+		BFCC9B055CD1424C4785FEEA2C579D27 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		C1E22769F5F90FE17D20CAA5AEB9C1F3 /* VYNFCNDEFPayloadTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VYNFCNDEFPayloadTypes.m; path = VYNFCKit/VYNFCNDEFPayloadTypes.m; sourceTree = "<group>"; };
+		C3BA2C60166A8365557BFA359FE54BD2 /* NBRegularExpressionCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBRegularExpressionCache.h; path = libPhoneNumber/Internal/NBRegularExpressionCache.h; sourceTree = "<group>"; };
+		C6CBA30B6D459EE525AA6C11DC6C759F /* VYNFCKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VYNFCKit.debug.xcconfig; sourceTree = "<group>"; };
+		C740462E7E14274916A0BC9F2F52CDA4 /* LGSideMenuController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LGSideMenuController.release.xcconfig; sourceTree = "<group>"; };
+		C797C2CBD3EFD6C6B036EDBFCA4610DA /* VYNFCNDEFMessageHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VYNFCNDEFMessageHeader.m; path = VYNFCKit/VYNFCNDEFMessageHeader.m; sourceTree = "<group>"; };
+		C7F9822F84391896ACC91B99CCE131F2 /* Pods-JooSoN-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JooSoN-dummy.m"; sourceTree = "<group>"; };
+		C84A4492F9880F62A978D7D357740C74 /* VYNFCNDEFPayloadParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VYNFCNDEFPayloadParser.h; path = VYNFCKit/VYNFCNDEFPayloadParser.h; sourceTree = "<group>"; };
+		CA6E879031D26E2130BDD35700C92CBD /* NBPhoneNumberUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneNumberUtil.m; path = libPhoneNumber/NBPhoneNumberUtil.m; sourceTree = "<group>"; };
+		CAAE4119C73A8DAD40C6191F36E3AA01 /* VYNFCKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VYNFCKit-umbrella.h"; sourceTree = "<group>"; };
+		CCAF1CA63C0B2963301CC3ABD71ECBDB /* LGSideMenuBorderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGSideMenuBorderView.h; path = LGSideMenuController/LGSideMenuBorderView.h; sourceTree = "<group>"; };
+		CEE1E1E5BB9809A263DC84B897BAFBEA /* LGSideMenuGesturesHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuGesturesHandler.m; path = LGSideMenuController/LGSideMenuGesturesHandler.m; sourceTree = "<group>"; };
+		DE4DE0816715268565413DCD82CDB209 /* VYNFCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = VYNFCKit.framework; path = VYNFCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E38C72BFFB107FE2DAFEC2D121C0D0ED /* LMAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LMAddress.m; path = LMGeocoder/Classes/LMAddress.m; sourceTree = "<group>"; };
+		E5151376FBC2DCCD98F30316B6C5D009 /* GoogleMaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleMaps.release.xcconfig; sourceTree = "<group>"; };
+		E689F3F13B256DB9AB6A5BA576959CE0 /* Pods-JooSoN-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JooSoN-umbrella.h"; sourceTree = "<group>"; };
+		E8301E9CED9DA68E66A438EE4DBDC538 /* libPhoneNumber-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "libPhoneNumber-iOS-umbrella.h"; sourceTree = "<group>"; };
+		E873BEDB5EA241F82006DC5906F72C57 /* UIView+Toast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Toast.h"; path = "Toast/UIView+Toast.h"; sourceTree = "<group>"; };
+		ED1E69D91C5067E8CFC787E84EF4125A /* Pods-JooSoN-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JooSoN-resources.sh"; sourceTree = "<group>"; };
+		ED32EDD323798DCACE03E54C1696E967 /* LMGeocodingOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LMGeocodingOperation.h; path = LMGeocoder/Classes/LMGeocodingOperation.h; sourceTree = "<group>"; };
+		ED3BFD49509856A1A3F49D1D396EB009 /* VYNFCNDEFPayloadTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VYNFCNDEFPayloadTypes.h; path = VYNFCKit/VYNFCNDEFPayloadTypes.h; sourceTree = "<group>"; };
+		F7919B0584EC8F79EBAD7B45D60F49DD /* Toast-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Toast-dummy.m"; sourceTree = "<group>"; };
+		F96956432128708846D8098AD7DCA419 /* libPhoneNumber-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libPhoneNumber-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		FB535273CBEA6E1A389766E619495542 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		FC4308FE08ECF09D4D3342C11D2D4497 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		24169E0F6C4FD1126480839DEFBC4BF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80024EB0D9DAD51150D51866C62E5F9E /* Foundation.framework in Frameworks */,
+				FB6783190F14FB26DA413A86F549C8E8 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3396872C7153600DEC6BAE4171997AD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE2EA64598C0E813036D90ADA033E8C9 /* CoreTelephony.framework in Frameworks */,
+				5836B924915C4F421A9ED28A625409D2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46CCB1AB54863D5186B7209CFF263DEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				791284FC6C93D6E3F3420F718C5138EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		711397C12978A69DE54B07FC39AD2E65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF81DA5D2CF6488CC73062E98C07808D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921C06FA8706C7C5F93423D6029E509B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70B64B78DFA2F3367F1E50E0450A8CF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE4147B1AA846D4A7728F34E883D3148 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1010CBB67EDF28BD4E7DE6486CB3BF8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03C5C200A0787E300053CFA8F53CA094 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FAAF7720AA93183F51E5432A5A8FD75 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F017D5C09E4BF2AA18A79BD75BE2901 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4E0243170D10023839496E3B511181BB /* LGSideMenuController.modulemap */,
+				6B56E66A3F6F18D305B102DDD68DB35C /* LGSideMenuController-dummy.m */,
+				586D905659CECE953049F9EE772FD6DE /* LGSideMenuController-Info.plist */,
+				6671A5D9E1AC8CAFEDA4BB16D877646C /* LGSideMenuController-prefix.pch */,
+				B6D2E57A0902F4FC015EC86908EA75DB /* LGSideMenuController-umbrella.h */,
+				9418836551757410144C772CA87CB550 /* LGSideMenuController.debug.xcconfig */,
+				C740462E7E14274916A0BC9F2F52CDA4 /* LGSideMenuController.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/LGSideMenuController";
+			sourceTree = "<group>";
+		};
+		0FAAF7720AA93183F51E5432A5A8FD75 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8055D85AC7D94F69463E5922514E092B /* CoreTelephony.framework */,
+				82D8A4F9894EE97FAFA57B541FCA6468 /* Foundation.framework */,
+				BC595B431787ED4CE1EE2D7E200F1C62 /* QuartzCore.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		1162118A864B571E9296F52B48F8F591 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				776850B5B623470BC36D99DA8019AC3A /* GoogleMaps.debug.xcconfig */,
+				E5151376FBC2DCCD98F30316B6C5D009 /* GoogleMaps.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GoogleMaps";
+			sourceTree = "<group>";
+		};
+		143E48EE752CBC7E0B0E8209E0B69B88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A30172AE9F0660847BC807A6F15A494 /* LGSideMenuController.framework */,
+				421ABAD2F376C4185F388A387E2E4655 /* libPhoneNumber_iOS.framework */,
+				4C0C8CF80883AAA024DF6CC2A5E508F3 /* LMGeocoder.framework */,
+				995578130BEBB54A631C5708850DBACE /* Pods_JooSoN.framework */,
+				55E0AFD333353D71ACC2207149E879D6 /* Toast.framework */,
+				DE4DE0816715268565413DCD82CDB209 /* VYNFCKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4931E29E194326BB7CE4D316B1021356 /* libPhoneNumber-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				29061A4EF7BADD6EA6631D2F3DDF232C /* NBAsYouTypeFormatter.h */,
+				1027795770BE0AD854D3F991059F2B70 /* NBAsYouTypeFormatter.m */,
+				9756A52C516E5187FF1B6D5DB35D571E /* NBGeneratedPhoneNumberMetaData.h */,
+				5C3472B466D0709A92E6E23C342881CB /* NBMetadataHelper.h */,
+				B8EE359CA1A566C7F33736C6875B3299 /* NBMetadataHelper.m */,
+				BD0B392FF385B38249CD99264EEA73B5 /* NBNumberFormat.h */,
+				3FB3EBCFB8563514553C7324A2A4C2B0 /* NBNumberFormat.m */,
+				8AB009578F63EC374A2336F8E5E1BDDD /* NBPhoneMetaData.h */,
+				753A7DE3119C16815E5AA28AB037AC4D /* NBPhoneMetaData.m */,
+				2BC02B30F8D6CCCFCFB310E49D57A08A /* NBPhoneNumber.h */,
+				60C021DAA0C79A39546A82073CAB011A /* NBPhoneNumber.m */,
+				42356A42D4518260EBFD4FEC2B93C5D2 /* NBPhoneNumberDefines.h */,
+				757ADCD5B7917FB6F015FFF16AD3D9F1 /* NBPhoneNumberDefines.m */,
+				08305124A38EC51BE0016E105BEBED3D /* NBPhoneNumberDesc.h */,
+				236D888DD103CC6FD9F0F987E755A6CE /* NBPhoneNumberDesc.m */,
+				2030A7E0369F067488DA838D0D3363FB /* NBPhoneNumberUtil.h */,
+				CA6E879031D26E2130BDD35700C92CBD /* NBPhoneNumberUtil.m */,
+				90208B4DFAEA05E8EDC0F84997355439 /* NBRegExMatcher.h */,
+				30F4BA5A5B4F623327475F838ADE2ECE /* NBRegExMatcher.m */,
+				C3BA2C60166A8365557BFA359FE54BD2 /* NBRegularExpressionCache.h */,
+				683BAF1B4DA2D8E2D5402922001AA0C0 /* NBRegularExpressionCache.m */,
+				9CB06B493380A12B55BF615BF629631A /* NSArray+NBAdditions.h */,
+				7B3728EAA8A1F8E8B1F85B094A84F80C /* NSArray+NBAdditions.m */,
+				770E8626106171E41E47F0D5DB4C4B19 /* Support Files */,
+			);
+			name = "libPhoneNumber-iOS";
+			path = "libPhoneNumber-iOS";
+			sourceTree = "<group>";
+		};
+		4B0F8E7CF7DCC1D9543FA9A985368EC7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				915DED4CB34CF6CC09A25868B76F04E7 /* GooglePlaces.debug.xcconfig */,
+				20440B165FD3F147A4220D90A5BEE2A4 /* GooglePlaces.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GooglePlaces";
+			sourceTree = "<group>";
+		};
+		4DF71DE64D507B66CD2B88076621DCA9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				973B6EA813C3B07B5B620C3EA83D4A0C /* Frameworks */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		559B8B58C6005DB6299A51A6F6058FD2 /* Pods-JooSoN */ = {
+			isa = PBXGroup;
+			children = (
+				B3BC0C9502C20FD620CA8CBB44E48538 /* Pods-JooSoN.modulemap */,
+				8E6F4FBA5C879692150EE49C7A5DA798 /* Pods-JooSoN-acknowledgements.markdown */,
+				7AE19B70D66D4445E191361290A6A9B0 /* Pods-JooSoN-acknowledgements.plist */,
+				C7F9822F84391896ACC91B99CCE131F2 /* Pods-JooSoN-dummy.m */,
+				B9696E37B98B7AB7F46B9E62F7841652 /* Pods-JooSoN-frameworks.sh */,
+				8BF92BADBC3EBE74732470CFE6E53020 /* Pods-JooSoN-Info.plist */,
+				ED1E69D91C5067E8CFC787E84EF4125A /* Pods-JooSoN-resources.sh */,
+				E689F3F13B256DB9AB6A5BA576959CE0 /* Pods-JooSoN-umbrella.h */,
+				848FE40F9C097F4927904CF0F7BFE2CC /* Pods-JooSoN.debug.xcconfig */,
+				FC4308FE08ECF09D4D3342C11D2D4497 /* Pods-JooSoN.release.xcconfig */,
+			);
+			name = "Pods-JooSoN";
+			path = "Target Support Files/Pods-JooSoN";
+			sourceTree = "<group>";
+		};
+		63F3DA894356FFA5135081FD2C6262EA /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				4BBB483A78A195B27AA1D53DE15E6B68 /* Toast.h */,
+				E873BEDB5EA241F82006DC5906F72C57 /* UIView+Toast.h */,
+				880A18C1FDDEDF60BEF3C84BEEDFD411 /* UIView+Toast.m */,
+				7696F282D2346CC56FED324A5CB4ACE3 /* Support Files */,
+			);
+			name = Toast;
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		677D9167133F457DCC71E9747412BAF1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FB535273CBEA6E1A389766E619495542 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7696F282D2346CC56FED324A5CB4ACE3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4AE48F348583EC8E6A3B5E35E3A72456 /* Toast.modulemap */,
+				F7919B0584EC8F79EBAD7B45D60F49DD /* Toast-dummy.m */,
+				AF37E0D6A51D9AEC2E5DD2612469F1D1 /* Toast-Info.plist */,
+				026767A0774F7BDD73DC38CF0DD35524 /* Toast-prefix.pch */,
+				2967B1FEB8606CAB32450C49EA47132F /* Toast-umbrella.h */,
+				4A87024105B69ED96C4E2342E2102DC1 /* Toast.debug.xcconfig */,
+				1569795EF15DADAFE6F7E0B65C1F1566 /* Toast.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Toast";
+			sourceTree = "<group>";
+		};
+		770E8626106171E41E47F0D5DB4C4B19 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				124C27D7626BE379A4F9417769890BBC /* libPhoneNumber-iOS.modulemap */,
+				A6C30799428A9CD4935F2F663F504A41 /* libPhoneNumber-iOS-dummy.m */,
+				9A0942CDB9EC3EDA646D83CFEF55EAF4 /* libPhoneNumber-iOS-Info.plist */,
+				6D18F24669370609A309F13DF11F202D /* libPhoneNumber-iOS-prefix.pch */,
+				E8301E9CED9DA68E66A438EE4DBDC538 /* libPhoneNumber-iOS-umbrella.h */,
+				7B2826CA4B46E53D6B1CF873DCF58401 /* libPhoneNumber-iOS.debug.xcconfig */,
+				F96956432128708846D8098AD7DCA419 /* libPhoneNumber-iOS.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/libPhoneNumber-iOS";
+			sourceTree = "<group>";
+		};
+		79FC02E78834B551A059EFC3D41A5172 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				4DF71DE64D507B66CD2B88076621DCA9 /* Base */,
+				D4D3289BF72132C5E48378E2F9E4948C /* Maps */,
+				1162118A864B571E9296F52B48F8F591 /* Support Files */,
+			);
+			name = GoogleMaps;
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		922FCA1CE28B9F91DD81242FCFA41270 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D0420BB11B88E6FF2C7FD65A7C7A0BF /* GooglePlaces.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		973B6EA813C3B07B5B620C3EA83D4A0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F30EC3A4395CC42913A6A3B50FDCCD1 /* GoogleMapsBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AE1A24709F3B72F73858B7B0483E274 /* LMGeocoder */ = {
+			isa = PBXGroup;
+			children = (
+				540134CF4B964C7B7D797C7A9BEE40CA /* LMAddress.h */,
+				E38C72BFFB107FE2DAFEC2D121C0D0ED /* LMAddress.m */,
+				604DD3C22849735F557B9E4D5C54DE99 /* LMGeocoder.h */,
+				886CF4A972B9FA2F828CD1E088C0E6ED /* LMGeocoder.m */,
+				ED32EDD323798DCACE03E54C1696E967 /* LMGeocodingOperation.h */,
+				1A725E6FB2B4D270C6D93AA552ABD35A /* LMGeocodingOperation.m */,
+				F01DF0481553D5D8B5330223DC08EE5D /* Support Files */,
+			);
+			name = LMGeocoder;
+			path = LMGeocoder;
+			sourceTree = "<group>";
+		};
+		A3E9620DB51A64F474A8A0FA3C63B00E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFCC9B055CD1424C4785FEEA2C579D27 /* GoogleMaps.framework */,
+				0634EA4CE2332A3F2E3C179E99B89705 /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4781C8DF319CD845674130F3BCD8E14 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79FC02E78834B551A059EFC3D41A5172 /* GoogleMaps */,
+				FCA778D052DF890EB9DFCB0783A3E47E /* GooglePlaces */,
+				C853ABD1C78982CF6D6B284459D68EA4 /* LGSideMenuController */,
+				4931E29E194326BB7CE4D316B1021356 /* libPhoneNumber-iOS */,
+				9AE1A24709F3B72F73858B7B0483E274 /* LMGeocoder */,
+				63F3DA894356FFA5135081FD2C6262EA /* Toast */,
+				F132C781D4E7B1226A527B4784F6B8A9 /* VYNFCKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C1C4A44ACD33906F8265C3A32ABE2479 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				559B8B58C6005DB6299A51A6F6058FD2 /* Pods-JooSoN */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C853ABD1C78982CF6D6B284459D68EA4 /* LGSideMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF1CA63C0B2963301CC3ABD71ECBDB /* LGSideMenuBorderView.h */,
+				43846232A316E96201CE77DC0F7E139A /* LGSideMenuBorderView.m */,
+				38716A6BE13B77C7D75B4AB72EF3AC46 /* LGSideMenuController.h */,
+				8AACE1126F5D3138CF5F31C80E9B03A8 /* LGSideMenuController.m */,
+				5A5DE535AFF60BE6A5D4A3568E893041 /* LGSideMenuGesturesHandler.h */,
+				CEE1E1E5BB9809A263DC84B897BAFBEA /* LGSideMenuGesturesHandler.m */,
+				A205706E33FA2BD3C50C7631ACFA9427 /* LGSideMenuHelper.h */,
+				AF7AA612406ED561F109E7311194E998 /* LGSideMenuHelper.m */,
+				B4DB0EDA6B011E05EB7CBA53C2CB694E /* LGSideMenuSegue.h */,
+				7144897CB6052FD65962740D1A112ABD /* LGSideMenuSegue.m */,
+				B1C3D21C6ED619F9D470A75CE76C89E9 /* LGSideMenuView.h */,
+				A8BE5F38B66AB931B6607DB85D31D741 /* LGSideMenuView.m */,
+				BFC6FB133F781244AEE9DF2941B61745 /* UIViewController+LGSideMenuController.h */,
+				340823B71DCAABBB2F28A4AD629487E8 /* UIViewController+LGSideMenuController.m */,
+				0F017D5C09E4BF2AA18A79BD75BE2901 /* Support Files */,
+			);
+			name = LGSideMenuController;
+			path = LGSideMenuController;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
+				B4781C8DF319CD845674130F3BCD8E14 /* Pods */,
+				143E48EE752CBC7E0B0E8209E0B69B88 /* Products */,
+				C1C4A44ACD33906F8265C3A32ABE2479 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D2D6AA1CF28CA570CFA37AC8AB581204 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				039277E48EAC4C92D04756759C4D8579 /* GooglePlaces.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4D3289BF72132C5E48378E2F9E4948C /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				A3E9620DB51A64F474A8A0FA3C63B00E /* Frameworks */,
+				677D9167133F457DCC71E9747412BAF1 /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		F01DF0481553D5D8B5330223DC08EE5D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E5ACA7D9569040A69490C5BE9388665 /* LMGeocoder.modulemap */,
+				89C2B5C40B01F38CEF66B6C0B650F05C /* LMGeocoder-dummy.m */,
+				9BF83B8D31C4E7DF832D2034A05D0C64 /* LMGeocoder-Info.plist */,
+				7760CC2BF42BF1AF319E0341A94923F7 /* LMGeocoder-prefix.pch */,
+				5718A35C8D7349CE8461D90A5FF557BE /* LMGeocoder-umbrella.h */,
+				BE7CD4B5AF075B8B02499CD3EE33B114 /* LMGeocoder.debug.xcconfig */,
+				26B1612340B1049D2E9A63D24E741B78 /* LMGeocoder.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/LMGeocoder";
+			sourceTree = "<group>";
+		};
+		F132C781D4E7B1226A527B4784F6B8A9 /* VYNFCKit */ = {
+			isa = PBXGroup;
+			children = (
+				5935E87DDAC77AFF1DFDB9180052CEA4 /* VYNFCKit.h */,
+				4DD27F79A898FE8CF6B9D2322FAD551D /* VYNFCNDEFMessageHeader.h */,
+				C797C2CBD3EFD6C6B036EDBFCA4610DA /* VYNFCNDEFMessageHeader.m */,
+				C84A4492F9880F62A978D7D357740C74 /* VYNFCNDEFPayloadParser.h */,
+				B960381F463CC21E04AB8FB98185FD57 /* VYNFCNDEFPayloadParser.m */,
+				ED3BFD49509856A1A3F49D1D396EB009 /* VYNFCNDEFPayloadTypes.h */,
+				C1E22769F5F90FE17D20CAA5AEB9C1F3 /* VYNFCNDEFPayloadTypes.m */,
+				FD9B98AC461DF51B91719A9DEF4B5759 /* Support Files */,
+			);
+			name = VYNFCKit;
+			path = VYNFCKit;
+			sourceTree = "<group>";
+		};
+		FCA778D052DF890EB9DFCB0783A3E47E /* GooglePlaces */ = {
+			isa = PBXGroup;
+			children = (
+				D2D6AA1CF28CA570CFA37AC8AB581204 /* Frameworks */,
+				922FCA1CE28B9F91DD81242FCFA41270 /* Resources */,
+				4B0F8E7CF7DCC1D9543FA9A985368EC7 /* Support Files */,
+			);
+			name = GooglePlaces;
+			path = GooglePlaces;
+			sourceTree = "<group>";
+		};
+		FD9B98AC461DF51B91719A9DEF4B5759 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5C9DAD9CE6E954E525759F3E03FB879A /* VYNFCKit.modulemap */,
+				54CAC98C1B8971DE89AF52F26D76D9F4 /* VYNFCKit-dummy.m */,
+				3CDB1C2DD560E50FCBE99E0AFC27B4A9 /* VYNFCKit-Info.plist */,
+				25C20F82448B4484978348FA208AA106 /* VYNFCKit-prefix.pch */,
+				CAAE4119C73A8DAD40C6191F36E3AA01 /* VYNFCKit-umbrella.h */,
+				C6CBA30B6D459EE525AA6C11DC6C759F /* VYNFCKit.debug.xcconfig */,
+				52DE16D1074D85A955B38D8D1B9E2873 /* VYNFCKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/VYNFCKit";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0A10D1DB27DAA8D2CA5A242DD760D567 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C30A6C92E3781E3AFD8D2B3A8FC306B8 /* libPhoneNumber-iOS-umbrella.h in Headers */,
+				3C24517B42E32F313BAB2A05E6A570DD /* NBAsYouTypeFormatter.h in Headers */,
+				CACAF4F4B67D69E989E1ABD8C562A856 /* NBGeneratedPhoneNumberMetaData.h in Headers */,
+				E5FA7F22DDD92428053AB02E66A910E0 /* NBMetadataHelper.h in Headers */,
+				3F8566379714D5702C1491AF9A14634E /* NBNumberFormat.h in Headers */,
+				BFEDCED1AAF1F4820161B2D50E6A9839 /* NBPhoneMetaData.h in Headers */,
+				14C2B8D8701E70F5A4D9CAD7350C7917 /* NBPhoneNumber.h in Headers */,
+				08377DBF55532ED4D626D7E02ACF3B92 /* NBPhoneNumberDefines.h in Headers */,
+				8EB2161DF2D8695DA8F3A68ECFAAE749 /* NBPhoneNumberDesc.h in Headers */,
+				764FD885D7676402D1522862DC702A53 /* NBPhoneNumberUtil.h in Headers */,
+				492CB91D75C4F86887C2D888761C55AD /* NBRegExMatcher.h in Headers */,
+				83A99E20918F0D48ADE8805241E737F2 /* NBRegularExpressionCache.h in Headers */,
+				36EEE8A65AC14D0B369AF7D1B19CBB78 /* NSArray+NBAdditions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		333E73E8E2B40C291C80FE9871219054 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEC17DDAF4619E3FEE4ABD7AC825C0F9 /* Pods-JooSoN-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3350D3D6D6B48D181D51826646099FCF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27F3B0221915A780361D7257169328E1 /* LGSideMenuBorderView.h in Headers */,
+				A25B594375876EA90DD68A7A0801BFA5 /* LGSideMenuController-umbrella.h in Headers */,
+				23C3AEEDF7C13B512EB64DA243E057AE /* LGSideMenuController.h in Headers */,
+				49055225374CEDB798D4B7D5FBF1E628 /* LGSideMenuGesturesHandler.h in Headers */,
+				996B4D62EF8DD425A1C8B74D1AC19746 /* LGSideMenuHelper.h in Headers */,
+				C74B836C23C2163891E813B30809F4D4 /* LGSideMenuSegue.h in Headers */,
+				A46CE5FDCB0771A4A35CB24D9FF89060 /* LGSideMenuView.h in Headers */,
+				FCDE1CF96D840908111BBD75CB34B9BF /* UIViewController+LGSideMenuController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97E4C6E2D9258AF8646D8B882113FF29 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F3EFDD16E1BC9AC31F7C17D0AF57D9E /* VYNFCKit-umbrella.h in Headers */,
+				D411623C355D10D7756CF2FCA71A173D /* VYNFCKit.h in Headers */,
+				6DAE5ED8042351DD8E7F8AA429073C38 /* VYNFCNDEFMessageHeader.h in Headers */,
+				A9C58464C84C6ACE936E4FEA7932F07D /* VYNFCNDEFPayloadParser.h in Headers */,
+				CF6E910ED03FEE018E31216A4B0B45A9 /* VYNFCNDEFPayloadTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E34B08D5001FB5C1A25EA85E71D29C6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02B06FFAFAB8FE17CFA539E9DAF80341 /* Toast-umbrella.h in Headers */,
+				CAC3636753C7D04712F7E2B276FD5620 /* Toast.h in Headers */,
+				1A3AB65455C8285032B6D18D6C7994DB /* UIView+Toast.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACD1227CB043FED67FC01E76E5927460 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE77C44DC1638F0460709C6F960873DD /* LMAddress.h in Headers */,
+				14403BAE34680B55467D622D941164A1 /* LMGeocoder-umbrella.h in Headers */,
+				7E8E456441E70666B0977BB858899FE3 /* LMGeocoder.h in Headers */,
+				29B49BC8F6982001D1719907F5C0BEB1 /* LMGeocodingOperation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0E1EC8CEFCB04F48D36C12CD11425CAC /* LGSideMenuController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3743B0BB0EDE66CE1FF133B1AF56B700 /* Build configuration list for PBXNativeTarget "LGSideMenuController" */;
+			buildPhases = (
+				3350D3D6D6B48D181D51826646099FCF /* Headers */,
+				ABCA43BE9BED5393D8BB69AAAABE0C3F /* Sources */,
+				46CCB1AB54863D5186B7209CFF263DEB /* Frameworks */,
+				0168DDECDAB210DEEC7FC12D0CC0EEAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LGSideMenuController;
+			productName = LGSideMenuController;
+			productReference = 1A30172AE9F0660847BC807A6F15A494 /* LGSideMenuController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1CD56DCA929A3672CF82BBE8845066E7 /* Pods-JooSoN */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F125736C5FF957AF08686AC0A931765 /* Build configuration list for PBXNativeTarget "Pods-JooSoN" */;
+			buildPhases = (
+				333E73E8E2B40C291C80FE9871219054 /* Headers */,
+				5C799A24D238E96F4E2E8E07057277BC /* Sources */,
+				921C06FA8706C7C5F93423D6029E509B /* Frameworks */,
+				9612019D5381AC57BB8496631741B6AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47FFC931F761DBE5F19F067E9E389BD1 /* PBXTargetDependency */,
+				D3AD9B8B6C39120CDEE91609FC4FEBED /* PBXTargetDependency */,
+				A76F591FB1AB103C6B33D9DED37CB7D0 /* PBXTargetDependency */,
+				32464F790CC81A30BED7588B9423070E /* PBXTargetDependency */,
+				B5A78009C463DF38372F484F3C245040 /* PBXTargetDependency */,
+				3A4DD1ECEA3798CD6D16C24FDD662DDA /* PBXTargetDependency */,
+				E25F5B63F205EAD7912390FC886537FC /* PBXTargetDependency */,
+			);
+			name = "Pods-JooSoN";
+			productName = "Pods-JooSoN";
+			productReference = 995578130BEBB54A631C5708850DBACE /* Pods_JooSoN.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		226FB1A48B3510E6B4662EC49788486B /* LMGeocoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E61A67355F70431B994FB5F42419C8E /* Build configuration list for PBXNativeTarget "LMGeocoder" */;
+			buildPhases = (
+				ACD1227CB043FED67FC01E76E5927460 /* Headers */,
+				506F6F38401E4726F29F3FE683040132 /* Sources */,
+				DE4147B1AA846D4A7728F34E883D3148 /* Frameworks */,
+				72A4DE5BCF0B114DB8F1D32D9437AFDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LMGeocoder;
+			productName = LMGeocoder;
+			productReference = 4C0C8CF80883AAA024DF6CC2A5E508F3 /* LMGeocoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A80A4D6B185BA43BC06122FED0C15F94 /* Toast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 711CDF948F2D0B7AAC7F09782B965138 /* Build configuration list for PBXNativeTarget "Toast" */;
+			buildPhases = (
+				9E34B08D5001FB5C1A25EA85E71D29C6 /* Headers */,
+				27EDA9C4A40A0F2584355CC2F380C516 /* Sources */,
+				24169E0F6C4FD1126480839DEFBC4BF3 /* Frameworks */,
+				3B19A2BE54206481EA499F340CDAE38E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Toast;
+			productName = Toast;
+			productReference = 55E0AFD333353D71ACC2207149E879D6 /* Toast.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BECD36891A8DC297700F9296F5634B97 /* libPhoneNumber-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A3074F499FE83AAE9A127A708EE1B3A /* Build configuration list for PBXNativeTarget "libPhoneNumber-iOS" */;
+			buildPhases = (
+				0A10D1DB27DAA8D2CA5A242DD760D567 /* Headers */,
+				2B46A2BED94A253A0733B04EDF43CEA1 /* Sources */,
+				3396872C7153600DEC6BAE4171997AD0 /* Frameworks */,
+				3C49CE47A7C7EBE4BCFEAF099E3EDB9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libPhoneNumber-iOS";
+			productName = "libPhoneNumber-iOS";
+			productReference = 421ABAD2F376C4185F388A387E2E4655 /* libPhoneNumber_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C13E3D866A64D9CDC8AF077F078CA828 /* VYNFCKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EC542507C04918F66E40C3DA8A61699 /* Build configuration list for PBXNativeTarget "VYNFCKit" */;
+			buildPhases = (
+				97E4C6E2D9258AF8646D8B882113FF29 /* Headers */,
+				9A5429316AA4F3237FEFE1FDFC180C7F /* Sources */,
+				711397C12978A69DE54B07FC39AD2E65 /* Frameworks */,
+				292DCB687AD955BAFF779004DF89921C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VYNFCKit;
+			productName = VYNFCKit;
+			productReference = DE4DE0816715268565413DCD82CDB209 /* VYNFCKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 143E48EE752CBC7E0B0E8209E0B69B88 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */,
+				0C1885900810601510E0C632060FAF26 /* GooglePlaces */,
+				0E1EC8CEFCB04F48D36C12CD11425CAC /* LGSideMenuController */,
+				BECD36891A8DC297700F9296F5634B97 /* libPhoneNumber-iOS */,
+				226FB1A48B3510E6B4662EC49788486B /* LMGeocoder */,
+				1CD56DCA929A3672CF82BBE8845066E7 /* Pods-JooSoN */,
+				A80A4D6B185BA43BC06122FED0C15F94 /* Toast */,
+				C13E3D866A64D9CDC8AF077F078CA828 /* VYNFCKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0168DDECDAB210DEEC7FC12D0CC0EEAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		292DCB687AD955BAFF779004DF89921C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B19A2BE54206481EA499F340CDAE38E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C49CE47A7C7EBE4BCFEAF099E3EDB9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72A4DE5BCF0B114DB8F1D32D9437AFDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9612019D5381AC57BB8496631741B6AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27EDA9C4A40A0F2584355CC2F380C516 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				257C54B1652245EEE7B3C0A9678AB683 /* Toast-dummy.m in Sources */,
+				EABB5FE4633AD93D2EF55946A7E2D09F /* UIView+Toast.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B46A2BED94A253A0733B04EDF43CEA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33CB16E2B442226CF962708E8ED877E /* libPhoneNumber-iOS-dummy.m in Sources */,
+				EB54867F4ED7C503464892DF6D20E06E /* NBAsYouTypeFormatter.m in Sources */,
+				C944E0B64395265D1714F89DA3481230 /* NBMetadataHelper.m in Sources */,
+				367A73738228E6DF9A17CB709747BA0E /* NBNumberFormat.m in Sources */,
+				8BEEC37CB06CF3068D69E6F3569F28AE /* NBPhoneMetaData.m in Sources */,
+				5CA3D015BBA67C8C33CE8E7BC2A32516 /* NBPhoneNumber.m in Sources */,
+				C55E3F63449C747E9F3B4BB430F78BA3 /* NBPhoneNumberDefines.m in Sources */,
+				E6A252325A0CD70CDF6BF1DD7B1CA620 /* NBPhoneNumberDesc.m in Sources */,
+				4885E95B895EF687531724FA4FE8D535 /* NBPhoneNumberUtil.m in Sources */,
+				E96853F0A9B15DABF2E3D9372A2CC677 /* NBRegExMatcher.m in Sources */,
+				F89EA0223858711AF9CFBAC81AC00412 /* NBRegularExpressionCache.m in Sources */,
+				1A96D400A8A13CA1622955D41E4D0875 /* NSArray+NBAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506F6F38401E4726F29F3FE683040132 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8422AEA99BFA8B088D38E2BB8E6C0E6 /* LMAddress.m in Sources */,
+				EA038EA76AB978510B2E91933600082A /* LMGeocoder-dummy.m in Sources */,
+				DACE58BCC297773BC07B368DEEE6A3C5 /* LMGeocoder.m in Sources */,
+				239AD452C55541546CF0B5755C3B2CCC /* LMGeocodingOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C799A24D238E96F4E2E8E07057277BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E3C8F1B09058AFBFBFE30D941C3D42C /* Pods-JooSoN-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A5429316AA4F3237FEFE1FDFC180C7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC5F7B2A43F870325EC7CA588237E840 /* VYNFCKit-dummy.m in Sources */,
+				073A26E42F835AD68C8B60AD26BD6092 /* VYNFCNDEFMessageHeader.m in Sources */,
+				9E791FB6A54EF3AEC8C78BAD856B1388 /* VYNFCNDEFPayloadParser.m in Sources */,
+				86FC5DF89C528C61785C91401B11B910 /* VYNFCNDEFPayloadTypes.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABCA43BE9BED5393D8BB69AAAABE0C3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E340EFE7244D60CAAE0BB654545E846C /* LGSideMenuBorderView.m in Sources */,
+				9C14A9B2523AFF4E3E25B1083A028F15 /* LGSideMenuController-dummy.m in Sources */,
+				AC7746290A5E6E665BC4F079C56DAFBD /* LGSideMenuController.m in Sources */,
+				BF3842C89535A2AF743CF5762D4025AD /* LGSideMenuGesturesHandler.m in Sources */,
+				8571DBD6E32388E312F435634274C28A /* LGSideMenuHelper.m in Sources */,
+				B34D5958BB1BA7DAC54D92280931D39A /* LGSideMenuSegue.m in Sources */,
+				003A446142930455E73BB5F5A49FBAB2 /* LGSideMenuView.m in Sources */,
+				32898A510CC55DD5A06B469184B8A792 /* UIViewController+LGSideMenuController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32464F790CC81A30BED7588B9423070E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LMGeocoder;
+			target = 226FB1A48B3510E6B4662EC49788486B /* LMGeocoder */;
+			targetProxy = 05F2EC7E35B67B49CF65B615C17E3B6E /* PBXContainerItemProxy */;
+		};
+		3A4DD1ECEA3798CD6D16C24FDD662DDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VYNFCKit;
+			target = C13E3D866A64D9CDC8AF077F078CA828 /* VYNFCKit */;
+			targetProxy = 1CC66FCBC82939BD8EDFCECAA5551AA5 /* PBXContainerItemProxy */;
+		};
+		47FFC931F761DBE5F19F067E9E389BD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleMaps;
+			target = E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */;
+			targetProxy = 4615D934BF63E91685A029420DF4B7D3 /* PBXContainerItemProxy */;
+		};
+		747B7A395611C3CD029E9084BBD93B10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleMaps;
+			target = E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */;
+			targetProxy = 65B502B8D78E03C7458CDF7002AFA2C5 /* PBXContainerItemProxy */;
+		};
+		A76F591FB1AB103C6B33D9DED37CB7D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LGSideMenuController;
+			target = 0E1EC8CEFCB04F48D36C12CD11425CAC /* LGSideMenuController */;
+			targetProxy = 0C16047A30D43040452A895ABA481CA4 /* PBXContainerItemProxy */;
+		};
+		B5A78009C463DF38372F484F3C245040 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Toast;
+			target = A80A4D6B185BA43BC06122FED0C15F94 /* Toast */;
+			targetProxy = DF736AB1E18830CD38DF62A541B71997 /* PBXContainerItemProxy */;
+		};
+		D3AD9B8B6C39120CDEE91609FC4FEBED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GooglePlaces;
+			target = 0C1885900810601510E0C632060FAF26 /* GooglePlaces */;
+			targetProxy = CDBDB23BC1AD179D6460BD1B9E4D98AC /* PBXContainerItemProxy */;
+		};
+		E25F5B63F205EAD7912390FC886537FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libPhoneNumber-iOS";
+			target = BECD36891A8DC297700F9296F5634B97 /* libPhoneNumber-iOS */;
+			targetProxy = DF2BF0FAA2E7EA2A579ED1DE7280E2C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C5777D83DE5C5520B0611F1BDC7C687 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A87024105B69ED96C4E2342E2102DC1 /* Toast.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Toast/Toast-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Toast/Toast-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Toast/Toast.modulemap";
+				PRODUCT_MODULE_NAME = Toast;
+				PRODUCT_NAME = Toast;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1422B121EAEAEA11307496903FA623C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		2434C7022F8EEECE000B1359F42FAF79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 848FE40F9C097F4927904CF0F7BFE2CC /* Pods-JooSoN.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-JooSoN/Pods-JooSoN-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-JooSoN/Pods-JooSoN.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		61612572D7230230CB5B2EA5892E08F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE7CD4B5AF075B8B02499CD3EE33B114 /* LMGeocoder.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LMGeocoder/LMGeocoder-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LMGeocoder/LMGeocoder-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LMGeocoder/LMGeocoder.modulemap";
+				PRODUCT_MODULE_NAME = LMGeocoder;
+				PRODUCT_NAME = LMGeocoder;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		62D14F50E4D0A6C4AD9C07A60537BFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9418836551757410144C772CA87CB550 /* LGSideMenuController.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LGSideMenuController/LGSideMenuController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LGSideMenuController/LGSideMenuController-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LGSideMenuController/LGSideMenuController.modulemap";
+				PRODUCT_MODULE_NAME = LGSideMenuController;
+				PRODUCT_NAME = LGSideMenuController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		71EBBFEBF7E6FA0D081D3317032907CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC4308FE08ECF09D4D3342C11D2D4497 /* Pods-JooSoN.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-JooSoN/Pods-JooSoN-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-JooSoN/Pods-JooSoN.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8CE5BA3EF4F6FABF028CE30772ECDA11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5151376FBC2DCCD98F30316B6C5D009 /* GoogleMaps.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5B5014233CBEE7837E6513A743EBDF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1569795EF15DADAFE6F7E0B65C1F1566 /* Toast.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Toast/Toast-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Toast/Toast-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Toast/Toast.modulemap";
+				PRODUCT_MODULE_NAME = Toast;
+				PRODUCT_NAME = Toast;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AD94FCB8F777ECD15A41F3A08F31BC8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F96956432128708846D8098AD7DCA419 /* libPhoneNumber-iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/libPhoneNumber-iOS/libPhoneNumber-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/libPhoneNumber-iOS/libPhoneNumber-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/libPhoneNumber-iOS/libPhoneNumber-iOS.modulemap";
+				PRODUCT_MODULE_NAME = libPhoneNumber_iOS;
+				PRODUCT_NAME = libPhoneNumber_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BBA70EE696AA79D5F4F26DDD1C833A11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C740462E7E14274916A0BC9F2F52CDA4 /* LGSideMenuController.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LGSideMenuController/LGSideMenuController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LGSideMenuController/LGSideMenuController-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LGSideMenuController/LGSideMenuController.modulemap";
+				PRODUCT_MODULE_NAME = LGSideMenuController;
+				PRODUCT_NAME = LGSideMenuController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C073EB95BF49A47BABC9292F925F5C95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6CBA30B6D459EE525AA6C11DC6C759F /* VYNFCKit.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/VYNFCKit/VYNFCKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/VYNFCKit/VYNFCKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/VYNFCKit/VYNFCKit.modulemap";
+				PRODUCT_MODULE_NAME = VYNFCKit;
+				PRODUCT_NAME = VYNFCKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E1E452060D51DF935547186CE54B26CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 776850B5B623470BC36D99DA8019AC3A /* GoogleMaps.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E67C15965D1DBB9F6046127FCBA8F8CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26B1612340B1049D2E9A63D24E741B78 /* LMGeocoder.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LMGeocoder/LMGeocoder-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LMGeocoder/LMGeocoder-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LMGeocoder/LMGeocoder.modulemap";
+				PRODUCT_MODULE_NAME = LMGeocoder;
+				PRODUCT_NAME = LMGeocoder;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ECE9B5B91E0A429ADF2011D2FE8DEC65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52DE16D1074D85A955B38D8D1B9E2873 /* VYNFCKit.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/VYNFCKit/VYNFCKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/VYNFCKit/VYNFCKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/VYNFCKit/VYNFCKit.modulemap";
+				PRODUCT_MODULE_NAME = VYNFCKit;
+				PRODUCT_NAME = VYNFCKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ED7888FA6713EABBF66D26A8003AD1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		F612EF94A7DB77BEC9A01721B62A809E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 915DED4CB34CF6CC09A25868B76F04E7 /* GooglePlaces.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F9D49C020287104E4E87273DDCF7EA26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B2826CA4B46E53D6B1CF873DCF58401 /* libPhoneNumber-iOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/libPhoneNumber-iOS/libPhoneNumber-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/libPhoneNumber-iOS/libPhoneNumber-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/libPhoneNumber-iOS/libPhoneNumber-iOS.modulemap";
+				PRODUCT_MODULE_NAME = libPhoneNumber_iOS;
+				PRODUCT_NAME = libPhoneNumber_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FE15983873284AD94B26A75BCDAE5E5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20440B165FD3F147A4220D90A5BEE2A4 /* GooglePlaces.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E61A67355F70431B994FB5F42419C8E /* Build configuration list for PBXNativeTarget "LMGeocoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61612572D7230230CB5B2EA5892E08F2 /* Debug */,
+				E67C15965D1DBB9F6046127FCBA8F8CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3743B0BB0EDE66CE1FF133B1AF56B700 /* Build configuration list for PBXNativeTarget "LGSideMenuController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62D14F50E4D0A6C4AD9C07A60537BFA7 /* Debug */,
+				BBA70EE696AA79D5F4F26DDD1C833A11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46921981F609C5BA3CB72EC4EA41299D /* Build configuration list for PBXAggregateTarget "GoogleMaps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1E452060D51DF935547186CE54B26CC /* Debug */,
+				8CE5BA3EF4F6FABF028CE30772ECDA11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7888FA6713EABBF66D26A8003AD1CA /* Debug */,
+				1422B121EAEAEA11307496903FA623C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A3074F499FE83AAE9A127A708EE1B3A /* Build configuration list for PBXNativeTarget "libPhoneNumber-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D49C020287104E4E87273DDCF7EA26 /* Debug */,
+				AD94FCB8F777ECD15A41F3A08F31BC8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5EC542507C04918F66E40C3DA8A61699 /* Build configuration list for PBXNativeTarget "VYNFCKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C073EB95BF49A47BABC9292F925F5C95 /* Debug */,
+				ECE9B5B91E0A429ADF2011D2FE8DEC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F125736C5FF957AF08686AC0A931765 /* Build configuration list for PBXNativeTarget "Pods-JooSoN" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2434C7022F8EEECE000B1359F42FAF79 /* Debug */,
+				71EBBFEBF7E6FA0D081D3317032907CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		711CDF948F2D0B7AAC7F09782B965138 /* Build configuration list for PBXNativeTarget "Toast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C5777D83DE5C5520B0611F1BDC7C687 /* Debug */,
+				A5B5014233CBEE7837E6513A743EBDF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E215DFB4EAE26646AFED2C4861A55C32 /* Build configuration list for PBXAggregateTarget "GooglePlaces" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F612EF94A7DB77BEC9A01721B62A809E /* Debug */,
+				FE15983873284AD94B26A75BCDAE5E5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

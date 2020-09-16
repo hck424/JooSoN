@@ -1,0 +1,6 @@
+framework module VYNFCKit {
+  umbrella header "VYNFCKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

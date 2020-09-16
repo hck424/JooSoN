@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-frameworks.sh
+${BUILT_PRODUCTS_DIR}/LGSideMenuController/LGSideMenuController.framework
+${BUILT_PRODUCTS_DIR}/LMGeocoder/LMGeocoder.framework
+${BUILT_PRODUCTS_DIR}/Toast/Toast.framework
+${BUILT_PRODUCTS_DIR}/VYNFCKit/VYNFCKit.framework
+${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework
