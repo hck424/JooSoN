@@ -11,7 +11,6 @@
 #import "JooSoCell.h"
 #import "DBManager.h"
 #import "NSString+Utility.h"
-#import "SceneDelegate.h"
 #import "CallkitController.h"
 #import "Utility.h"
 #import "InfoJooSoViewController.h"
@@ -21,8 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UILabel *lbEmpty;
+
 @property (nonatomic, strong) NSMutableArray *arrOrigin;
 @property (nonatomic, strong) NSMutableArray *arrData;
+
 @property (nonatomic, strong) NSString *searchStr;
 @property (nonatomic, strong) JooSo *selJooso;
 @property (nonatomic, strong) CallkitController *callkitController;
@@ -170,7 +171,7 @@
             info.road_address = self.selJooso.roadAddress;
             info.name = self.selJooso.placeName;
             vc.passPlaceInfo = info;
-            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
             NSString *selMapId = AppDelegate.instance.selMapId;
@@ -186,7 +187,7 @@
         
         
         if (url.length > 0) {
-            [[SceneDelegate instance] openSchemeUrl:url];
+            [[AppDelegate instance] openSchemeUrl:url];
         }
     }];
     
@@ -210,7 +211,7 @@
     
     InfoJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoJooSoViewController"];
     vc.passJooso = selJooso;
-    [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
 }
 
 

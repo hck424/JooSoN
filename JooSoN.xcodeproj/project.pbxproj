@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		01D05E41C5CEAD8F11C85668 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */; };
+		E91F367A251477B000867C25 /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E91F3679251477B000867C25 /* InfoView.m */; };
+		E91F367D251477B600867C25 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91F367C251477B600867C25 /* InfoView.xib */; };
+		E927A5962513044B00EE1E55 /* BannerFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E927A5952513044B00EE1E55 /* BannerFlowLayout.m */; };
+		E927A5A525135CE800EE1E55 /* MapSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E927A5A325135CE800EE1E55 /* MapSearchCell.m */; };
+		E927A5A625135CE800EE1E55 /* MapSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E927A5A425135CE800EE1E55 /* MapSearchCell.xib */; };
 		E9314AAF23CDA39400A98A9A /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9314AAE23CDA39400A98A9A /* CoreNFC.framework */; };
 		E9351F7223C9C3EB00E96DD1 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */; };
 		E94BFAF923D54C5F00FD6E7B /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94BFAF823D54C5F00FD6E7B /* LocationView.m */; };
@@ -15,8 +20,6 @@
 		E989E01F23C1CE9400EF3FD2 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E989E01D23C1CE9400EF3FD2 /* GroupCell.m */; };
 		E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E989E01E23C1CE9400EF3FD2 /* GroupCell.xib */; };
 		E989E02823C1D6C800EF3FD2 /* AddGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E989E02723C1D6C800EF3FD2 /* AddGroupViewController.m */; };
-		E990288123C6352800C691AB /* MapSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990288023C6352800C691AB /* MapSearchView.m */; };
-		E990288323C6353700C691AB /* MapSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990288223C6353700C691AB /* MapSearchView.xib */; };
 		E99028BA23C72B2200C691AB /* InstantPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */; };
 		E99F5F4823BECB260014D13C /* InfoJooSoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99F5F4723BECB260014D13C /* InfoJooSoViewController.m */; };
 		E9AFD4C123BB93D5005210C8 /* PhoneNumber+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4B223BB93D4005210C8 /* PhoneNumber+CoreDataClass.m */; };
@@ -43,7 +46,6 @@
 		E9BA5B1C23CEECB30083415B /* GoogleMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BA5B1B23CEECB30083415B /* GoogleMapView.xib */; };
 		E9C952E123C416E300B7E922 /* MapSearchHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C952E023C416E300B7E922 /* MapSearchHistoryController.m */; };
 		E9DB05F123B7C55E00BD22C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB05F023B7C55E00BD22C1 /* AppDelegate.m */; };
-		E9DB05F423B7C55E00BD22C1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB05F323B7C55E00BD22C1 /* SceneDelegate.m */; };
 		E9DB05FA23B7C55E00BD22C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9DB05F823B7C55E00BD22C1 /* Main.storyboard */; };
 		E9DB05FD23B7C55E00BD22C1 /* JooSoN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9DB05FB23B7C55E00BD22C1 /* JooSoN.xcdatamodeld */; };
 		E9DB05FF23B7C55F00BD22C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9DB05FE23B7C55F00BD22C1 /* Assets.xcassets */; };
@@ -122,6 +124,14 @@
 		0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
 		A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
 		E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E91F3678251477B000867C25 /* InfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
+		E91F3679251477B000867C25 /* InfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
+		E91F367C251477B600867C25 /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
+		E927A5942513044B00EE1E55 /* BannerFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerFlowLayout.h; sourceTree = "<group>"; };
+		E927A5952513044B00EE1E55 /* BannerFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerFlowLayout.m; sourceTree = "<group>"; };
+		E927A5A225135CE800EE1E55 /* MapSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchCell.h; sourceTree = "<group>"; };
+		E927A5A325135CE800EE1E55 /* MapSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchCell.m; sourceTree = "<group>"; };
+		E927A5A425135CE800EE1E55 /* MapSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchCell.xib; sourceTree = "<group>"; };
 		E9314AAE23CDA39400A98A9A /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		E9314AB023CDA5FF00A98A9A /* JooSoN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JooSoN.entitlements; sourceTree = "<group>"; };
 		E9351F7023C9C3EB00E96DD1 /* MapSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchViewController.h; sourceTree = "<group>"; };
@@ -130,14 +140,13 @@
 		E94BFAF823D54C5F00FD6E7B /* LocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationView.m; sourceTree = "<group>"; };
 		E951AC7723C8817B006DA22E /* NfcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NfcViewController.h; sourceTree = "<group>"; };
 		E951AC7823C8817B006DA22E /* NfcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NfcViewController.m; sourceTree = "<group>"; };
+		E954F87C2514A6B000D7ABBA /* JooSoN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JooSoN-Bridging-Header.h"; sourceTree = "<group>"; };
+		E979E087251451C300F13972 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		E989E01C23C1CE9400EF3FD2 /* GroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
 		E989E01D23C1CE9400EF3FD2 /* GroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		E989E01E23C1CE9400EF3FD2 /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		E989E02623C1D6C800EF3FD2 /* AddGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGroupViewController.h; sourceTree = "<group>"; };
 		E989E02723C1D6C800EF3FD2 /* AddGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGroupViewController.m; sourceTree = "<group>"; };
-		E990287F23C6352800C691AB /* MapSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchView.h; sourceTree = "<group>"; };
-		E990288023C6352800C691AB /* MapSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchView.m; sourceTree = "<group>"; };
-		E990288223C6353700C691AB /* MapSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchView.xib; sourceTree = "<group>"; };
 		E99028B823C72B2200C691AB /* InstantPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstantPanGestureRecognizer.h; sourceTree = "<group>"; };
 		E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstantPanGestureRecognizer.m; sourceTree = "<group>"; };
 		E99F5F4623BECB260014D13C /* InfoJooSoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoJooSoViewController.h; sourceTree = "<group>"; };
@@ -183,8 +192,6 @@
 		E9DB05EC23B7C55E00BD22C1 /* JooSoN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JooSoN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DB05EF23B7C55E00BD22C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E9DB05F023B7C55E00BD22C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E9DB05F223B7C55E00BD22C1 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		E9DB05F323B7C55E00BD22C1 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		E9DB05F923B7C55E00BD22C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9DB05FC23B7C55E00BD22C1 /* JooSoN.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JooSoN.xcdatamodel; sourceTree = "<group>"; };
 		E9DB05FE23B7C55F00BD22C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -401,6 +408,7 @@
 			children = (
 				E951AC7723C8817B006DA22E /* NfcViewController.h */,
 				E951AC7823C8817B006DA22E /* NfcViewController.m */,
+				E954F87C2514A6B000D7ABBA /* JooSoN-Bridging-Header.h */,
 			);
 			path = Nfc;
 			sourceTree = "<group>";
@@ -501,6 +509,9 @@
 				E9BA5B1623CEEC6F0083415B /* GoogleMapView.h */,
 				E9BA5B1723CEEC6F0083415B /* GoogleMapView.m */,
 				E9BA5B1B23CEECB30083415B /* GoogleMapView.xib */,
+				E91F3678251477B000867C25 /* InfoView.h */,
+				E91F3679251477B000867C25 /* InfoView.m */,
+				E91F367C251477B600867C25 /* InfoView.xib */,
 			);
 			path = GoogleMap;
 			sourceTree = "<group>";
@@ -536,8 +547,6 @@
 				E9DB066523B7CA6400BD22C1 /* Librarys */,
 				E9DB060423B7C55F00BD22C1 /* main.m */,
 				E9DB06A523B7CA6400BD22C1 /* PrefixHeader.pch */,
-				E9DB05F223B7C55E00BD22C1 /* SceneDelegate.h */,
-				E9DB05F323B7C55E00BD22C1 /* SceneDelegate.m */,
 				E9DB05EF23B7C55E00BD22C1 /* AppDelegate.h */,
 				E9DB05F023B7C55E00BD22C1 /* AppDelegate.m */,
 				E9DB061323B7CA6400BD22C1 /* Utils */,
@@ -546,6 +555,7 @@
 				E9DB060B23B7CA6400BD22C1 /* GoogleService-Info.plist */,
 				E9DB060323B7C55F00BD22C1 /* Info.plist */,
 				E9DB05FB23B7C55E00BD22C1 /* JooSoN.xcdatamodeld */,
+				E979E087251451C300F13972 /* Define.h */,
 			);
 			path = JooSoN;
 			sourceTree = "<group>";
@@ -597,28 +607,30 @@
 		E9DB064D23B7CA6400BD22C1 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				E99028B823C72B2200C691AB /* InstantPanGestureRecognizer.h */,
-				E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */,
-				E9DB064E23B7CA6400BD22C1 /* CameraViewController.xib */,
-				E9DB064F23B7CA6400BD22C1 /* VerticalButton.h */,
-				E9DB065023B7CA6400BD22C1 /* ShareData.m */,
-				E9DB065123B7CA6400BD22C1 /* CallkitController.h */,
-				E9DB065223B7CA6400BD22C1 /* CameraViewController.m */,
-				E9DB065323B7CA6400BD22C1 /* BGStackView.m */,
-				E9DB065423B7CA6400BD22C1 /* KeychainItemWrapper.m */,
-				E9DB065523B7CA6400BD22C1 /* HTextField.h */,
-				E9DB065623B7CA6400BD22C1 /* TabContainerController.h */,
-				E9DB065723B7CA6400BD22C1 /* CameraViewController.h */,
-				E9DB065823B7CA6400BD22C1 /* CallkitController.m */,
-				E9DB065923B7CA6400BD22C1 /* ShareData.h */,
-				E9DB065A23B7CA6400BD22C1 /* VerticalButton.m */,
-				E9DB065B23B7CA6400BD22C1 /* KeychainItemWrapper.h */,
+				E927A5942513044B00EE1E55 /* BannerFlowLayout.h */,
+				E927A5952513044B00EE1E55 /* BannerFlowLayout.m */,
 				E9DB065C23B7CA6400BD22C1 /* BGStackView.h */,
-				E9DB065D23B7CA6400BD22C1 /* TabContainerController.xib */,
-				E9DB065E23B7CA6400BD22C1 /* TabContainerController.m */,
-				E9DB065F23B7CA6400BD22C1 /* HTextField.m */,
+				E9DB065323B7CA6400BD22C1 /* BGStackView.m */,
+				E9DB065123B7CA6400BD22C1 /* CallkitController.h */,
+				E9DB065823B7CA6400BD22C1 /* CallkitController.m */,
+				E9DB065723B7CA6400BD22C1 /* CameraViewController.h */,
+				E9DB065223B7CA6400BD22C1 /* CameraViewController.m */,
+				E9DB064E23B7CA6400BD22C1 /* CameraViewController.xib */,
 				E9F0603523C028FE00852F95 /* HitTestView.h */,
 				E9F0603623C028FE00852F95 /* HitTestView.m */,
+				E9DB065523B7CA6400BD22C1 /* HTextField.h */,
+				E9DB065F23B7CA6400BD22C1 /* HTextField.m */,
+				E99028B823C72B2200C691AB /* InstantPanGestureRecognizer.h */,
+				E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */,
+				E9DB065B23B7CA6400BD22C1 /* KeychainItemWrapper.h */,
+				E9DB065423B7CA6400BD22C1 /* KeychainItemWrapper.m */,
+				E9DB065923B7CA6400BD22C1 /* ShareData.h */,
+				E9DB065023B7CA6400BD22C1 /* ShareData.m */,
+				E9DB065623B7CA6400BD22C1 /* TabContainerController.h */,
+				E9DB065E23B7CA6400BD22C1 /* TabContainerController.m */,
+				E9DB065D23B7CA6400BD22C1 /* TabContainerController.xib */,
+				E9DB064F23B7CA6400BD22C1 /* VerticalButton.h */,
+				E9DB065A23B7CA6400BD22C1 /* VerticalButton.m */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -777,15 +789,15 @@
 				E9B9962D23C44C3B00139273 /* MapSearchResultCell.h */,
 				E9B9962E23C44C3B00139273 /* MapSearchResultCell.m */,
 				E9B9962F23C44C3B00139273 /* MapSearchResultCell.xib */,
-				E990287F23C6352800C691AB /* MapSearchView.h */,
-				E990288023C6352800C691AB /* MapSearchView.m */,
-				E990288223C6353700C691AB /* MapSearchView.xib */,
 				E9B9965423C5DAA800139273 /* PlaceInfo.h */,
 				E9B9965523C5DAA800139273 /* PlaceInfo.m */,
 				E9351F7023C9C3EB00E96DD1 /* MapSearchViewController.h */,
 				E9351F7123C9C3EB00E96DD1 /* MapSearchViewController.m */,
 				E94BFAF723D54C5F00FD6E7B /* LocationView.h */,
 				E94BFAF823D54C5F00FD6E7B /* LocationView.m */,
+				E927A5A225135CE800EE1E55 /* MapSearchCell.h */,
+				E927A5A325135CE800EE1E55 /* MapSearchCell.m */,
+				E927A5A425135CE800EE1E55 /* MapSearchCell.xib */,
 			);
 			path = MapsVC;
 			sourceTree = "<group>";
@@ -824,6 +836,7 @@
 				TargetAttributes = {
 					E9DB05EB23B7C55E00BD22C1 = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -888,7 +901,6 @@
 				E9DB06EF23B7CA6500BD22C1 /* TableHeaderView.xib in Resources */,
 				E9B9963123C44C3B00139273 /* MapSearchResultCell.xib in Resources */,
 				E9DB06F723B7CA6500BD22C1 /* PopupListViewController.xib in Resources */,
-				E990288323C6353700C691AB /* MapSearchView.xib in Resources */,
 				E9DB060223B7C55F00BD22C1 /* LaunchScreen.storyboard in Resources */,
 				E9DB06D923B7CA6500BD22C1 /* CameraViewController.xib in Resources */,
 				E9DB06F923B7CA6500BD22C1 /* AddPhoneNumberField.xib in Resources */,
@@ -898,6 +910,8 @@
 				E9DB06CF23B7CA6500BD22C1 /* JooSoCell.xib in Resources */,
 				E9BA5B1C23CEECB30083415B /* GoogleMapView.xib in Resources */,
 				E9DB05FF23B7C55F00BD22C1 /* Assets.xcassets in Resources */,
+				E91F367D251477B600867C25 /* InfoView.xib in Resources */,
+				E927A5A625135CE800EE1E55 /* MapSearchCell.xib in Resources */,
 				E9DB06C223B7CA6500BD22C1 /* HistoryCell.xib in Resources */,
 				E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */,
 				E9DB06E023B7CA6500BD22C1 /* TabContainerController.xib in Resources */,
@@ -1003,13 +1017,14 @@
 				E9DB06F023B7CA6500BD22C1 /* CTextView.m in Sources */,
 				E989E02823C1D6C800EF3FD2 /* AddGroupViewController.m in Sources */,
 				E9DB06F323B7CA6500BD22C1 /* AddPhoneNumberField.m in Sources */,
+				E927A5A525135CE800EE1E55 /* MapSearchCell.m in Sources */,
 				E9DB05F123B7C55E00BD22C1 /* AppDelegate.m in Sources */,
 				E9DB06ED23B7CA6500BD22C1 /* TOCropToolbar.m in Sources */,
 				E9DB06DD23B7CA6500BD22C1 /* KeychainItemWrapper.m in Sources */,
 				E9DB06EB23B7CA6500BD22C1 /* TOCropView.m in Sources */,
+				E91F367A251477B000867C25 /* InfoView.m in Sources */,
 				E9C952E123C416E300B7E922 /* MapSearchHistoryController.m in Sources */,
 				E9AFD4C523BB93D5005210C8 /* Thumnail+CoreDataClass.m in Sources */,
-				E990288123C6352800C691AB /* MapSearchView.m in Sources */,
 				E9DB06BA23B7CA6500BD22C1 /* ContactsManager.m in Sources */,
 				E9AFD4DF23BD91DF005210C8 /* GroupName+CoreDataClass.m in Sources */,
 				E9DB06D723B7CA6500BD22C1 /* JooSoCell.m in Sources */,
@@ -1027,7 +1042,7 @@
 				E989E01F23C1CE9400EF3FD2 /* GroupCell.m in Sources */,
 				E9DB06DE23B7CA6500BD22C1 /* CallkitController.m in Sources */,
 				E9DB06CB23B7CA6500BD22C1 /* AddJooSoViewController.m in Sources */,
-				E9DB05F423B7C55E00BD22C1 /* SceneDelegate.m in Sources */,
+				E927A5962513044B00EE1E55 /* BannerFlowLayout.m in Sources */,
 				E9AFD4C823BB93D5005210C8 /* Thumnail+CoreDataProperties.m in Sources */,
 				E9AFD4C423BB93D5005210C8 /* History+CoreDataProperties.m in Sources */,
 				E9DB06D623B7CA6500BD22C1 /* SearchJooSoListViewController.m in Sources */,
@@ -1239,6 +1254,7 @@
 			baseConfigurationReference = A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1269,9 +1285,16 @@
 					"@loader_path/Frameworks",
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JooSoN/Librarys/Vendor",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangchange.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1281,6 +1304,7 @@
 			baseConfigurationReference = 0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1310,9 +1334,15 @@
 					"@loader_path/Frameworks",
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JooSoN/Librarys/Vendor",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangchange.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

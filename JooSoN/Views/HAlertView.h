@@ -42,7 +42,7 @@ typedef void (^ActionBlock) (NSInteger index);
 + (void)alertShowWithTitle:(id)title
                    message:(id)message
               btnTitles:(NSArray *)btnTitles
-                alertBlock:(ActionBlock)actionBlock;
+                alertBlock:(void (^)(NSInteger index))actionBlock;
 
 + (void)alertShowMsgWithOkAction:(id)message
                 alertBlock:(ActionBlock)actionBlock;

@@ -8,11 +8,13 @@
 
 #import "GoogleMapView.h"
 #import <LMGeocoder/LMGeocoder.h>
+#import "InfoView.h"
 
 @interface GoogleMapView () <GMSMapViewDelegate>
 @property (nonatomic, strong) GMSMarker *curMarker;
 @property (nonatomic, strong) GMSMarker *selMarker;
-@property (nonatomic, strong) NSMutableArray *arrMarker;
+@property (nonatomic, strong) NSMutableArray *searchMarkers;
+@property (nonatomic, strong) InfoView *infoView;
 @end
 
 @implementation GoogleMapView
@@ -25,15 +27,31 @@
                                                                  zoom:15];
     [_gmsMapView setCamera:camera];
     self.gmsMapView.delegate = self;
-    self.arrMarker = [NSMutableArray array];
+    self.searchMarkers = [NSMutableArray array];
     _gmsMapView.myLocationEnabled = NO;
 }
 
-- (void)setCurrentMarker:(BOOL)selected {
-    UIImage *img = selected? [UIImage imageNamed:@"icon_location_my_s"] : [UIImage imageNamed:@"icon_location_my"];
-    self.curMarker = [self setMarker:self.curPlaceInfo icon:img];
-    if (selected) {
-        [_gmsMapView setSelectedMarker:_curMarker];
+- (void)setCurrentMarker {
+    if (self.curPlaceInfo) {
+        UIImage *img = [UIImage imageNamed:@"icon_location_my"];
+        
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = self.curPlaceInfo.y;
+        coordinate.longitude = self.curPlaceInfo.x;
+        
+        self.curMarker = [[GMSMarker alloc] init];
+        _curMarker.position = coordinate;
+        _curMarker.title = self.curPlaceInfo.name;
+        _curMarker.snippet = self.curPlaceInfo.jibun_address;
+        _curMarker.icon = img;
+        
+        NSString *title = self.curPlaceInfo.name;
+        if (title == nil) {
+            title = self.curPlaceInfo.jibun_address;
+        }
+        
+        _curMarker.userData = @{@"tag" : title, @"placeInfo" : self.curPlaceInfo};
+        _curMarker.map = _gmsMapView;
     }
 }
 
@@ -60,63 +78,43 @@
     if (title == nil) {
         title = info.jibun_address;
     }
-    [_gmsMapView addObserver:self forKeyPath:@"selectedMarker" options:NSKeyValueObservingOptionNew context:0];
     marker.userData = @{@"tag" : title, @"placeInfo" : info};
     marker.map = _gmsMapView;
     
-    [_arrMarker addObject:marker];
+    [_searchMarkers addObject:marker];
     return marker;
 }
 
-//- (void)selectedMarker:(GMSMarker *)marker selected:(BOOL)selected {
-//    PlaceInfo *placeInfo = [marker.userData objectForKey:@"placeInfo"];
-//    CLLocationCoordinate2D coordinate;
-//    coordinate.latitude = placeInfo.y;
-//    coordinate.longitude = placeInfo.x;
-//
-//    UIImage *img = selected? [UIImage imageNamed:@"icon_location_now"] : [UIImage imageNamed:@"icon_location_now_s"];
-//    marker.icon = img;
-//
-//    if (selected) {
-//        GMSCameraUpdate *move = [GMSCameraUpdate setTarget:coordinate];
-//        [_gmsMapView animateWithCameraUpdate:move];
-//        [_gmsMapView setSelectedMarker:marker];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NotiSelectPlaceInfo object:placeInfo];
-//    }
-//}
-
-- (void)hideAllMarker {
-    for (GMSMarker *marker in _arrMarker) {
-        marker.map = nil;
+- (void)selectedMarker:(PlaceInfo *)info {
+    for (GMSMarker *marker in _searchMarkers) {
+        PlaceInfo *tmp = [marker.userData objectForKey:@"placeInfo"];
+        if ([tmp isEqual:info]) {
+            marker.icon = [UIImage imageNamed:@"icon_location_now_s"];
+        }
+        else {
+            marker.icon = [UIImage imageNamed:@"icon_location_now"];
+        }
     }
-    [_arrMarker removeAllObjects];
-    [_gmsMapView clear];
 }
 
-//- (void)selectedMarkerWithPlaceInfo:(PlaceInfo *)info {
-//
-//    GMSMarker *selMarker = nil;
-//    for (GMSMarker *marker in _arrMarker) {
-//        [self selectedMarker:marker selected:NO];
-//        PlaceInfo *info1 = [marker.userData objectForKey:@"placeInfo"];
-//
-//        if ([info1 isEqual:info]) {
-//            selMarker = marker;
-//        }
-//    }
-//    [self selectedMarker:selMarker selected:YES];
-//}
+- (void)changeIconMarker:(GMSMarker *)marker icon:(UIImage *)icon {
+    marker.icon = icon;
+}
+
+- (void)hideAllMarker {
+    for (GMSMarker *marker in _searchMarkers) {
+        marker.map = nil;
+    }
+    [_searchMarkers removeAllObjects];
+    [_gmsMapView clear];
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     
     if ([[change objectForKey:NSKeyValueChangeNewKey] isKindOfClass:[GMSMarker class]]) {
         GMSMarker *selMarker = [change objectForKey:NSKeyValueChangeNewKey];
-        for (GMSMarker *marker in _arrMarker) {
-//            [self selectedMarker:marker selected:NO];
-        }
-        if ([selMarker isEqual:_curMarker] == NO) {
-            selMarker.icon = [UIImage imageNamed:@"icon_location_now"];
-        }
+     
+
         [[NSNotificationCenter defaultCenter] postNotificationName:NotiSelectPlaceInfo object:[selMarker.userData objectForKey:@"placeInfo"]];
     }
 }
@@ -128,24 +126,109 @@
             [self.gmsMapView clear];
         }
         
-//        GMSMarker *marker = [self getGmMarkerWithPlaceInfo:placeInfo icon:[UIImage imageNamed:@"icon_location_now_s"]];
-//        marker.draggable = YES;
-//        marker.map = self.gmsMapView;
-//        self.selMarker = marker;
-//        [self.gmsMapView setSelectedMarker:marker];
-//
-        [self setCurrentMarker:NO];
+        [self setCurrentMarker];
     }
 }
+
+- (void)onClickedNaviAction:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(googleMapView:didClickedAction:withPlaceInfo:)]) {
+        PlaceInfo *info = [self.selMarker.userData objectForKey:@"placeInfo"];
+        [self.delegate googleMapView:self didClickedAction:MapCellActionNavi withPlaceInfo:info];
+    }
+}
+- (void)onClickedNfcAction:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(googleMapView:didClickedAction:withPlaceInfo:)]) {
+        PlaceInfo *info = [self.selMarker.userData objectForKey:@"placeInfo"];
+        [self.delegate googleMapView:self didClickedAction:MapCellActionNfc withPlaceInfo:info];
+    }
+}
+
 #pragma mark - GMSMapViewDelegate
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    if ([marker isEqual:_curMarker]) {
+        marker.icon = [UIImage imageNamed:@"icon_location_my_s"];
+        [_gmsMapView setSelectedMarker:marker];
+    }
+    else {
+        for (GMSMarker *mk in _searchMarkers) {
+            UIImage *img = nil;
+            if ([mk isEqual:marker]) {
+                img = [UIImage imageNamed:@"icon_location_now_s"];
+                [_gmsMapView setSelectedMarker:marker];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NotiSelectPlaceInfo object:[mk.userData objectForKey:@"placeInfo"]];
+            }
+            else {
+                img = [UIImage imageNamed:@"icon_location_now"];
+            }
+            mk.icon = img;
+        }
+    }
+    
+    return YES;
+}
+
+- (void)mapView:(GMSMapView *)mapView didCloseInfoWindowOfMarker:(GMSMarker *)marker {
+    if ([marker isEqual:_curMarker]) {
+        marker.icon = [UIImage imageNamed:@"icon_location_my"];
+    }
+}
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(nonnull GMSMarker *)marker {
+    if ([marker isEqual:_selMarker]) {
+        if ([self.delegate respondsToSelector:@selector(googleMapView:didClickedAction:withPlaceInfo:)]) {
+            PlaceInfo *info = [marker.userData objectForKey:@"placeInfo"];
+            [self.delegate googleMapView:self didClickedAction:MapCellActionNfc withPlaceInfo:info];
+        }
+    }
+}
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     [self getPlaceInfoByCoordinate:coordinate completion:^(PlaceInfo * _Nonnull placeInfo) {
-        [self movingMarkerShow:placeInfo];
+        
+        
+        if (self.selMarker) {
+            self.selMarker.map = nil;
+            self.selMarker = nil;
+        }
+        
+        UIImage *img = [UIImage imageNamed:@"icon_location_now_s"];
+        
+        self.selMarker = [[GMSMarker alloc] init];
+        self.selMarker.position = coordinate;
+        
+        self.selMarker.infoWindowAnchor = CGPointMake(0.44f, 0.0f);
+//        self.selMarker.appearAnimation = kGMSMarkerAnimationPop;
+        self.selMarker.icon = img;
+        NSString *title = placeInfo.name;
+        if (title == nil) {
+            title = placeInfo.jibun_address;
+        }
+        self.selMarker.userData = @{@"tag" : title, @"placeInfo" : placeInfo};
+        self.selMarker.map = self.gmsMapView;
+    
+        [self.gmsMapView setSelectedMarker:self.selMarker];
     }];
 }
 
-- (void)mapView:(GMSMapView *)mapView didBeginDraggingMarker:(GMSMarker *)marker {
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+    UIView *infoView = nil;
+    if ([marker isEqual:self.selMarker]) {
+        if (_infoView) {
+            [_infoView removeFromSuperview];
+        }
+        
+        self.infoView = [[NSBundle mainBundle] loadNibNamed:@"InfoView" owner:nil options:nil].firstObject;
+//        [_infoView.btnNavi addTarget:self action:@selector(onClickedNaviAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [_infoView.btnNfc addTarget:self action:@selector(onClickedNfcAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        PlaceInfo *info = [marker.userData objectForKey:@"placeInfo"];
+        _infoView.lbTitle.text = info.name;
+        _infoView.lbAddress.text = info.jibun_address;
+        infoView = _infoView;
+    }
     
+    return infoView;
+}
+- (void)mapView:(GMSMapView *)mapView didBeginDraggingMarker:(GMSMarker *)marker {
+    int k = 0;
 }
 - (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker {
     [self getPlaceInfoByCoordinate:marker.position completion:^(PlaceInfo * _Nonnull placeInfo) {

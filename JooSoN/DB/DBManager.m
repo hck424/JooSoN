@@ -11,7 +11,6 @@
 #import "NSString+Utility.h"
 #import "NSObject+Utility.h"
 #import "PlaceInfo.h"
-#import "AFNetworking.h"
 
 #define MAX_COUNT_SEARCHQUERY 10
 
@@ -55,6 +54,20 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
             arrSort = [dataArr sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
                 NSString *name1 = [obj1 objectForKey:@"name"];
                 NSString *name2 = [obj2 objectForKey:@"name"];
+                
+                NSString *tmp1 = @"0";
+                if ([name1 localizedCaseInsensitiveCompare:@"ㄱ"]+1) {
+                    tmp1 = @"0";
+                }
+                else {
+                    if (!([name2 localizedCaseInsensitiveCompare:@"a"]+1)) {
+                        tmp1 = @"2";
+                    }
+                    else {
+                        tmp1 = @"1";
+                    }
+                }
+                name1 = [NSString stringWithFormat:@"%@%@",tmp1, name1];
                 
                 name1 = [NSString stringWithFormat:@"%@%@",
                          ([name1 localizedCaseInsensitiveCompare:@"ㄱ"]+1) ? @"0" :

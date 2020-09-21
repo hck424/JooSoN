@@ -17,6 +17,7 @@ extern NSString *const CALLING_STATE_CONNECTED;
 @protocol CallkitControllerDelegate <NSObject>
 - (void)callkitControllerState:(NSString *)state;
 @end
+
 @interface CallkitController : NSObject
 @property (nonatomic, weak) id <CallkitControllerDelegate>delegate;
 - (void)callstateNow;

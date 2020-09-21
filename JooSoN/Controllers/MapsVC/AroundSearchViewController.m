@@ -12,7 +12,6 @@
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "MapSearchResultListController.h"
-#import "SceneDelegate.h"
 
 @interface AroundSearchViewController () <LocationViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bgBlock1;
@@ -114,21 +113,21 @@
     if (isViewChange == NO) {
         for (NSInteger i = 0; i < self.arrSearchResult.count; i++) {
             PlaceInfo *info = [self.arrSearchResult objectAtIndex:i];
-            if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
-                [self.selMapView performSelector:@selector(setMarker:) withObject:info];
-            }
+//            if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
+//                [self.selMapView performSelector:@selector(setMarker:) withObject:info];
+//            }
         }
         
-        if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
-            [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:[_arrSearchResult firstObject]];
-        }
+//        if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
+//            [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:[_arrSearchResult firstObject]];
+//        }
     }
     else {
         MapSearchResultListController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MapSearchResultListController"];
         vc.arrData = self.arrSearchResult;
         vc.searchQuery = searQuery;
         vc.curPlaceInfo = self.curPlaceInfo;
-        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
 }
     
@@ -188,7 +187,7 @@
     [locationView stopCurrentLocationUpdatingLocation];
     
     self.selPlaceInfo = _curPlaceInfo;
-    [_googleMapView setCurrentMarker:YES];
+    [_googleMapView setCurrentMarker];
 }
 
 @end

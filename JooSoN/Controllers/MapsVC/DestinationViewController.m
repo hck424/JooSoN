@@ -9,14 +9,15 @@
 #import "DestinationViewController.h"
 #import "DBManager.h"
 #import "PlaceInfo.h"
-#import "MapSearchView.h"
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "InstantPanGestureRecognizer.h"
 #import "AddJooSoViewController.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
-#import "SceneDelegate.h"
+#import "MapSearchCell.h"
+#import "Define.h"
+#import "BannerFlowLayout.h"
 
 typedef enum : NSUInteger {
     Closed,
@@ -24,7 +25,7 @@ typedef enum : NSUInteger {
 } State;
 
 
-@interface DestinationViewController () <UITextFieldDelegate,  LocationViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@interface DestinationViewController () <UITextFieldDelegate,  LocationViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, BannerFlowLayoutDelegate, UICollectionViewDelegateFlowLayout, GoogleMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mapContainer;
 @property (weak, nonatomic) IBOutlet HTextField *tfSearch;
@@ -33,14 +34,10 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UILabel *lbCurrentLoc;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
-@property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIStackView *svContentView;
 
-@property (weak, nonatomic) IBOutlet UIStackView *svCellView;
+@property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCurrentLoc;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heighScrollView;
 
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
@@ -57,8 +54,11 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL aniLock;
 
 @property (nonatomic, strong) PlaceInfo *selPlaceInfo;
-@end
+@property (nonatomic, strong) IBOutlet UIView *resultView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@end
+static NSString *cellIdentity = @"MapSearchCell";
 @implementation DestinationViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,22 +66,32 @@ typedef enum : NSUInteger {
     self.arrSearchResult = [NSMutableArray array];
     
     _tfSearch.inputAccessoryView = _accessoryView;
-    _scrollView.hidden = YES;
+    
     _animationProgress = 0;
     _minScrollHeight = 120;
     _maxScrollHeight = 500;
     _currentState = Closed;
     _tfSearch.inputAccessoryView = _accessoryView;
     
-    InstantPanGestureRecognizer *pan = [[InstantPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesteurHandler:)];
-    pan.delegate = self;
-    [_scrollView addGestureRecognizer:pan];
-//    _tfSearch.text = @"명동";
+//    InstantPanGestureRecognizer *pan = [[InstantPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesteurHandler:)];
+//    pan.delegate = self;
     
-    _scrollView.layer.cornerRadius = 20;
-    _scrollView.layer.maskedCorners = kCALayerMaxXMinYCorner | kCALayerMinXMinYCorner;
+    _tfSearch.text = @"맛집";
+    
     _lbCurrentLoc.text = @"";
     [self addSubViewGoogleMapView];
+
+    [self.collectionView registerNib:[UINib nibWithNibName:cellIdentity bundle:nil] forCellWithReuseIdentifier:cellIdentity];
+    
+    BannerFlowLayout *flowLayout = [[BannerFlowLayout alloc] init];
+    flowLayout.delegate = self;
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.collectionView.collectionViewLayout = flowLayout;
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, BannerCellSpace, 0, BannerCellSpace);
+    self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    _resultView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,9 +119,13 @@ typedef enum : NSUInteger {
     [_googleMapView startCurrentLocationUpdatingLocation];
 }
 
+- (void)prepareForInterfaceBuilder {
+    [super prepareForInterfaceBuilder];
+}
+
 - (void)showMapSearchResultListView:(NSString *)searQuery {
     
-    [_scrollView layoutIfNeeded];
+//    [_scrollView layoutIfNeeded];
     __weak typeof(self) weakSelf = self;
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = _curPlaceInfo.y;
@@ -119,12 +133,12 @@ typedef enum : NSUInteger {
     
     [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
         if ([[dataDic objectForKey:@"places"] count] > 0) {
-            self.scrollView.hidden = NO;
+//            self.scrollView.hidden = NO;
             [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
             [weakSelf makeSearchResultView];
         }
         else {
-            self.scrollView.hidden = YES;
+//            self.scrollView.hidden = YES;
             if ([[dataDic objectForKey:@"status"] isEqualToString:@"OVER_QUERY_LIMIT"]) {
                 [self.view makeToast:@"검색 최소시간 이내에 요청하셨습니다. 잠시 후 다시 시도해 주세요." duration:1.0 position:CSToastPositionTop];
             }
@@ -140,64 +154,38 @@ typedef enum : NSUInteger {
 - (void)makeSearchResultView {
     
     [_googleMapView hideAllMarker];
-    [_googleMapView setCurrentMarker:NO];
+    [_googleMapView setCurrentMarker];
     
-    for (UIView *subView in [self.svCellView subviews]) {
-        [subView removeFromSuperview];
-    }
-    __weak typeof (self) weakSelf = self;
+//    for (UIView *subView in [self.svCellView subviews]) {
+//        [subView removeFromSuperview];
+//    }
+    
     for (NSInteger i = 0; i < self.arrSearchResult.count; i++) {
         PlaceInfo *info = [self.arrSearchResult objectAtIndex:i];
-        MapSearchView *cell = [[NSBundle mainBundle] loadNibNamed:@"MapSearchView" owner:self options:nil].firstObject;
-        [_svCellView addArrangedSubview:cell];
-        [cell configurationData:info];
-        
         [_googleMapView setMarker:info icon:[UIImage imageNamed:@"icon_location_now"]];
+    }
+    [self.view layoutIfNeeded];
+    
+    _resultView.hidden = NO;
+    
+    [_collectionView reloadData];
+    
+//        MapSearchView *cell = [[NSBundle mainBundle] loadNibNamed:@"MapSearchView" owner:self options:nil].firstObject;
+//        [_svCellView addArrangedSubview:cell];
+//        [cell configurationData:info];
         
-        //FIXME:: cellTouch action
-        [cell setOnTouchUpInSideAction:^(MapCellAction actionType, PlaceInfo *data) {
-            self.selPlaceInfo = data;
-            if (actionType == MapCellActionSave) {
-                AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
-                vc.viewType = ViewTypeAdd;
-                vc.placeInfo = self.selPlaceInfo;
-                [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
-            }
-            else if (actionType == MapCellActionNfc) {
-                NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
-                vc.passPlaceInfo = self.selPlaceInfo;
-                [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
-            }
-            else if (actionType == MapCellActionNavi) {
-                NSString *url = nil;
-                if ([AppDelegate.instance.selMapId isEqualToString:MapIdNaver]) {
-                  url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selPlaceInfo.y, self.selPlaceInfo.x, self.selPlaceInfo.jibun_address, [[NSBundle mainBundle] bundleIdentifier]];
-                    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-                }
-                else if ([AppDelegate.instance.selMapId isEqualToString:MapIdGoogle]) {
-                    url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", self.selPlaceInfo.jibun_address, self.selPlaceInfo.y, self.selPlaceInfo.x];
-                    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-                }
-                
-                if (url.length > 0) {
-                    [[SceneDelegate instance] openSchemeUrl:url];
-                }
-            }
-            else if (actionType == MapCellActionDefault) {
-                self.aniLock = NO;
-                [weakSelf startAnimation];
-//                [self.googleMapView selectedMarkerWithPlaceInfo:self.selPlaceInfo];
-            }
-        }];
-    }
+        
+        
+
+//    }
     [self.view setNeedsLayout];
-    CGSize fitSize = [_svContentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    CGFloat height = fitSize.height;
-    _maxScrollHeight = height - 10;
-    if (height > _mapContainer.frame.size.height) {
-        _maxScrollHeight = _mapContainer.frame.size.height -10;
-    }
-    _heighScrollView.constant = _minScrollHeight;
+//    CGSize fitSize = [_svContentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+//    CGFloat height = fitSize.height;
+//    _maxScrollHeight = height - 10;
+//    if (height > _mapContainer.frame.size.height) {
+//        _maxScrollHeight = _mapContainer.frame.size.height -10;
+//    }
+//    _heighScrollView.constant = _minScrollHeight;
 }
 
 #pragma mark - textField did changed
@@ -220,7 +208,7 @@ typedef enum : NSUInteger {
         AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
         vc.viewType = ViewTypeAdd;
         vc.placeInfo = _selPlaceInfo;
-        [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
     else if (sender == _btnKeyboardDown) {
         [_tfSearch resignFirstResponder];
@@ -248,6 +236,20 @@ typedef enum : NSUInteger {
     }
     else if ([notification.name isEqualToString:NotiSelectPlaceInfo]) {
         self.selPlaceInfo = ((PlaceInfo *)notification.object);
+        NSInteger index = 0;
+        for (NSInteger i = 0; i < _arrSearchResult.count; i++) {
+            PlaceInfo *info = [_arrSearchResult objectAtIndex:i];
+            if ([info isEqual:_selPlaceInfo]) {
+                index = i;
+                break;
+            }
+        }
+//        CGFloat contentW = self.collectionView.bounds.size.width - BannerCellSpace*self.collectionView.contentInset.left;
+//        CGFloat offsetX = (index * contentW) + (index)*BannerCellSpace - BannerCellSpace;
+//        [_collectionView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+//
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     }
 }
 
@@ -257,104 +259,6 @@ typedef enum : NSUInteger {
     }
     else {
         return Opened;
-    }
-}
-
-#pragma mark - animation
-- (void)anmimateTransitionIfNeeded:(State)state duration:(CGFloat)duration {
-    
-    State newState = [self opposite:state];
-    __weak typeof (self) weakSelf = self;
-    self.transitionAnimator = [[UIViewPropertyAnimator alloc] initWithDuration:duration curve:UIViewAnimationCurveEaseIn animations:^{
-        if (newState == Opened) {
-            self.heighScrollView.constant = self.maxScrollHeight;
-        }
-        else {
-            self.heighScrollView.constant = self.minScrollHeight;
-        }
-        self.scrollView.scrollEnabled = NO;
-        [self.view layoutIfNeeded];
-    }];
-    
-    [_transitionAnimator addCompletion:^(UIViewAnimatingPosition finalPosition) {
-        if (finalPosition == UIViewAnimatingPositionStart) {
-            weakSelf.currentState = [weakSelf opposite:newState];
-        }
-        else if (finalPosition == UIViewAnimatingPositionEnd) {
-            weakSelf.currentState = newState;
-        }
-        
-        if (self.currentState == Opened) {
-            weakSelf.heighScrollView.constant = weakSelf.maxScrollHeight;
-        }
-        else if (self.currentState == Closed) {
-            weakSelf.heighScrollView.constant = weakSelf.minScrollHeight;
-        }
-        weakSelf.scrollView.scrollEnabled = YES;
-    }];
-    
-    [_transitionAnimator startAnimation];
-}
-
-- (void)startAnimation {
-    [self anmimateTransitionIfNeeded:_currentState duration:0.3];
-    [_transitionAnimator pausesOnCompletion];
-}
-
-- (void)panGesteurHandler:(UIPanGestureRecognizer *)panGesture {
-    CGFloat vy = [_scrollView.panGestureRecognizer translationInView:_scrollView.superview].y;
-    if (panGesture.state == UIGestureRecognizerStateBegan) {
-        _animationProgress = _transitionAnimator.fractionComplete;
-        if (_aniLock == NO) {
-            [self startAnimation];
-        }
-    }
-    else if (panGesture.state == UIGestureRecognizerStateChanged) {
-        CGPoint translate = [panGesture translationInView:_scrollView];
-        CGFloat fraction = -translate.y / _minScrollHeight;
-        if (_currentState == Opened) {
-            fraction *= -1;
-        }
-        _transitionAnimator.fractionComplete = fraction + _animationProgress;
-    }
-    else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        CGFloat yVelocity = [panGesture translationInView:_scrollView].y;
-        BOOL shouldClose = yVelocity > 0;
-        
-        if (yVelocity == 0) {
-            [_transitionAnimator continueAnimationWithTimingParameters:nil durationFactor:0];
-            return;
-        }
-        
-        if (_currentState == Opened) {
-            if (shouldClose == NO && [_transitionAnimator isReversed] == NO) {
-                [_transitionAnimator setReversed:!_transitionAnimator.isReversed];
-            }
-            if (shouldClose && _transitionAnimator.isReversed) {
-                [_transitionAnimator setReversed:!_transitionAnimator.isReversed];
-            }
-        }
-        else if (_currentState == Closed) {
-            if (shouldClose && !_transitionAnimator.isReversed) {
-                [_transitionAnimator setReversed:!_transitionAnimator.isReversed];
-            }
-            if (shouldClose == NO && _transitionAnimator.isReversed) {
-                [_transitionAnimator setReversed:!_transitionAnimator.isReversed];
-            }
-        }
-        [_transitionAnimator continueAnimationWithTimingParameters:nil durationFactor:0];
-        
-        NSLog(@"=== end %1f, %lf, %lf, %lf, open: %@", _scrollView.contentOffset.y, _scrollView.contentSize.height, _heighScrollView.constant, _scrollView.frame.size.height, _currentState == Opened? @"Y" : @"N");
-        
-        NSLog(@"=== vy : %lf", [_scrollView.panGestureRecognizer translationInView:_scrollView.superview].y);
-        
-        if (_scrollView.contentOffset.y + _heighScrollView.constant <= _scrollView.contentSize.height && yVelocity < 0) {
-            _aniLock = YES;
-        }
-        else if (_scrollView.contentOffset.y < 0 && vy > 0 && _currentState == Opened) {
-            _aniLock = NO;
-            [self startAnimation];
-        }
     }
 }
 
@@ -371,9 +275,94 @@ typedef enum : NSUInteger {
     }
     [locationView stopCurrentLocationUpdatingLocation];
     self.selPlaceInfo = _curPlaceInfo;
-    [self.googleMapView setCurrentMarker:YES];
+    [self.googleMapView setCurrentMarker];
     
     [self.googleMapView moveMarker:self.curPlaceInfo zoom:17];
 }
+- (void)showNfcVC {
+    
+    NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
+    vc.passPlaceInfo = self.selPlaceInfo;
+    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+}
 
+- (void)showNavi {
+    NSString *url = nil;
+    if ([AppDelegate.instance.selMapId isEqualToString:MapIdNaver]) {
+        url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selPlaceInfo.y, self.selPlaceInfo.x, self.selPlaceInfo.jibun_address, [[NSBundle mainBundle] bundleIdentifier]];
+        url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    }
+    else if ([AppDelegate.instance.selMapId isEqualToString:MapIdGoogle]) {
+        url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", self.selPlaceInfo.jibun_address, self.selPlaceInfo.y, self.selPlaceInfo.x];
+        url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    }
+    
+    if (url.length > 0) {
+        [[AppDelegate instance] openSchemeUrl:url];
+    }
+}
+- (void)showSaveVC {
+    AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
+    vc.viewType = ViewTypeAdd;
+    vc.placeInfo = self.selPlaceInfo;
+    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return _arrSearchResult.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MapSearchCell *cell = (MapSearchCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"MapSearchCell" forIndexPath:indexPath];
+    PlaceInfo *info = [_arrSearchResult objectAtIndex:indexPath.row];
+    [cell configurationData:info];
+    
+    //FIXME:: cellTouch action
+    [cell setOnTouchUpInSideAction:^(MapCellAction actionType, PlaceInfo *data) {
+        self.selPlaceInfo = data;
+        if (actionType == MapCellActionSave) {
+            [self showSaveVC];
+        }
+        else if (actionType == MapCellActionNfc) {
+            [self showNfcVC];
+        }
+        else if (actionType == MapCellActionNavi) {
+            [self showNavi];
+        }
+        else if (actionType == MapCellActionDefault) {
+            self.aniLock = NO;
+//            [weakSelf startAnimation];
+            //                [self.googleMapView selectedMarkerWithPlaceInfo:self.selPlaceInfo];
+        }
+    }];
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGSize cellSize = collectionView.bounds.size;
+    cellSize.width -= BannerCellSpace*collectionView.contentInset.left;
+    cellSize.height = collectionView.bounds.size.height;
+    return cellSize;
+}
+
+- (void)bannerFlowLayout:(CGPoint)curPoint indexPath:(NSIndexPath *)indexPath {
+    NSLog(@"offset x: %lf, indexPath: %@", curPoint.x, indexPath);
+    if (indexPath.row < _arrSearchResult.count) {
+        self.selPlaceInfo = [_arrSearchResult objectAtIndex:indexPath.row];
+        [_googleMapView selectedMarker:_selPlaceInfo];
+        [_googleMapView moveMarker:_selPlaceInfo zoom:15];
+    }
+}
+#pragma mark - GoogleMapViewDelegate
+- (void)googleMapView:(id)googleMapView didClickedAction:(MapCellAction)action withPlaceInfo:(PlaceInfo *)placeInfo {
+    if (placeInfo != nil) {
+        self.selPlaceInfo = placeInfo;
+        if (action == MapCellActionNfc) {
+            [self showNfcVC];
+        }
+        else if (action == MapCellActionNavi) {
+            [self showNavi];
+        }
+    }
+}
 @end

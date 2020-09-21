@@ -148,7 +148,7 @@
             info.road_address = self.selJooso.roadAddress;
             info.name = self.selJooso.placeName;
             vc.passPlaceInfo = info;
-            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
             
@@ -164,7 +164,7 @@
 
         
         if (url.length > 0) {
-            [[SceneDelegate instance] openSchemeUrl:url];
+            [[AppDelegate instance] openSchemeUrl:url];
         }
     }];
     return cell;
@@ -186,7 +186,7 @@
     JooSo *jooso = [_arrData objectAtIndex:indexPath.row];
     InfoJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoJooSoViewController"];
     vc.passJooso = jooso;
-    [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
 }
 
 #pragma mark - CallkitControllerDelegate

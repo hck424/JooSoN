@@ -7,6 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "TutorialViewController.h"
+#import "RootNavigationController.h"
+#import "MainViewController.h"
+#import "UIView+Utility.h"
+#import "UIView+Toast.h"
+#import "MainViewController.h"
+//#import <NMapsMap/NMapsMap.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <GooglePlaces/GooglePlaces.h>
 
 @interface AppDelegate ()
 
@@ -21,25 +30,91 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId] length] == 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:MapIdGoogle forKey:SelectedMapId];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        AppDelegate.instance.selMapId = MapIdGoogle;
+    }
+    //    [[NMFAuthManager shared] setClientId:NMFClientId];
+    [GMSServices provideAPIKey:GoogleMapApiKey];
+    [GMSPlacesClient provideAPIKey:GoogleMapApiKey];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    BOOL tutorialShow = [[NSUserDefaults standardUserDefaults] boolForKey:Tutorial_Once_Show];
+    if (tutorialShow == NO) {
+        [self callTutorialViewController];
+    }
+    else {
+        [self callMainViewController];
+    }
+    
     return YES;
 }
 
-#pragma mark - UISceneSession lifecycle
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options  API_AVAILABLE(ios(13.0)){
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    if (@available(iOS 13.0, *)) {
-        return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+- (RootNavigationController *)rootNavigationController {
+    MainViewController *mainViewController = (MainViewController *)[self.window rootViewController];
+    return (RootNavigationController *)mainViewController.rootViewController;
+}
+
+- (void)callTutorialViewController {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TutorialViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)callMainViewController {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MainViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+    [vc setupWithType:2];
+    RootNavigationController *rootNaviCon = [storyboard instantiateViewControllerWithIdentifier:@"RootNavigationController"];
+    
+    vc.rootViewController = rootNaviCon;
+    
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)startIndicator {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.loadingView == nil) {
+            self.loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            self.loadingView.backgroundColor = RGBA(0, 0, 0, 0.2);
+        }
+        
+        [self.window addSubview:self.loadingView];
+        [self.loadingView startAnimationWithRaduis:25];
+    });
+}
+- (void)stopIndicator {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.loadingView) {
+            [self.loadingView stopAnimation];
+        }
+        [self.loadingView removeFromSuperview];
+    });
+}
+
+- (void)openSchemeUrl:(NSString *)urlStr {
+    
+    if ([urlStr hasPrefix:@"tel"] || [urlStr hasPrefix:@"facetime"]) {
+        
     }
-    return nil;
+    
+    NSURL *phoneUrl = [NSURL URLWithString:urlStr];
+    UIApplication *application = [UIApplication sharedApplication];
+    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        [application openURL:phoneUrl options:@{}
+           completionHandler:^(BOOL success) {
+            
+        }];
+    }
+    else {
+        [self.window makeToast:@"전화번호 형식이 아닙니다." duration:1.0 position:CSToastPositionTop];
+    }
 }
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions  API_AVAILABLE(ios(13.0)){
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-}
-
 
 #pragma mark - Core Data stack
 
@@ -85,5 +160,6 @@
         abort();
     }
 }
+
 
 @end

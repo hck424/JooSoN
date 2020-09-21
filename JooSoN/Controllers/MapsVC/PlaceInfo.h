@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *street;
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *subLocality;
-
+@property (nonatomic, assign) BOOL selected;    // marker 
 @end
 
 NS_ASSUME_NONNULL_END

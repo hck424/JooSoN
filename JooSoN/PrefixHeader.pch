@@ -39,7 +39,11 @@
 #define NMFOldSecretKey @"ISNwIIUMNnIINZ55dE8u"   //네이버 가가멜 id ggmsoft@naver.com pw: hyung0
 #define NMOldSecretKey @"Hr7Nbqxcg9"
 
-#define GoogleMapApiKey @"AIzaSyAZRbLF764x-zgHTYKsjA2U3R5WgxSIf2E"
-#define GoogleMapWebApiKey @"AIzaSyAqtd6FmYXTGLD7_rBSOooUIgH8KkEJoc0"
+//#define GoogleMapApiKey @"AIzaSyAZRbLF764x-zgHTYKsjA2U3R5WgxSIf2E"
+//#define GoogleMapWebApiKey @"AIzaSyAqtd6FmYXTGLD7_rBSOooUIgH8KkEJoc0"
+#define GoogleMapApiKey @"AIzaSyBp9A54n4EvYpkiIwhRHPxV1N8XV_Hbq48"
+#define GoogleMapWebApiKey @"AIzaSyBp9A54n4EvYpkiIwhRHPxV1N8XV_Hbq48"
 
+
+#define BannerCellSpace 8.0
 #endif

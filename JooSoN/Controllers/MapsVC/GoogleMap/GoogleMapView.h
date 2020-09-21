@@ -12,16 +12,21 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 #import "PlaceInfo.h"
+#import "Define.h"
 NS_ASSUME_NONNULL_BEGIN
-
+@protocol GoogleMapViewDelegate <NSObject>
+- (void)googleMapView:(id)googleMapView didClickedAction:(MapCellAction)action withPlaceInfo:(PlaceInfo *)placeInfo;
+@end
 @interface GoogleMapView : LocationView
 @property (weak, nonatomic) IBOutlet GMSMapView *gmsMapView;
-
-- (void)setCurrentMarker:(BOOL)selected;
-//- (void)setMarker:(PlaceInfo *)placeInfo;
+@property (nonatomic, weak) id <GoogleMapViewDelegate>delegate;
+- (void)setCurrentMarker;
+- (void)selectedCurrentMark:(BOOL)selected;
+- (void)selectedMarker:(PlaceInfo *)info;
+- (void)moveMarker:(PlaceInfo *)info zoom:(NSInteger)zoom;
 - (void)hideAllMarker;
 - (GMSMarker *)setMarker:(PlaceInfo *)info icon:(UIImage *)icon;
-- (void)moveMarker:(PlaceInfo *)info zoom:(NSInteger)zoom;
+
 //- (void)selectedMarkerWithPlaceInfo:(PlaceInfo *)info;
 
 @end

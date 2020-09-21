@@ -150,11 +150,11 @@
             NSLog(@"AA");
             AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
             vc.viewType = ViewTypeAdd;
-            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (btn == _btnJoosoDelete) {
             DelJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DelJooSoViewController"];
-            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (btn == _btnGroupApoint) {
             
@@ -172,7 +172,7 @@
         }
         else if (btn == _btnGroupManager) {
             GroupManageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GroupManageViewController"];
-            [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+            [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
     }
 }
@@ -194,7 +194,7 @@
     vc.delegate = self;
     
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [[[SceneDelegate instance].rootNavigationController topViewController] presentViewController:vc animated:NO completion:nil];
+    [[[AppDelegate instance].rootNavigationController topViewController] presentViewController:vc animated:NO completion:nil];
 
     
 }

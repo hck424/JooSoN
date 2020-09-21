@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SceneDelegate.h"
 
 @interface FavoriteListViewController : UIViewController
 - (void)reloadData;

@@ -10,10 +10,8 @@
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "DBManager.h"
-#import "MapSearchView.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
-#import "SceneDelegate.h"
 
 @interface MapSearchViewController () <LocationViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
@@ -124,42 +122,42 @@
     
 //    __weak typeof (self)weakSelf = self;
     for (PlaceInfo *info in _arrSearchResult) {
-        MapSearchView *cell = [[NSBundle mainBundle] loadNibNamed:@"MapSearchView" owner:self options:0].firstObject;
-        cell.translatesAutoresizingMaskIntoConstraints = NO;
-        [cell.widthAnchor constraintEqualToConstant:self.widthMapSearchView].active = YES;
-        [cell configurationData:info];
-        
-        if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
-            [self.selMapView performSelector:@selector(setMarker:) withObject:info];
-        }
-        
-        [cell setOnTouchUpInSideAction:^(MapCellAction actionType, PlaceInfo * _Nonnull data) {
-            self.selPlaceInfo = data;
-            if (actionType == MapCellActionSave
-                || actionType == MapCellActionDefault) {
-                if ([self.delegate respondsToSelector:@selector(mapSearchVCSelectedPlace:)]) {
-                    [self.delegate mapSearchVCSelectedPlace:self.selPlaceInfo];
-                }
-                [self.navigationController popViewControllerAnimated:NO];
-            }
-            else if (actionType == MapCellActionNfc) {
-                NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
-                vc.passPlaceInfo = self.selPlaceInfo;
-                [[SceneDelegate instance].rootNavigationController pushViewController:vc animated:NO];
-            }
-            else if (actionType == MapCellActionNavi) {
-                NSString *url = nil;
-                if ([AppDelegate.instance.selMapId isEqualToString:MapIdNaver]) {
-                    url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selPlaceInfo.y, self.selPlaceInfo.x, self.selPlaceInfo.jibun_address, [[NSBundle mainBundle] bundleIdentifier]];
-                    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-                }
-                
-                if (url.length > 0) {
-                    [[SceneDelegate instance] openSchemeUrl:url];
-                }
-            }
-        }];
-        [_svContent addArrangedSubview:cell];
+//        MapSearchView *cell = [[NSBundle mainBundle] loadNibNamed:@"MapSearchView" owner:self options:0].firstObject;
+//        cell.translatesAutoresizingMaskIntoConstraints = NO;
+//        [cell.widthAnchor constraintEqualToConstant:self.widthMapSearchView].active = YES;
+//        [cell configurationData:info];
+//
+////        if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
+////            [self.selMapView performSelector:@selector(setMarker:) withObject:info];
+////        }
+//
+//        [cell setOnTouchUpInSideAction:^(MapCellAction actionType, PlaceInfo * _Nonnull data) {
+//            self.selPlaceInfo = data;
+//            if (actionType == MapCellActionSave
+//                || actionType == MapCellActionDefault) {
+//                if ([self.delegate respondsToSelector:@selector(mapSearchVCSelectedPlace:)]) {
+//                    [self.delegate mapSearchVCSelectedPlace:self.selPlaceInfo];
+//                }
+//                [self.navigationController popViewControllerAnimated:NO];
+//            }
+//            else if (actionType == MapCellActionNfc) {
+//                NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
+//                vc.passPlaceInfo = self.selPlaceInfo;
+//                [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
+//            }
+//            else if (actionType == MapCellActionNavi) {
+//                NSString *url = nil;
+//                if ([AppDelegate.instance.selMapId isEqualToString:MapIdNaver]) {
+//                    url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selPlaceInfo.y, self.selPlaceInfo.x, self.selPlaceInfo.jibun_address, [[NSBundle mainBundle] bundleIdentifier]];
+//                    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+//                }
+//
+//                if (url.length > 0) {
+//                    [[AppDelegate instance] openSchemeUrl:url];
+//                }
+//            }
+//        }];
+//        [_svContent addArrangedSubview:cell];
     }
 }
 
@@ -184,7 +182,7 @@
     }
     [locationView stopCurrentLocationUpdatingLocation];
     self.selPlaceInfo = _curPlaceInfo;
-    [_googleMapView setCurrentMarker:YES];
+    [_googleMapView setCurrentMarker];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -193,9 +191,9 @@
     PlaceInfo *info = [_arrSearchResult objectAtIndex:curPage];
     self.selPlaceInfo = info;
     
-    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
-        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:self.selPlaceInfo];
-    }
+//    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
+//        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:self.selPlaceInfo];
+//    }
 }
 
 

@@ -8,13 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "UIViewController+LGSideMenuController.h"
+#import "RootNavigationController.h"
+#import "MainViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, strong) NSString *selMapId;
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
+@property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, strong) UIView *loadingView;
 - (void)saveContext;
 + (AppDelegate *)instance;
-
+- (RootNavigationController *)rootNavigationController;
+- (void)callTutorialViewController;
+- (void)callMainViewController;
+- (void)startIndicator;
+- (void)stopIndicator;
+- (void)openSchemeUrl:(NSString *)urlStr;
 
 @end
 
