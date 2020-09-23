@@ -352,13 +352,9 @@
     info.jibun_address = _passJooso.address;
     info.name = _passJooso.placeName;
     
-    if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
-        [self.selMapView performSelector:@selector(setMarker:) withObject:info];
-    }
-    
-    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
-        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:info];
-    }
+    [_googleMapView setMarker:info draggable:NO];
+    [_googleMapView moveMarker:info zoom:15]
+    ;
 }
 
 @end

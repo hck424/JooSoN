@@ -11,6 +11,13 @@
 #import <os/log.h>
 #import <VYNFCKit/VYNFCKit.h>
 #import "DBManager.h"
+//#import "TMobilePass-Swift.h"
+//#import <CoreBluetooth/CoreBluetooth.h>
+
+//@import CoreNFC;
+//@import CoreBluetooth;
+//@import AudioToolbox;
+
 
 API_AVAILABLE(ios(13.0))
 @interface NfcViewController () <NFCNDEFReaderSessionDelegate>

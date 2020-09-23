@@ -38,15 +38,18 @@
 }
 
 - (IBAction)onClickedActions:(id)sender {
-    MapSearchCellAction action = -1;
+    MapCellAction action = -1;
     if (sender == _btnSave) {
-        action = MapSearchCellActionSave;
+        action = MapCellActionSave;
     }
     else if (sender == _btnNfc) {
-        action = MapSearchCellActionNfc;
+        action = MapCellActionNfc;
     }
     else if (sender == _btnNavi) {
-        action = MapSearchCellActionNavi;
+        action = MapCellActionNavi;
+    }
+    else if (sender == _btnShare) {
+        action = MapCellActionShare;
     }
     
     if (action >= 0 && self.onTouchUpInSideAction) {

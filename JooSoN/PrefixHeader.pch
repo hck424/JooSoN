@@ -17,6 +17,7 @@
 #define MapIdTmap @"MapIdTmap"
 #define MapIdKakao @"MapIdKakao"
 #define MapIdGoogle @"MapIdGoogle"
+#define MapIdKakaoNavi @"MapIdKakaoNavi"
 
 #define SelectedMapId @"SelectedMapId"
 

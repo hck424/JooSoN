@@ -669,12 +669,14 @@
     if (_googleMapView != nil) {
         [_googleMapView removeFromSuperview];
     }
+    
     self.googleMapView = [[NSBundle mainBundle] loadNibNamed:@"GoogleMapView" owner:self options:nil].firstObject;
     _googleMapView.frame = _mapView.bounds;
     _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [_mapView addSubview:_googleMapView];
-    self.selMapView = _googleMapView;
-    [self setMarker];
+    
+    [_googleMapView setMarker:_placeInfo draggable:NO];
+    [_googleMapView moveMarker:_placeInfo zoom:14];
 }
 
 - (void)setMarker {

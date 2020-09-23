@@ -10,8 +10,8 @@
 #import "HTextField.h"
 #import "BGStackView.h"
 #import "MapSearchHistory+CoreDataProperties.h"
-
+#import "BaseViewController.h"
 IB_DESIGNABLE
-@interface DestinationViewController : UIViewController
+@interface DestinationViewController : BaseViewController
 - (void)reloadData;
 @end

@@ -157,8 +157,8 @@
     if (sender == _btnLogo) {
         
         MainViewController *mainViewController = (MainViewController *)self.sideMenuController;
-        [mainViewController showLeftViewAnimated:YES completionHandler:^{
-            [((LeftSlideViewController*)mainViewController.leftViewController).tblView reloadData];
+        [mainViewController showRightViewAnimated:YES completionHandler:^{
+            [((LeftSlideViewController*)mainViewController.rightViewController).tblView reloadData];
         }];
     }
 }
@@ -216,7 +216,7 @@
     btn.adjustsImageWhenHighlighted = NO;
     [btn setTitleColor:RGB(137, 137, 137) forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageFromColor:RGB(225, 225, 225)] forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [btn setBackgroundImage:[UIImage imageFromColor:RGB(33, 170, 164)] forState:UIControlStateSelected];
     
@@ -229,7 +229,7 @@
 
 - (CGFloat)heightForTabInTabContainer:(TabContainerController *)tabContainer heightComponent:(TabComponentHeight)component {
     if (component == TabButtonHeight) {
-        return 40;
+        return 44;
     }
     else {
         return 0;

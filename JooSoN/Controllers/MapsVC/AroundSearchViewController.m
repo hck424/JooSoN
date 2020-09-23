@@ -23,14 +23,14 @@
 @property (weak, nonatomic) IBOutlet HTextField *tfSearch;
 @property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
+@property (weak, nonatomic) IBOutlet UIButton *btnMic;
 
 @property (strong, nonatomic) NSMutableArray *arrSearchKey;
 @property (nonatomic, strong) NSMutableArray *arrSearchResult;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
-@property (nonatomic, strong) UIView *selMapView;
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
 @property (nonatomic, strong) PlaceInfo *selPlaceInfo;
-
+@property (nonatomic, strong) NSString *searQuery;
 
 @end
 
@@ -57,23 +57,27 @@
         [btn addTarget:self action:@selector(onClickedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     _lbCurrentLoc.text = @"";
-    [self addMapView];
+    [self addSubViewGoogleMapView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
 
-- (void)addMapView {
+#pragma mark - add mapview
+- (void)addSubViewGoogleMapView {
+    self.googleMapView = [[NSBundle mainBundle] loadNibNamed:@"GoogleMapView" owner:self options:nil].firstObject;
+    _googleMapView.frame = _mapContainer.bounds;
+    _googleMapView.delegate = self;
+    _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [_mapContainer addSubview:_googleMapView];
     
-    if (_googleMapView) {
-        [_googleMapView removeFromSuperview];
-    }
-    [self addSubViewGoogleMapView];
+    [_googleMapView startCurrentLocationUpdatingLocation];
 }
+//FIXME: clicked action
 - (IBAction)onClickedButtonAction:(id)sender {
     if ([sender isKindOfClass:[UIButton class]]) {
-       UIButton *selBtn = sender;
+        UIButton *selBtn = sender;
         if (selBtn.tag >= 100 && selBtn.tag <= 113) {
             NSInteger idx = selBtn.tag - 100;
             NSString *searchKey = @"";
@@ -85,53 +89,45 @@
                 btn.selected = NO;
             }
             selBtn.selected = YES;
-            
-            if ([self.selMapView respondsToSelector:@selector(hideAllMarker)]) {
-                [self.selMapView performSelector:@selector(hideAllMarker)];
+            if (_curPlaceInfo.city != nil) {
+                self.searQuery = [NSString stringWithFormat:@"%@ %@", _curPlaceInfo.city, searchKey];
             }
-            
-            NSString *searQuery = [NSString stringWithFormat:@"%@ %@", _curPlaceInfo.city, searchKey];
-//            [self requestNaverSearchQuery:searQuery isViewChange:NO];
-            _tfSearch.text = searQuery;
+            else {
+                self.searQuery = searchKey;
+            }
+            _tfSearch.text = _searQuery;
         }
         else if (sender == _btnSearch) {
             if (_tfSearch.text.length == 0) {
                 [self.view makeToast:@"검색어를 입력해 주세요" duration:0.5 position:CSToastPositionTop];
                 return;
             }
-            
-//            [self requestNaverSearchQuery:_tfSearch.text isViewChange:YES];
+            self.searQuery = _tfSearch.text;
+            [self requestSearchQuery:_searQuery];
+        }
+        else if (sender == _btnMic) {
+            [SpeechAlertView showWithTitle:@"JooSoN" completion:^(NSString * _Nonnull result) {
+                if (result.length > 0) {
+                    self.tfSearch.text = result;
+                    [self.btnSearch sendActionsForControlEvents:UIControlEventTouchUpInside];
+                }
+            }];
         }
     }
-    else {if (sender == _btnKeyboardDown) {
+    else if (sender == _btnKeyboardDown) {
         [self.view endEditing:YES];
-    }
     }
 }
 
-- (void)refreshMapSearchResultView:(BOOL)isViewChange searQuery:(NSString *)searQuery {
-    if (isViewChange == NO) {
-        for (NSInteger i = 0; i < self.arrSearchResult.count; i++) {
-            PlaceInfo *info = [self.arrSearchResult objectAtIndex:i];
-//            if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
-//                [self.selMapView performSelector:@selector(setMarker:) withObject:info];
-//            }
-        }
-        
-//        if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
-//            [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:[_arrSearchResult firstObject]];
-//        }
-    }
-    else {
-        MapSearchResultListController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MapSearchResultListController"];
-        vc.arrData = self.arrSearchResult;
-        vc.searchQuery = searQuery;
-        vc.curPlaceInfo = self.curPlaceInfo;
-        [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
-    }
+- (void)showSearchResultView {
+    MapSearchResultListController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MapSearchResultListController"];
+    vc.arrData = self.arrSearchResult;
+    vc.searchQuery = _searQuery;
+    vc.curPlaceInfo = self.curPlaceInfo;
+    [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
 }
-    
-- (void)requestNaverSearchQuery:(NSString *)searQuery isViewChange:(BOOL)isViewChange {
+
+- (void)requestSearchQuery:(NSString *)searQuery {
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = _curPlaceInfo.y;
     coordinate.longitude = _curPlaceInfo.x;
@@ -140,7 +136,7 @@
     [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
         if ([[dataDic objectForKey:@"places"] count] > 0) {
             [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
-            [weakSelf refreshMapSearchResultView:isViewChange searQuery:searQuery];
+            [weakSelf showSearchResultView];
         }
         else {
             if ([[dataDic objectForKey:@"status"] isEqualToString:@"OVER_QUERY_LIMIT"]) {
@@ -153,18 +149,6 @@
     } fail:^(NSError *error) {
         
     }];
-}
-
-#pragma mark - add mapview
-- (void)addSubViewGoogleMapView {
-    self.googleMapView = [[NSBundle mainBundle] loadNibNamed:@"GoogleMapView" owner:self options:nil].firstObject;
-    _googleMapView.frame = _mapContainer.bounds;
-    _googleMapView.delegate = self;
-    _googleMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [_mapContainer addSubview:_googleMapView];
-    
-    [_googleMapView startCurrentLocationUpdatingLocation];
-    self.selMapView = _googleMapView;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -185,9 +169,9 @@
         _lbCurrentLoc.text = _curPlaceInfo.jibun_address;
     }
     [locationView stopCurrentLocationUpdatingLocation];
-    
-    self.selPlaceInfo = _curPlaceInfo;
-    [_googleMapView setCurrentMarker];
+
+    [self.googleMapView setCurrentMarker];
+    [self.googleMapView moveMarker:self.curPlaceInfo zoom:15];
 }
 
 @end

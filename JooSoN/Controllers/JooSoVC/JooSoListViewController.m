@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnGroupApoint;
 @property (weak, nonatomic) IBOutlet UIButton *btnGroupManager;
 @property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
-
+@property (weak, nonatomic) IBOutlet UIButton *btnMic;
 @property (nonatomic, strong) TabContainerController *tabController;
 @property (nonatomic, strong) FavoriteListViewController *favoriteListVC;
 @property (nonatomic, strong) TotalJooSoListViewController *totalListVC;
@@ -134,6 +134,7 @@
         [_groupListVC endAppearanceTransition];
     }
 }
+
 - (IBAction)onClickedButtonAction:(id)sender {
     [self.view endEditing:YES];
     
@@ -174,6 +175,14 @@
             GroupManageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GroupManageViewController"];
             [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
+        else if (btn == _btnMic) {
+            [SpeechAlertView showWithTitle:@"JooSoN" completion:^(NSString * _Nonnull result) {
+                if (result.length > 0) {
+                    self.tfSearch.text = result;
+                    [self setSearchTxt:result];
+                }
+            }];
+        }
     }
 }
 
@@ -205,17 +214,20 @@
         }
     }
 }
-#pragma makr - UITextField EditingValueChanged
-- (IBAction)textFieldEditingChanged:(UITextField *)sender {
+- (void)setSearchTxt:(NSString *)str {
     if (_tabController.activeTabIndex == 0) {
-        [_favoriteListVC setSearchText:sender.text];
+        [_favoriteListVC setSearchText:str];
     }
     else if (_tabController.activeTabIndex == 1) {
-        [_totalListVC setSearchText:sender.text];
+        [_totalListVC setSearchText:str];
     }
     else {
-        [_groupListVC setSearchText:sender.text];
+        [_groupListVC setSearchText:str];
     }
+}
+#pragma makr - UITextField EditingValueChanged
+- (IBAction)textFieldEditingChanged:(UITextField *)sender {
+    [self setSearchTxt:sender.text];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -224,15 +236,7 @@
         [self.view makeToast:@"검색어를 입력해주세요." duration:1.0 position:CSToastPositionTop];
     }
     else {
-        if (_tabController.activeTabIndex == 0) {
-            [_favoriteListVC setSearchText:textField.text];
-        }
-        else if (_tabController.activeTabIndex == 1) {
-            [_totalListVC setSearchText:textField.text];
-        }
-        else {
-            [_groupListVC setSearchText:textField.text];
-        }
+        [self setSearchTxt:textField.text];
     }
     return YES;
 }

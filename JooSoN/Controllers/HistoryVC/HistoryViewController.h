@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HTextField.h"
+#import "BaseViewController.h"
 IB_DESIGNABLE
-@interface HistoryViewController : UIViewController
+@interface HistoryViewController : BaseViewController
 
 @end

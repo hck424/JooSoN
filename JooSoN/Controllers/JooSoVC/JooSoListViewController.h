@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HTextField.h"
+#import "BaseViewController.h"
 IB_DESIGNABLE
-@interface JooSoListViewController : UIViewController
+@interface JooSoListViewController : BaseViewController
 
 @end

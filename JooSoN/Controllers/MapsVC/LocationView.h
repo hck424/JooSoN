@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <LMGeocoder/LMGeocoder.h>
+#import <LMGeocoder.h>
 #import "PlaceInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol LocationViewDelegate <NSObject>
 @optional
 - (void)locationView:(id)locationView curPlaceInfo:(PlaceInfo *)curPlaceInfo;
+- (void)mapViewSelectedPlaceInfo:(PlaceInfo *)info;
 @end
 
 @interface LocationView : UIView <CLLocationManagerDelegate>

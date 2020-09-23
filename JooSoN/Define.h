@@ -13,8 +13,11 @@ typedef enum : NSInteger {
     MapCellActionDefault = 0,
     MapCellActionNfc,
     MapCellActionNavi,
-    MapCellActionSave
+    MapCellActionSave,
+    MapCellActionShare
 } MapCellAction;
-
+typedef enum : NSInteger {
+    BottomPopupTypeMapSearch = 0,
+} BottomPopupType;
 
 #endif /* Define_h */

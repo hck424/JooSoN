@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01D05E41C5CEAD8F11C85668 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */; };
+		85B5291B62D69C38F7C0AD34 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F2B9F1105096E0FE55A31A /* Pods_JooSoN.framework */; };
 		E91F367A251477B000867C25 /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E91F3679251477B000867C25 /* InfoView.m */; };
 		E91F367D251477B600867C25 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91F367C251477B600867C25 /* InfoView.xib */; };
 		E927A5962513044B00EE1E55 /* BannerFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E927A5952513044B00EE1E55 /* BannerFlowLayout.m */; };
@@ -114,6 +114,15 @@
 		E9DB06F723B7CA6500BD22C1 /* PopupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB06B123B7CA6500BD22C1 /* PopupListViewController.xib */; };
 		E9DB06F823B7CA6500BD22C1 /* HAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB06B223B7CA6500BD22C1 /* HAlertView.xib */; };
 		E9DB06F923B7CA6500BD22C1 /* AddPhoneNumberField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB06B523B7CA6500BD22C1 /* AddPhoneNumberField.xib */; };
+		E9E8255D251BA476005A23AD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8255B251BA476005A23AD /* BaseViewController.m */; };
+		E9E82569251BA4C7005A23AD /* BottomPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8255F251BA4C7005A23AD /* BottomPopupViewController.m */; };
+		E9E8256A251BA4C7005A23AD /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E82560251BA4C7005A23AD /* CButton.m */; };
+		E9E8256B251BA4C7005A23AD /* RecordingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E82562251BA4C7005A23AD /* RecordingButton.m */; };
+		E9E8256C251BA4C7005A23AD /* BottomPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E82564251BA4C7005A23AD /* BottomPopupViewController.xib */; };
+		E9E8256D251BA4C7005A23AD /* SpeechAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E82565251BA4C7005A23AD /* SpeechAlertView.m */; };
+		E9E8256E251BA4C7005A23AD /* SpeechAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E82568251BA4C7005A23AD /* SpeechAlertView.xib */; };
+		E9E82572251BA4E4005A23AD /* UITableView+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E82570251BA4E4005A23AD /* UITableView+Utility.m */; };
+		E9E82576251BA5D3005A23AD /* MapAddressSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E82574251BA5D3005A23AD /* MapAddressSaveViewController.m */; };
 		E9F0603723C028FE00852F95 /* HitTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0603623C028FE00852F95 /* HitTestView.m */; };
 		E9F0603D23C054E600852F95 /* NSObject+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0603C23C054E600852F95 /* NSObject+Utility.m */; };
 		E9F0604223C0561600852F95 /* JooSo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0604023C0561600852F95 /* JooSo+CoreDataProperties.m */; };
@@ -121,9 +130,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
-		A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
-		E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8270BE5EE3BFD8ACA7125072 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
+		B63915DEF86C5F3361C4691F /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
+		E3F2B9F1105096E0FE55A31A /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91F3678251477B000867C25 /* InfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
 		E91F3679251477B000867C25 /* InfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
 		E91F367C251477B600867C25 /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
@@ -350,6 +359,22 @@
 		E9DB06B523B7CA6500BD22C1 /* AddPhoneNumberField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPhoneNumberField.xib; sourceTree = "<group>"; };
 		E9DB06B623B7CA6500BD22C1 /* HAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAlertView.h; sourceTree = "<group>"; };
 		E9DB06B723B7CA6500BD22C1 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
+		E9E8255B251BA476005A23AD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		E9E8255C251BA476005A23AD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		E9E8255F251BA4C7005A23AD /* BottomPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomPopupViewController.m; sourceTree = "<group>"; };
+		E9E82560251BA4C7005A23AD /* CButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButton.m; sourceTree = "<group>"; };
+		E9E82561251BA4C7005A23AD /* RecordingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingButton.h; sourceTree = "<group>"; };
+		E9E82562251BA4C7005A23AD /* RecordingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingButton.m; sourceTree = "<group>"; };
+		E9E82563251BA4C7005A23AD /* BottomPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomPopupViewController.h; sourceTree = "<group>"; };
+		E9E82564251BA4C7005A23AD /* BottomPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomPopupViewController.xib; sourceTree = "<group>"; };
+		E9E82565251BA4C7005A23AD /* SpeechAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechAlertView.m; sourceTree = "<group>"; };
+		E9E82566251BA4C7005A23AD /* CButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CButton.h; sourceTree = "<group>"; };
+		E9E82567251BA4C7005A23AD /* SpeechAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechAlertView.h; sourceTree = "<group>"; };
+		E9E82568251BA4C7005A23AD /* SpeechAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpeechAlertView.xib; sourceTree = "<group>"; };
+		E9E82570251BA4E4005A23AD /* UITableView+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Utility.m"; sourceTree = "<group>"; };
+		E9E82571251BA4E4005A23AD /* UITableView+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Utility.h"; sourceTree = "<group>"; };
+		E9E82574251BA5D3005A23AD /* MapAddressSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAddressSaveViewController.m; sourceTree = "<group>"; };
+		E9E82575251BA5D3005A23AD /* MapAddressSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAddressSaveViewController.h; sourceTree = "<group>"; };
 		E9F0603523C028FE00852F95 /* HitTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestView.h; sourceTree = "<group>"; };
 		E9F0603623C028FE00852F95 /* HitTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestView.m; sourceTree = "<group>"; };
 		E9F0603B23C054E600852F95 /* NSObject+Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utility.h"; sourceTree = "<group>"; };
@@ -372,7 +397,7 @@
 				E9B9963723C55EDE00139273 /* CoreLocation.framework in Frameworks */,
 				E9B9963E23C55F3700139273 /* libxml2.tbd in Frameworks */,
 				E9B9963523C55ED500139273 /* OpenGLES.framework in Frameworks */,
-				01D05E41C5CEAD8F11C85668 /* Pods_JooSoN.framework in Frameworks */,
+				85B5291B62D69C38F7C0AD34 /* Pods_JooSoN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +414,7 @@
 				E9B9963823C55EEA00139273 /* QuartzCore.framework */,
 				E9B9963623C55EDE00139273 /* CoreLocation.framework */,
 				E9B9963423C55ED500139273 /* OpenGLES.framework */,
-				E095AB3F0C18E650E00C107C /* Pods_JooSoN.framework */,
+				E3F2B9F1105096E0FE55A31A /* Pods_JooSoN.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -397,8 +422,8 @@
 		B47206EB8F11F5FD331A7287 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */,
-				0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */,
+				B63915DEF86C5F3361C4691F /* Pods-JooSoN.debug.xcconfig */,
+				8270BE5EE3BFD8ACA7125072 /* Pods-JooSoN.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -574,6 +599,8 @@
 		E9DB061323B7CA6400BD22C1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E9E82571251BA4E4005A23AD /* UITableView+Utility.h */,
+				E9E82570251BA4E4005A23AD /* UITableView+Utility.m */,
 				E9F0603B23C054E600852F95 /* NSObject+Utility.h */,
 				E9F0603C23C054E600852F95 /* NSObject+Utility.m */,
 				E9DB061A23B7CA6400BD22C1 /* NSString+Utility.h */,
@@ -591,6 +618,8 @@
 		E9DB061C23B7CA6400BD22C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9E8255C251BA476005A23AD /* BaseViewController.h */,
+				E9E8255B251BA476005A23AD /* BaseViewController.m */,
 				E989E02523C1D63B00EF3FD2 /* JooSoVC */,
 				E9E68AA223C334A5003F11BE /* MapsVC */,
 				E9E68AA123C33487003F11BE /* Dailing */,
@@ -607,6 +636,16 @@
 		E9DB064D23B7CA6400BD22C1 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				E9E82563251BA4C7005A23AD /* BottomPopupViewController.h */,
+				E9E8255F251BA4C7005A23AD /* BottomPopupViewController.m */,
+				E9E82564251BA4C7005A23AD /* BottomPopupViewController.xib */,
+				E9E82566251BA4C7005A23AD /* CButton.h */,
+				E9E82560251BA4C7005A23AD /* CButton.m */,
+				E9E82561251BA4C7005A23AD /* RecordingButton.h */,
+				E9E82562251BA4C7005A23AD /* RecordingButton.m */,
+				E9E82567251BA4C7005A23AD /* SpeechAlertView.h */,
+				E9E82565251BA4C7005A23AD /* SpeechAlertView.m */,
+				E9E82568251BA4C7005A23AD /* SpeechAlertView.xib */,
 				E927A5942513044B00EE1E55 /* BannerFlowLayout.h */,
 				E927A5952513044B00EE1E55 /* BannerFlowLayout.m */,
 				E9DB065C23B7CA6400BD22C1 /* BGStackView.h */,
@@ -777,6 +816,8 @@
 		E9E68AA223C334A5003F11BE /* MapsVC */ = {
 			isa = PBXGroup;
 			children = (
+				E9E82575251BA5D3005A23AD /* MapAddressSaveViewController.h */,
+				E9E82574251BA5D3005A23AD /* MapAddressSaveViewController.m */,
 				E9DB062823B7CA6400BD22C1 /* AroundSearchViewController.h */,
 				E9DB064123B7CA6400BD22C1 /* AroundSearchViewController.m */,
 				E9DB062923B7CA6400BD22C1 /* DestinationViewController.h */,
@@ -809,12 +850,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9DB060823B7C55F00BD22C1 /* Build configuration list for PBXNativeTarget "JooSoN" */;
 			buildPhases = (
-				28AE7C4F0060866E52EFF52C /* [CP] Check Pods Manifest.lock */,
+				4C576169C9161D738E0A7CAB /* [CP] Check Pods Manifest.lock */,
 				E9DB05E823B7C55E00BD22C1 /* Sources */,
 				E9DB05E923B7C55E00BD22C1 /* Frameworks */,
 				E9DB05EA23B7C55E00BD22C1 /* Resources */,
-				4F2FFD248CE9FF3883427FC6 /* [CP] Embed Pods Frameworks */,
-				E2EFA507CDB0C1F7C9425D28 /* [CP] Copy Pods Resources */,
+				71C7B86D21D5889F5A06F11B /* [CP] Embed Pods Frameworks */,
+				B1CAA839CE372B88ED533763 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -900,12 +941,14 @@
 			files = (
 				E9DB06EF23B7CA6500BD22C1 /* TableHeaderView.xib in Resources */,
 				E9B9963123C44C3B00139273 /* MapSearchResultCell.xib in Resources */,
+				E9E8256C251BA4C7005A23AD /* BottomPopupViewController.xib in Resources */,
 				E9DB06F723B7CA6500BD22C1 /* PopupListViewController.xib in Resources */,
 				E9DB060223B7C55F00BD22C1 /* LaunchScreen.storyboard in Resources */,
 				E9DB06D923B7CA6500BD22C1 /* CameraViewController.xib in Resources */,
 				E9DB06F923B7CA6500BD22C1 /* AddPhoneNumberField.xib in Resources */,
 				E9DB06C023B7CA6500BD22C1 /* SettingCell.xib in Resources */,
 				E9DB06B823B7CA6500BD22C1 /* GoogleService-Info.plist in Resources */,
+				E9E8256E251BA4C7005A23AD /* SpeechAlertView.xib in Resources */,
 				E9DB06F823B7CA6500BD22C1 /* HAlertView.xib in Resources */,
 				E9DB06CF23B7CA6500BD22C1 /* JooSoCell.xib in Resources */,
 				E9BA5B1C23CEECB30083415B /* GoogleMapView.xib in Resources */,
@@ -924,7 +967,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		28AE7C4F0060866E52EFF52C /* [CP] Check Pods Manifest.lock */ = {
+		4C576169C9161D738E0A7CAB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -946,7 +989,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4F2FFD248CE9FF3883427FC6 /* [CP] Embed Pods Frameworks */ = {
+		71C7B86D21D5889F5A06F11B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -963,7 +1006,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E2EFA507CDB0C1F7C9425D28 /* [CP] Copy Pods Resources */ = {
+		B1CAA839CE372B88ED533763 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -989,11 +1032,13 @@
 			files = (
 				E9DB06BB23B7CA6500BD22C1 /* DBManager.m in Sources */,
 				E9DB06CE23B7CA6500BD22C1 /* DailingViewController.m in Sources */,
+				E9E8256B251BA4C7005A23AD /* RecordingButton.m in Sources */,
 				E9DB06DC23B7CA6500BD22C1 /* BGStackView.m in Sources */,
 				E9DB06C823B7CA6500BD22C1 /* GroupManageViewController.m in Sources */,
 				E9DB06D023B7CA6500BD22C1 /* MainViewController.m in Sources */,
 				E9DB06F223B7CA6500BD22C1 /* PopupCell.m in Sources */,
 				E9DB06E223B7CA6500BD22C1 /* HTextField.m in Sources */,
+				E9E8256A251BA4C7005A23AD /* CButton.m in Sources */,
 				E9DB06F423B7CA6500BD22C1 /* TableHeaderView.m in Sources */,
 				E9AFD4C323BB93D5005210C8 /* PhoneNumber+CoreDataProperties.m in Sources */,
 				E9DB06E923B7CA6500BD22C1 /* TOCropViewController.m in Sources */,
@@ -1008,11 +1053,14 @@
 				E9B9962723C4385700139273 /* MapSearchHistory+CoreDataClass.m in Sources */,
 				E9DB06DF23B7CA6500BD22C1 /* VerticalButton.m in Sources */,
 				E9DB06CC23B7CA6500BD22C1 /* RightSlideMenuViewController.m in Sources */,
+				E9E8256D251BA4C7005A23AD /* SpeechAlertView.m in Sources */,
 				E9DB06D423B7CA6500BD22C1 /* DestinationViewController.m in Sources */,
 				E9F0604223C0561600852F95 /* JooSo+CoreDataProperties.m in Sources */,
 				E9F0603723C028FE00852F95 /* HitTestView.m in Sources */,
 				E9DB060523B7C55F00BD22C1 /* main.m in Sources */,
 				E9DB06D123B7CA6500BD22C1 /* SettingCell.m in Sources */,
+				E9E82576251BA5D3005A23AD /* MapAddressSaveViewController.m in Sources */,
+				E9E82572251BA4E4005A23AD /* UITableView+Utility.m in Sources */,
 				E9DB06C723B7CA6500BD22C1 /* HistoryViewController.m in Sources */,
 				E9DB06F023B7CA6500BD22C1 /* CTextView.m in Sources */,
 				E989E02823C1D6C800EF3FD2 /* AddGroupViewController.m in Sources */,
@@ -1040,6 +1088,7 @@
 				E9DB06EE23B7CA6500BD22C1 /* UIImage+CropRotate.m in Sources */,
 				E9DB06F523B7CA6500BD22C1 /* HAlertView.m in Sources */,
 				E989E01F23C1CE9400EF3FD2 /* GroupCell.m in Sources */,
+				E9E82569251BA4C7005A23AD /* BottomPopupViewController.m in Sources */,
 				E9DB06DE23B7CA6500BD22C1 /* CallkitController.m in Sources */,
 				E9DB06CB23B7CA6500BD22C1 /* AddJooSoViewController.m in Sources */,
 				E927A5962513044B00EE1E55 /* BannerFlowLayout.m in Sources */,
@@ -1048,6 +1097,7 @@
 				E9DB06D623B7CA6500BD22C1 /* SearchJooSoListViewController.m in Sources */,
 				E9DB06E723B7CA6500BD22C1 /* TOCropViewControllerTransitioning.m in Sources */,
 				E9DB06C423B7CA6500BD22C1 /* GroupListViewController.m in Sources */,
+				E9E8255D251BA476005A23AD /* BaseViewController.m in Sources */,
 				E9DB06CD23B7CA6500BD22C1 /* FavoriteListViewController.m in Sources */,
 				E9F0604323C0561600852F95 /* JooSo+CoreDataClass.m in Sources */,
 				E9B9965623C5DAA800139273 /* PlaceInfo.m in Sources */,
@@ -1251,7 +1301,7 @@
 		};
 		E9DB060923B7C55F00BD22C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A28697396D540CDD1869126C /* Pods-JooSoN.debug.xcconfig */;
+			baseConfigurationReference = B63915DEF86C5F3361C4691F /* Pods-JooSoN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1301,7 +1351,7 @@
 		};
 		E9DB060A23B7C55F00BD22C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E8CA550B09BBB5A661F3132 /* Pods-JooSoN.release.xcconfig */;
+			baseConfigurationReference = 8270BE5EE3BFD8ACA7125072 /* Pods-JooSoN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

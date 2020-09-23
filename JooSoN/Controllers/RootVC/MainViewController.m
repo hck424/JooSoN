@@ -14,7 +14,6 @@
 @property (assign, nonatomic) NSUInteger type;
 @end
 
-
 @implementation MainViewController
 
 - (void)viewDidLoad {

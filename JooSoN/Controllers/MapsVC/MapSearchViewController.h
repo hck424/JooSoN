@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "HTextField.h"
 #import "PlaceInfo.h"
-
+#import "BaseViewController.h"
 IB_DESIGNABLE
 NS_ASSUME_NONNULL_BEGIN
 @protocol MapSearchViewControllerDelegate <NSObject>
 - (void)mapSearchVCSelectedPlace:(PlaceInfo *)place;
 @end
-@interface MapSearchViewController : UIViewController
+@interface MapSearchViewController : BaseViewController
 @property (nonatomic, strong) PlaceInfo *passPlaceInfo;
 @property (nonatomic, strong) NSString *searchAddress;
 @property (nonatomic, weak) id <MapSearchViewControllerDelegate>delegate;

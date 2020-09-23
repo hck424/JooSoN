@@ -17,13 +17,14 @@
 #import "PlaceInfo.h"
 #import "NfcViewController.h"
 
+
 @interface HistoryViewController () <UITableViewDelegate, UITableViewDataSource, CallkitControllerDelegate>
 @property (weak, nonatomic) IBOutlet HTextField *textField;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
-
+@property (weak, nonatomic) IBOutlet UIButton *btnMic;
 @property (nonatomic, strong) NSMutableArray *arrOrigin;
 @property (nonatomic, strong) NSMutableArray *arrData;
 @property (nonatomic, strong) NSMutableArray *arrCallState;
@@ -101,6 +102,17 @@
 - (IBAction)onClickedButtonAction:(id)sender {
     if (sender == _btnKeyboardDown) {
         [self.view endEditing:YES];
+    }
+    else if (sender == _btnMic) {
+        [SpeechAlertView showWithTitle:@"JooSoN" completion:^(NSString * _Nonnull result) {
+            
+            if (result.length > 0) {
+                self.textField.text = result;
+                if (self.arrData.count > 0) {
+                    [self setSearchText:result];
+                }
+            }
+        }];
     }
 }
 

@@ -26,6 +26,7 @@
 - (void)startIndicator;
 - (void)stopIndicator;
 - (void)openSchemeUrl:(NSString *)urlStr;
+- (void)openSchemeUrl:(NSString *)urlStr completion:(void (^)(BOOL success))completion;
 
 @end
 

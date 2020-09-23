@@ -59,6 +59,12 @@
     itemDic = [NSDictionary dictionaryWithObjectsAndKeys:@"카카오 Map", @"mapName", MapIdKakao, @"mapId",  nil];
     [arrSection addObject:itemDic];
     
+    itemDic = [NSDictionary dictionaryWithObjectsAndKeys:@"카카오 네비", @"mapName", MapIdKakaoNavi, @"mapId",  nil];
+    [arrSection addObject:itemDic];
+    
+    itemDic = [NSDictionary dictionaryWithObjectsAndKeys:@"T Map", @"mapName", MapIdTmap, @"mapId",  nil];
+    [arrSection addObject:itemDic];
+    
 //    itemDic = [NSDictionary dictionaryWithObjectsAndKeys:@"T Map", @"mapName", MapIdTmap, @"mapId",  nil];
 //    [arrSection addObject:itemDic];
     
@@ -120,16 +126,11 @@
     NSDictionary *itemDic = [[_arrData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     NSString *newMapId = [itemDic objectForKey:@"mapId"];
     if ([_selectedMapId isEqualToString:newMapId] == NO) {
-        if ([newMapId isEqualToString:MapIdTmap]) {
-            [self.view makeToast:@"서비스 준비중입니다." duration:1.0 position:CSToastPositionTop];
-        }
-        else {
-            self.selectedMapId = newMapId;
-            [[NSUserDefaults standardUserDefaults] setObject:_selectedMapId forKey:SelectedMapId];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            AppDelegate.instance.selMapId = _selectedMapId;
-            [[NSNotificationCenter defaultCenter] postNotificationName:NotiChangeMapId object:nil];
-        }
+        self.selectedMapId = newMapId;
+        [[NSUserDefaults standardUserDefaults] setObject:_selectedMapId forKey:SelectedMapId];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        AppDelegate.instance.selMapId = _selectedMapId;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotiChangeMapId object:nil];
     }
     [self.tblView reloadData];
 }

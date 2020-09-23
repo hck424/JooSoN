@@ -10,8 +10,8 @@
 #import "HTextField.h"
 #import "VerticalButton.h"
 #import "PlaceInfo.h"
-
+#import "BaseViewController.h"
 IB_DESIGNABLE
-@interface AroundSearchViewController : UIViewController
+@interface AroundSearchViewController : BaseViewController
 - (void)reloadData;
 @end

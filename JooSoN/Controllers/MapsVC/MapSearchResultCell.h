@@ -9,13 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIView+Utility.h"
 #import "PlaceInfo.h"
+#import "Define.h"
 NS_ASSUME_NONNULL_BEGIN
-typedef enum : NSInteger {
-    MapSearchCellActionNfc = 0,
-    MapSearchCellActionNavi,
-    MapSearchCellActionSave
-} MapSearchCellAction;
-
 
 @interface MapSearchResultCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
@@ -24,10 +19,11 @@ typedef enum : NSInteger {
 @property (weak, nonatomic) IBOutlet UIButton *btnNfc;
 @property (weak, nonatomic) IBOutlet UIButton *btnNavi;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *btnShare;
 
-@property (nonatomic, copy) void (^onTouchUpInSideAction) (MapSearchCellAction action, PlaceInfo *data);
+@property (nonatomic, copy) void (^onTouchUpInSideAction) (MapCellAction action, PlaceInfo *data);
 - (void)configurationData:(PlaceInfo *)info;
-- (void)setOnTouchUpInSideAction:(void (^ _Nonnull)(MapSearchCellAction action, PlaceInfo *data))onTouchUpInSideAction;
+- (void)setOnTouchUpInSideAction:(void (^ _Nonnull)(MapCellAction action, PlaceInfo *data))onTouchUpInSideAction;
 @end
 
 NS_ASSUME_NONNULL_END

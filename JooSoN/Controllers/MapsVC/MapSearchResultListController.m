@@ -12,6 +12,7 @@
 #import "AddJooSoViewController.h"
 #import "AppDelegate.h"
 #import "NfcViewController.h"
+#import "MapAddressSaveViewController.h"
 
 @interface MapSearchResultListController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
@@ -66,21 +67,21 @@
     PlaceInfo *info = [_arrData objectAtIndex:indexPath.row];
     [cell configurationData:info];
     
-    [cell setOnTouchUpInSideAction:^(MapSearchCellAction action, PlaceInfo *data) {
+    [cell setOnTouchUpInSideAction:^(MapCellAction action, PlaceInfo *data) {
         self.selPlaceInfo = data;
 
-        if (action == MapSearchCellActionSave) {
+        if (action == MapCellActionSave) {
             AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
             vc.viewType = ViewTypeAdd;
             vc.placeInfo = self.selPlaceInfo;
             [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
-        else if (action == MapSearchCellActionNfc) {
+        else if (action == MapCellActionNfc) {
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
             vc.passPlaceInfo = self.selPlaceInfo;
             [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
-        else if (action == MapSearchCellActionNavi) {
+        else if (action == MapCellActionNavi) {
             NSString *url = nil;
             NSString *selMapId = AppDelegate.instance.selMapId;
             if ([selMapId isEqualToString:MapIdNaver]) {
@@ -96,6 +97,10 @@
                 [[AppDelegate instance] openSchemeUrl:url];
             }
         }
+        else if (action == MapCellActionShare) {
+            
+        }
+        
     }];
     
     return cell;
@@ -104,8 +109,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    PlaceInfo *info = [_arrData objectAtIndex:indexPath.row];
+    self.selPlaceInfo = [_arrData objectAtIndex:indexPath.row];
     
+    MapAddressSaveViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MapAddressSaveViewController"];
+    vc.passPlaceInfo = _selPlaceInfo;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

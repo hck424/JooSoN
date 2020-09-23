@@ -25,11 +25,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIColor *color = [UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_back"]];
+    self.view.backgroundColor = color;
     self.arrData = [NSMutableArray array];
     [self makeLeftMenuData];
     _tblView.tableHeaderView = _headerView;
     _tblView.tableFooterView = _footerView;
-    
+    _tblView.bounces = NO;
     _tblView.estimatedRowHeight = 70;
     _tblView.rowHeight = UITableViewAutomaticDimension;
     

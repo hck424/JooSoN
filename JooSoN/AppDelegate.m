@@ -13,7 +13,6 @@
 #import "UIView+Utility.h"
 #import "UIView+Toast.h"
 #import "MainViewController.h"
-//#import <NMapsMap/NMapsMap.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 
@@ -35,6 +34,10 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         AppDelegate.instance.selMapId = MapIdGoogle;
     }
+    else {
+        AppDelegate.instance.selMapId = [[NSUserDefaults standardUserDefaults] objectForKey:SelectedMapId];
+    }
+    
     //    [[NMFAuthManager shared] setClientId:NMFClientId];
     [GMSServices provideAPIKey:GoogleMapApiKey];
     [GMSPlacesClient provideAPIKey:GoogleMapApiKey];
@@ -68,7 +71,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MainViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-    [vc setupWithType:2];
+    [vc setupWithType:1];
     RootNavigationController *rootNaviCon = [storyboard instantiateViewControllerWithIdentifier:@"RootNavigationController"];
     
     vc.rootViewController = rootNaviCon;
@@ -97,6 +100,17 @@
     });
 }
 
+- (void)openSchemeUrl:(NSString *)urlStr completion:(void (^)(BOOL success))completion {
+    NSURL *phoneUrl = [NSURL URLWithString:urlStr];
+    UIApplication *application = [UIApplication sharedApplication];
+
+    [application openURL:phoneUrl options:@{}
+       completionHandler:^(BOOL success) {
+        if (completion) {
+            completion(success);
+        }
+    }];
+}
 - (void)openSchemeUrl:(NSString *)urlStr {
     
     if ([urlStr hasPrefix:@"tel"] || [urlStr hasPrefix:@"facetime"]) {
