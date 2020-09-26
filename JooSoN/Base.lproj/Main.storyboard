@@ -785,6 +785,29 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="718"/>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywg-Hp-dE0" customClass="CButton">
+                                <rect key="frame" x="305" y="629" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="oB6-0v-VSS"/>
+                                    <constraint firstAttribute="width" secondItem="Ywg-Hp-dE0" secondAttribute="height" multiplier="1:1" id="tHA-1T-F1g"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" image="icon_myspot"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.99680811170000005" green="0.4042524099" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="borderAll" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHalfCornerRaduis" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickedButtonActions:" destination="fHN-4P-8us" eventType="touchUpInside" id="7ja-YP-vwb"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ja-ex-otM">
                                 <rect key="frame" x="330" y="139" width="45" height="40.333333333333343"/>
                                 <constraints>
@@ -858,12 +881,14 @@
                         <viewLayoutGuide key="safeArea" id="jLf-6c-NEe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ehL-25-bRz" firstAttribute="top" secondItem="Ywg-Hp-dE0" secondAttribute="bottom" constant="10" id="0Cq-7y-Eas"/>
                             <constraint firstItem="jLf-6c-NEe" firstAttribute="trailing" secondItem="7Ja-ex-otM" secondAttribute="trailing" id="55K-kK-HEM"/>
                             <constraint firstItem="6BA-tR-bUc" firstAttribute="bottom" secondItem="8jv-Pb-8bi" secondAttribute="bottom" id="6J8-JM-3cQ"/>
                             <constraint firstItem="jLf-6c-NEe" firstAttribute="trailing" secondItem="ehL-25-bRz" secondAttribute="trailing" constant="16" id="E9v-ee-428"/>
                             <constraint firstItem="ehL-25-bRz" firstAttribute="leading" secondItem="jLf-6c-NEe" secondAttribute="leading" constant="16" id="FRP-3j-8Vj"/>
                             <constraint firstItem="GeR-1v-mOz" firstAttribute="leading" secondItem="jLf-6c-NEe" secondAttribute="leading" id="O51-up-dpv"/>
                             <constraint firstItem="8fM-P1-Ra7" firstAttribute="trailing" secondItem="6BA-tR-bUc" secondAttribute="trailing" id="TRG-K2-W2F"/>
+                            <constraint firstItem="jLf-6c-NEe" firstAttribute="trailing" secondItem="Ywg-Hp-dE0" secondAttribute="trailing" constant="10" id="UMz-vO-C2z"/>
                             <constraint firstItem="8fM-P1-Ra7" firstAttribute="leading" secondItem="6BA-tR-bUc" secondAttribute="leading" id="WUy-gS-1a5"/>
                             <constraint firstItem="6BA-tR-bUc" firstAttribute="trailing" secondItem="jLf-6c-NEe" secondAttribute="trailing" id="gPU-Ze-gIA"/>
                             <constraint firstItem="GeR-1v-mOz" firstAttribute="trailing" secondItem="jLf-6c-NEe" secondAttribute="trailing" id="ksc-8g-Zgg"/>
@@ -881,6 +906,7 @@
                         <outlet property="btnCurrentLoc" destination="9nd-HX-Y5O" id="3dR-gc-cRz"/>
                         <outlet property="btnKeyboardDown" destination="4Ga-84-dxh" id="KRI-JE-Mkr"/>
                         <outlet property="btnMicrophone" destination="9k9-re-D8Q" id="RoG-g9-2vp"/>
+                        <outlet property="btnMyPosition" destination="Ywg-Hp-dE0" id="DZN-SR-wor"/>
                         <outlet property="btnPopNavi" destination="Nb3-gQ-BXG" id="ORn-O3-F00"/>
                         <outlet property="btnPopNfc" destination="Dg2-oI-Wfj" id="Iga-hG-aXf"/>
                         <outlet property="btnPopShow" destination="RRn-0n-ueS" id="DNq-js-XTm"/>
@@ -1949,7 +1975,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="icon_back"/>
                                 <connections>
-                                    <action selector="onClickedButtonAction:" destination="iqb-Ak-BOe" eventType="touchUpInside" id="FY8-OI-NTs"/>
+                                    <action selector="onclickedButtonActions:" destination="iqb-Ak-BOe" eventType="touchUpInside" id="Sav-wW-C1l"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xeB-K6-oZV">
@@ -1979,19 +2005,11 @@
                                 <rect key="frame" x="30" y="502.33333333333326" width="315" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1np-CP-3Jm">
-                                        <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                        <state key="normal" title="Write"/>
+                                        <state key="normal" title="Scan"/>
                                         <connections>
-                                            <action selector="onClickedButtonAction:" destination="iqb-Ak-BOe" eventType="touchUpInside" id="Pme-Hb-LOx"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAT-7e-w9u">
-                                        <rect key="frame" x="172.66666666666663" y="0.0" width="142.33333333333337" height="45"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                        <state key="normal" title="Read"/>
-                                        <connections>
-                                            <action selector="onClickedButtonAction:" destination="iqb-Ak-BOe" eventType="touchUpInside" id="x0z-wu-9T4"/>
+                                            <action selector="onclickedButtonActions:" destination="iqb-Ak-BOe" eventType="touchUpInside" id="k5F-T9-eb8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1999,12 +2017,6 @@
                                     <constraint firstAttribute="height" constant="45" id="HoC-G0-UA3"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKn-JT-qax">
-                                <rect key="frame" x="30" y="577.33333333333337" width="315" height="20.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MEk-Fe-F0s"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2012,11 +2024,8 @@
                             <constraint firstItem="6gd-Hz-S7K" firstAttribute="top" secondItem="MEk-Fe-F0s" secondAttribute="top" id="ARM-zv-wwx"/>
                             <constraint firstItem="Qsq-eK-50U" firstAttribute="top" secondItem="yRK-Oa-uPf" secondAttribute="top" id="DoW-Gf-Xxs"/>
                             <constraint firstItem="xeB-K6-oZV" firstAttribute="leading" secondItem="MEk-Fe-F0s" secondAttribute="leading" constant="30" id="EsM-kf-6JY"/>
-                            <constraint firstItem="uKn-JT-qax" firstAttribute="leading" secondItem="MEk-Fe-F0s" secondAttribute="leading" constant="30" id="G72-zL-1eu"/>
-                            <constraint firstItem="MEk-Fe-F0s" firstAttribute="trailing" secondItem="uKn-JT-qax" secondAttribute="trailing" constant="30" id="GvL-ZX-xUn"/>
                             <constraint firstItem="MEk-Fe-F0s" firstAttribute="trailing" secondItem="oal-8k-tHW" secondAttribute="trailing" constant="30" id="Nqn-KV-BU4"/>
                             <constraint firstItem="6gd-Hz-S7K" firstAttribute="leading" secondItem="MEk-Fe-F0s" secondAttribute="leading" constant="10" id="S2O-6o-cHe"/>
-                            <constraint firstItem="uKn-JT-qax" firstAttribute="top" secondItem="oal-8k-tHW" secondAttribute="bottom" constant="30" id="Ur7-UZ-dJg"/>
                             <constraint firstItem="1px-fP-dgK" firstAttribute="top" secondItem="xeB-K6-oZV" secondAttribute="bottom" constant="29.999999999999972" id="XgT-o9-dzE"/>
                             <constraint firstItem="MEk-Fe-F0s" firstAttribute="trailing" secondItem="xeB-K6-oZV" secondAttribute="trailing" constant="30" id="cVZ-f0-xWt"/>
                             <constraint firstItem="1px-fP-dgK" firstAttribute="centerY" secondItem="MEk-Fe-F0s" secondAttribute="centerY" multiplier="0.9" id="jvJ-KZ-T4T"/>
@@ -2031,11 +2040,9 @@
                     </view>
                     <connections>
                         <outlet property="btnBack" destination="6gd-Hz-S7K" id="H4z-SZ-AHN"/>
-                        <outlet property="btnRead" destination="IAT-7e-w9u" id="lfL-pF-Toe"/>
-                        <outlet property="btnWrite" destination="1np-CP-3Jm" id="3EY-hO-uqR"/>
+                        <outlet property="btnScan" destination="1np-CP-3Jm" id="ebx-It-fFI"/>
                         <outlet property="lbAddress" destination="rgf-nO-UYd" id="tRL-7G-Rpd"/>
                         <outlet property="lbName" destination="lRb-4a-nc1" id="T9C-k7-xJB"/>
-                        <outlet property="lbReadMsg" destination="uKn-JT-qax" id="hM4-M6-6HE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yL6-vb-t2b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4452,6 +4459,9 @@
         </designable>
         <designable name="Ybi-TI-NeT">
             <size key="intrinsicContentSize" width="71.666666666666671" height="37.666666666666664"/>
+        </designable>
+        <designable name="Ywg-Hp-dE0">
+            <size key="intrinsicContentSize" width="73.666666666666671" height="80.666666666666671"/>
         </designable>
         <designable name="ZDe-HQ-AvU">
             <size key="intrinsicContentSize" width="60.666666666666664" height="37.666666666666664"/>

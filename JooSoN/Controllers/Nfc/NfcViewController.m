@@ -11,29 +11,42 @@
 #import <os/log.h>
 #import <VYNFCKit/VYNFCKit.h>
 #import "DBManager.h"
-//#import "TMobilePass-Swift.h"
-//#import <CoreBluetooth/CoreBluetooth.h>
+#import "TMobilePass-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-//@import CoreNFC;
-//@import CoreBluetooth;
-//@import AudioToolbox;
+@import CoreNFC;
+@import CoreBluetooth;
+@import AudioToolbox;
 
+@interface TMobilePass()
 
-API_AVAILABLE(ios(13.0))
-@interface NfcViewController () <NFCNDEFReaderSessionDelegate>
+@end
+
+@interface NfcViewController () <NFCNDEFReaderSessionDelegate , CBCentralManagerDelegate, NORBluetoothManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UILabel *lbAddress;
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
-@property (weak, nonatomic) IBOutlet UIButton *btnRead;
-@property (weak, nonatomic) IBOutlet UIButton *btnWrite;
-@property (weak, nonatomic) IBOutlet UILabel *lbReadMsg;
-@property (nonatomic, assign) BOOL isWriteMode;
-@property (nonatomic, strong) NFCNDEFReaderSession *readSession;
-@property (nonatomic, strong) NFCNDEFMessage *writeMsg;
+@property (weak, nonatomic) IBOutlet UIButton *btnScan;
+
+@property (nonatomic, strong) NFCNDEFReaderSession *session;
 
 @property (nonatomic, assign) CGFloat lat;
 @property (nonatomic, assign) CGFloat lng;
 @property (nonatomic, strong) NSString *address;
+
+@property (nonatomic, strong)   CBCentralManager *bluetoothManager;
+@property (nonatomic, strong)   NORBluetoothManager *norblueManager;
+@property (strong, nonatomic) CBPeripheral *discoveredPeripheral;
+@property (strong, nonatomic) NSMutableData *data;
+@property (strong, nonatomic) CBUUID *filterUUID;
+@property (nonatomic, strong) TMobilePass *mobilepass;
+
+@property (nonatomic, strong ) NSString *TokenValue;
+@property (nonatomic, strong ) NSString *trnValue;
+@property (nonatomic, assign) int iBleFound;
+@property (nonatomic, assign) BOOL bNefDetected;
+@property (nonatomic, strong) NSTimer* timerAction;
+@property (nonatomic, assign) BOOL isWriteSuccess;
 @end
 
 @implementation NfcViewController
@@ -41,65 +54,81 @@ API_AVAILABLE(ios(13.0))
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _btnWrite.layer.cornerRadius = _btnWrite.frame.size.height/2;
-    _btnWrite.layer.borderWidth = 1.0f;
-    _btnWrite.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    _btnRead.layer.cornerRadius = _btnRead.frame.size.height/2;
-    _btnRead.layer.borderWidth = 1.0f;
-    _btnRead.layer.borderColor = [UIColor whiteColor].CGColor;
+    _btnScan.layer.cornerRadius = 16.0;
+    _btnScan.layer.borderWidth = 1.0f;
+    _btnScan.layer.borderColor = [UIColor whiteColor].CGColor;
     
     _lbAddress.text = @"";
     _lbName.text = @"";
-    _lbReadMsg.text = @"";
 
     _lbName.text = _passPlaceInfo.name;
     _lbAddress.text = _passPlaceInfo.jibun_address;
-    
+
     self.lat = _passPlaceInfo.y;
     self.lng = _passPlaceInfo.x;
     self.address = _passPlaceInfo.jibun_address;
+
     
-    _isWriteMode = YES;
+    self.bNefDetected = false;
+    enum MOBILEPASS_OPERATION_MODE mode;
+    mode = MOBILEPASS_OPERATION_MODENFC_BLE_PLAIN_TEXT_MODE ;
     
-    _btnRead.hidden = YES;
+    self.mobilepass = [[TMobilePass alloc]initWithOperationmode:(mode)];
+    
+    //@"{12345678901234567890}";
+    self.TokenValue = [self createTokenJsonString];
+    
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.btnWrite sendActionsForControlEvents:UIControlEventTouchUpInside];
-    });
+    if (_TokenValue.length > 0) {
+        [self beginSession];
+    }
 }
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (IBAction)onClickedButtonAction:(id)sender {
+- (NSString *)createTokenJsonString {
+    if (_address.length == 0) {
+        _address = _passPlaceInfo.name;
+    }
+    if (_address.length > 0 && _lat != 0 && _lng != 0) {
+        
+        //            {“type”:1,“dest”:{“name”: “신세계백화점 천안신부동점”,“latitude”: 36.8195602,“longitude”: 127.1543738}}
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//        [dic setObject:_address forKey:@"name"];
+        [dic setObject:[NSNumber numberWithFloat:_lat] forKey:@"latitude"];
+        [dic setObject:[NSNumber numberWithFloat:_lng] forKey:@"longitude"];
+        NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
+        [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+        [resultDic setObject:dic forKey:@"dest"];
+        NSString *msg = [self jsonStringWithDictionary:resultDic];
+        
+        //            NSDictionary *tmpDic = [NSJSONSerialization JSONObjectWithData:[msg dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        
+        msg = [[msg componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:@""];
+        NSLog(@"====nfc write : %@", msg);
+        
+        return  msg;
+    }
+    return nil;
+}
+- (IBAction)onclickedButtonActions:(UIButton *)sender {
     if (sender == _btnBack) {
+        [self stopForPeripherals];
         [self.navigationController popViewControllerAnimated:NO];
     }
-    else if (sender == _btnRead
-             || sender == _btnWrite) {
-        if (sender == _btnRead) {
-            _isWriteMode = NO;
-        }
-        else {
-            _isWriteMode = YES;
-        }
-        
-        if ([NFCNDEFReaderSession readingAvailable]) {
-            self.readSession = [[NFCNDEFReaderSession alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) invalidateAfterFirstRead:NO];
-            _readSession.alertMessage = @"iPhone을 NFC 태그 가까이에 두십시오.";
-            [_readSession beginSession];
-            
-        } else {
-            [self showAlertNotAvailableNfc];
-        }
+    else if (sender == _btnScan) {
+        [self stopForPeripherals];
+        [self beginSession];
     }
 }
 - (NSString *)jsonStringWithDictionary:(NSDictionary *)dic {
@@ -114,201 +143,347 @@ API_AVAILABLE(ios(13.0))
     }
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
-- (NFCNDEFPayload *)createTextPlayload {
-    if (_address.length == 0) {
-        _address = _passPlaceInfo.name;
-    }
-    if (_address.length > 0 && _lat != 0 && _lng != 0) {
-        if (@available(iOS 13.0, *)) {
-//            {“type”:1,“dest”:{“name”: “신세계백화점 천안신부동점”,“latitude”: 36.8195602,“longitude”: 127.1543738}}
-            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-            [dic setObject:_address forKey:@"name"];
-            [dic setObject:[NSNumber numberWithFloat:_lat] forKey:@"latitude"];
-            [dic setObject:[NSNumber numberWithFloat:_lng] forKey:@"longitude"];
-            NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
-            [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
-            [resultDic setObject:dic forKey:@"dest"];
-            
-            NSString *msg = [self jsonStringWithDictionary:resultDic];
-            
-//            NSDictionary *tmpDic = [NSJSONSerialization JSONObjectWithData:[msg dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-            
-            msg = [[msg componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:@""];
-            NSLog(@"====nfc write : %@", msg);
-            NFCNDEFPayload *playload = [NFCNDEFPayload wellKnownTypeTextPayloadWithString:msg locale:[NSLocale currentLocale]];
-            return playload;
-        }
-    }
-    return nil;
-}
-- (void)readUpdateUi:(NFCNDEFMessage *)message {
-    NSMutableString *result = [NSMutableString string];
-    _lbReadMsg.text = @"";
-    for (NFCNDEFPayload *payload in message.records) {
-        id parsedPayload = [VYNFCNDEFPayloadParser parse:payload];
-        if (parsedPayload) {
-            NSString *text = @"";
-            NSString *urlString = nil;
-            if ([parsedPayload isKindOfClass:[VYNFCNDEFTextPayload class]]) {
-//                text = @"[Text] ";
-                text = [NSString stringWithFormat:@"%@", ((VYNFCNDEFTextPayload *)parsedPayload).text];
-            } else if ([parsedPayload isKindOfClass:[VYNFCNDEFURIPayload class]]) {
-//                text = @"[URI] ";
-                text = [NSString stringWithFormat:@"%@", ((VYNFCNDEFURIPayload *)parsedPayload).URIString];
-                urlString = ((VYNFCNDEFURIPayload *)parsedPayload).URIString;
-            } else if ([parsedPayload isKindOfClass:[VYNFCNDEFTextXVCardPayload class]]) {
-//                text = @"[TextXVCard] ";
-                text = [NSString stringWithFormat:@"%@", ((VYNFCNDEFTextXVCardPayload *)parsedPayload).text];
-            } else if ([parsedPayload isKindOfClass:[VYNFCNDEFSmartPosterPayload class]]) {
-//                text = @"[SmartPoster] ";
-                VYNFCNDEFSmartPosterPayload *sp = parsedPayload;
-                for (VYNFCNDEFTextPayload *textPayload in sp.payloadTexts) {
-                    text = [NSString stringWithFormat:@"%@\n", textPayload.text];
-                }
-                text = [NSString stringWithFormat:@"%@%@", text, sp.payloadURI.URIString];
-                urlString = sp.payloadURI.URIString;
-            } else if ([parsedPayload isKindOfClass:[VYNFCNDEFWifiSimpleConfigPayload class]]) {
-//                text = @"[WifiSimpleConfig] ";
-                VYNFCNDEFWifiSimpleConfigPayload *wifi = parsedPayload;
-                for (VYNFCNDEFWifiSimpleConfigCredential *credential in wifi.credentials) {
-                    text = [NSString stringWithFormat:@"SSID: %@\nPassword: %@\nMac Address: %@\nAuth Type: %@\nEncrypt Type: %@", credential.ssid, credential.networkKey, credential.macAddress,
-                            [VYNFCNDEFWifiSimpleConfigCredential authTypeString:credential.authType],
-                            [VYNFCNDEFWifiSimpleConfigCredential encryptTypeString:credential.encryptType]];
-                }
-                if (wifi.version2) {
-                    text = [NSString stringWithFormat:@"%@\nVersion2: %@",
-                            text, wifi.version2.version];
-                }
-            } else {
-                text = @"Parsed but unhandled payload type";
-            }
-            NSLog(@"=== %@", text);
-            if (text != nil) {
-                [result appendFormat:@"%@\n", text];
-            }
-        }
-    }
-    
-    _lbReadMsg.text = result;
-        
-}
-- (void)showAlertNotAvailableNfc {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"스캔이 지원되지 않습니다" message:@"이 장치는 태그 스캔을 지원하지 않습니다." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:NO completion:nil];
-    });
+
+- (void)dealloc {
+    [_session invalidateSession];
 }
 
 #pragma mark - NFCNDEFReaderSessionDelegate
-- (void)readerSession:(NFCNDEFReaderSession *)session didInvalidateWithError:(NSError *)error API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(watchos, macos, tvos) {
-    if (error != nil
-        && error.code == NFCReaderSessionInvalidationErrorFirstNDEFTagRead
-        && error.code == NFCReaderSessionInvalidationErrorUserCanceled) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"세션이 무효가 되었습니다." message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:NO completion:nil];
-        });
-    }
-//    self.readSession = nil;
+
+- (void)readerSessionDidBecomeActive:(nonnull NFCNDEFReaderSession *)session
+{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.logView.text = [NSString stringWithFormat:@"[%@] readerSessionDidBecomeActive:\n%@",
+//                         [NSDate date],
+//                         self.logView.text];
+//    });
 }
 
-- (void)readerSession:(NFCNDEFReaderSession *)session didDetectNDEFs:(NSArray<NFCNDEFMessage *> *)messages API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(watchos, macos, tvos) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [messages firstObject];
-        [self readUpdateUi:messages.firstObject];
+- (void)readerSession:(nonnull NFCNDEFReaderSession *)session didInvalidateWithError:(nonnull NSError *)error
+{
+    if (error.code == NFCReaderSessionInvalidationErrorUserCanceled) {
+        // User cancellation.
+
+        [ self stopForPeripherals];
+        return;
+    }
+    NSLog(@"didInvalidateWithError Error: %@", [error debugDescription]);
+    
+    
+    double delayInSeconds = 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.bNefDetected = true;
     });
 }
-- (void)readerSession:(NFCNDEFReaderSession *)session didDetectTags:(NSArray<__kindof id<NFCNDEFTag>> *)tags API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(watchos, macos, tvos) {
+
+- (void)readerSession:(nonnull NFCNDEFReaderSession *)session didDetectNDEFs:(nonnull NSArray<NFCNDEFMessage *> *)messages
+{
     
-    if (tags.count > 1) {
-        session.alertMessage = @"태그가 둘 이상 감지되었습니다. 모든 태그를 제거하고 다시 시도하십시오.";
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [session restartPolling];
-            return ;
-        });
-    }
+    [_session invalidateSession];
     
-    id <NFCNDEFTag>tag = tags.firstObject;
-    [session connectToTag:tag completionHandler:^(NSError * _Nullable error) {
-        if (nil != error) {
-            session.alertMessage = @"태그에 연결할 수 없습니다.";
-            [session invalidateSession];
-            return;
-        }
+    NSString *rtnstring = [_mobilepass ndefmessageparseWithDidDetectNDEFs:(messages)];
+
+    self.bNefDetected = true;
+}
+
+#pragma mark - Methods
+
+- (void)beginSession
+{
+    NSLog(@"Call beginSession");
+    // 2. MOBILE PASS가 NDEF DETECTION MODE,  NFC EVENT MODE 인 경우 CLEAR FLAG
+    [_mobilepass NdefCompletedWithNdefcompleteflag:(false)];
+    
+    NSLog(@"Call NFC");
+    // 3. NFC Reader 동작을 시작한다.
+    _session
+    = [[NFCNDEFReaderSession alloc] initWithDelegate:self
+                                               queue:dispatch_queue_create(NULL,
+                                                                           DISPATCH_QUEUE_CONCURRENT)
+                            invalidateAfterFirstRead:NO];
+    NSLog(@"Call Session");
+    
+    _session.alertMessage = @"iPhone 상단을\n NFC 안테나 위에 터치 하십시오.";
+    
+    [_session beginSession];
+    
+    
+    NSLog(@"Clear _trnValue");
+    _trnValue = @"";
+    _iBleFound = 0;
+    
+    NSLog(@"Call dispatch");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"CBUUID : %@", NORServiceIdentifiers.uartServiceUUIDString);
+        self.filterUUID = [CBUUID UUIDWithString:NORServiceIdentifiers.uartServiceUUIDString];
+        NSLog(@"_filterUUID : %@", self.filterUUID);
         
-        [tag queryNDEFStatusWithCompletionHandler:^(NFCNDEFStatus status, NSUInteger capacity, NSError * _Nullable error) {
-           
-            if (status == NFCNDEFStatusNotSupported) {
-                session.alertMessage = @"태그 NDEF 호환되지 않습니다.";
-                [session invalidateSession];
+        self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        NSLog(@"_bluetoothManager : %@", self.bluetoothManager);
+        
+        self.data = [[NSMutableData alloc] init];
+        NSLog(@"_data : %@", self.data);
+        
+    });
+    
+    NSLog(@"Call Timer");
+    _timerAction = [NSTimer scheduledTimerWithTimeInterval:20.0f
+      target:self
+    selector:@selector(timerActionFire)
+    userInfo:nil
+     repeats:NO];
+     
+}
+
+- (void)stopForPeripherals
+{
+    [_bluetoothManager stopScan];
+    
+    NSLog(@"stopForPeripherals");
+    
+    /*
+    self.timerEnding?.invalidate()
+    self.timerEnding = nil
+     */
+    if ( _timerAction != NULL ) {
+        //timer 객체가 nil 이 아닌경우에는 invalid 상태에만 시작한다
+        [ _timerAction invalidate ];
+        _timerAction = NULL ;
+        NSLog(@"timerAction Destroy");
+    }
+}
+
+- (void) timerActionFire
+{
+    NSLog(@"timerActionFire");
+    _timerAction = NULL;
+    [ self stopForPeripherals];
+    [_session invalidateSession];
+    self.bNefDetected = false;
+}
+
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+    
+    //NSDictionary *serviceData = advertisementData[@"kCBAdvDataServiceData"];
+
+    
+    NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+     
+
+    
+    if( self.bNefDetected == false )
+        return;
+    
+    if( self.mobilepass.getNfcUseMode == MOBILEPASS_NFC_USE_MODENFC_EVENT_MODE)
+    {
+        NSLog(@"NFC EVENT");
+
+        enum BLE_MODEL smode;
+        smode = BLE_MODELWT51822S4AT ;
+        
+        Boolean brtn = [ _mobilepass isMobilePassAvailableWithRssi:((NSNumber *)RSSI) blemodel:smode];
+        
+        if( brtn )
+        {
+            _iBleFound += 1;
+            NSLog(@"_iBleFound : %d", _iBleFound);
+            
+            if( _iBleFound > 0 )
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                });
+                
+
+                NSString *name = peripheral.name;
+                NSString *bledevicename = [_mobilepass sBleTPrefixName];
+                
+                if ([name rangeOfString:bledevicename].location == NSNotFound) {
+                  NSLog(@"name does not contain bledevicename");
+                } else {
+                  NSLog(@"name contains bledevicename : %@" , name);
+                    _trnValue = [name substringFromIndex:3];
+
+                    NSLog(@"_trnValue : %@", _trnValue);
+                    //if (_discoveredPeripheral != peripheral) {
+                        // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
+                        _discoveredPeripheral = peripheral;
+                         
+
+                        [self stopForPeripherals];
+                        
+                        _norblueManager = [[NORBluetoothManager alloc] initWithManager:(central) withMobilepass:_mobilepass ];
+                        _norblueManager.delegate = self;
+                        [ _norblueManager connectPeripheralWithPeripheral:peripheral];
+                    //}
+                }
             }
-            else if (error != nil) {
-                session.alertMessage = @"태그의 NDEF 상태를 쿼리 할 수 없습니다.";
-                [session invalidateSession];
-                return ;
+        }
+        else
+        {
+            
+        }
+    }
+}
+
+
+- (void)centralManager:(CBCentralManager *)central didSuccessToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    NSLog(@"Success to connect");
+}
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    NSLog(@"Failed to connect");
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    // You should test all scenarios
+    if (central.state != CBManagerStatePoweredOn) {
+        return;
+    }
+     
+    if (central.state == CBManagerStatePoweredOn) {
+        NSLog(@"centralManagerDidUpdateState");
+        NSLog(@"0. filterUUID : %@", @[self.filterUUID]);
+        
+        // 아래 Object-C 로 변환
+        
+        NSArray *connectedPeripheral = [self getConnectedPeripherals];
+        NSLog(@"0. connectedPeripheral : %@", connectedPeripheral);
+        NSLog(@"0. trnValue : %@", _trnValue);
+        NSLog(@"0. tocken : %@", _TokenValue);
+        NSLog(@"0. NORblueManager : %@", _norblueManager);
+        _TokenValue = [NSString stringWithFormat:@"%@\r", _TokenValue];
+        
+        if( [connectedPeripheral count] > 0 ) {
+            if( [_trnValue length] > 4 ) {
+                [_mobilepass MobilePassAuthenticateProcessWithNorbluetoothmanager:_norblueManager trnvalue:_trnValue tocken:_TokenValue];
+                self.isWriteSuccess = YES;
+            } else {
+                NSLog(@"0. unExpected trnValue = %@", _trnValue);
+                self.isWriteSuccess = NO;
+            }
+        }
+        else
+        {
+
+            // Scan for devices
+            if(self.filterUUID == nil) {
+                NSLog(@"_filterUUID == nil ");
+                [_bluetoothManager scanForPeripheralsWithServices:nil options:nil];
+                
+            } else {
+                NSLog(@"_filterUUID == set ");
+                [_bluetoothManager scanForPeripheralsWithServices:@[self.filterUUID] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
             }
             
-            if (self.isWriteMode == NO) {
-                [tag readNDEFWithCompletionHandler:^(NFCNDEFMessage * _Nullable message, NSError * _Nullable error) {
-                    NSString *statusMessage = nil;
-                    if (error != nil && message == nil) {
-                        statusMessage = @"태그에서 NDEF를 읽지 못했습니다";
-                    }
-                    else {
-                        
-                        statusMessage = @"NDEF 메시지 1 개 발견";
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self readUpdateUi:message];
-                        });
-                    }
-                    session.alertMessage = statusMessage;
-                    [session invalidateSession];
-                }];
-            }
-            else {
-                
-                [tag writeNDEF:self.writeMsg completionHandler:^(NSError * _Nullable error) {
-                    if (error != nil) {
-                        session.alertMessage = @"업데이트 태그에 실패했습니다. 다시 시도하십시오.";
-                    } else {
-                        session.alertMessage = @"NDEF 메시지 쓰기 성공!";
-                        [session invalidateSession];
-                        NSMutableDictionary *param = [NSMutableDictionary dictionary];
-                        
-                        if (self.passPlaceInfo.jibun_address.length > 0
-                            && self.passPlaceInfo.x != 0
-                            && self.passPlaceInfo.y != 0) {
-                            
-                            [param setObject:[NSNumber numberWithFloat:self.passPlaceInfo.y] forKey:@"geoLat"];
-                            [param setObject:[NSNumber numberWithFloat:self.passPlaceInfo.x] forKey:@"geoLng"];
-                            if (self.passPlaceInfo.jibun_address != nil) {
-                                [param setObject:self.passPlaceInfo.jibun_address forKeyedSubscript:@"address"];
-                            }
-                            else if (self.passPlaceInfo.name != nil) {
-                                [param setObject:self.passPlaceInfo.name forKeyedSubscript:@"name"];
-                            }
-                            [param setObject:[NSDate date] forKey:@"createDate"];
-                            [param setObject:[NSNumber numberWithInt:1] forKey:@"historyType"];
-                            [[DBManager instance] insertHistory:param success:nil fail:nil];
-                        }
-                        
-                    }
-                }];
-            }
-        }];
-    }];
-}
+            NSLog(@"Scanning started");
+        }
 
-- (void)readerSessionDidBecomeActive:(NFCNDEFReaderSession *)session API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(watchos, macos, tvos) {
-    if (_isWriteMode) {
-        NFCNDEFPayload *textPayload = [self createTextPlayload];
-        self.writeMsg = [[NFCNDEFMessage alloc] initWithNDEFRecords:@[textPayload]];
     }
 }
 
+// Object - C Code 로 변환
+- (NSArray *) getConnectedPeripherals
+{
+    /*
+    guard let bluetoothManager = bluetoothManager else {
+        return []
+    }
+    if (bluetoothManager == nil ) {
+        return [];
+    }
+     */
+
+    NSLog(@"getConnectedPeripherals");
+    
+    if (_bluetoothManager == nil ) {
+        NSLog(@"bluetoothManager Null");
+        return nil;
+    }
+    /*
+    var retreivedPeripherals : [CBPeripheral]
+    retreivedPeripherals     = bluetoothManager.retrieveConnectedPeripherals(withServices:[filterUUID!])
+    return retreivedPeripherals
+     */
+    NSArray* retrievedPeriPherals = [_bluetoothManager retrieveConnectedPeripheralsWithServices:@[self.filterUUID]];
+    NSLog(@"retrievedPeriPherals : %@", retrievedPeriPherals);
+    NSLog(@" retrievedPeriPherals Count : %lu", [retrievedPeriPherals count]);
+    
+    return retrievedPeriPherals;
+}
+
+- (void)didBleRequestPhoneNo {
+    
+    NSLog(@"didBleRequestPhoneNo");
+    
+    // Object - C 로 변환
+
+    /* Setup Command 로
+     * 저장된 값을 사용할 때 아래 사용 S
+     * 직접 프로그램을 개발하여 회원의 정보를 온라인에서 운영하는 경우는
+     * 아래 부분을 사용하지 않습니다.
+     */
+    [_mobilepass MobilePassSendPhoneNoWithNorbluetoothmanager:_norblueManager];
+}
+
+
+- (void)didBleSetTokenProcessWithTocken:(NSString * _Nullable)Token json:(NSString * _Nullable)jsonString {
+    
+    NSLog(@"didBleSetTokenProcessWithTocken");
+    
+}
+
+
+- (void)didConnectPeripheralWithDeviceName:(NSString * _Nullable)aName {
+    
+    NSLog(@"didConnectPeripheralWithDeviceName: %@" , aName);
+}
+
+- (void)didConnectPeripheral {
+    NSLog(@"didConnectPeripheral");
+}
+
+
+- (void)didDisconnectPeripheral {
+    NSLog(@"didDisconnectPeripheral");
+  
+    if (_isWriteSuccess) {
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [param setObject:_passPlaceInfo.name forKey:@"name"];
+        [param setObject:_address forKey:@"address"];
+        [param setObject:[NSDate date] forKey:@"createDate"];
+        [param setObject:[NSNumber numberWithDouble:_lat] forKey:@"geoLat"];
+        [param setObject:[NSNumber numberWithDouble:_lng] forKey:@"geoLng"];
+        [[DBManager instance] insertHistory:param success:^{
+            [self.navigationController popViewControllerAnimated:NO];
+        } fail:^(NSError *error) {
+            
+        }];
+    }
+}
+
+- (void)peripheralNotSupported {
+    NSLog(@"peripheralNotSupported");
+}
+
+- (void)peripheralReady {
+    NSLog(@"peripheralReady");
+    
+    NSLog(@"1. filterUUID : %@", @[self.filterUUID]);
+    NSArray *connectedPeripheral = [self getConnectedPeripherals];
+    NSLog(@"1. connectedPeripheral : %@", connectedPeripheral);
+    NSLog(@"1. trnValue : %@", _trnValue);
+    
+    _TokenValue = [NSString stringWithFormat:@"%@\r", _TokenValue];
+    if( [connectedPeripheral count] > 0 ) {
+        if( [_trnValue length] > 4 ) {
+            [_mobilepass MobilePassAuthenticateProcessWithNorbluetoothmanager:_norblueManager trnvalue:_trnValue tocken:_TokenValue];
+            _isWriteSuccess = YES;
+        } else {
+            NSLog(@"1. unExpected trnValue = %@", _trnValue);
+            _isWriteSuccess = NO;
+        }
+    }
+}
 
 @end

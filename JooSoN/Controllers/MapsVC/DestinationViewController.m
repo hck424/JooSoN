@@ -20,7 +20,7 @@
 #import "BannerFlowLayout.h"
 #import "BottomPopupViewController.h"
 #import "SpeechAlertView.h"
-
+#import "CButton.h"
 @interface DestinationViewController () <UITextFieldDelegate,  LocationViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mapContainer;
@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPopNfc;
 @property (weak, nonatomic) IBOutlet UIButton *btnPopNavi;
 @property (weak, nonatomic) IBOutlet UIButton *btnPopShow;
+@property (weak, nonatomic) IBOutlet CButton *btnMyPosition;
 
 
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
@@ -215,7 +216,10 @@ static NSString *cellIdentity = @"MapSearchCell";
                 [self.btnSearch sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
         }];
-
+    }
+    else if (sender == _btnMyPosition) {
+        [_googleMapView hideAllMarker];
+        [_googleMapView startCurrentLocationUpdatingLocation];
     }
 }
 

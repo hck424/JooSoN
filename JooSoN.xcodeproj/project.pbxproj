@@ -20,6 +20,28 @@
 		E989E01F23C1CE9400EF3FD2 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E989E01D23C1CE9400EF3FD2 /* GroupCell.m */; };
 		E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E989E01E23C1CE9400EF3FD2 /* GroupCell.xib */; };
 		E989E02823C1D6C800EF3FD2 /* AddGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E989E02723C1D6C800EF3FD2 /* AddGroupViewController.m */; };
+		E98D0199251E38CB00FB05D2 /* MobilePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D0198251E38CB00FB05D2 /* MobilePass.swift */; };
+		E98D01D6251EBC7A00FB05D2 /* arm64-apple-ios.swiftinterface in Resources */ = {isa = PBXBuildFile; fileRef = E98D01BF251EBC7A00FB05D2 /* arm64-apple-ios.swiftinterface */; };
+		E98D01D7251EBC7A00FB05D2 /* arm64-apple-ios.swiftdoc in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C0251EBC7A00FB05D2 /* arm64-apple-ios.swiftdoc */; };
+		E98D01D8251EBC7A00FB05D2 /* armv7.swiftinterface in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C1251EBC7A00FB05D2 /* armv7.swiftinterface */; };
+		E98D01D9251EBC7A00FB05D2 /* arm64.swiftinterface in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C2251EBC7A00FB05D2 /* arm64.swiftinterface */; };
+		E98D01DA251EBC7A00FB05D2 /* arm64.swiftmodule in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C3251EBC7A00FB05D2 /* arm64.swiftmodule */; };
+		E98D01DB251EBC7A00FB05D2 /* armv7-apple-ios.swiftinterface in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C4251EBC7A00FB05D2 /* armv7-apple-ios.swiftinterface */; };
+		E98D01DC251EBC7A00FB05D2 /* arm64-apple-ios.swiftsourceinfo in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C6251EBC7A00FB05D2 /* arm64-apple-ios.swiftsourceinfo */; };
+		E98D01DD251EBC7A00FB05D2 /* armv7-apple-ios.swiftsourceinfo in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C7251EBC7A00FB05D2 /* armv7-apple-ios.swiftsourceinfo */; };
+		E98D01DE251EBC7A00FB05D2 /* arm.swiftsourceinfo in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C8251EBC7A00FB05D2 /* arm.swiftsourceinfo */; };
+		E98D01DF251EBC7A00FB05D2 /* arm64.swiftsourceinfo in Resources */ = {isa = PBXBuildFile; fileRef = E98D01C9251EBC7A00FB05D2 /* arm64.swiftsourceinfo */; };
+		E98D01E0251EBC7A00FB05D2 /* armv7.swiftsourceinfo in Resources */ = {isa = PBXBuildFile; fileRef = E98D01CA251EBC7A00FB05D2 /* armv7.swiftsourceinfo */; };
+		E98D01E1251EBC7A00FB05D2 /* arm.swiftdoc in Resources */ = {isa = PBXBuildFile; fileRef = E98D01CB251EBC7A00FB05D2 /* arm.swiftdoc */; };
+		E98D01E2251EBC7A00FB05D2 /* armv7-apple-ios.swiftmodule in Resources */ = {isa = PBXBuildFile; fileRef = E98D01CC251EBC7A00FB05D2 /* armv7-apple-ios.swiftmodule */; };
+		E98D01E3251EBC7A00FB05D2 /* arm64-apple-ios.swiftmodule in Resources */ = {isa = PBXBuildFile; fileRef = E98D01CD251EBC7A00FB05D2 /* arm64-apple-ios.swiftmodule */; };
+		E98D01E4251EBC7A00FB05D2 /* arm.swiftmodule in Resources */ = {isa = PBXBuildFile; fileRef = E98D01CE251EBC7A00FB05D2 /* arm.swiftmodule */; };
+		E98D01E5251EBC7A00FB05D2 /* armv7.swiftdoc in Resources */ = {isa = PBXBuildFile; fileRef = E98D01CF251EBC7A00FB05D2 /* armv7.swiftdoc */; };
+		E98D01E6251EBC7A00FB05D2 /* arm64.swiftdoc in Resources */ = {isa = PBXBuildFile; fileRef = E98D01D0251EBC7A00FB05D2 /* arm64.swiftdoc */; };
+		E98D01E7251EBC7A00FB05D2 /* armv7-apple-ios.swiftdoc in Resources */ = {isa = PBXBuildFile; fileRef = E98D01D1251EBC7A00FB05D2 /* armv7-apple-ios.swiftdoc */; };
+		E98D01E8251EBC7A00FB05D2 /* arm.swiftinterface in Resources */ = {isa = PBXBuildFile; fileRef = E98D01D2251EBC7A00FB05D2 /* arm.swiftinterface */; };
+		E98D01E9251EBC7A00FB05D2 /* armv7.swiftmodule in Resources */ = {isa = PBXBuildFile; fileRef = E98D01D3251EBC7A00FB05D2 /* armv7.swiftmodule */; };
+		E98D01EA251EBC7A00FB05D2 /* libTMobilePass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D01D4251EBC7A00FB05D2 /* libTMobilePass.a */; };
 		E99028BA23C72B2200C691AB /* InstantPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */; };
 		E99F5F4823BECB260014D13C /* InfoJooSoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99F5F4723BECB260014D13C /* InfoJooSoViewController.m */; };
 		E9AFD4C123BB93D5005210C8 /* PhoneNumber+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4B223BB93D4005210C8 /* PhoneNumber+CoreDataClass.m */; };
@@ -156,6 +178,29 @@
 		E989E01E23C1CE9400EF3FD2 /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		E989E02623C1D6C800EF3FD2 /* AddGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGroupViewController.h; sourceTree = "<group>"; };
 		E989E02723C1D6C800EF3FD2 /* AddGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGroupViewController.m; sourceTree = "<group>"; };
+		E98D0198251E38CB00FB05D2 /* MobilePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePass.swift; sourceTree = "<group>"; };
+		E98D01BF251EBC7A00FB05D2 /* arm64-apple-ios.swiftinterface */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "arm64-apple-ios.swiftinterface"; sourceTree = "<group>"; };
+		E98D01C0251EBC7A00FB05D2 /* arm64-apple-ios.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-ios.swiftdoc"; sourceTree = "<group>"; };
+		E98D01C1251EBC7A00FB05D2 /* armv7.swiftinterface */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = armv7.swiftinterface; sourceTree = "<group>"; };
+		E98D01C2251EBC7A00FB05D2 /* arm64.swiftinterface */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = arm64.swiftinterface; sourceTree = "<group>"; };
+		E98D01C3251EBC7A00FB05D2 /* arm64.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm64.swiftmodule; sourceTree = "<group>"; };
+		E98D01C4251EBC7A00FB05D2 /* armv7-apple-ios.swiftinterface */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "armv7-apple-ios.swiftinterface"; sourceTree = "<group>"; };
+		E98D01C6251EBC7A00FB05D2 /* arm64-apple-ios.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-ios.swiftsourceinfo"; sourceTree = "<group>"; };
+		E98D01C7251EBC7A00FB05D2 /* armv7-apple-ios.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "armv7-apple-ios.swiftsourceinfo"; sourceTree = "<group>"; };
+		E98D01C8251EBC7A00FB05D2 /* arm.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.swiftsourceinfo; sourceTree = "<group>"; };
+		E98D01C9251EBC7A00FB05D2 /* arm64.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm64.swiftsourceinfo; sourceTree = "<group>"; };
+		E98D01CA251EBC7A00FB05D2 /* armv7.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = armv7.swiftsourceinfo; sourceTree = "<group>"; };
+		E98D01CB251EBC7A00FB05D2 /* arm.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.swiftdoc; sourceTree = "<group>"; };
+		E98D01CC251EBC7A00FB05D2 /* armv7-apple-ios.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = "armv7-apple-ios.swiftmodule"; sourceTree = "<group>"; };
+		E98D01CD251EBC7A00FB05D2 /* arm64-apple-ios.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-ios.swiftmodule"; sourceTree = "<group>"; };
+		E98D01CE251EBC7A00FB05D2 /* arm.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.swiftmodule; sourceTree = "<group>"; };
+		E98D01CF251EBC7A00FB05D2 /* armv7.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = armv7.swiftdoc; sourceTree = "<group>"; };
+		E98D01D0251EBC7A00FB05D2 /* arm64.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm64.swiftdoc; sourceTree = "<group>"; };
+		E98D01D1251EBC7A00FB05D2 /* armv7-apple-ios.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "armv7-apple-ios.swiftdoc"; sourceTree = "<group>"; };
+		E98D01D2251EBC7A00FB05D2 /* arm.swiftinterface */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = arm.swiftinterface; sourceTree = "<group>"; };
+		E98D01D3251EBC7A00FB05D2 /* armv7.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = armv7.swiftmodule; sourceTree = "<group>"; };
+		E98D01D4251EBC7A00FB05D2 /* libTMobilePass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTMobilePass.a; sourceTree = "<group>"; };
+		E98D01D5251EBC7A00FB05D2 /* TMobilePass-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TMobilePass-Swift.h"; sourceTree = "<group>"; };
 		E99028B823C72B2200C691AB /* InstantPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstantPanGestureRecognizer.h; sourceTree = "<group>"; };
 		E99028B923C72B2200C691AB /* InstantPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstantPanGestureRecognizer.m; sourceTree = "<group>"; };
 		E99F5F4623BECB260014D13C /* InfoJooSoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoJooSoViewController.h; sourceTree = "<group>"; };
@@ -391,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9B9963B23C55F0400139273 /* libc++.tbd in Frameworks */,
+				E98D01EA251EBC7A00FB05D2 /* libTMobilePass.a in Frameworks */,
 				E9B9963923C55EEA00139273 /* QuartzCore.framework in Frameworks */,
 				E9314AAF23CDA39400A98A9A /* CoreNFC.framework in Frameworks */,
 				E9B9963F23C55F4200139273 /* libsqlite3.tbd in Frameworks */,
@@ -519,6 +565,51 @@
 			path = JooSoVC;
 			sourceTree = "<group>";
 		};
+		E98D01BD251EBC7A00FB05D2 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E98D01BE251EBC7A00FB05D2 /* TMobilePass.swiftmodule */,
+				E98D01D4251EBC7A00FB05D2 /* libTMobilePass.a */,
+				E98D01D5251EBC7A00FB05D2 /* TMobilePass-Swift.h */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		E98D01BE251EBC7A00FB05D2 /* TMobilePass.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				E98D01BF251EBC7A00FB05D2 /* arm64-apple-ios.swiftinterface */,
+				E98D01C0251EBC7A00FB05D2 /* arm64-apple-ios.swiftdoc */,
+				E98D01C1251EBC7A00FB05D2 /* armv7.swiftinterface */,
+				E98D01C2251EBC7A00FB05D2 /* arm64.swiftinterface */,
+				E98D01C3251EBC7A00FB05D2 /* arm64.swiftmodule */,
+				E98D01C4251EBC7A00FB05D2 /* armv7-apple-ios.swiftinterface */,
+				E98D01C5251EBC7A00FB05D2 /* Project */,
+				E98D01CB251EBC7A00FB05D2 /* arm.swiftdoc */,
+				E98D01CC251EBC7A00FB05D2 /* armv7-apple-ios.swiftmodule */,
+				E98D01CD251EBC7A00FB05D2 /* arm64-apple-ios.swiftmodule */,
+				E98D01CE251EBC7A00FB05D2 /* arm.swiftmodule */,
+				E98D01CF251EBC7A00FB05D2 /* armv7.swiftdoc */,
+				E98D01D0251EBC7A00FB05D2 /* arm64.swiftdoc */,
+				E98D01D1251EBC7A00FB05D2 /* armv7-apple-ios.swiftdoc */,
+				E98D01D2251EBC7A00FB05D2 /* arm.swiftinterface */,
+				E98D01D3251EBC7A00FB05D2 /* armv7.swiftmodule */,
+			);
+			path = TMobilePass.swiftmodule;
+			sourceTree = "<group>";
+		};
+		E98D01C5251EBC7A00FB05D2 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				E98D01C6251EBC7A00FB05D2 /* arm64-apple-ios.swiftsourceinfo */,
+				E98D01C7251EBC7A00FB05D2 /* armv7-apple-ios.swiftsourceinfo */,
+				E98D01C8251EBC7A00FB05D2 /* arm.swiftsourceinfo */,
+				E98D01C9251EBC7A00FB05D2 /* arm64.swiftsourceinfo */,
+				E98D01CA251EBC7A00FB05D2 /* armv7.swiftsourceinfo */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
 		E9B9962923C438C100139273 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +672,7 @@
 				E9DB060323B7C55F00BD22C1 /* Info.plist */,
 				E9DB05FB23B7C55E00BD22C1 /* JooSoN.xcdatamodeld */,
 				E979E087251451C300F13972 /* Define.h */,
+				E98D0198251E38CB00FB05D2 /* MobilePass.swift */,
 			);
 			path = JooSoN;
 			sourceTree = "<group>";
@@ -677,6 +769,7 @@
 		E9DB066523B7CA6400BD22C1 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				E98D01BD251EBC7A00FB05D2 /* Vendor */,
 				E9DB066623B7CA6400BD22C1 /* TOCropViewController */,
 			);
 			path = Librarys;
@@ -943,22 +1036,42 @@
 				E9B9963123C44C3B00139273 /* MapSearchResultCell.xib in Resources */,
 				E9E8256C251BA4C7005A23AD /* BottomPopupViewController.xib in Resources */,
 				E9DB06F723B7CA6500BD22C1 /* PopupListViewController.xib in Resources */,
+				E98D01D6251EBC7A00FB05D2 /* arm64-apple-ios.swiftinterface in Resources */,
+				E98D01E1251EBC7A00FB05D2 /* arm.swiftdoc in Resources */,
 				E9DB060223B7C55F00BD22C1 /* LaunchScreen.storyboard in Resources */,
 				E9DB06D923B7CA6500BD22C1 /* CameraViewController.xib in Resources */,
 				E9DB06F923B7CA6500BD22C1 /* AddPhoneNumberField.xib in Resources */,
 				E9DB06C023B7CA6500BD22C1 /* SettingCell.xib in Resources */,
+				E98D01D8251EBC7A00FB05D2 /* armv7.swiftinterface in Resources */,
 				E9DB06B823B7CA6500BD22C1 /* GoogleService-Info.plist in Resources */,
+				E98D01E4251EBC7A00FB05D2 /* arm.swiftmodule in Resources */,
+				E98D01E9251EBC7A00FB05D2 /* armv7.swiftmodule in Resources */,
+				E98D01D7251EBC7A00FB05D2 /* arm64-apple-ios.swiftdoc in Resources */,
 				E9E8256E251BA4C7005A23AD /* SpeechAlertView.xib in Resources */,
 				E9DB06F823B7CA6500BD22C1 /* HAlertView.xib in Resources */,
 				E9DB06CF23B7CA6500BD22C1 /* JooSoCell.xib in Resources */,
+				E98D01E0251EBC7A00FB05D2 /* armv7.swiftsourceinfo in Resources */,
 				E9BA5B1C23CEECB30083415B /* GoogleMapView.xib in Resources */,
 				E9DB05FF23B7C55F00BD22C1 /* Assets.xcassets in Resources */,
+				E98D01E8251EBC7A00FB05D2 /* arm.swiftinterface in Resources */,
 				E91F367D251477B600867C25 /* InfoView.xib in Resources */,
+				E98D01DA251EBC7A00FB05D2 /* arm64.swiftmodule in Resources */,
+				E98D01E3251EBC7A00FB05D2 /* arm64-apple-ios.swiftmodule in Resources */,
+				E98D01DD251EBC7A00FB05D2 /* armv7-apple-ios.swiftsourceinfo in Resources */,
+				E98D01E5251EBC7A00FB05D2 /* armv7.swiftdoc in Resources */,
+				E98D01DC251EBC7A00FB05D2 /* arm64-apple-ios.swiftsourceinfo in Resources */,
+				E98D01DE251EBC7A00FB05D2 /* arm.swiftsourceinfo in Resources */,
 				E927A5A625135CE800EE1E55 /* MapSearchCell.xib in Resources */,
+				E98D01DF251EBC7A00FB05D2 /* arm64.swiftsourceinfo in Resources */,
 				E9DB06C223B7CA6500BD22C1 /* HistoryCell.xib in Resources */,
 				E989E02023C1CE9400EF3FD2 /* GroupCell.xib in Resources */,
+				E98D01E6251EBC7A00FB05D2 /* arm64.swiftdoc in Resources */,
+				E98D01DB251EBC7A00FB05D2 /* armv7-apple-ios.swiftinterface in Resources */,
 				E9DB06E023B7CA6500BD22C1 /* TabContainerController.xib in Resources */,
+				E98D01D9251EBC7A00FB05D2 /* arm64.swiftinterface in Resources */,
+				E98D01E2251EBC7A00FB05D2 /* armv7-apple-ios.swiftmodule in Resources */,
 				E9DB05FA23B7C55E00BD22C1 /* Main.storyboard in Resources */,
+				E98D01E7251EBC7A00FB05D2 /* armv7-apple-ios.swiftdoc in Resources */,
 				E9DB06F123B7CA6500BD22C1 /* PopupCell.xib in Resources */,
 				E9DB06E523B7CA6500BD22C1 /* TOCropViewControllerLocalizable.strings in Resources */,
 			);
@@ -1069,6 +1182,7 @@
 				E9DB05F123B7C55E00BD22C1 /* AppDelegate.m in Sources */,
 				E9DB06ED23B7CA6500BD22C1 /* TOCropToolbar.m in Sources */,
 				E9DB06DD23B7CA6500BD22C1 /* KeychainItemWrapper.m in Sources */,
+				E98D0199251E38CB00FB05D2 /* MobilePass.swift in Sources */,
 				E9DB06EB23B7CA6500BD22C1 /* TOCropView.m in Sources */,
 				E91F367A251477B000867C25 /* InfoView.m in Sources */,
 				E9C952E123C416E300B7E922 /* MapSearchHistoryController.m in Sources */,
@@ -1339,12 +1453,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JooSoN/Librarys/Vendor",
 				);
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangchange.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1388,11 +1503,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JooSoN/Librarys/Vendor",
 				);
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangchange.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

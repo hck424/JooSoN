@@ -72,5 +72,7 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>NFC를 사용하려고 합니다.</string>
 </dict>
 </plist>
