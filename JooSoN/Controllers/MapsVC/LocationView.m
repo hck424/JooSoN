@@ -7,7 +7,7 @@
 //
 
 #import "LocationView.h"
-
+#import "AppDelegate.h"
 @implementation LocationView
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -119,6 +119,7 @@
     [self getPlaceInfoByCoordinate:coordinate completion:^(PlaceInfo *placeInfo) {
         if (placeInfo != nil) {
             self.curPlaceInfo = placeInfo;
+            AppDelegate.instance.curPlaceInfo = self.curPlaceInfo;
             if ([self.delegate respondsToSelector:@selector(locationView:curPlaceInfo:)]) {
                 [self.delegate locationView:self curPlaceInfo:self.curPlaceInfo];
             }

@@ -83,14 +83,13 @@
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }
-        [mainViewController hideLeftViewAnimated:YES delay:0.0 completionHandler:nil];
     }
     else if (indexPath.row == 1) {
         UINavigationController *navigation = (UINavigationController*)mainViewController.rootViewController;
         SettingViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingViewController"];
         [navigation pushViewController:vc animated:NO];
-        [mainViewController hideLeftViewAnimated:YES delay:0.0 completionHandler:nil];
     }
+    [mainViewController hideRightViewAnimated:YES delay:0.0 completionHandler:nil];
 }
 
 @end
