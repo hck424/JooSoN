@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
 @property (nonatomic) double takeCalling;
 @property (nullable, nonatomic, copy) NSString *address;
-@property (nonatomic) float geoLat;
-@property (nonatomic) float geoLng;
+@property (nonatomic) double geoLat;
+@property (nonatomic) double geoLng;
 @property (nonatomic) int64_t historyType;
 
 @end

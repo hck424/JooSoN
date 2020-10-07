@@ -30,8 +30,8 @@
 
 @property (nonatomic, strong) NFCNDEFReaderSession *session;
 
-@property (nonatomic, assign) CGFloat lat;
-@property (nonatomic, assign) CGFloat lng;
+@property (nonatomic, assign) double lat;
+@property (nonatomic, assign) double lng;
 @property (nonatomic, strong) NSString *address;
 
 @property (nonatomic, strong)   CBCentralManager *bluetoothManager;
@@ -101,20 +101,26 @@
         _address = _passPlaceInfo.name;
     }
     if (_address.length > 0 && _lat != 0 && _lng != 0) {
-        
+
         //            {“type”:1,“dest”:{“name”: “신세계백화점 천안신부동점”,“latitude”: 36.8195602,“longitude”: 127.1543738}}
+        NSString *lat = [NSString stringWithFormat:@"%.7f", _passPlaceInfo.x];
+        NSString *lng = [NSString stringWithFormat:@"%.7f", _passPlaceInfo.y];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        [dic setObject:_address forKey:@"name"];
-        [dic setObject:[NSNumber numberWithFloat:_lat] forKey:@"latitude"];
-        [dic setObject:[NSNumber numberWithFloat:_lng] forKey:@"longitude"];
+//        [dic setObject:_passPlaceInfo.name forKey:@"name"];
+        [dic setObject:@"Soule" forKey:@"name"];
+        [dic setObject:[NSNumber numberWithDouble:36.8195602] forKey:@"latitude"];
+        [dic setObject:[NSNumber numberWithDouble:127.1543738] forKey:@"longitude"];
         NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
         [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
         [resultDic setObject:dic forKey:@"dest"];
-        NSString *msg = [self jsonStringWithDictionary:resultDic];
+        NSMutableString *msg = [NSMutableString stringWithFormat:@"{""type"":1,""dest"":{""name"":""%@"",""latitude"":%@,""longitude"":%@}}", _passPlaceInfo.name, lat, lng];
         
-        //            NSDictionary *tmpDic = [NSJSONSerialization JSONObjectWithData:[msg dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+//        NSString *msg = [self jsonStringWithDictionary:resultDic];
+//        NSDictionary *tmpDic = [NSJSONSerialization JSONObjectWithData:[msg dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
         
-        msg = [[msg componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:@""];
+//        msg = [[msg componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:@""];
+//        NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+//        NSLog(@"==== data length = %ld", data.length);
         NSLog(@"====nfc write : %@", msg);
         
         return  msg;
@@ -454,11 +460,11 @@
         [param setObject:[NSDate date] forKey:@"createDate"];
         [param setObject:[NSNumber numberWithDouble:_lat] forKey:@"geoLat"];
         [param setObject:[NSNumber numberWithDouble:_lng] forKey:@"geoLng"];
-        [[DBManager instance] insertHistory:param success:^{
-            [self.navigationController popViewControllerAnimated:NO];
-        } fail:^(NSError *error) {
-            
-        }];
+//        [[DBManager instance] insertHistory:param success:^{
+//            [self.navigationController popViewControllerAnimated:NO];
+//        } fail:^(NSError *error) {
+//
+//        }];
     }
 }
 

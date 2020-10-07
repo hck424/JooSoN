@@ -231,8 +231,12 @@
 
     name = [name isEqual:[NSNull null]]? @"" : name;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    
-    [param setObject:name forKey:@"name"];
+    if (name != nil) {
+        [param setObject:name forKey:@"name"];
+    }
+    else {
+        [param setObject:@"" forKey:@"name"];
+    }
     if (phoneNumber != nil) {
         [param setObject:phoneNumber forKey:@"phoneNumber"];
     }
