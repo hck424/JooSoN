@@ -1,5 +1,5 @@
 //
-//  LeftSlideViewController.h
+//  RightMenuViewController.h
 //  JooSoN
 //
 //  Created by 김학철 on 2019/12/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeftSlideViewController : UIViewController
+@interface RightMenuViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @end
 

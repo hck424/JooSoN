@@ -3952,10 +3952,10 @@
             </objects>
             <point key="canvasLocation" x="5317.6000000000004" y="971.67487684729065"/>
         </scene>
-        <!--Left Slide View Controller-->
+        <!--Right Menu View Controller-->
         <scene sceneID="6IU-ZE-yul">
             <objects>
-                <viewController storyboardIdentifier="LeftSlideViewController" id="XUd-nx-kQp" customClass="LeftSlideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RightMenuViewController" id="XUd-nx-kQp" customClass="RightMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zcZ-1M-acu">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3983,6 +3983,7 @@
                     <connections>
                         <outlet property="footerView" destination="MV7-sd-1Tq" id="MWe-Ff-MTN"/>
                         <outlet property="headerView" destination="KKc-6N-kyw" id="iRn-OP-Ktb"/>
+                        <outlet property="lbFooterVersion" destination="jhN-4c-IEZ" id="GLd-jD-lvo"/>
                         <outlet property="tblView" destination="7Wa-gy-aPi" id="4iI-Hd-w8H"/>
                     </connections>
                 </viewController>
@@ -4023,21 +4024,31 @@
                                 <constraint firstAttribute="height" constant="0.29999999999999999" id="BbK-zl-FDF"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhN-4c-IEZ">
+                            <rect key="frame" x="10" y="0.3333333333333357" width="220" height="127.66666666666666"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="jhN-4c-IEZ" firstAttribute="top" secondItem="LPC-YJ-aah" secondAttribute="bottom" id="0Ym-fa-gya"/>
                         <constraint firstItem="LPC-YJ-aah" firstAttribute="leading" secondItem="MV7-sd-1Tq" secondAttribute="leading" constant="15" id="7cK-dk-Zq5"/>
+                        <constraint firstAttribute="trailing" secondItem="jhN-4c-IEZ" secondAttribute="trailing" constant="10" id="Rye-BE-efe"/>
+                        <constraint firstItem="jhN-4c-IEZ" firstAttribute="leading" secondItem="MV7-sd-1Tq" secondAttribute="leading" constant="10" id="W4F-5z-YHH"/>
                         <constraint firstItem="LPC-YJ-aah" firstAttribute="top" secondItem="MV7-sd-1Tq" secondAttribute="top" id="WDb-Vv-CWd"/>
+                        <constraint firstAttribute="bottom" secondItem="jhN-4c-IEZ" secondAttribute="bottom" id="jmj-Nz-Uwo"/>
                         <constraint firstAttribute="trailing" secondItem="LPC-YJ-aah" secondAttribute="trailing" id="qFt-jQ-V12"/>
                     </constraints>
                 </view>
             </objects>
             <point key="canvasLocation" x="1621" y="920"/>
         </scene>
-        <!--Right Slide Menu View Controller-->
+        <!--Left Menu View Controller-->
         <scene sceneID="oba-cl-psA">
             <objects>
-                <viewController id="MXW-oS-DML" customClass="RightSlideMenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftMenuViewController" id="MXW-oS-DML" customClass="LeftMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vyO-90-eS4">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

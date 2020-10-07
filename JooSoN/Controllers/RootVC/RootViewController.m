@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #import "MainViewController.h"
 #import "UIViewController+LGSideMenuController.h"
-#import "LeftSlideViewController.h"
+#import "RightMenuViewController.h"
 #import "TabContainerController.h"
 #import "HistoryViewController.h"
 #import "DailingViewController.h"
@@ -158,7 +158,7 @@
         
         MainViewController *mainViewController = (MainViewController *)self.sideMenuController;
         [mainViewController showRightViewAnimated:YES completionHandler:^{
-            [((LeftSlideViewController*)mainViewController.rightViewController).tblView reloadData];
+            [((RightMenuViewController*)mainViewController.rightViewController).tblView reloadData];
         }];
     }
 }

@@ -1,5 +1,5 @@
 //
-//  RightSlideMenuViewController.h
+//  LeftMenuViewController.h
 //  JooSoN
 //
 //  Created by 김학철 on 2019/12/15.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RightSlideMenuViewController : UIViewController
+@interface LeftMenuViewController : UIViewController
 
 @end
 

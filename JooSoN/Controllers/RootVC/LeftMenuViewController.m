@@ -1,18 +1,18 @@
 //
-//  RightSlideMenuViewController.m
+//  LeftMenuViewController.m
 //  JooSoN
 //
 //  Created by 김학철 on 2019/12/15.
 //  Copyright © 2019 김학철. All rights reserved.
 //
 
-#import "RightSlideMenuViewController.h"
+#import "LeftMenuViewController.h"
 
-@interface RightSlideMenuViewController ()
+@interface LeftMenuViewController ()
 
 @end
 
-@implementation RightSlideMenuViewController
+@implementation LeftMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

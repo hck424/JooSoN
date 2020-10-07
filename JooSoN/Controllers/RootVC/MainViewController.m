@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "Utility.h"
-#import "LeftSlideViewController.h"
+#import "RightMenuViewController.h"
 
 @interface MainViewController ()
 @property (assign, nonatomic) NSUInteger type;
@@ -39,7 +39,7 @@
         
     }
     else {
-        self.leftViewController = [LeftSlideViewController new];
+        self.leftViewController = [RightMenuViewController new];
         self.rightViewController = nil;
         
         self.leftViewWidth = 250.0;

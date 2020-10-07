@@ -1,26 +1,27 @@
 //
-//  LeftSlideViewController.m
+//  RightMenuViewController.m
 //  JooSoN
 //
 //  Created by 김학철 on 2019/12/15.
 //  Copyright © 2019 김학철. All rights reserved.
 //
 
-#import "LeftSlideViewController.h"
+#import "RightMenuViewController.h"
 #import "MainViewController.h"
 #import "UIViewController+LGSideMenuController.h"
 #import "SettingViewController.h"
 #import "SettingCell.h"
 
-@interface LeftSlideViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface RightMenuViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UILabel *lbFooterVersion;
 @property (nonatomic, strong) NSMutableArray *arrData;
 @property (nonatomic, strong) NSString *selectedMapId;
 @end
 
-@implementation LeftSlideViewController
+@implementation RightMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +37,9 @@
     _tblView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tblView reloadData];
+    NSString *str = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *version = [NSString stringWithFormat:@"최신버전 : %@", str];
+    _lbFooterVersion.text = version;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
