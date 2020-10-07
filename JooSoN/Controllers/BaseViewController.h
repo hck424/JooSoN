@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, strong) PlaceInfo *selPlaceInfo;
-- (void)showNavi;
+- (NSString *)getNaviUrlWithPalceInfo:(PlaceInfo *)info;
+- (void)saveHisotryWithType:(NSInteger)type PlaceInfo:(PlaceInfo *)placeInfo;
 @end
 
 NS_ASSUME_NONNULL_END

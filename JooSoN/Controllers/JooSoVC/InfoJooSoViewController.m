@@ -15,6 +15,7 @@
 #import "AddJooSoViewController.h"
 #import "NfcViewController.h"
 #import "GoogleMapView.h"
+#import "UIView+Toast.h"
 
 @interface InfoJooSoViewController () <CallkitControllerDelegate>
 
@@ -50,11 +51,27 @@
     [super viewDidLoad];
     self.callkitController = [[CallkitController alloc] init];
     
-    if (_passJooso.name.length > 0) {
-         [_btnBack setTitle:_passJooso.name forState:UIControlStateNormal];
+    if (_passJooso != nil) {
+        if (_passJooso.name.length > 0) {
+            [_btnBack setTitle:_passJooso.name forState:UIControlStateNormal];
+        }
+        else if ([[_passJooso getMainPhone] length] > 0) {
+            [_btnBack setTitle:[_passJooso getMainPhone] forState:UIControlStateNormal];
+        }
+        else {
+            [_btnBack setTitle:@"정보보기" forState:UIControlStateNormal];
+        }
     }
-    else if ([[_passJooso getMainPhone] length] > 0) {
-        [_btnBack setTitle:[_passJooso getMainPhone] forState:UIControlStateNormal];
+    else if (_passHistory != nil) {
+        if (_passHistory.name.length > 0) {
+            [_btnBack setTitle:_passHistory.name forState:UIControlStateNormal];
+        }
+        else if (_passHistory.phoneNumber.length > 0) {
+            [_btnBack setTitle:_passHistory.phoneNumber forState:UIControlStateNormal];
+        }
+        else {
+            [_btnBack setTitle:@"정보보기" forState:UIControlStateNormal];
+        }
     }
     else {
         [_btnBack setTitle:@"정보보기" forState:UIControlStateNormal];
@@ -84,43 +101,65 @@
     _btnFace.enabled = NO;
     _btnNfc.enabled = NO;
     _btnNavi.enabled = NO;
+    _lbAddress.text = @"";
+    _lbPhoneNumber.text = @"";
     
-    
-    if (_passJooso.toThumnail.image != nil) {
-        _ivProfile.image = _passJooso.toThumnail.image;
-    } else {
-        _ivProfile.image = [UIImage imageNamed:@"icon_profile_people_s"];
-    }
-    
-    BOOL like = _passJooso.like;
-    _btnLike.selected = like;
+    _ivProfile.image = [UIImage imageNamed:@"icon_profile_people_s"];
+    if (_passJooso != nil) {
+        if (_passJooso.toThumnail.image != nil) {
+            _ivProfile.image = _passJooso.toThumnail.image;
+        }
         
-    if (_passJooso.address.length > 0 && _passJooso.geoLng != 0 && _passJooso.geoLng != 0) {
-        _lbAddress.text = _passJooso.address;
+        BOOL like = _passJooso.like;
+        _btnLike.selected = like;
+            
+        if (_passJooso.address.length > 0 && _passJooso.geoLng != 0 && _passJooso.geoLng != 0) {
+            _lbAddress.text = _passJooso.address;
+            
+            _btnNfc.enabled = YES;
+            _btnNavi.enabled = YES;
+        }
+        else {
+            _lbAddress.text = [_passJooso getMainPhone];
+        }
         
-        _btnNfc.enabled = YES;
-        _btnNavi.enabled = YES;
-    }
-    else {
-        _lbAddress.text = [_passJooso getMainPhone];
-    }
-    
-    _lbPhoneNumber.text = [_passJooso getMainPhone];
-    
-    if ([[_passJooso getMainPhone] length] > 0) {
-        _btnCall.enabled = YES;
-        _btnSms.enabled = YES;
-        _btnFace.enabled = YES;
-    }
-    
-    _btnEmptyMarker.hidden = NO;
-    if ((_passJooso.address.length > 0 || _passJooso.roadAddress.length > 0)
-        && _passJooso.geoLng > 0
-        && _passJooso.geoLng > 0) {
+        _lbPhoneNumber.text = [_passJooso getMainPhone];
         
-        _btnEmptyMarker.hidden = YES;
+        if ([[_passJooso getMainPhone] length] > 0) {
+            _btnCall.enabled = YES;
+            _btnSms.enabled = YES;
+            _btnFace.enabled = YES;
+        }
         
-        [self addSubViewGoogleMap];
+        _btnEmptyMarker.hidden = NO;
+        if ((_passJooso.address.length > 0 || _passJooso.roadAddress.length > 0)
+            && _passJooso.geoLng > 0
+            && _passJooso.geoLng > 0) {
+            
+            _btnEmptyMarker.hidden = YES;
+            
+            [self addSubViewGoogleMap];
+        }
+    }
+    else if (_passHistory != nil) {
+        if (_passHistory.phoneNumber != nil) {
+            _btnCall.enabled = YES;
+            _btnSms.enabled = YES;
+            _btnFace.enabled = YES;
+        }
+        
+        if ((_passHistory.address.length > 0)
+            && _passHistory.geoLat > 0
+            && _passHistory.geoLng > 0) {
+            
+            _btnEmptyMarker.hidden = YES;
+            [self addSubViewGoogleMap];
+            
+            _lbAddress.text = _passHistory.address;
+            
+            _btnNfc.enabled = YES;
+            _btnNavi.enabled = YES;
+        }
     }
     
     [self.view layoutIfNeeded];
@@ -134,92 +173,194 @@
     else if (sender == _btnDel) {
         NSString *title = @"";
         
-        if (_passJooso.name.length > 0) {
-            title = _passJooso.name;
+        if (_passJooso != nil) {
+            if (_passJooso.name.length > 0) {
+                title = _passJooso.name;
+            }
+            else if ([_passJooso getMainPhone].length > 0) {
+                title = [_passJooso getMainPhone];
+            }
+            else {
+                title = _passJooso.address;
+            }
         }
-        else if ([_passJooso getMainPhone].length > 0) {
-            title = [_passJooso getMainPhone];
-        }
-        else {
-            title = _passJooso.address;
+        else if (_passHistory != nil) {
+            //historytype =? 0: 전화타입, 1: sms, 2: facephone, 3: nfc, 4: navi
+            if (_passHistory.historyType == 0
+                || _passHistory.historyType == 1
+                || _passHistory.historyType == 2
+                || _passHistory.historyType == 3) {
+                
+                title = _passHistory.phoneNumber;
+            }
+            else if (_passHistory.historyType == 3
+                     || _passHistory.historyType == 4) { //nfc
+                title = _passJooso.address;
+            }
         }
         
         __weak typeof(self) weakSelf = self;
         [HAlertView alertShowWithTitle:title message:@"정말 삭제 하시겠습니까?" btnTitles:@[@"확인", @"취소"] alertBlock:^(NSInteger index) {
             if (index == 0) {
-                [weakSelf deleteJoso];
+                if (self.passJooso != nil) {
+                    [weakSelf deleteJoso];
+                }
+                else {
+                    [weakSelf deleteHistory];
+                }
             }
         }];
     }
     else if (sender == _btnModi) {
         AddJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddJooSoViewController"];
-        vc.passJooso = _passJooso;
-        vc.viewType = ViewTypeModi;
+        if (_passJooso != nil) {
+            vc.passJooso = _passJooso;
+            vc.viewType = ViewTypeModi;
+        }
+        else {
+            vc.passHistory = _passHistory;
+            vc.viewType = ViewTypeAdd;
+        }
+        
         [self.navigationController pushViewController:vc animated:NO];
     }
     else if (sender == _btnCall
              || sender == _btnSms
              || sender == _btnFace) {
         
-        if ([_passJooso getMainPhone].length > 0) {
+        NSString *phoneNumber = @"";
+        if (_passJooso != nil) {
+            phoneNumber = [_passJooso getMainPhone];
+        }
+        else if (_passHistory != nil) {
+            phoneNumber = _passHistory.phoneNumber;
+        }
+        
+        if (phoneNumber.length > 0) {
             NSString *url = @"";
             
             if (sender == _btnCall) {
-                url = [NSString stringWithFormat:@"tel://%@", [_passJooso getMainPhone]];
+                url = [NSString stringWithFormat:@"tel://%@", phoneNumber];
                 self.callType = @"1";
             }
             else if (sender == _btnFace) {
-                url = [NSString stringWithFormat:@"facetime://%@", [_passJooso getMainPhone]];
+                url = [NSString stringWithFormat:@"facetime://%@", phoneNumber];
                 self.callType = @"2";
             }
             else if (sender == _btnSms) {
-                url = [NSString stringWithFormat:@"sms://%@", [_passJooso getMainPhone]];
+                url = [NSString stringWithFormat:@"sms://%@", phoneNumber];
             }
             
             [[AppDelegate instance] openSchemeUrl:url];
         }
     }
     else if (sender == _btnLike) {
-        
-        _btnLike.selected = !_btnLike.selected;
-        _passJooso.like = _btnLike.selected;
-        
-        [[DBManager instance] updateLike:_passJooso success:^{
-            NSLog(@"success update like");
-        } fail:^(NSError *error) {
-            NSLog(@"error: update like > %@", error);
-        }];
+        if (_passJooso != nil) {
+            _btnLike.selected = !_btnLike.selected;
+            _passJooso.like = _btnLike.selected;
+            [[DBManager instance] updateLike:_passJooso success:^{
+                NSLog(@"success update like");
+            } fail:^(NSError *error) {
+                NSLog(@"error: update like > %@", error);
+            }];
+        }
     }
     else if (sender == _btnNfc) {
         NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
         PlaceInfo *info = [[PlaceInfo alloc] init];
-        info.x = self.passJooso.geoLng;
-        info.y = self.passJooso.geoLat;
-        info.jibun_address = self.passJooso.address;
-        info.road_address = self.passJooso.roadAddress;
-        info.name = self.passJooso.placeName;
+        if (_passJooso != nil) {
+            info.x = _passJooso.geoLng;
+            info.y = _passJooso.geoLat;
+            info.jibun_address = _passJooso.address;
+            info.name = _passJooso.placeName;
+        }
+        else if (_passHistory != nil) {
+            info.x = _passHistory.geoLng;
+            info.y = _passHistory.geoLat;
+            info.name = _passHistory.address;
+        }
         vc.passPlaceInfo = info;
         [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     }
     else if (sender == _btnNavi) {
-        NSString *url = nil;
-        NSString *selMapId = AppDelegate.instance.selMapId;
         
-        if ([selMapId isEqualToString:MapIdNaver]) {
-            url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.passJooso.geoLat, self.passJooso.geoLng, self.passJooso.address, [[NSBundle mainBundle] bundleIdentifier]];
+        PlaceInfo *info = [[PlaceInfo alloc] init];
+        if (_passJooso != nil) {
+            info.x = _passJooso.geoLng;
+            info.y = _passJooso.geoLat;
+            info.jibun_address = _passJooso.address;
+            info.name = _passJooso.placeName;
         }
-        else if ([selMapId isEqualToString:MapIdGoogle]) {
-            url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", self.passJooso.address, self.passJooso.geoLat, self.passJooso.geoLng];
-            url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        else if (_passHistory != nil) {
+            info.x = _passHistory.geoLng;
+            info.y = _passHistory.geoLat;
+            info.name = _passHistory.address;
         }
-        url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        
+        NSString *url = [self getNaviUrlWithPalceInfo:info];
         if (url.length > 0) {
-            [[AppDelegate instance] openSchemeUrl:url];
+            url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+            [[AppDelegate instance] openSchemeUrl:url completion:^(BOOL success) {
+                if (success == NO) {
+                    [self.view makeToast:@"지도가 설치되어 있지 않습니다."];
+                }
+                else {
+                    [self saveHistory];
+                }
+            }];
         }
     }
     else if (sender == _btnShare) {
         
     }
+}
+- (void)saveHistory {
+    NSMutableDictionary *param = nil;
+    if (self.passJooso != nil) {
+        param = [NSMutableDictionary dictionary];
+        
+        [param setObject:self.passJooso.name forKey:@"name"];
+        [param setObject:[self.passJooso getMainPhone]  forKey:@"phoneNumber"];
+        [param setObject:self.callType forKey:@"callType"];
+        [param setObject:[NSDate date] forKey:@"createDate"];
+        [param setObject:[NSNumber numberWithInt:4] forKey:@"historyType"];
+        
+        if (self.passJooso.address != nil && self.passJooso.geoLng > 0 && self.passJooso.geoLat > 0) {
+            [param setObject:self.passJooso.address forKeyedSubscript:@"address"];
+            [param setObject:[NSNumber numberWithFloat:self.passJooso.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithFloat:self.passJooso.geoLng] forKey:@"geoLng"];
+        }
+        
+        [DBManager.instance insertHistory:param success:nil fail:nil];
+    }
+    else if (self.passHistory != nil) {
+        param = [NSMutableDictionary dictionary];
+        if (self.passHistory.name.length > 0) {
+            [param setObject:self.passHistory.name forKey:@"name"];
+        }
+        else if (self.passHistory.phoneNumber.length > 0) {
+            [param setObject:self.passHistory.phoneNumber  forKey:@"phoneNumber"];
+        }
+        
+        [param setObject:[NSDate date] forKey:@"createDate"];
+        [param setObject:[NSNumber numberWithInt:4] forKey:@"historyType"];
+        
+        if (self.passHistory.address != nil && self.passHistory.geoLng > 0 && self.passHistory.geoLat > 0) {
+            [param setObject:self.passHistory.address forKeyedSubscript:@"address"];
+            [param setObject:[NSNumber numberWithFloat:self.passHistory.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithFloat:self.passHistory.geoLng] forKey:@"geoLng"];
+        }
+        
+        [DBManager.instance insertHistory:param success:nil fail:nil];
+    }
+
+}
+- (void)deleteHistory {
+    if (_passHistory == nil) {
+        return;
+    }
+    [DBManager.instance deleteHistory:_passHistory success:nil fail:nil];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)deleteJoso {
@@ -261,6 +402,7 @@
     } fail:^(NSError *error) {
         NSLog(@"error: delte jooso > %@", error);
     }];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 #pragma mark - CallkitControllerDelegate
@@ -351,14 +493,19 @@
 
 - (void)setMarker {
     PlaceInfo *info = [[PlaceInfo alloc] init];
-    info.x = _passJooso.geoLng;
-    info.y = _passJooso.geoLat;
-    info.jibun_address = _passJooso.address;
-    info.name = _passJooso.placeName;
-    
+    if (_passJooso != nil) {
+        info.x = _passJooso.geoLng;
+        info.y = _passJooso.geoLat;
+        info.jibun_address = _passJooso.address;
+        info.name = _passJooso.placeName;
+    }
+    else if (_passHistory != nil) {
+        info.x = _passHistory.geoLng;
+        info.y = _passHistory.geoLat;
+        info.name = _passHistory.address;
+    }
     [_googleMapView setMarker:info draggable:NO];
-    [_googleMapView moveMarker:info zoom:15]
-    ;
+    [_googleMapView moveMarker:info zoom:15];
 }
 
 @end

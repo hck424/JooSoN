@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="HistoryCell">
-            <rect key="frame" x="0.0" y="0.0" width="440" height="68"/>
+            <rect key="frame" x="0.0" y="0.0" width="548" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="440" height="68"/>
+                <rect key="frame" x="0.0" y="0.0" width="548" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PP0-sE-aET">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="68"/>
+                        <rect key="frame" x="0.0" y="0.0" width="548" height="68"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="axu-Pt-ktX">
                                 <rect key="frame" x="10" y="16" width="40" height="36.5"/>
@@ -40,7 +41,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="S12-Rp-x2S">
-                                <rect key="frame" x="60" y="17.5" width="211" height="33"/>
+                                <rect key="frame" x="60" y="17.5" width="281" height="33"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JA4-6G-a2q">
                                         <rect key="frame" x="0.0" y="0.0" width="83" height="18"/>
@@ -68,7 +69,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s5I-Ii-eI2">
-                                <rect key="frame" x="281" y="9" width="159" height="50"/>
+                                <rect key="frame" x="351" y="9" width="197" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="900" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFg-3x-gHL">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
@@ -90,8 +91,20 @@
                                             <action selector="onClickedButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7aO-CJ-t7N"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="900" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyL-Mn-new">
+                                    <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="900" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8X-Ie-WB1">
                                         <rect key="frame" x="76" y="0.0" width="30" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" priority="999" constant="30" id="57E-js-72I"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                        <state key="normal" image="call_icon3_n"/>
+                                        <state key="disabled" image="call_icon3_p"/>
+                                        <connections>
+                                            <action selector="onClickedButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WRi-lY-hjF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="900" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyL-Mn-new">
+                                        <rect key="frame" x="114" y="0.0" width="30" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="999" constant="30" id="Ckj-cw-qHf"/>
                                         </constraints>
@@ -103,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="900" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sr0-Oj-GMi">
-                                        <rect key="frame" x="114" y="0.0" width="30" height="50"/>
+                                        <rect key="frame" x="152" y="0.0" width="30" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="999" constant="30" id="hOl-s0-X36"/>
                                         </constraints>
@@ -131,6 +144,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="btnCall" destination="VyL-Mn-new" id="y30-9m-fAn"/>
+                <outlet property="btnFace" destination="s8X-Ie-WB1" id="tCy-ef-AoC"/>
                 <outlet property="btnNavi" destination="UVU-dt-nC0" id="kW5-X3-qkW"/>
                 <outlet property="btnNfc" destination="bFg-3x-gHL" id="Yrj-lH-Wfd"/>
                 <outlet property="btnSms" destination="Sr0-Oj-GMi" id="caW-uN-ZlJ"/>
@@ -140,10 +154,12 @@
                 <outlet property="lbName" destination="8mW-Cb-r0G" id="B2S-e4-Ev4"/>
                 <outlet property="lbTakeCalling" destination="RdQ-Lq-Gek" id="BBb-kf-yUg"/>
             </connections>
-            <point key="canvasLocation" x="224.63768115942031" y="125.89285714285714"/>
+            <point key="canvasLocation" x="302.89855072463769" y="125.89285714285714"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="call_icon3_n" width="60" height="50"/>
+        <image name="call_icon3_p" width="60" height="50"/>
         <image name="call_icon7_n" width="60" height="50"/>
         <image name="call_icon8_n" width="60" height="50"/>
         <image name="icon_call_a" width="32.5" height="32.5"/>

@@ -9,6 +9,8 @@
 #import "BaseViewController.h"
 #import "AppDelegate.h"
 #import "UIView+Toast.h"
+#import "DBManager.h"
+
 @interface BaseViewController ()
 
 @end
@@ -20,12 +22,10 @@
     
     
 }
-- (void)showNavi{
+- (NSString *)getNaviUrlWithPalceInfo:(PlaceInfo *)info {
     
-    
-    PlaceInfo *info = _selPlaceInfo;
     if (info == nil) {
-        return;
+        return @"";
     }
     
     NSString *url = nil;
@@ -48,12 +48,28 @@
         url = [NSString stringWithFormat:@"tmap://?rGoName=%@&rGox=%lf,rGoY=%lf", info.name, info.x, info.y];
     }
     if (url.length > 0) {
-        url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        [[AppDelegate instance] openSchemeUrl:url completion:^(BOOL success) {
-            if (success == NO) {
-                [self.view makeToast:@"지도가 설치되어 있지 않습니다."];
-            }
-        }];
+        return  url;
     }
+    return @"";
 }
+
+- (void)saveHisotryWithType:(NSInteger)type PlaceInfo:(PlaceInfo *)placeInfo {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    if (placeInfo.name.length > 0) {
+        [param setObject:self.selPlaceInfo.name forKey:@"name"];
+    }
+    [param setObject:[NSDate date] forKey:@"createDate"];
+    [param setObject:[NSNumber numberWithInt:(int)type] forKey:@"historyType"];
+    
+    if (placeInfo.jibun_address.length > 0) {
+        [param setObject:placeInfo.jibun_address forKey:@"address"];
+    }
+    
+    if (placeInfo.x > 0 && placeInfo.y > 0) {
+        [param setObject:[NSNumber numberWithDouble:self.selPlaceInfo.x] forKey:@"geoLng"];
+        [param setObject:[NSNumber numberWithDouble:self.selPlaceInfo.y] forKey:@"geoLat"];
+    }
+    [DBManager.instance insertHistory:param success:nil fail:nil];
+}
+
 @end

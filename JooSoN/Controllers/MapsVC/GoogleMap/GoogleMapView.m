@@ -86,6 +86,9 @@
     if (title == nil) {
         title = info.jibun_address;
     }
+    if (title == nil) {
+        title = @"";
+    }
     marker.userData = @{@"tag" : title, @"placeInfo" : info};
     marker.map = _gmsMapView;
     [marker setDraggable:draggable];

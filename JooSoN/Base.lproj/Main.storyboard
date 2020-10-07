@@ -259,8 +259,11 @@
                                     <action selector="onClickedButtonAction:" destination="Gxa-Pt-BQE" eventType="touchUpInside" id="bM2-wd-Keb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-Ob-EXa">
-                                <rect key="frame" x="30" y="164.33333333333334" width="315" height="0.0"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-Ob-EXa" customClass="CopyLabel">
+                                <rect key="frame" x="30" y="134.33333333333334" width="315" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="TG5-iQ-EVU"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -654,7 +657,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1751" y="1688"/>
+            <point key="canvasLocation" x="1749.5999999999999" y="1687.6847290640394"/>
         </scene>
         <!--Destination View Controller-->
         <scene sceneID="KTG-eu-1mf">
@@ -679,7 +682,7 @@
                                                 <color key="tintColor" red="0.14117647059999999" green="0.72941176470000002" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" image="mic.fill" catalog="system"/>
                                                 <connections>
-                                                    <action selector="onClickedButtonActions:" destination="fHN-4P-8us" eventType="touchUpInside" id="igs-qO-VV9"/>
+                                                    <action selector="onClickedButtonActions:" destination="fHN-4P-8us" eventType="touchUpInside" id="vE6-FQ-ewT"/>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UgC-6M-VWO">
@@ -905,7 +908,7 @@
                         <outlet property="bottomPopView" destination="ehL-25-bRz" id="zEu-az-baU"/>
                         <outlet property="btnCurrentLoc" destination="9nd-HX-Y5O" id="3dR-gc-cRz"/>
                         <outlet property="btnKeyboardDown" destination="4Ga-84-dxh" id="KRI-JE-Mkr"/>
-                        <outlet property="btnMicrophone" destination="9k9-re-D8Q" id="RoG-g9-2vp"/>
+                        <outlet property="btnMicrophone" destination="9k9-re-D8Q" id="qmO-PP-pFC"/>
                         <outlet property="btnMyPosition" destination="Ywg-Hp-dE0" id="DZN-SR-wor"/>
                         <outlet property="btnPopNavi" destination="Nb3-gQ-BXG" id="ORn-O3-F00"/>
                         <outlet property="btnPopNfc" destination="Dg2-oI-Wfj" id="Iga-hG-aXf"/>
@@ -3010,6 +3013,20 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="tWT-6h-yGH">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vA9-dp-b9w">
+                                <rect key="frame" x="276" y="5" width="83" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                <state key="normal" title="저장">
+                                    <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClickedButtonActins:" destination="fs0-2w-iOD" eventType="touchUpInside" id="g8X-Yl-ynw"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -3018,6 +3035,7 @@
                         <outlet property="btnCurLocation" destination="5FF-cv-btq" id="gkZ-zK-AW0"/>
                         <outlet property="btnKeyboardDown" destination="8Lp-GN-t09" id="bgG-2J-FVP"/>
                         <outlet property="btnMic" destination="b1q-SA-9El" id="Onl-wO-D0g"/>
+                        <outlet property="btnSave" destination="vA9-dp-b9w" id="PPm-gs-xCD"/>
                         <outlet property="btnSearch" destination="fYP-Su-1fa" id="2XE-kr-8kV"/>
                         <outlet property="collectionView" destination="oq0-HP-O4U" id="88f-tn-vy7"/>
                         <outlet property="lbCurrentLoc" destination="9YV-z5-wGB" id="diu-aL-DdT"/>

@@ -103,27 +103,27 @@
     if (_address.length > 0 && _lat != 0 && _lng != 0) {
 
         //            {“type”:1,“dest”:{“name”: “신세계백화점 천안신부동점”,“latitude”: 36.8195602,“longitude”: 127.1543738}}
-        NSString *lat = [NSString stringWithFormat:@"%.7f", _passPlaceInfo.x];
-        NSString *lng = [NSString stringWithFormat:@"%.7f", _passPlaceInfo.y];
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        [dic setObject:_passPlaceInfo.name forKey:@"name"];
-        [dic setObject:@"Soule" forKey:@"name"];
-        [dic setObject:[NSNumber numberWithDouble:36.8195602] forKey:@"latitude"];
-        [dic setObject:[NSNumber numberWithDouble:127.1543738] forKey:@"longitude"];
-        NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
-        [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
-        [resultDic setObject:dic forKey:@"dest"];
-        NSMutableString *msg = [NSMutableString stringWithFormat:@"{""type"":1,""dest"":{""name"":""%@"",""latitude"":%@,""longitude"":%@}}", _passPlaceInfo.name, lat, lng];
+        NSLog(@"==== address: %@", _address);
         
-//        NSString *msg = [self jsonStringWithDictionary:resultDic];
-//        NSDictionary *tmpDic = [NSJSONSerialization JSONObjectWithData:[msg dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [formatter setMaximumFractionDigits:10];
+        [formatter setRoundingMode: NSNumberFormatterRoundUp];
+        NSString *lat = [formatter stringFromNumber:[NSNumber numberWithDouble:_passPlaceInfo.y]];
+        NSString *lng = [formatter stringFromNumber:[NSNumber numberWithDouble:_passPlaceInfo.x]];
         
-//        msg = [[msg componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:@""];
-//        NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
-//        NSLog(@"==== data length = %ld", data.length);
-        NSLog(@"====nfc write : %@", msg);
+        NSString *name = _passPlaceInfo.name;
+        if (name == nil) {
+            name = @"";
+        }
+        //한글 넣으면 nfc 라이브러리에서 죽는다. 안넣어도 위경도 좌표만 있으면 인식함
+        //참고 type을 앞으로 땡겼더니 인식 못함
+        //별찌랄 끝에 dest 앞으로 땡기고 type을 뒤로 옮겼더니 잘 인식함 이것 땜에 고생 깨함 미침
+        NSString *mmm = [NSString stringWithFormat:@"{\"dest\":{\"name\":\"%s\",\"longitude\": %@,\"latitude\": %@},\"type\":1}\r", "Soul", lng, lat];
+
+        NSLog(@"====nfc write : %@", mmm);
         
-        return  msg;
+        return  mmm;
     }
     return nil;
 }
@@ -140,7 +140,7 @@
 - (NSString *)jsonStringWithDictionary:(NSDictionary *)dic {
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                       options:NSJSONWritingPrettyPrinted
+                                                       options:NSJSONWritingFragmentsAllowed
                                                          error:&error];
     
     if (error != nil) {
@@ -358,7 +358,7 @@
         NSLog(@"0. trnValue : %@", _trnValue);
         NSLog(@"0. tocken : %@", _TokenValue);
         NSLog(@"0. NORblueManager : %@", _norblueManager);
-        _TokenValue = [NSString stringWithFormat:@"%@\r", _TokenValue];
+        
         
         if( [connectedPeripheral count] > 0 ) {
             if( [_trnValue length] > 4 ) {
@@ -460,11 +460,12 @@
         [param setObject:[NSDate date] forKey:@"createDate"];
         [param setObject:[NSNumber numberWithDouble:_lat] forKey:@"geoLat"];
         [param setObject:[NSNumber numberWithDouble:_lng] forKey:@"geoLng"];
-//        [[DBManager instance] insertHistory:param success:^{
-//            [self.navigationController popViewControllerAnimated:NO];
-//        } fail:^(NSError *error) {
-//
-//        }];
+        [param setObject:[NSNumber numberWithInt:3] forKey:@"historyType"];
+        [[DBManager instance] insertHistory:param success:^{
+            [self.navigationController popViewControllerAnimated:NO];
+        } fail:^(NSError *error) {
+
+        }];
     }
 }
 
@@ -479,8 +480,7 @@
     NSArray *connectedPeripheral = [self getConnectedPeripherals];
     NSLog(@"1. connectedPeripheral : %@", connectedPeripheral);
     NSLog(@"1. trnValue : %@", _trnValue);
-    
-    _TokenValue = [NSString stringWithFormat:@"%@\r", _TokenValue];
+
     if( [connectedPeripheral count] > 0 ) {
         if( [_trnValue length] > 4 ) {
             [_mobilepass MobilePassAuthenticateProcessWithNorbluetoothmanager:_norblueManager trnvalue:_trnValue tocken:_TokenValue];

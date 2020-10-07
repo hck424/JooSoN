@@ -14,6 +14,7 @@
 #import "GoogleMapView.h"
 #import "MapSearchCell.h"
 #import "BannerFlowLayout.h"
+#import "UIView+Toast.h"
 
 @interface MapSearchViewController () <LocationViewDelegate, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BannerFlowLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
@@ -26,13 +27,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnCurLocation;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *btnMic;
+@property (weak, nonatomic) IBOutlet UIButton *btnSave;
 
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
 @property (nonatomic, strong) NSMutableArray *arrMarkers;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
 @property (nonatomic, strong) UIView *selMapView;
 
-@property (nonatomic, strong) PlaceInfo *selPlaceInfo;
+//@property (nonatomic, strong) PlaceInfo *selPlaceInfo;
 @property (nonatomic, strong) NSMutableArray *arrSearchResult;
 @property (nonatomic, assign) CGFloat widthMapSearchView;
 
@@ -102,6 +104,12 @@
                 [self.btnSearch sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
         }];
+    }
+    else if (sender == _btnSave) {
+        if ([self.delegate respondsToSelector:@selector(mapSearchVCSelectedPlace:)]) {
+            [self.delegate mapSearchVCSelectedPlace:self.selPlaceInfo];
+        }
+        [self.navigationController popViewControllerAnimated:NO];
     }
     
 }
@@ -174,7 +182,17 @@
             [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (action == MapCellActionNavi) {
-            [self showNavi];
+            NSString *url = [self getNaviUrlWithPalceInfo:info];
+            if (url.length > 0) {
+                [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                    if (success) {
+                        [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                    }
+                    else {
+                        [self.view makeToast:@"지도가 설치되어 있지 않습니다."];
+                    }
+                }];
+            }
         }
     }];
     return  cell;
@@ -196,9 +214,9 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-//- (void)bannerFlowLayout:(CGPoint)curPoint indexPath:(NSIndexPath *)indexPath {
-//
-//}
+- (void)bannerFlowLayout:(CGPoint)curPoint indexPath:(NSIndexPath *)indexPath {
+
+}
 
 #pragma mark - LocationViewDelegate
 - (void)locationView:(id)locationView curPlaceInfo:(PlaceInfo *)curPlaceInfo {

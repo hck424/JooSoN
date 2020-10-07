@@ -158,7 +158,15 @@ static NSString *cellIdentity = @"MapSearchCell";
             [self showNfcVC];
         }
         else if (action == MapCellActionNavi) {
-            [self showNavi];
+            NSString *url = [self getNaviUrlWithPalceInfo:self.selPlaceInfo];
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                if (success) {
+                    [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                }
+                else {
+                    [self.view makeToast:@"설정된 지도앱을 열수 없습니다."];
+                }
+            }];
         }
         else if (action == MapCellActionSave) {
             [self showSaveVC];
@@ -207,7 +215,15 @@ static NSString *cellIdentity = @"MapSearchCell";
         [self showNfcVC];
     }
     else if (sender == _btnPopNavi) {
-        [self showNavi];
+        NSString *url = [self getNaviUrlWithPalceInfo:self.selPlaceInfo];
+        [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+            if (success) {
+                [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+            }
+            else {
+                [self.view makeToast:@"설정된 지도앱을 열수 없습니다."];
+            }
+        }];
     }
     else if (sender == _btnMicrophone) {
         [SpeechAlertView showWithTitle:@"JooSoN" completion:^(NSString * _Nonnull result) {
@@ -296,7 +312,15 @@ static NSString *cellIdentity = @"MapSearchCell";
             [self showNfcVC];
         }
         else if (action == MapCellActionNavi) {
-            [self showNavi];
+            NSString *url = [self getNaviUrlWithPalceInfo:self.selPlaceInfo];
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                if (success) {
+                    [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                }
+                else {
+                    [self.view makeToast:@"설정된 지도앱을 열수 없습니다."];
+                }
+            }];
         }
     }
 }

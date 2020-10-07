@@ -45,6 +45,21 @@
     _lbCallCnt.hidden = YES;
     _lbTakeCalling.hidden = YES;
     
+    _btnCall.hidden = YES;
+    _btnNfc.hidden = YES;
+    _btnNavi.hidden = YES;
+    _btnSms.hidden = YES;
+    _btnFace.hidden = YES;
+
+    _btnCall.enabled = NO;
+    _btnNfc.enabled = NO;
+    _btnNavi.enabled = NO;
+    _btnSms.enabled = NO;
+    _btnFace.enabled = NO;
+
+    
+    NSString *imgName = @"";
+    //historytype =? 0: 전화타입, 1: sms, 2: facephone, 3: nfc, 4: navi
     if (_history.historyType == 0) {
         if (_history.name.length > 0) {
             _lbName.text = _history.name;
@@ -67,9 +82,11 @@
          5: 들어온 전화 받고 통화 종료
          */
         
-        NSString *imgName = @"";
+        
+        //        historytype =? 0: 전화타입, 1: sms, 2: facephone, 3: nfc, 4: navi
+        _ivState.image = [UIImage imageNamed:imgName];
+        
         if ([callType isEqualToString:@"1"]) {
-            
             if ([callState isEqualToString:@"1"]
                 || [callState isEqualToString:@"2"]
                 || [callState isEqualToString:@"3"]) {
@@ -86,7 +103,6 @@
             }
         }
         else {
-            
             if ([callState isEqualToString:@"4"]) {
                 imgName = @"call_type2_s";
             }
@@ -98,7 +114,6 @@
             }
         }
         
-        _ivState.image = [UIImage imageNamed:imgName];
         _lbCallCnt.textColor = RGB(38, 38, 38);
         _lbName.textColor = RGB(38, 38, 38);
         
@@ -118,39 +133,57 @@
             _lbTakeCalling.hidden = NO;
             _lbTakeCalling.text = [NSString stringWithFormat:@"%@", [self getMiliSecond]];
         }
+       
+        _ivState.image = [UIImage imageNamed:imgName];
         
-        _btnSms.enabled = NO;
-        _btnCall.enabled = NO;
-        if (_history.phoneNumber.length > 0) {
-            _btnSms.enabled = YES;
-            _btnCall.enabled = YES;
-        }
-        
-        _btnNfc.hidden = YES;
-        _btnNavi.hidden = YES;
-        if (_history.address.length > 0 && _history.geoLat != 0 && _history.geoLng != 0) {
-            _btnNfc.hidden = NO;
-            _btnNavi.hidden = NO;
-        }
+        _btnCall.hidden = NO;
+        _btnCall.enabled = YES;
     }
-    else {
-        _ivState.image = [UIImage imageNamed:@"call_icon7_n"];
-        _lbTakeCalling.hidden = YES;
-        _lbCallCnt.hidden = YES;
-        _lbName.text = _history.address;
+    else if (_history.historyType == 1) {  //sms
+        imgName = @"call_icon2_p";
+        _ivState.image = [UIImage imageNamed:imgName];
         
-        _btnSms.hidden = YES;
-        _btnCall.hidden = YES;
-        
-        _btnNfc.hidden = YES;
-        _btnNavi.hidden = YES;
-        if (_history.address.length > 0 && _history.geoLat != 0 && _history.geoLng != 0) {
-            _btnNfc.hidden = NO;
-            _btnNavi.hidden = NO;
+        if (_history.name.length > 0) {
+            _lbName.text = _history.name;
         }
+        else {
+            NSString *phoneNumber = _history.phoneNumber;
+            phoneNumber = [phoneNumber delPhoneFormater];
+            _lbName.text = [_nbaFomater inputString:phoneNumber];
+        }
+        _btnSms.hidden = NO;
+        _btnSms.enabled = YES;
+        
+    }
+    else if (_history.historyType == 2) { // face
+        imgName = @"call_icon3_p";
+        if (_history.name.length > 0) {
+            _lbName.text = _history.name;
+        }
+        else {
+            NSString *phoneNumber = _history.phoneNumber;
+            phoneNumber = [phoneNumber delPhoneFormater];
+            _lbName.text = [_nbaFomater inputString:phoneNumber];
+        }
+        _ivState.image = [UIImage imageNamed:imgName];
+        _btnFace.hidden = NO;
+        _btnFace.enabled = YES;
+    }
+    else if (_history.historyType == 3) { // nfc
+        imgName = @"call_icon7_p";
+        _lbName.text = _history.address;
+        _ivState.image = [UIImage imageNamed:imgName];
+        _btnNfc.hidden = NO;
+        _btnNfc.enabled = YES;
+    }
+    else {      //navi
+        imgName = @"call_icon8_p";
+        _lbName.text = _history.address;
+        _ivState.image = [UIImage imageNamed:imgName];
+        _btnNavi.hidden = NO;
+        _btnNavi.enabled = YES;
     }
 }
-
 - (NSString *)getMiliSecond {
     NSInteger ti = ceil(_history.takeCalling * 10);
     NSInteger second = ti/10;
@@ -183,6 +216,9 @@
     }
     else if (sender == _btnNfc) {
         action = HistoryCellActionNfc;
+    }
+    else if (sender == _btnFace) {
+        action = HistoryCellActionFace;
     }
     
     if (self.touchUpInsideBtnAction && action >= 0) {

@@ -14,7 +14,8 @@ typedef enum : NSUInteger {
     HistoryCellActionCall = 0,
     HistoryCellActionSms,
     HistoryCellActionNfc,
-    HistoryCellActionNavi
+    HistoryCellActionNavi,
+    HistoryCellActionFace
 } HistoryCellAction;
 
 @interface HistoryCell : UITableViewCell
@@ -27,6 +28,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *btnNfc;
 @property (weak, nonatomic) IBOutlet UIButton *btnNavi;
 @property (weak, nonatomic) IBOutlet UIButton *btnSms;
+@property (weak, nonatomic) IBOutlet UIButton *btnFace;
 
 @property (nonatomic, copy) void (^touchUpInsideBtnAction) (HistoryCellAction action, id data);
 

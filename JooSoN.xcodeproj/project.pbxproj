@@ -52,6 +52,7 @@
 		E9AFD4C823BB93D5005210C8 /* Thumnail+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4C023BB93D5005210C8 /* Thumnail+CoreDataProperties.m */; };
 		E9AFD4DE23BD91DF005210C8 /* GroupName+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4DB23BD91DF005210C8 /* GroupName+CoreDataProperties.m */; };
 		E9AFD4DF23BD91DF005210C8 /* GroupName+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AFD4DC23BD91DF005210C8 /* GroupName+CoreDataClass.m */; };
+		E9B55E5A252DAAA900099C13 /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B55E59252DAAA900099C13 /* CopyLabel.m */; };
 		E9B9962723C4385700139273 /* MapSearchHistory+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9962323C4385700139273 /* MapSearchHistory+CoreDataClass.m */; };
 		E9B9962823C4385700139273 /* MapSearchHistory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9962623C4385700139273 /* MapSearchHistory+CoreDataProperties.m */; };
 		E9B9962C23C44AEE00139273 /* MapSearchResultListController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9962B23C44AEE00139273 /* MapSearchResultListController.m */; };
@@ -221,6 +222,8 @@
 		E9AFD4DB23BD91DF005210C8 /* GroupName+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GroupName+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E9AFD4DC23BD91DF005210C8 /* GroupName+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GroupName+CoreDataClass.m"; sourceTree = "<group>"; };
 		E9AFD4DD23BD91DF005210C8 /* GroupName+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GroupName+CoreDataClass.h"; sourceTree = "<group>"; };
+		E9B55E58252DAAA900099C13 /* CopyLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
+		E9B55E59252DAAA900099C13 /* CopyLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		E9B9962323C4385700139273 /* MapSearchHistory+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MapSearchHistory+CoreDataClass.m"; sourceTree = "<group>"; };
 		E9B9962423C4385700139273 /* MapSearchHistory+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapSearchHistory+CoreDataClass.h"; sourceTree = "<group>"; };
 		E9B9962523C4385700139273 /* MapSearchHistory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapSearchHistory+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -862,6 +865,8 @@
 				E9DB06B723B7CA6500BD22C1 /* TableHeaderView.h */,
 				E9DB06AD23B7CA6500BD22C1 /* TableHeaderView.m */,
 				E9DB06A723B7CA6500BD22C1 /* TableHeaderView.xib */,
+				E9B55E58252DAAA900099C13 /* CopyLabel.h */,
+				E9B55E59252DAAA900099C13 /* CopyLabel.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1212,6 +1217,7 @@
 				E9DB06E723B7CA6500BD22C1 /* TOCropViewControllerTransitioning.m in Sources */,
 				E9DB06C423B7CA6500BD22C1 /* GroupListViewController.m in Sources */,
 				E9E8255D251BA476005A23AD /* BaseViewController.m in Sources */,
+				E9B55E5A252DAAA900099C13 /* CopyLabel.m in Sources */,
 				E9DB06CD23B7CA6500BD22C1 /* FavoriteListViewController.m in Sources */,
 				E9F0604323C0561600852F95 /* JooSo+CoreDataClass.m in Sources */,
 				E9B9965623C5DAA800139273 /* PlaceInfo.m in Sources */,

@@ -15,9 +15,10 @@
 #import "AddJooSoViewController.h"
 #import "SearchJooSoListViewController.h"
 #import "CallkitController.h"
+#import "CopyLabel.h"
 
 @interface DailingViewController () <CallkitControllerDelegate, SearchJooSoListViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *lbInputCall;
+@property (weak, nonatomic) IBOutlet CopyLabel *lbInputCall;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *arrNumberBtn;
 @property (weak, nonatomic) IBOutlet UIView *safeBottomView;
 
@@ -68,6 +69,8 @@
     _btnFace.imageView.contentMode = UIViewContentModeScaleAspectFit;
     _btnSms.imageView.contentMode = UIViewContentModeScaleAspectFit;
     _btnDel.imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    _lbInputCall.layer.borderColor = UIColor.redColor.CGColor;
+//    _lbInputCall.layer.borderWidth = 1.0;
     
     self.callkitController = [[CallkitController alloc] init];
     _callkitController.delegate = self;

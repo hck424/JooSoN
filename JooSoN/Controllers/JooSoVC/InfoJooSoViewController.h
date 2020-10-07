@@ -11,10 +11,13 @@
 #import "JooSo+CoreDataProperties.h"
 #import "Thumnail+CoreDataProperties.h"
 #import "History+CoreDataProperties.h"
+#import "BaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
-@interface InfoJooSoViewController : UIViewController
+
+@interface InfoJooSoViewController : BaseViewController
 @property (nonatomic, strong) JooSo *passJooso;
+@property (nonatomic, strong) History *passHistory;
 
 @end
 

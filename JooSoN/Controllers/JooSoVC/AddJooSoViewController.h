@@ -10,7 +10,7 @@
 #import "JooSo+CoreDataProperties.h"
 #import "Thumnail+CoreDataProperties.h"
 #import "PhoneNumber+CoreDataProperties.h"
-
+#import "History+CoreDataProperties.h"
 #import "PlaceInfo.h"
 
 IB_DESIGNABLE
@@ -23,6 +23,7 @@ typedef enum : NSUInteger {
 @interface AddJooSoViewController : UIViewController
 @property (nonatomic, assign) ViewType viewType;
 @property (nonatomic, strong) JooSo *passJooso;
+@property (nonatomic, strong) History *passHistory;
 @property (nonatomic, strong) NSString *passPhoneNumber;
 @property (nonatomic, strong) PlaceInfo *placeInfo;
 @end

@@ -16,7 +16,7 @@
 #import "ContactsManager.h"
 #import "PlaceInfo.h"
 #import "NfcViewController.h"
-
+#import "UIView+Toast.h"
 
 @interface HistoryViewController () <UITableViewDelegate, UITableViewDataSource, CallkitControllerDelegate>
 @property (weak, nonatomic) IBOutlet HTextField *textField;
@@ -144,11 +144,11 @@
     
     if (_arrData.count > 0) {
         _tblView.hidden = NO;
-        [_tblView reloadData];
     }
     else {
         _tblView.hidden = YES;
     }
+    [_tblView reloadData];
 }
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -180,19 +180,22 @@
             [[AppDelegate instance] openSchemeUrl:url];
         }
         else if (action == HistoryCellActionNavi) {
-            NSString *url = nil;
-            NSString *selMapId = AppDelegate.instance.selMapId;
-        
-            if ([selMapId isEqualToString:MapIdNaver]) {
-                url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", self.selHistory.geoLat, self.selHistory.geoLng, self.selHistory.address, [[NSBundle mainBundle] bundleIdentifier]];
-            }
-            else if ([selMapId isEqualToString:MapIdGoogle]) {
-                url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", self.selHistory.address, self.selHistory.geoLat, self.selHistory.geoLng];
-            }
-            url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-            if (url.length > 0) {
-                [[AppDelegate instance] openSchemeUrl:url];
-            }
+            PlaceInfo *info = [[PlaceInfo alloc] init];
+            info.jibun_address = self.selHistory.address;
+            info.x = self.selHistory.geoLng;
+            info.y = self.selHistory.geoLat;
+            info.name = self.selHistory.address;
+            
+            NSString *url = [self getNaviUrlWithPalceInfo:info];
+            
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                if (success) {
+                    [self saveHisotryWithType:4 PlaceInfo:info];
+                }
+                else {
+                    [self.view makeToast:@"지도를 열수 없습니다."];
+                }
+            }];
         }
         else if (action == HistoryCellActionNfc) {
             PlaceInfo *info = [[PlaceInfo alloc] init];
@@ -255,7 +258,12 @@
     History *history = [[[_arrData objectAtIndex:indexPath.section] objectForKey:@"sec_list"] objectAtIndex:indexPath.row];
     [[DBManager instance] findJoosoWithPhoneNumber:history.phoneNumber name:history.name success:^(NSArray *arrData) {
         InfoJooSoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoJooSoViewController"];
-        vc.passJooso = [arrData firstObject];
+        if (arrData.count > 0) {
+            vc.passJooso = arrData.firstObject;
+        }
+        else {
+            vc.passHistory = history;
+        }
         [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
     } fail:^(NSError *error) {
         NSLog(@"error: not find jooso > %@", error);

@@ -142,14 +142,21 @@
         if (_passPhoneNumber.length > 0) {
             [self addPhoneFiledWithTitle:@"" phoneNumber:_passPhoneNumber isMainPhone:NO];
         }
+        if (_passJooso.geoLat > 0 && _passJooso.geoLng > 0) {
+            self.placeInfo = [[PlaceInfo alloc] init];
+            _placeInfo.x = _passJooso.geoLng;
+            _placeInfo.y = _passJooso.geoLat;
+            _placeInfo.name = _passJooso.placeName;
+            _placeInfo.road_address = _passJooso.roadAddress;
+            _placeInfo.jibun_address = _passJooso.address;
+        }
+        
         _tfAddress.text = _passJooso.address;
         _tfGroup.text = _passJooso.groupName;
     }
     
-
-    if ((_passJooso.geoLat > 0 && _passJooso.geoLng > 0 && (_passJooso.address.length > 0 || _passJooso.roadAddress.length > 0))
-         || (_placeInfo.jibun_address.length > 0 && _placeInfo.x > 0 && _placeInfo.y > 0)) {
-        
+    
+    if (_placeInfo.x > 0 && _placeInfo.y > 0) {
         _lbEmptyLoc.hidden = YES;
         _btnEmptyLoc.hidden = YES;
         [self addSubViewGoogleMap];
@@ -679,34 +686,9 @@
     [_googleMapView moveMarker:_placeInfo zoom:14];
 }
 
-- (void)setMarker {
-    
-    PlaceInfo *info = nil;
-    if (_placeInfo != nil) {
-        info = _placeInfo;
-    }
-    else if (_passJooso != nil) {
-        info = [[PlaceInfo alloc] init];
-        info.jibun_address = _passJooso.address;
-        info.x = _passJooso.geoLng;
-        info.y = _passJooso.geoLat;
-        info.name = _passJooso.placeName;
-    }
-    else {
-        return;
-    }
-    
-    if ([self.selMapView respondsToSelector:@selector(setMarker:)]) {
-        [self.selMapView performSelector:@selector(setMarker:) withObject:info];
-    }
-    
-    if ([self.selMapView respondsToSelector:@selector(selectedMarkerWithPlaceInfo:)]) {
-        [self.selMapView performSelector:@selector(selectedMarkerWithPlaceInfo:) withObject:info];
-    }
-}
-
 #pragma mark - MapSearchViewControllerDelegate
 - (void)mapSearchVCSelectedPlace:(PlaceInfo *)place {
+    
     self.placeInfo = place;
     _tfAddress.text = _placeInfo.jibun_address;
     
