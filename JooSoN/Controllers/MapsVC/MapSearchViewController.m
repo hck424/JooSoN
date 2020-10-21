@@ -128,14 +128,14 @@
 - (void)requestMapSearchQuery {
     
     CLLocationCoordinate2D coordinate;
-    coordinate.latitude = _passPlaceInfo.y;
-    coordinate.longitude = _passPlaceInfo.x;
+    coordinate.latitude = _passPlaceInfo.x;
+    coordinate.longitude = _passPlaceInfo.y;
     NSString *searQuery = _tfSearch.text;
     
     [_googleMapView hideAllMarker];
     [_googleMapView setCurrentMarker];
     
-    [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
+    [DBManager.instance googleMapSearchPlace:searQuery type:@"D" coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
         if ([[dataDic objectForKey:@"places"] count] > 0) {
             self.collectionView.hidden = NO;
             [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
@@ -186,7 +186,7 @@
             if (url.length > 0) {
                 [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
                     if (success) {
-                        [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                        [self saveHisotryWithPlaceInfo:self.selPlaceInfo type:4];
                     }
                     else {
                         [self.view makeToast:@"지도가 설치되어 있지 않습니다."];

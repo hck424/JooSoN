@@ -198,8 +198,8 @@
         else if (actionType == CellActionNfc) {
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
             PlaceInfo *info = [[PlaceInfo alloc] init];
-            info.x = self.selJooso.geoLng;
-            info.y = self.selJooso.geoLat;
+            info.x = self.selJooso.geoLat;
+            info.y = self.selJooso.geoLng;
             info.jibun_address = self.selJooso.address;
             info.road_address = self.selJooso.roadAddress;
             info.name = self.selJooso.placeName;
@@ -305,8 +305,8 @@
             [param setObject:[NSNumber numberWithDouble:takeCalling] forKey:@"takeCalling"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"callCnt"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"historyType"];
-            [param setObject:[NSNumber numberWithFloat:_selJooso.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:_selJooso.geoLng] forKey:@"geoLng"];
+            [param setObject:[NSNumber numberWithDouble:_selJooso.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithDouble:_selJooso.geoLng] forKey:@"geoLng"];
             if (_selJooso.address != nil) {
                 [param setObject:_selJooso.address forKeyedSubscript:@"address"];
             }

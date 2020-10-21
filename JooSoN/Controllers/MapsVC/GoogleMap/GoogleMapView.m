@@ -36,8 +36,8 @@
         UIImage *img = [UIImage imageNamed:@"icon_location_my"];
         
         CLLocationCoordinate2D coordinate;
-        coordinate.latitude = self.curPlaceInfo.y;
-        coordinate.longitude = self.curPlaceInfo.x;
+        coordinate.latitude = self.curPlaceInfo.x;
+        coordinate.longitude = self.curPlaceInfo.y;
         
         self.curMarker = [[GMSMarker alloc] init];
         _curMarker.position = coordinate;
@@ -57,8 +57,8 @@
 
 - (void)moveMarker:(PlaceInfo *)info zoom:(NSInteger)zoom {
     CLLocationCoordinate2D coordinate;
-    coordinate.latitude = info.y;
-    coordinate.longitude = info.x;
+    coordinate.latitude = info.x;
+    coordinate.longitude = info.y;
     
     GMSCameraUpdate *move = [GMSCameraUpdate setTarget:coordinate zoom:zoom];
     [_gmsMapView animateWithCameraUpdate:move];
@@ -69,8 +69,8 @@
         return nil;
     }
     CLLocationCoordinate2D coordinate;
-    coordinate.latitude = info.y;
-    coordinate.longitude = info.x;
+    coordinate.latitude = info.x;
+    coordinate.longitude = info.y;
     GMSMarker *marker = [[GMSMarker alloc] init];
     
     marker.position = coordinate;

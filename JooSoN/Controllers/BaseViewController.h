@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "PlaceInfo.h"
 #import "SpeechAlertView.h"
+#import "History+CoreDataProperties.h"
+#import "JooSo+CoreDataProperties.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, strong) PlaceInfo *selPlaceInfo;
 - (NSString *)getNaviUrlWithPalceInfo:(PlaceInfo *)info;
-- (void)saveHisotryWithType:(NSInteger)type PlaceInfo:(PlaceInfo *)placeInfo;
+- (void)saveHisotryWithPlaceInfo:(PlaceInfo *)placeInfo type:(NSInteger)type;
+- (void)saveHisotryWithJooso:(JooSo *)jooso type:(NSInteger)type;
+- (void)saveHisotryWithHistory:(History *)history type:(NSInteger)type;
+- (void)saveHisotryWithPhoneNumber:(NSString *)phoneNumber type:(NSInteger)type;
 @end
 
 NS_ASSUME_NONNULL_END

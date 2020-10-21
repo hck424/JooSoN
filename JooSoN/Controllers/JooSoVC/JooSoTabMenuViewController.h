@@ -1,5 +1,5 @@
 //
-//  JooSoListViewController.h
+//  JooSoTabMenuViewController.h
 //  JooSoN
 //
 //  Created by 김학철 on 2019/12/15.
@@ -10,6 +10,6 @@
 #import "HTextField.h"
 #import "BaseViewController.h"
 IB_DESIGNABLE
-@interface JooSoListViewController : BaseViewController
+@interface JooSoTabMenuViewController : BaseViewController
 
 @end

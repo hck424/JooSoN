@@ -62,10 +62,17 @@ extern NSString *NMAP_ORDERBY_POPULARITY;
 - (void)insertMapSearchHistory:(NSString *)text success:(SUCCESS_VOID)success fail:(FAIL_ERROR)fail;
 - (void)deleteMapSearchHistory:(MapSearchHistory *)history success:(SUCCESS_VOID)success fail:(FAIL_ERROR)fail;
 
-
+//type: D: 목적지 검색, R: 주변검색
 - (void)googleMapSearchPlace:(NSString *)query
+                        type:(NSString *)type
                   coordinate:(CLLocationCoordinate2D)coordinate
                       circle:(NSUInteger)circle
                      success:(SUCCESS_DIC)success
                         fail:(FAIL_ERROR)fail;
+
+- (void)reqeustDetailInfoWithPlaceId:(NSString *)placeId
+                            userInfo:(id)userInfo
+                             success:(SUCCESS_DIC)success
+                                fail:(FAIL_ERROR)fail;
+//- (NSDictionary *)requestSynchronousPlaceDetailInfo:(NSString *)placeId;
 @end

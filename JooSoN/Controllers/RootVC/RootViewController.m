@@ -14,7 +14,7 @@
 #import "HistoryViewController.h"
 #import "DailingViewController.h"
 #import "DestinationViewController.h"
-#import "JooSoListViewController.h"
+#import "JooSoTabMenuViewController.h"
 #import "AroundSearchViewController.h"
 #import "UIImage+Utility.h"
 #import "DBManager.h"
@@ -24,11 +24,12 @@
 @interface RootViewController () <TabContainerDelegate, TabContainerDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *btnLogo;
 @property (weak, nonatomic) IBOutlet UIView *tabContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *btnKdca;
 @property (nonatomic, strong) TabContainerController *tabController;
 @property (nonatomic, strong) HistoryViewController *historyVC;
 @property (nonatomic, strong) DailingViewController *inputCallVC;
 @property (nonatomic, strong) DestinationViewController *destinationVC;
-@property (nonatomic, strong) JooSoListViewController *joosoListVC;
+@property (nonatomic, strong) JooSoTabMenuViewController *joosoListVC;
 @property (nonatomic, strong) AroundSearchViewController *aroundSearchVC;
 
 @end
@@ -41,7 +42,8 @@
     self.tabController = [[TabContainerController alloc] initWithNibName:@"TabContainerController" bundle:nil];
     _tabController.delegate = self;
     _tabController.dataSource = self;
-    
+    _btnKdca.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _btnLogo.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_tabContainerView addSubview:_tabController.view];
     [_tabController initConstraintWithSuperView:_tabContainerView];
     [_tabController reloadData];
@@ -161,6 +163,10 @@
             [((RightMenuViewController*)mainViewController.rightViewController).tblView reloadData];
         }];
     }
+    else if (sender == _btnKdca) {
+        NSString *url = @"http://www.cdc.go.kr/";
+        [AppDelegate.instance openSchemeUrl:url];
+    }
 }
 
 #pragma mark - TabContainerDelegate, TabContainerDataSource
@@ -178,7 +184,7 @@
         return _destinationVC;
     }
     else if (index == 3) {
-        self.joosoListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JooSoListViewController"];
+        self.joosoListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JooSoTabMenuViewController"];
         return _joosoListVC;
     }
     else {

@@ -17,6 +17,7 @@
 #import "PlaceInfo.h"
 #import "NfcViewController.h"
 #import "UIView+Toast.h"
+#import "HAlertView.h"
 
 @interface HistoryViewController () <UITableViewDelegate, UITableViewDataSource, CallkitControllerDelegate>
 @property (weak, nonatomic) IBOutlet HTextField *textField;
@@ -178,19 +179,20 @@
         else if (action == HistoryCellActionSms) {
             NSString *url = [NSString stringWithFormat:@"sms://%@" ,hisory.phoneNumber];
             [[AppDelegate instance] openSchemeUrl:url];
+            [self saveHisotryWithHistory:self.selHistory type:1];
         }
         else if (action == HistoryCellActionNavi) {
             PlaceInfo *info = [[PlaceInfo alloc] init];
             info.jibun_address = self.selHistory.address;
-            info.x = self.selHistory.geoLng;
-            info.y = self.selHistory.geoLat;
+            info.x = self.selHistory.geoLat;
+            info.y = self.selHistory.geoLng;
             info.name = self.selHistory.address;
             
             NSString *url = [self getNaviUrlWithPalceInfo:info];
             
             [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
                 if (success) {
-                    [self saveHisotryWithType:4 PlaceInfo:info];
+                    [self saveHisotryWithPlaceInfo:info type:4];
                 }
                 else {
                     [self.view makeToast:@"지도를 열수 없습니다."];
@@ -200,8 +202,8 @@
         else if (action == HistoryCellActionNfc) {
             PlaceInfo *info = [[PlaceInfo alloc] init];
             info.jibun_address = self.selHistory.address;
-            info.x = self.selHistory.geoLng;
-            info.y = self.selHistory.geoLat;
+            info.x = self.selHistory.geoLat;
+            info.y = self.selHistory.geoLng;
             info.name = self.selHistory.address;
             
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
@@ -216,7 +218,25 @@
     TableHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"TableHeaderView" owner:self options:nil].firstObject;
     NSString *secTitle = [[_arrData objectAtIndex:section] objectForKey:@"sec_title"];
     headerView.lbTitle.text = secTitle;
+    headerView.type = TableHeaderViewTypeDelete;
+    NSArray *arrSec = [[_arrData objectAtIndex:section] objectForKey:@"sec_list"];
+    headerView.data = arrSec;
     
+    [headerView setOnTouchupInsideAction:^(id data, NSInteger actionIndex) {
+        [HAlertView alertShowMsgWithCancelAndOkAction:@"해당 날짜에 기록을 지우시겠습니까?" alertBlock:^(NSInteger index) {
+            if (index == 1) {
+                if (data != nil && [data isKindOfClass:[NSArray class]]) {
+                    NSArray *arrSec = data;
+                    for (History *item in arrSec) {
+                        [[DBManager instance] deleteHistory:item success:nil fail:nil];
+                    }
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self reloadDate];
+                    });
+                }
+            }
+        }];
+    }];
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -319,8 +339,8 @@
             [param setObject:[NSNumber numberWithDouble:takeCalling] forKey:@"takeCalling"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"callCnt"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"historyType"];
-            [param setObject:[NSNumber numberWithFloat:_selHistory.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:_selHistory.geoLng] forKey:@"geoLng"];
+            [param setObject:[NSNumber numberWithDouble:_selHistory.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithDouble:_selHistory.geoLng] forKey:@"geoLng"];
             if (_selHistory.address != nil) {
                 [param setObject:_selHistory.address forKeyedSubscript:@"address"];
             }

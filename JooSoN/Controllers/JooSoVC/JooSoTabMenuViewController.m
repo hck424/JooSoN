@@ -1,12 +1,12 @@
 //
-//  JooSoListViewController.m
+//  JooSoTabMenuViewController.m
 //  JooSoN
 //
 //  Created by 김학철 on 2019/12/15.
 //  Copyright © 2019 김학철. All rights reserved.
 //
 
-#import "JooSoListViewController.h"
+#import "JooSoTabMenuViewController.h"
 #import "TabContainerController.h"
 #import "FavoriteListViewController.h"
 #import "TotalJooSoListViewController.h"
@@ -20,7 +20,7 @@
 #import "UIView+Toast.h"
 #import "PopupListViewController.h"
 
-@interface JooSoListViewController () <TabContainerDelegate, TabContainerDataSource, PopupListViewControllerDelegate, UITextFieldDelegate>
+@interface JooSoTabMenuViewController () <TabContainerDelegate, TabContainerDataSource, PopupListViewControllerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIView *tabView;
 @property (weak, nonatomic) IBOutlet HTextField *tfSearch;
@@ -41,7 +41,7 @@
 @property (nonatomic, strong) NSString *searchStr;
 @end
 
-@implementation JooSoListViewController
+@implementation JooSoTabMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

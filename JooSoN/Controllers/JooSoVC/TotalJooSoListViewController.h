@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "History+CoreDataProperties.h"
-
-@interface TotalJooSoListViewController : UIViewController
+#import "BaseViewController.h"
+@interface TotalJooSoListViewController : BaseViewController
 - (void)reloadData;
 - (void)setSearchText:(NSString *)searchTxt;
 @end

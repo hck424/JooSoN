@@ -245,8 +245,8 @@ NSString *const JooSoPhoneLabelOther = @"기타";
     NSString *departmentName = [param objectForKey:@"departmentName"];
     NSString *emailAddresses = [param objectForKey:@"emailAddresses"];
     
-    CGFloat geoLat = [[param objectForKey:@"geoLat"] floatValue];
-    CGFloat geoLng = [[param objectForKey:@"geoLng"] floatValue];
+    double geoLat = [[param objectForKey:@"geoLat"] doubleValue];
+    double geoLng = [[param objectForKey:@"geoLng"] doubleValue];
     
     NSString *groupName = [param objectForKey:@"groupName"];
     NSString *jobTitle = [param objectForKey:@"jobTitle"];
@@ -360,8 +360,8 @@ NSString *const JooSoPhoneLabelOther = @"기타";
     NSString *departmentName = [param objectForKey:@"departmentName"];
     NSString *emailAddresses = [param objectForKey:@"emailAddresses"];
     
-    CGFloat geoLat = [[param objectForKey:@"geoLat"] floatValue];
-    CGFloat geoLng = [[param objectForKey:@"geoLng"] floatValue];
+    double geoLat = [[param objectForKey:@"geoLat"] doubleValue];
+    double geoLng = [[param objectForKey:@"geoLng"] doubleValue];
     
     NSString *groupName = [param objectForKey:@"groupName"];
     NSString *jobTitle = [param objectForKey:@"jobTitle"];

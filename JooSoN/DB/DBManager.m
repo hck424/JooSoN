@@ -21,7 +21,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
 
 @property (nonatomic, strong) ContactsManager *contactsManager;
 @property (nonatomic, strong) NSManagedObjectContext *viewContext;
-
+@property (nonatomic, strong) NSCache *cache;
 @end
 
 @implementation DBManager
@@ -41,6 +41,7 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
 //        self.document = [[FIRFirestore.firestore collectionWithPath:@"uuids"] documentWithPath:uuid];
         self.contactsManager = [[ContactsManager alloc] init];
         self.viewContext = [AppDelegate instance].persistentContainer.viewContext;
+        self.cache = [[NSCache alloc] init];
     }
     return self;
 }
@@ -100,8 +101,8 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     NSString *address = [itemDic objectForKey:@"address"];
     NSString *departmentName = [itemDic objectForKey:@"departmentName"];
     NSString *emailAddresses = [itemDic objectForKey:@"emailAddresses"];
-    CGFloat geoLat = [[itemDic objectForKey:@"geoLat"] floatValue];
-    CGFloat geoLng = [[itemDic objectForKey:@"geoLng"] floatValue];
+    double geoLat = [[itemDic objectForKey:@"geoLat"] doubleValue];
+    double geoLng = [[itemDic objectForKey:@"geoLng"] doubleValue];
     
     NSString *groupName = [itemDic objectForKey:@"groupName"];
     NSString *jobTitle = [itemDic objectForKey:@"jobTitle"];
@@ -225,8 +226,8 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     oldJooso.address = [param objectForKey:@"address"];
     oldJooso.departmentName = [param objectForKey:@"departmentName"];
     oldJooso.emailAddresses = [param objectForKey:@"emailAddresses"];
-    oldJooso.geoLat = [[param objectForKey:@"geoLat"] floatValue];
-    oldJooso.geoLng = [[param objectForKey:@"geoLng"] floatValue];
+    oldJooso.geoLat = [[param objectForKey:@"geoLat"] doubleValue];
+    oldJooso.geoLng = [[param objectForKey:@"geoLng"] doubleValue];
     
     oldJooso.groupName = [param objectForKey:@"groupName"];
     oldJooso.jobTitle = [param objectForKey:@"jobTitle"];
@@ -483,8 +484,8 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     double takeCalling = [[param objectForKey:@"takeCalling"] doubleValue];
     NSInteger callCnt = [[param objectForKey:@"callCnt"] integerValue];
     NSString *address = [param objectForKey:@"address"];
-    CGFloat geoLat = [[param objectForKey:@"geoLat"] floatValue];
-    NSInteger geoLng = [[param objectForKey:@"geoLng"] floatValue];
+    double geoLat = [[param objectForKey:@"geoLat"] doubleValue];
+    double geoLng = [[param objectForKey:@"geoLng"] doubleValue];
     NSInteger historyType = [[param objectForKey:@"historyType"] integerValue];
     
     History *lastHistory = [self getLastHistoryOjbect];
@@ -711,12 +712,13 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
 }
 
 - (void)googleMapSearchPlace:(NSString *)query
+                        type:(NSString *)type
                   coordinate:(CLLocationCoordinate2D)coordinate
                       circle:(NSUInteger)circle
                      success:(SUCCESS_DIC)success
                         fail:(FAIL_ERROR)fail {
     
-    if (CLLocationCoordinate2DIsValid(coordinate)) {
+    if ([type isEqualToString:@"R"] && CLLocationCoordinate2DIsValid(coordinate)) {
         coordinate.latitude = 37.5666102;
         coordinate.longitude = 126.9783881;
     }
@@ -724,7 +726,14 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     NSMutableString *result = [NSMutableString string];
     [result setString:@"https://maps.googleapis.com/maps/api/place/textsearch/json?"];
     [result appendFormat:@"query=%@", query];
-    [result appendFormat:@"&fields=%@", @"formatted_address,formatted_phone_number"];
+    if ([type isEqualToString:@"R"]) {
+        [result appendFormat:@"&location=%lf,%lf", coordinate.latitude, coordinate.longitude];
+        [result appendFormat:@"&radius=%ld", circle];
+        [result appendFormat:@"&fields=%@", @"formatted_address,opening_hours,rating"];
+    }
+    else {
+        [result appendFormat:@"&fields=%@", @"formatted_address"];
+    }
     [result appendFormat:@"&language=%@", @"ko"];
     [result appendFormat:@"&key=%@", GoogleMapWebApiKey];
     
@@ -759,16 +768,18 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
                         NSArray *arrResult = [resDic objectForKey:@"results"];
                         NSMutableArray *arr = [NSMutableArray array];
                         for (NSDictionary *itemDic in arrResult) {
-                            PlaceInfo *info = [[PlaceInfo alloc] init];
+                            
+                           __block PlaceInfo *info = [[PlaceInfo alloc] init];
                             info.jibun_address = [itemDic objectForKey:@"formatted_address"];
                             info.name = [itemDic objectForKey:@"name"];
                             NSDictionary *geometryDic = [itemDic objectForKey:@"geometry"];
-                            info.x = [[[geometryDic objectForKey:@"location"] objectForKey:@"lng"] floatValue];
-                            info.y = [[[geometryDic objectForKey:@"location"] objectForKey:@"lat"] floatValue];
                             
+                            info.x = [[[geometryDic objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
+                            info.y = [[[geometryDic objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                            info.place_id = [itemDic objectForKey:@"place_id"];
                             if (info.x == 0.0 && info.y == 0.0) {
-                                info.x = [[[[geometryDic objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lng"] floatValue];
-                                info.y = [[[[geometryDic objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lat"] floatValue];
+                                info.x = [[[[geometryDic objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lat"] doubleValue];
+                                info.y = [[[[geometryDic objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lng"] doubleValue];
                             }
                             
                             [arr addObject:info];
@@ -789,4 +800,116 @@ NSString *NMAP_ORDERBY_POPULARITY = @"popularity";
     
     [dataTask resume];
 }
+
+//Chahe 사용
+- (void)reqeustDetailInfoWithPlaceId:(NSString *)placeId
+                            userInfo:(id)userInfo
+                             success:(SUCCESS_DIC)success
+                                fail:(FAIL_ERROR)fail
+{
+    
+    if (placeId == nil) {
+        fail(nil);
+        return;
+    }
+    __block id myInfo = userInfo;
+    if ([_cache objectForKey:placeId] != nil) {
+        NSMutableDictionary *resDic = [NSMutableDictionary dictionary];
+        [resDic setObject:[_cache objectForKey:placeId] forKey:@"data"];
+        [resDic setObject:myInfo forKey:@"userInfo"];
+        success(resDic);
+        return;
+    }
+    
+    NSMutableString *url = [NSMutableString string];
+    [url setString:@"https://maps.googleapis.com/maps/api/place/details/json?"];
+    [url appendFormat:@"place_id=%@", placeId];
+    [url appendFormat:@"&fields=%@", @"name,rating,formatted_phone_number"];
+    [url appendFormat:@"&key=%@", GoogleMapWebApiKey];
+    
+    NSString *enUrl = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:enUrl]];
+    request.HTTPMethod = @"GET";
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSLog(@"=== search place response state : %ld", httpResponse.statusCode);
+            
+            if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 300) {
+                NSError *parseError = nil;
+                NSDictionary *resDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                NSLog(@"=== search place : %@", resDic);
+                if (parseError != nil) {
+                    if (fail) {
+                        fail(parseError);
+                    }
+                }
+                else {
+                    if (success) {
+                        NSDictionary *result = [resDic objectForKey:@"result"];
+                        if (result != nil) {
+                            [self.cache setObject:result forKey:placeId];
+                            
+                            NSMutableDictionary *resDic = [NSMutableDictionary dictionary];
+                            [resDic setObject:result forKey:@"data"];
+                            [resDic setObject:myInfo forKey:@"userInfo"];
+                            
+                            success(resDic);
+                        }
+                    }
+                    else {
+                        fail(nil);
+                    }
+                }
+            }
+            else {
+                if (fail) {
+                    fail(error);
+                }
+            }
+        });
+    }];
+    
+    [dataTask resume];
+}
+
+- (NSDictionary *)requestSynchronousPlaceDetailInfo:(NSString *)placeId {
+    if (placeId == nil) {
+        return  nil;
+    }
+    
+    NSMutableString *url = [NSMutableString string];
+    [url setString:@"https://maps.googleapis.com/maps/api/place/details/json?"];
+    [url appendFormat:@"place_id=%@", placeId];
+    [url appendFormat:@"&fields=%@", @"name,rating,formatted_phone_number"];
+    [url appendFormat:@"&key=%@", GoogleMapWebApiKey];
+    
+    NSString *enUrl = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:enUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
+    request.HTTPMethod = @"GET";
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    __block NSDictionary *responseDic = nil;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (data != nil) {
+            NSLog(@"%@", error);
+            NSError *parseError = nil;
+            NSDictionary *resDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+            if (resDic != nil) {
+                responseDic = resDic;
+                
+            }
+        }
+        dispatch_semaphore_signal(semaphore);
+        
+    }];
+    [dataTask resume];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    return responseDic;
+}
+
 @end

@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnMicrophone;
 
 @property (strong, nonatomic) IBOutlet UIToolbar *accessoryView;
-@property (weak, nonatomic) IBOutlet UIButton *btnCurrentLoc;
 @property (weak, nonatomic) IBOutlet UIView *bottomPopView;
 @property (weak, nonatomic) IBOutlet UIButton *btnPopNfc;
 @property (weak, nonatomic) IBOutlet UIButton *btnPopNavi;
@@ -69,7 +68,8 @@ static NSString *cellIdentity = @"MapSearchCell";
     _minScrollHeight = 120;
     _maxScrollHeight = 500;
     _tfSearch.inputAccessoryView = _accessoryView;
-    
+    _btnSave.layer.cornerRadius = _btnSave.layer.frame.size.height/2;
+    _btnSave.imageView.contentMode = UIViewContentModeScaleAspectFit;
     _lbCurrentLoc.text = @"";
     [self addSubViewGoogleMapView];
     
@@ -118,10 +118,10 @@ static NSString *cellIdentity = @"MapSearchCell";
 //    [_scrollView layoutIfNeeded];
     __weak typeof(self) weakSelf = self;
     CLLocationCoordinate2D coordinate;
-    coordinate.latitude = _curPlaceInfo.y;
-    coordinate.longitude = _curPlaceInfo.x;
+    coordinate.latitude = _curPlaceInfo.x;
+    coordinate.longitude = _curPlaceInfo.y;
     
-    [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
+    [DBManager.instance googleMapSearchPlace:searQuery type:@"D" coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
         if ([[dataDic objectForKey:@"places"] count] > 0) {
             [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
             PlaceInfo *firstObj = self.arrSearchResult.firstObject;
@@ -150,6 +150,9 @@ static NSString *cellIdentity = @"MapSearchCell";
     BottomPopupViewController *vc = [[BottomPopupViewController alloc] initWidthType:BottomPopupTypeMapSearch title:title data:_arrSearchResult keys:nil completion:^(UIViewController * _Nonnull vcs, id  _Nonnull selData, MapCellAction action) {
     
         self.selPlaceInfo = selData;
+        if ([self.selPlaceInfo.jibun_address length] > 0) {
+            self.lbCurrentLoc.text = self.selPlaceInfo.jibun_address;
+        }
         if (action == MapCellActionDefault) {
             [self.googleMapView setMarker:self.selPlaceInfo draggable:YES];
             [self.googleMapView moveMarker:self.selPlaceInfo zoom:15];
@@ -161,7 +164,7 @@ static NSString *cellIdentity = @"MapSearchCell";
             NSString *url = [self getNaviUrlWithPalceInfo:self.selPlaceInfo];
             [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
                 if (success) {
-                    [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                    [self saveHisotryWithPlaceInfo:self.selPlaceInfo type:4];
                 }
                 else {
                     [self.view makeToast:@"설정된 지도앱을 열수 없습니다."];
@@ -171,7 +174,9 @@ static NSString *cellIdentity = @"MapSearchCell";
         else if (action == MapCellActionSave) {
             [self showSaveVC];
         }
+        else if (action == MapCellActionPhone && self.selPlaceInfo.phone_number != nil) {
         
+        }
         [vcs dismissViewControllerAnimated:YES completion:nil];
     }];
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -205,9 +210,6 @@ static NSString *cellIdentity = @"MapSearchCell";
     else if (sender == _btnKeyboardDown) {
         [_tfSearch resignFirstResponder];
     }
-    else if (sender == _btnCurrentLoc) {
-        [_googleMapView stopCurrentLocationUpdatingLocation];
-    }
     else if (sender == _btnPopShow) {
         [self showSearchResultView];
     }
@@ -218,7 +220,7 @@ static NSString *cellIdentity = @"MapSearchCell";
         NSString *url = [self getNaviUrlWithPalceInfo:self.selPlaceInfo];
         [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
             if (success) {
-                [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                [self saveHisotryWithPlaceInfo:self.selPlaceInfo type:4];
             }
             else {
                 [self.view makeToast:@"설정된 지도앱을 열수 없습니다."];
@@ -257,6 +259,9 @@ static NSString *cellIdentity = @"MapSearchCell";
     }
     else if ([notification.name isEqualToString:NotiSelectPlaceInfo]) {
         self.selPlaceInfo = ((PlaceInfo *)notification.object);
+        if ([self.selPlaceInfo.jibun_address length] > 0) {
+            _lbCurrentLoc.text = self.selPlaceInfo.jibun_address;
+        }
         NSInteger index = 0;
         for (NSInteger i = 0; i < _arrSearchResult.count; i++) {
             PlaceInfo *info = [_arrSearchResult objectAtIndex:i];
@@ -276,12 +281,12 @@ static NSString *cellIdentity = @"MapSearchCell";
 #pragma mark - LocationViewDelegate
 - (void)locationView:(id)locationView curPlaceInfo:(PlaceInfo *)curPlaceInfo {
     self.curPlaceInfo = curPlaceInfo;
-    if ([_curPlaceInfo.jibun_address length] > 0) {
-        _lbCurrentLoc.text = _curPlaceInfo.jibun_address;
-    }
     [locationView stopCurrentLocationUpdatingLocation];
     
     self.selPlaceInfo = _curPlaceInfo;
+    if ([self.selPlaceInfo.jibun_address length] > 0) {
+        _lbCurrentLoc.text = self.selPlaceInfo.jibun_address;
+    }
     [self.googleMapView setCurrentMarker];
     [self.googleMapView moveMarker:self.curPlaceInfo zoom:15];
     [self.googleMapView setMarker:self.curPlaceInfo draggable:YES];
@@ -289,6 +294,9 @@ static NSString *cellIdentity = @"MapSearchCell";
 
 - (void)mapViewSelectedPlaceInfo:(PlaceInfo *)info {
     self.selPlaceInfo = info;
+    if ([self.selPlaceInfo.jibun_address length] > 0) {
+        _lbCurrentLoc.text = self.selPlaceInfo.jibun_address;
+    }
 }
 
 - (void)showNfcVC {
@@ -308,6 +316,9 @@ static NSString *cellIdentity = @"MapSearchCell";
 - (void)googleMapView:(id)googleMapView didClickedAction:(MapCellAction)action withPlaceInfo:(PlaceInfo *)placeInfo {
     if (placeInfo != nil) {
         self.selPlaceInfo = placeInfo;
+        if ([self.selPlaceInfo.jibun_address length] > 0) {
+            _lbCurrentLoc.text = self.selPlaceInfo.jibun_address;
+        }
         if (action == MapCellActionNfc) {
             [self showNfcVC];
         }
@@ -315,7 +326,7 @@ static NSString *cellIdentity = @"MapSearchCell";
             NSString *url = [self getNaviUrlWithPalceInfo:self.selPlaceInfo];
             [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
                 if (success) {
-                    [self saveHisotryWithType:4 PlaceInfo:self.selPlaceInfo];
+                    [self saveHisotryWithPlaceInfo:self.selPlaceInfo type:4];
                 }
                 else {
                     [self.view makeToast:@"설정된 지도앱을 열수 없습니다."];

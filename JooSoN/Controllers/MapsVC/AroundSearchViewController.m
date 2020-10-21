@@ -29,8 +29,8 @@
 @property (nonatomic, strong) NSMutableArray *arrSearchResult;
 @property (nonatomic, strong) GoogleMapView *googleMapView;
 @property (nonatomic, strong) PlaceInfo *curPlaceInfo;
-@property (nonatomic, strong) PlaceInfo *selPlaceInfo;
 @property (nonatomic, strong) NSString *searQuery;
+@property (nonatomic, assign) NSUInteger searchCircle;
 
 @end
 
@@ -38,6 +38,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _searchCircle = 1000;   //디폴트 1km, 차량관련 10km
     _bgBlock1.layer.cornerRadius = 8.0;
     _bgBlock1.layer.borderColor = RGB(216, 216, 216).CGColor;
     _bgBlock1.layer.borderWidth = 1.0f;
@@ -74,6 +76,7 @@
     
     [_googleMapView startCurrentLocationUpdatingLocation];
 }
+
 //FIXME: clicked action
 - (IBAction)onClickedButtonAction:(id)sender {
     if ([sender isKindOfClass:[UIButton class]]) {
@@ -82,6 +85,12 @@
             NSInteger idx = selBtn.tag - 100;
             NSString *searchKey = @"";
             
+            if (selBtn.tag >= 100 && selBtn.tag <= 104) {
+                _searchCircle = 10000;
+            }
+            else {
+                _searchCircle = 1000;
+            }
             if (idx < _arrSearchKey.count) {
                 searchKey = [_arrSearchKey objectAtIndex:idx];
             }
@@ -89,12 +98,12 @@
                 btn.selected = NO;
             }
             selBtn.selected = YES;
-            if (_curPlaceInfo.city != nil) {
-                self.searQuery = [NSString stringWithFormat:@"%@ %@", _curPlaceInfo.city, searchKey];
-            }
-            else {
+//            if (_curPlaceInfo.city != nil) {
+//                self.searQuery = [NSString stringWithFormat:@"%@ %@", _curPlaceInfo.city, searchKey];
+//            }
+//            else {
                 self.searQuery = searchKey;
-            }
+//            }
             _tfSearch.text = _searQuery;
         }
         else if (sender == _btnSearch) {
@@ -129,11 +138,11 @@
 
 - (void)requestSearchQuery:(NSString *)searQuery {
     CLLocationCoordinate2D coordinate;
-    coordinate.latitude = _curPlaceInfo.y;
-    coordinate.longitude = _curPlaceInfo.x;
+    coordinate.latitude = _curPlaceInfo.x;
+    coordinate.longitude = _curPlaceInfo.y;
     
     __weak typeof(self) weakSelf = self;
-    [[DBManager instance] googleMapSearchPlace:searQuery coordinate:coordinate circle:2000 success:^(NSDictionary *dataDic) {
+    [DBManager.instance googleMapSearchPlace:searQuery type:@"R" coordinate:coordinate circle:_searchCircle success:^(NSDictionary *dataDic) {
         if ([[dataDic objectForKey:@"places"] count] > 0) {
             [self.arrSearchResult setArray:[dataDic objectForKey:@"places"]];
             [weakSelf showSearchResultView];

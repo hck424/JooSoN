@@ -119,9 +119,10 @@
     if ([sender.view isKindOfClass:[BGStackView class]]) {
         BGStackView *tmpView = (BGStackView *)sender.view;
         self.selJooso = tmpView.data;
-        NSString *url = [NSString stringWithFormat:@"tel://%@", [_selJooso getMainPhone]];
-        self.callType = @"1";
-        [[AppDelegate instance] openSchemeUrl:url];
+        self.selPhoneNumber = nil;
+        if ([_selJooso getMainPhone] != nil) {
+            _lbInputCall.text = [_nbaFomater inputString:[_selJooso getMainPhone]];
+        }
     }
 }
 
@@ -151,6 +152,7 @@
         [self refreshMoreUiWithSearchStr:newStr];
         newStr = [_nbaFomater inputString:newStr];
         _lbInputCall.text = newStr;
+        self.selJooso = nil;
     }
     else if (sender.tag == 110 || sender.tag == 111) {
         NSString *inputChar = @"";
@@ -159,15 +161,13 @@
         } else {
             inputChar = @"#";
         }
+        self.selJooso = nil;
         NSString *oldTxt = [_lbInputCall.text delPhoneFormater];
         NSString *newStr = [oldTxt stringByAppendingFormat:@"%@", inputChar];
         _lbInputCall.text = newStr;
-        
     }
     else if (sender == _btnCall
-             || sender == _btnFace
-             || sender == _btnSms) {
-        
+             || sender == _btnFace) {
         self.selPhoneNumber = [_lbInputCall.text delPhoneFormater];
         
         if (_selPhoneNumber.length > 0) {
@@ -181,11 +181,26 @@
                 url = [NSString stringWithFormat:@"facetime://%@", _selPhoneNumber];
                 self.callType = @"2";
             }
-            else if (sender == _btnSms) {
-                url = [NSString stringWithFormat:@"sms://%@", _selPhoneNumber];
-            }
             
-            [[AppDelegate instance] openSchemeUrl:url];
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                            
+            }];
+        }
+    }
+    else if (sender == _btnSms) {
+        self.selPhoneNumber = [_lbInputCall.text delPhoneFormater];
+        if (_selPhoneNumber.length > 0) {
+            NSString *url = [NSString stringWithFormat:@"sms://%@", _selPhoneNumber];
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                if (success) {
+                    if (self.selJooso != nil) {
+                        [self saveHisotryWithJooso:self.selJooso type:1];
+                    }
+                    else {
+                        [self saveHisotryWithPhoneNumber:self.selPhoneNumber type:1];
+                    }
+                }
+            }];
         }
     }
     else if (sender == _btnDel) {
@@ -198,8 +213,7 @@
         newStr = [_nbaFomater inputString:newStr];
         _lbInputCall.text = newStr;
     }
-    else if (sender == _btnAdd) {
-        
+    else if (sender == _btnAdd && _lbInputCall.text.length > 0) {
         __block UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"연락처 추가" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         __weak typeof(self) weakSelf = self;
@@ -234,6 +248,7 @@
         
         alert.modalPresentationStyle = UIModalPresentationCurrentContext;
         [self presentViewController:alert animated:YES completion:nil];
+        
     }
     else if (sender == _btnMore) {
         SearchJooSoListViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchJooSoListViewController"];
@@ -400,8 +415,8 @@
             [param setObject:[NSNumber numberWithDouble:takeCalling] forKey:@"takeCalling"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"callCnt"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"historyType"];
-            [param setObject:[NSNumber numberWithFloat:_selJooso.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:_selJooso.geoLng] forKey:@"geoLng"];
+            [param setObject:[NSNumber numberWithDouble:_selJooso.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithDouble:_selJooso.geoLng] forKey:@"geoLng"];
             if (_selJooso.address != nil) {
                 [param setObject:_selJooso.address forKeyedSubscript:@"address"];
             }

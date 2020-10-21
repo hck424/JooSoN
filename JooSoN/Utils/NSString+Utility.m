@@ -230,4 +230,8 @@
     return retVal;
 }
 
+- (void)toClipboard {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self;
+}
 @end

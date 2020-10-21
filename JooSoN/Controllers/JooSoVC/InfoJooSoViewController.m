@@ -36,8 +36,8 @@
 @property (weak, nonatomic) IBOutlet VerticalButton *btnNavi;
 @property (weak, nonatomic) IBOutlet VerticalButton *btnShare;
 
-@property (nonatomic, strong) CallkitController *callkitController;
 @property (nonatomic, strong) ContactsManager *contactsManager;
+@property (nonatomic, strong) CallkitController *callkitController;
 @property (nonatomic, strong) NSString *callType;
 @property (nonatomic, assign) NSTimeInterval callConectedTimeInterval;
 @property (nonatomic, strong) NSMutableArray *arrCallState;
@@ -238,20 +238,29 @@
         
         if (phoneNumber.length > 0) {
             NSString *url = @"";
-            
             if (sender == _btnCall) {
                 url = [NSString stringWithFormat:@"tel://%@", phoneNumber];
                 self.callType = @"1";
+                [[AppDelegate instance] openSchemeUrl:url];
             }
             else if (sender == _btnFace) {
                 url = [NSString stringWithFormat:@"facetime://%@", phoneNumber];
                 self.callType = @"2";
+                [[AppDelegate instance] openSchemeUrl:url];
             }
             else if (sender == _btnSms) {
                 url = [NSString stringWithFormat:@"sms://%@", phoneNumber];
+                [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                    if (success) {
+                        if (self.passJooso != nil) {
+                            [self saveHisotryWithJooso:self.passJooso type:1];
+                        }
+                        else if (self.passHistory != nil) {
+                            [self saveHisotryWithHistory:self.passHistory type:1];
+                        }
+                    }
+                }];
             }
-            
-            [[AppDelegate instance] openSchemeUrl:url];
         }
     }
     else if (sender == _btnLike) {
@@ -269,14 +278,14 @@
         NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
         PlaceInfo *info = [[PlaceInfo alloc] init];
         if (_passJooso != nil) {
-            info.x = _passJooso.geoLng;
-            info.y = _passJooso.geoLat;
+            info.x = _passJooso.geoLat;
+            info.y = _passJooso.geoLng;
             info.jibun_address = _passJooso.address;
             info.name = _passJooso.placeName;
         }
         else if (_passHistory != nil) {
-            info.x = _passHistory.geoLng;
-            info.y = _passHistory.geoLat;
+            info.x = _passHistory.geoLat;
+            info.y = _passHistory.geoLng;
             info.name = _passHistory.address;
         }
         vc.passPlaceInfo = info;
@@ -286,8 +295,8 @@
         
         PlaceInfo *info = [[PlaceInfo alloc] init];
         if (_passJooso != nil) {
-            info.x = _passJooso.geoLng;
-            info.y = _passJooso.geoLat;
+            info.x = _passJooso.geoLat;
+            info.y = _passJooso.geoLng;
             info.jibun_address = _passJooso.address;
             info.name = _passJooso.placeName;
         }
@@ -315,45 +324,12 @@
     }
 }
 - (void)saveHistory {
-    NSMutableDictionary *param = nil;
     if (self.passJooso != nil) {
-        param = [NSMutableDictionary dictionary];
-        
-        [param setObject:self.passJooso.name forKey:@"name"];
-        [param setObject:[self.passJooso getMainPhone]  forKey:@"phoneNumber"];
-        [param setObject:self.callType forKey:@"callType"];
-        [param setObject:[NSDate date] forKey:@"createDate"];
-        [param setObject:[NSNumber numberWithInt:4] forKey:@"historyType"];
-        
-        if (self.passJooso.address != nil && self.passJooso.geoLng > 0 && self.passJooso.geoLat > 0) {
-            [param setObject:self.passJooso.address forKeyedSubscript:@"address"];
-            [param setObject:[NSNumber numberWithFloat:self.passJooso.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:self.passJooso.geoLng] forKey:@"geoLng"];
-        }
-        
-        [DBManager.instance insertHistory:param success:nil fail:nil];
+        [self saveHisotryWithJooso:self.passJooso type:4];
     }
     else if (self.passHistory != nil) {
-        param = [NSMutableDictionary dictionary];
-        if (self.passHistory.name.length > 0) {
-            [param setObject:self.passHistory.name forKey:@"name"];
-        }
-        else if (self.passHistory.phoneNumber.length > 0) {
-            [param setObject:self.passHistory.phoneNumber  forKey:@"phoneNumber"];
-        }
-        
-        [param setObject:[NSDate date] forKey:@"createDate"];
-        [param setObject:[NSNumber numberWithInt:4] forKey:@"historyType"];
-        
-        if (self.passHistory.address != nil && self.passHistory.geoLng > 0 && self.passHistory.geoLat > 0) {
-            [param setObject:self.passHistory.address forKeyedSubscript:@"address"];
-            [param setObject:[NSNumber numberWithFloat:self.passHistory.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:self.passHistory.geoLng] forKey:@"geoLng"];
-        }
-        
-        [DBManager.instance insertHistory:param success:nil fail:nil];
+        [self saveHisotryWithHistory:self.passHistory type:4];
     }
-
 }
 - (void)deleteHistory {
     if (_passHistory == nil) {
@@ -455,8 +431,8 @@
             [param setObject:[NSNumber numberWithDouble:takeCalling] forKey:@"takeCalling"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"callCnt"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"historyType"];
-            [param setObject:[NSNumber numberWithFloat:_passJooso.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:_passJooso.geoLng] forKey:@"geoLng"];
+            [param setObject:[NSNumber numberWithDouble:_passJooso.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithDouble:_passJooso.geoLng] forKey:@"geoLng"];
             if (_passJooso.address != nil) {
                 [param setObject:_passJooso.address forKeyedSubscript:@"address"];
             }
@@ -494,8 +470,8 @@
 - (void)setMarker {
     PlaceInfo *info = [[PlaceInfo alloc] init];
     if (_passJooso != nil) {
-        info.x = _passJooso.geoLng;
-        info.y = _passJooso.geoLat;
+        info.x = _passJooso.geoLat;
+        info.y = _passJooso.geoLng;
         info.jibun_address = _passJooso.address;
         info.name = _passJooso.placeName;
     }

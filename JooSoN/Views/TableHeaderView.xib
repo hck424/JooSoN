@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,13 +17,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="397" height="25"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fA1-qh-zn4">
-                            <rect key="frame" x="15" y="0.0" width="367" height="25"/>
+                            <rect key="frame" x="15" y="0.0" width="327" height="25"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8M7-Ua-Mwx">
+                            <rect key="frame" x="342" y="0.0" width="45" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" priority="999" constant="45" id="X5T-Df-MQr"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                            <state key="normal" image="trash_b"/>
+                            <connections>
+                                <action selector="onClickedButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="dwO-zE-aGV"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <edgeInsets key="layoutMargins" top="0.0" left="15" bottom="0.0" right="15"/>
+                    <edgeInsets key="layoutMargins" top="0.0" left="15" bottom="0.0" right="10"/>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -35,9 +46,13 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="btnTrash" destination="8M7-Ua-Mwx" id="7k0-xI-Y5b"/>
                 <outlet property="lbTitle" destination="fA1-qh-zn4" id="lYd-tS-EHo"/>
             </connections>
             <point key="canvasLocation" x="5.0724637681159424" y="4.6875"/>
         </view>
     </objects>
+    <resources>
+        <image name="trash_b" width="20" height="22"/>
+    </resources>
 </document>

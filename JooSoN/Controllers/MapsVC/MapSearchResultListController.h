@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PlaceInfo.h"
-
+#import "BaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface MapSearchResultListController : UIViewController
+@interface MapSearchResultListController : BaseViewController
 
 @property (nonatomic, strong) NSArray *arrData;
 @property (nonatomic, strong) NSString *searchQuery;

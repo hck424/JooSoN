@@ -20,6 +20,8 @@
     [des appendFormat:@"sessionId : %@\r", _sessionId];
     [des appendFormat:@"x : %lf\r",  _x];
     [des appendFormat:@"y : %lf\r",  _y];
+    [des appendFormat:@"opening_hours : %@\r",  _opening_hours];
+    [des appendFormat:@"rating : %lf\r",  _rating];
     return des;
 }
 @end

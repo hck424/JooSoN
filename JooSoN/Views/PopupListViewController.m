@@ -174,6 +174,7 @@
         [UIView animateWithDuration:aniDuration animations:^{
             self.bottomContainer.constant = 0;
         }];
+        
     }
 }
 

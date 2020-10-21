@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HTextField.h"
 #import "BGStackView.h"
-
+#import "BaseViewController.h"
 IB_DESIGNABLE
-@interface DailingViewController : UIViewController
+@interface DailingViewController : BaseViewController
 
 @end

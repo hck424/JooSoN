@@ -14,7 +14,8 @@ typedef enum : NSInteger {
     MapCellActionNfc,
     MapCellActionNavi,
     MapCellActionSave,
-    MapCellActionShare
+    MapCellActionShare,
+    MapCellActionPhone
 } MapCellAction;
 typedef enum : NSInteger {
     BottomPopupTypeMapSearch = 0,

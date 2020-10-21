@@ -25,9 +25,7 @@
     _btnNavi.imageView.contentMode = UIViewContentModeScaleAspectFit;
     _btnNfc.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    _ivProfile.layer.cornerRadius = _ivProfile.frame.size.height/2;
-    _ivProfile.layer.borderColor = RGB(224, 224, 224).CGColor;
-    _ivProfile.layer.borderWidth = 1.0f;
+    
     
     UIView *selectedView = [[UIView alloc] init];
     selectedView.backgroundColor = RGBA(243, 243, 243, 1);
@@ -52,6 +50,10 @@
     _btnNavi.hidden = YES;
     _btnNfc.hidden = YES;
     
+    _ivProfile.layer.cornerRadius = _ivProfile.frame.size.height/2;
+    _ivProfile.layer.borderColor = RGB(224, 224, 224).CGColor;
+    _ivProfile.layer.borderWidth = 1.0f;
+    
     if (_cellType == CellTypeSelect) {
         _btnCheck.hidden = NO;
     }
@@ -63,8 +65,10 @@
         _btnSms.hidden = NO;
         
         if ((_jooso.address.length > 0 || _jooso.roadAddress.length > 0) && _jooso.geoLng > 0 && jooso.geoLng > 0) {
-            _btnNavi.hidden = NO;
-            _btnNfc.hidden = NO;
+//            _btnNavi.hidden = NO;
+//            _btnNfc.hidden = NO;
+            _ivProfile.layer.borderColor = RGB(36, 183, 179).CGColor;
+            
         }
     }
     

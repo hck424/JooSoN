@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+Utility.h"
-#import "PlaceInfo.h"
 #import "Define.h"
-NS_ASSUME_NONNULL_BEGIN
+#import "PlaceInfo.h"
 
+NS_ASSUME_NONNULL_BEGIN
+typedef enum {
+    MapSearchResultCellDefault,
+    MapSearchResultCellArroundSearch
+} MapSearchResultCellType;
 @interface MapSearchResultCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbAddress;
@@ -19,8 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnNfc;
 @property (weak, nonatomic) IBOutlet UIButton *btnNavi;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhone;
 @property (weak, nonatomic) IBOutlet UIButton *btnShare;
-
+@property (nonatomic, strong) PlaceInfo *info;
+@property (nonatomic, assign) MapSearchResultCellType type;
 @property (nonatomic, copy) void (^onTouchUpInSideAction) (MapCellAction action, PlaceInfo *data);
 - (void)configurationData:(PlaceInfo *)info;
 - (void)setOnTouchUpInSideAction:(void (^ _Nonnull)(MapCellAction action, PlaceInfo *data))onTouchUpInSideAction;

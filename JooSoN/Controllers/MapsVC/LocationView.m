@@ -13,7 +13,7 @@
     [super awakeFromNib];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 10;
     [self.locationManager requestWhenInUseAuthorization];
 }
@@ -52,8 +52,8 @@
             
             PlaceInfo *info = [[PlaceInfo alloc] init];
             
-            info.x = coordinate.longitude;
-            info.y = coordinate.latitude;
+            info.x = coordinate.latitude;
+            info.y = coordinate.longitude;
             
             NSMutableString *curAddr = [NSMutableString string];
             if (state.length > 0) {

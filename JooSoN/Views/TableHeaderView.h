@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum {
+    TableHeaderViewTypeDefault,
+    TableHeaderViewTypeDelete
+}TableHeaderViewType;
 
 @interface TableHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
-
+@property (weak, nonatomic) IBOutlet UIButton *btnTrash;
+@property (nonatomic, assign) TableHeaderViewType type;
+@property (nonatomic, strong) id data;
+@property (nonatomic, copy) void (^onTouchupInsideAction) (id data, NSInteger actionIndex);
+- (void)setOnTouchupInsideAction:(void (^)(id data, NSInteger actionIndex))onTouchupInsideAction;
 @end

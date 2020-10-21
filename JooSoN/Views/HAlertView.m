@@ -50,7 +50,7 @@
 + (void)alertShowMsgWithOkAction:(id)message
                       alertBlock:(ActionBlock)actionBlock {
     
-    NSString *strOk = NSLocalizedString(@"str_popup_title_done", @"");
+    NSString *strOk = @"확인";
     HAlertView *alert = [[HAlertView alloc] initWithTitle:nil
                                                   message:message
                                                 btnTitles:@[strOk]
@@ -65,8 +65,8 @@
 + (void)alertShowMsgWithCancelAndOkAction:(id)message
                                alertBlock:(ActionBlock)actionBlock {
     
-    NSString *strOk = NSLocalizedString(@"str_popup_title_done", @"");
-    NSString *strCancel = NSLocalizedString(@"str_popup_title_cancel", @"");
+    NSString *strOk = @"확인";
+    NSString *strCancel = @"취소";
     HAlertView *alert = [[HAlertView alloc] initWithTitle:nil
                                                   message:message
                                                 btnTitles:@[strCancel, strOk]

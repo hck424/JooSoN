@@ -118,6 +118,10 @@
         if (_placeInfo != nil) {
             _tfAddress.text = _placeInfo.jibun_address;
             _tfName.text = _placeInfo.name;
+            if (_placeInfo.phone_number != nil && _placeInfo.phone_number.length > 0) {
+                _lbMainPhone.text = [_nbaFomater inputString:_placeInfo.phone_number];
+                [self addPhoneFiledWithTitle:@"" phoneNumber:_lbMainPhone.text isMainPhone:YES];
+            }
         }
     }
     else if (_viewType == ViewTypeModi && _passJooso != nil) {
@@ -138,14 +142,13 @@
         for (PhoneNumber *ph in [_passJooso.toPhoneNumber array]) {
             [self addPhoneFiledWithTitle:ph.label phoneNumber:ph.number isMainPhone:ph.isMainPhone];
         }
-        
         if (_passPhoneNumber.length > 0) {
             [self addPhoneFiledWithTitle:@"" phoneNumber:_passPhoneNumber isMainPhone:NO];
         }
         if (_passJooso.geoLat > 0 && _passJooso.geoLng > 0) {
             self.placeInfo = [[PlaceInfo alloc] init];
-            _placeInfo.x = _passJooso.geoLng;
-            _placeInfo.y = _passJooso.geoLat;
+            _placeInfo.x = _passJooso.geoLat;
+            _placeInfo.y = _passJooso.geoLng;
             _placeInfo.name = _passJooso.placeName;
             _placeInfo.road_address = _passJooso.roadAddress;
             _placeInfo.jibun_address = _passJooso.address;
@@ -222,8 +225,8 @@
         }
         else if (_passJooso != nil) {
             info = [[PlaceInfo alloc] init];
-            info.x = _passJooso.geoLng;
-            info.y = _passJooso.geoLat;
+            info.x = _passJooso.geoLat;
+            info.y = _passJooso.geoLng;
             info.jibun_address = _passJooso.address;
             info.name = _passJooso.placeName;
             info.road_address = _passJooso.roadAddress;
@@ -353,8 +356,8 @@
             if ([_placeInfo.name length] > 0) {
                 [param setObject:_placeInfo.name forKey:@"placeName"];
             }
-            [param setObject:[NSNumber numberWithFloat:_placeInfo.y] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:_placeInfo.x] forKey:@"geoLng"];
+            [param setObject:[NSNumber numberWithDouble:_placeInfo.x] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithDouble:_placeInfo.y] forKey:@"geoLng"];
         }
         
         if (_viewType == ViewTypeAdd) {

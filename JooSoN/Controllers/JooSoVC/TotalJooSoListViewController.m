@@ -15,6 +15,7 @@
 #import "Utility.h"
 #import "InfoJooSoViewController.h"
 #import "NfcViewController.h"
+#import "UIView+Toast.h"
 
 @interface TotalJooSoListViewController () <UITableViewDelegate, UITableViewDataSource, CallkitControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
@@ -149,7 +150,6 @@
     
     JooSo *jooso = [[[_arrData objectAtIndex:indexPath.section] objectForKey:@"sec_list"] objectAtIndex:indexPath.row];
     
-    
     [cell configurationData:jooso];
     
     [cell setOnBtnTouchUpInside:^(CellActionType actionType, JooSo *jooso, id data) {
@@ -158,15 +158,21 @@
         if (actionType == CellActionCall) {
             self.callType = @"1";
             url = [NSString stringWithFormat:@"tel://%@", [jooso getMainPhone]];
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                
+            }];
         }
         else if (actionType == CellActionSms) {
             url = [NSString stringWithFormat:@"sms://%@", [jooso getMainPhone]];
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                [self saveHisotryWithJooso:self.selJooso type:1];
+            }];
         }
         else if (actionType == CellActionNfc) {
             NfcViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NfcViewController"];
             PlaceInfo *info = [[PlaceInfo alloc] init];
-            info.x = self.selJooso.geoLng;
-            info.y = self.selJooso.geoLat;
+            info.x = self.selJooso.geoLat;
+            info.y = self.selJooso.geoLng;
             info.jibun_address = self.selJooso.address;
             info.road_address = self.selJooso.roadAddress;
             info.name = self.selJooso.placeName;
@@ -174,20 +180,22 @@
             [[AppDelegate instance].rootNavigationController pushViewController:vc animated:NO];
         }
         else if (actionType == CellActionNavi) {
-            NSString *selMapId = AppDelegate.instance.selMapId;
-            if ([selMapId isEqualToString:MapIdNaver]) {
-                url = [NSString stringWithFormat:@"nmap://place?lat=%f&lng=%lf&name=%@&appname=%@", jooso.geoLat, jooso.geoLng, jooso.address, [[NSBundle mainBundle] bundleIdentifier]];
-                url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-            }
-            else if ([selMapId isEqualToString:MapIdGoogle]) {
-                url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@&sll=%lf,%lf", jooso.address, jooso.geoLat, jooso.geoLng];
-                url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-            }
-        }
-        
-        
-        if (url.length > 0) {
-            [[AppDelegate instance] openSchemeUrl:url];
+            
+            PlaceInfo *info = [[PlaceInfo alloc] init];
+            info.jibun_address = jooso.address;
+            info.x = jooso.geoLat;
+            info.y = jooso.geoLng;
+            
+            NSString *url = [self getNaviUrlWithPalceInfo:info];
+            
+            [AppDelegate.instance openSchemeUrl:url completion:^(BOOL success) {
+                if (success) {
+                    [self saveHisotryWithJooso:jooso type:4];
+                }
+                else {
+                    [self.view makeToast:@"설정된 지도앱을 열수 없습니다." duration:0.2 position:CSToastPositionTop];
+                }
+            }];
         }
     }];
     
@@ -264,8 +272,8 @@
             [param setObject:[NSNumber numberWithDouble:takeCalling] forKey:@"takeCalling"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"callCnt"];
             [param setObject:[NSNumber numberWithInt:0] forKey:@"historyType"];
-            [param setObject:[NSNumber numberWithFloat:_selJooso.geoLat] forKey:@"geoLat"];
-            [param setObject:[NSNumber numberWithFloat:_selJooso.geoLng] forKey:@"geoLng"];
+            [param setObject:[NSNumber numberWithDouble:_selJooso.geoLat] forKey:@"geoLat"];
+            [param setObject:[NSNumber numberWithDouble:_selJooso.geoLng] forKey:@"geoLng"];
             if (_selJooso.address != nil) {
                 [param setObject:_selJooso.address forKeyedSubscript:@"address"];
             }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 
 @interface NSString (Utility)
 - (NSString *)addNumberFormater;
@@ -19,4 +19,5 @@
 - (BOOL)isNumeric;
 - (BOOL)isNull;
 - (NSString *)convertEmptyStringToNull;
+- (void)toClipboard;
 @end

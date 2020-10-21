@@ -90,7 +90,7 @@
 		E9DB06C623B7CA6500BD22C1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062523B7CA6400BD22C1 /* RootNavigationController.m */; };
 		E9DB06C723B7CA6500BD22C1 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062623B7CA6400BD22C1 /* HistoryViewController.m */; };
 		E9DB06C823B7CA6500BD22C1 /* GroupManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062723B7CA6400BD22C1 /* GroupManageViewController.m */; };
-		E9DB06C923B7CA6500BD22C1 /* JooSoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062B23B7CA6400BD22C1 /* JooSoListViewController.m */; };
+		E9DB06C923B7CA6500BD22C1 /* JooSoTabMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062B23B7CA6400BD22C1 /* JooSoTabMenuViewController.m */; };
 		E9DB06CA23B7CA6500BD22C1 /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062D23B7CA6400BD22C1 /* HistoryCell.m */; };
 		E9DB06CB23B7CA6500BD22C1 /* AddJooSoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB062E23B7CA6400BD22C1 /* AddJooSoViewController.m */; };
 		E9DB06CC23B7CA6500BD22C1 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB063023B7CA6400BD22C1 /* LeftMenuViewController.m */; };
@@ -282,7 +282,7 @@
 		E9DB062823B7CA6400BD22C1 /* AroundSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AroundSearchViewController.h; sourceTree = "<group>"; };
 		E9DB062923B7CA6400BD22C1 /* DestinationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationViewController.h; sourceTree = "<group>"; };
 		E9DB062A23B7CA6400BD22C1 /* TotalJooSoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalJooSoListViewController.h; sourceTree = "<group>"; };
-		E9DB062B23B7CA6400BD22C1 /* JooSoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JooSoListViewController.m; sourceTree = "<group>"; };
+		E9DB062B23B7CA6400BD22C1 /* JooSoTabMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JooSoTabMenuViewController.m; sourceTree = "<group>"; };
 		E9DB062C23B7CA6400BD22C1 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		E9DB062D23B7CA6400BD22C1 /* HistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCell.m; sourceTree = "<group>"; };
 		E9DB062E23B7CA6400BD22C1 /* AddJooSoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJooSoViewController.m; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 		E9DB064923B7CA6400BD22C1 /* JooSoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JooSoCell.m; sourceTree = "<group>"; };
 		E9DB064A23B7CA6400BD22C1 /* HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
 		E9DB064B23B7CA6400BD22C1 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		E9DB064C23B7CA6400BD22C1 /* JooSoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JooSoListViewController.h; sourceTree = "<group>"; };
+		E9DB064C23B7CA6400BD22C1 /* JooSoTabMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JooSoTabMenuViewController.h; sourceTree = "<group>"; };
 		E9DB064E23B7CA6400BD22C1 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		E9DB064F23B7CA6400BD22C1 /* VerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalButton.h; sourceTree = "<group>"; };
 		E9DB065023B7CA6400BD22C1 /* ShareData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareData.m; sourceTree = "<group>"; };
@@ -558,8 +558,8 @@
 				E9DB062F23B7CA6400BD22C1 /* JooSoCell.h */,
 				E9DB064923B7CA6400BD22C1 /* JooSoCell.m */,
 				E9DB063423B7CA6400BD22C1 /* JooSoCell.xib */,
-				E9DB064C23B7CA6400BD22C1 /* JooSoListViewController.h */,
-				E9DB062B23B7CA6400BD22C1 /* JooSoListViewController.m */,
+				E9DB064C23B7CA6400BD22C1 /* JooSoTabMenuViewController.h */,
+				E9DB062B23B7CA6400BD22C1 /* JooSoTabMenuViewController.m */,
 				E9DB062A23B7CA6400BD22C1 /* TotalJooSoListViewController.h */,
 				E9DB063F23B7CA6400BD22C1 /* TotalJooSoListViewController.m */,
 				E99F5F4623BECB260014D13C /* InfoJooSoViewController.h */,
@@ -1234,7 +1234,7 @@
 				E9DB05FD23B7C55E00BD22C1 /* JooSoN.xcdatamodeld in Sources */,
 				E9DB06E623B7CA6500BD22C1 /* TOActivityCroppedImageProvider.m in Sources */,
 				E9DB06DA23B7CA6500BD22C1 /* ShareData.m in Sources */,
-				E9DB06C923B7CA6500BD22C1 /* JooSoListViewController.m in Sources */,
+				E9DB06C923B7CA6500BD22C1 /* JooSoTabMenuViewController.m in Sources */,
 				E94BFAF923D54C5F00FD6E7B /* LocationView.m in Sources */,
 				E9DB06C523B7CA6500BD22C1 /* RootViewController.m in Sources */,
 				E9DB06E823B7CA6500BD22C1 /* TOCroppedImageAttributes.m in Sources */,
@@ -1429,8 +1429,8 @@
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.0;
-				DEVELOPMENT_TEAM = 6QB33R9MCL;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = P6LTBQ8443;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/LGSideMenuController\"",
@@ -1460,9 +1460,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JooSoN/Librarys/Vendor",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sangchange.JooSoN;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.koetec.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
@@ -1482,8 +1482,8 @@
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.0;
-				DEVELOPMENT_TEAM = 6QB33R9MCL;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = P6LTBQ8443;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/LGSideMenuController\"",
@@ -1512,9 +1512,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JooSoN/Librarys/Vendor",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sangchange.JooSoN;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.koetec.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";

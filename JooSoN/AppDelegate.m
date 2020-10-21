@@ -15,9 +15,10 @@
 #import "MainViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
-
+#import "LocationView.h"
 @interface AppDelegate ()
 
+@property (nonatomic, strong) LocationView *locationView;
 
 @end
 
@@ -51,10 +52,14 @@
     else {
         [self callMainViewController];
     }
-    
+    self.locationView = [[LocationView alloc] init];
+    [_locationView startCurrentLocationUpdatingLocation];
     return YES;
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [_locationView startCurrentLocationUpdatingLocation];
+}
 - (RootNavigationController *)rootNavigationController {
     MainViewController *mainViewController = (MainViewController *)[self.window rootViewController];
     return (RootNavigationController *)mainViewController.rootViewController;
@@ -101,6 +106,7 @@
 }
 
 - (void)openSchemeUrl:(NSString *)urlStr completion:(void (^)(BOOL success))completion {
+    urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *phoneUrl = [NSURL URLWithString:urlStr];
     UIApplication *application = [UIApplication sharedApplication];
 
