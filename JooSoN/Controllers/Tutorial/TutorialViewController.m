@@ -24,10 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.delegate = self;
+    self.pageControl.numberOfPages = 6;
 }
 
 - (void)hideButton {
-    if (_curPageIdx == 2) {
+    if (_curPageIdx == self.pageControl.numberOfPages - 1) {
         _btnSkip.hidden = YES;
         _btnNext.hidden = YES;
         _pageControl.hidden = YES;

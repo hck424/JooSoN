@@ -4074,15 +4074,15 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCh-W0-wnP">
-                                        <rect key="frame" x="0.0" y="0.0" width="1125" height="734"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="2250" height="734"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="q1k-h1-6zD">
-                                                <rect key="frame" x="0.0" y="0.0" width="1125" height="734"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="2250" height="734"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YR9-BW-yzM">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_1" translatesAutoresizingMaskIntoConstraints="NO" id="iE1-6b-z9U">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1" translatesAutoresizingMaskIntoConstraints="NO" id="iE1-6b-z9U">
                                                                 <rect key="frame" x="30" y="50" width="315" height="634"/>
                                                             </imageView>
                                                         </subviews>
@@ -4097,7 +4097,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Mn-29-4GF">
                                                         <rect key="frame" x="375" y="0.0" width="375" height="734"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_2" translatesAutoresizingMaskIntoConstraints="NO" id="s8u-25-Y8k">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial2" translatesAutoresizingMaskIntoConstraints="NO" id="s8u-25-Y8k">
                                                                 <rect key="frame" x="30" y="50" width="315" height="634"/>
                                                             </imageView>
                                                         </subviews>
@@ -4112,7 +4112,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPu-ns-GlY">
                                                         <rect key="frame" x="750" y="0.0" width="375" height="734"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_3" translatesAutoresizingMaskIntoConstraints="NO" id="MvC-O4-YGY">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial3" translatesAutoresizingMaskIntoConstraints="NO" id="MvC-O4-YGY">
                                                                 <rect key="frame" x="30" y="50" width="315" height="634"/>
                                                             </imageView>
                                                         </subviews>
@@ -4122,6 +4122,51 @@
                                                             <constraint firstItem="MvC-O4-YGY" firstAttribute="top" secondItem="RPu-ns-GlY" secondAttribute="top" constant="50" id="BUE-Tz-xBU"/>
                                                             <constraint firstAttribute="trailing" secondItem="MvC-O4-YGY" secondAttribute="trailing" constant="30" id="JBV-eq-0e3"/>
                                                             <constraint firstAttribute="bottom" secondItem="MvC-O4-YGY" secondAttribute="bottom" constant="50" id="Ks6-gk-QA4"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGz-Fi-qYi">
+                                                        <rect key="frame" x="1125" y="0.0" width="375" height="734"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial4" translatesAutoresizingMaskIntoConstraints="NO" id="9NJ-Pn-jLX">
+                                                                <rect key="frame" x="30" y="50" width="315" height="634"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="9NJ-Pn-jLX" secondAttribute="trailing" constant="30" id="3Km-wF-qq3"/>
+                                                            <constraint firstItem="9NJ-Pn-jLX" firstAttribute="top" secondItem="GGz-Fi-qYi" secondAttribute="top" constant="50" id="9h6-7v-gTL"/>
+                                                            <constraint firstAttribute="bottom" secondItem="9NJ-Pn-jLX" secondAttribute="bottom" constant="50" id="lSl-Fw-44s"/>
+                                                            <constraint firstItem="9NJ-Pn-jLX" firstAttribute="leading" secondItem="GGz-Fi-qYi" secondAttribute="leading" constant="30" id="n7N-gV-Owx"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1L-7g-4dE">
+                                                        <rect key="frame" x="1500" y="0.0" width="375" height="734"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial5" translatesAutoresizingMaskIntoConstraints="NO" id="JIs-wC-tyH">
+                                                                <rect key="frame" x="30" y="50" width="315" height="634"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="JIs-wC-tyH" secondAttribute="trailing" constant="30" id="9Lf-0r-sbZ"/>
+                                                            <constraint firstItem="JIs-wC-tyH" firstAttribute="top" secondItem="D1L-7g-4dE" secondAttribute="top" constant="50" id="HaG-xK-mHa"/>
+                                                            <constraint firstAttribute="bottom" secondItem="JIs-wC-tyH" secondAttribute="bottom" constant="50" id="JJR-su-iEi"/>
+                                                            <constraint firstItem="JIs-wC-tyH" firstAttribute="leading" secondItem="D1L-7g-4dE" secondAttribute="leading" constant="30" id="me1-6A-06J"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEr-EW-Kyf">
+                                                        <rect key="frame" x="1875" y="0.0" width="375" height="734"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial6" translatesAutoresizingMaskIntoConstraints="NO" id="cbk-ue-RLW">
+                                                                <rect key="frame" x="30" y="50" width="315" height="634"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="cbk-ue-RLW" firstAttribute="leading" secondItem="hEr-EW-Kyf" secondAttribute="leading" constant="30" id="HFS-xX-fAQ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="cbk-ue-RLW" secondAttribute="bottom" constant="50" id="W9j-1D-3x5"/>
+                                                            <constraint firstAttribute="trailing" secondItem="cbk-ue-RLW" secondAttribute="trailing" constant="30" id="grI-5Q-jBk"/>
+                                                            <constraint firstItem="cbk-ue-RLW" firstAttribute="top" secondItem="hEr-EW-Kyf" secondAttribute="top" constant="50" id="tLV-mM-42T"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -4617,9 +4662,12 @@
         <image name="mic.fill" catalog="system" width="108" height="128"/>
         <image name="nfc_tag_logo" width="355" height="355"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="tutorial_1" width="375" height="667"/>
-        <image name="tutorial_2" width="375" height="667"/>
-        <image name="tutorial_3" width="375" height="667"/>
+        <image name="tutorial1" width="414" height="896"/>
+        <image name="tutorial2" width="414" height="896"/>
+        <image name="tutorial3" width="414" height="896"/>
+        <image name="tutorial4" width="414" height="896"/>
+        <image name="tutorial5" width="414" height="896"/>
+        <image name="tutorial6" width="414" height="896"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
