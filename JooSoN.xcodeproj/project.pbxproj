@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		85B5291B62D69C38F7C0AD34 /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F2B9F1105096E0FE55A31A /* Pods_JooSoN.framework */; };
+		8CEE67BF325FA64109BE3F5D /* Pods_JooSoN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DA88B791C165B47B9FA1B2 /* Pods_JooSoN.framework */; };
 		E91F367A251477B000867C25 /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E91F3679251477B000867C25 /* InfoView.m */; };
 		E91F367D251477B600867C25 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91F367C251477B600867C25 /* InfoView.xib */; };
 		E927A5962513044B00EE1E55 /* BannerFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E927A5952513044B00EE1E55 /* BannerFlowLayout.m */; };
@@ -153,9 +153,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8270BE5EE3BFD8ACA7125072 /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
-		B63915DEF86C5F3361C4691F /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
-		E3F2B9F1105096E0FE55A31A /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31B8E2401D8EDFFBF3FF0AEC /* Pods-JooSoN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.release.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.release.xcconfig"; sourceTree = "<group>"; };
+		68DA88B791C165B47B9FA1B2 /* Pods_JooSoN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JooSoN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D85D19DD5244DA339BB78F1 /* Pods-JooSoN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JooSoN.debug.xcconfig"; path = "Target Support Files/Pods-JooSoN/Pods-JooSoN.debug.xcconfig"; sourceTree = "<group>"; };
 		E91F3678251477B000867C25 /* InfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
 		E91F3679251477B000867C25 /* InfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
 		E91F367C251477B600867C25 /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
@@ -446,7 +446,7 @@
 				E9B9963723C55EDE00139273 /* CoreLocation.framework in Frameworks */,
 				E9B9963E23C55F3700139273 /* libxml2.tbd in Frameworks */,
 				E9B9963523C55ED500139273 /* OpenGLES.framework in Frameworks */,
-				85B5291B62D69C38F7C0AD34 /* Pods_JooSoN.framework in Frameworks */,
+				8CEE67BF325FA64109BE3F5D /* Pods_JooSoN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,7 +463,7 @@
 				E9B9963823C55EEA00139273 /* QuartzCore.framework */,
 				E9B9963623C55EDE00139273 /* CoreLocation.framework */,
 				E9B9963423C55ED500139273 /* OpenGLES.framework */,
-				E3F2B9F1105096E0FE55A31A /* Pods_JooSoN.framework */,
+				68DA88B791C165B47B9FA1B2 /* Pods_JooSoN.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -471,8 +471,8 @@
 		B47206EB8F11F5FD331A7287 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B63915DEF86C5F3361C4691F /* Pods-JooSoN.debug.xcconfig */,
-				8270BE5EE3BFD8ACA7125072 /* Pods-JooSoN.release.xcconfig */,
+				9D85D19DD5244DA339BB78F1 /* Pods-JooSoN.debug.xcconfig */,
+				31B8E2401D8EDFFBF3FF0AEC /* Pods-JooSoN.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -948,12 +948,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9DB060823B7C55F00BD22C1 /* Build configuration list for PBXNativeTarget "JooSoN" */;
 			buildPhases = (
-				4C576169C9161D738E0A7CAB /* [CP] Check Pods Manifest.lock */,
+				61AB9DE9867382936F447A8C /* [CP] Check Pods Manifest.lock */,
 				E9DB05E823B7C55E00BD22C1 /* Sources */,
 				E9DB05E923B7C55E00BD22C1 /* Frameworks */,
 				E9DB05EA23B7C55E00BD22C1 /* Resources */,
-				71C7B86D21D5889F5A06F11B /* [CP] Embed Pods Frameworks */,
-				B1CAA839CE372B88ED533763 /* [CP] Copy Pods Resources */,
+				66E6F3E7BFE065D32BAB143E /* [CP] Embed Pods Frameworks */,
+				21A83C745FD28A69AE3B9B75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1085,7 +1085,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C576169C9161D738E0A7CAB /* [CP] Check Pods Manifest.lock */ = {
+		21A83C745FD28A69AE3B9B75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61AB9DE9867382936F447A8C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1107,7 +1124,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		71C7B86D21D5889F5A06F11B /* [CP] Embed Pods Frameworks */ = {
+		66E6F3E7BFE065D32BAB143E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1122,23 +1139,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B1CAA839CE372B88ED533763 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JooSoN/Pods-JooSoN-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1359,7 +1359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1411,7 +1411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1421,7 +1421,7 @@
 		};
 		E9DB060923B7C55F00BD22C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B63915DEF86C5F3361C4691F /* Pods-JooSoN.debug.xcconfig */;
+			baseConfigurationReference = 9D85D19DD5244DA339BB78F1 /* Pods-JooSoN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1429,8 +1429,9 @@
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.0.4;
 				DEVELOPMENT_TEAM = P6LTBQ8443;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/LGSideMenuController\"",
@@ -1450,6 +1451,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/*\"/**",
 				);
 				INFOPLIST_FILE = JooSoN/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1462,28 +1464,31 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.koetec.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		E9DB060A23B7C55F00BD22C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8270BE5EE3BFD8ACA7125072 /* Pods-JooSoN.release.xcconfig */;
+			baseConfigurationReference = 31B8E2401D8EDFFBF3FF0AEC /* Pods-JooSoN.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = JooSoN/JooSoN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.0.4;
 				DEVELOPMENT_TEAM = P6LTBQ8443;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/LGSideMenuController\"",
@@ -1502,6 +1507,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/*\"/**",
 				);
 				INFOPLIST_FILE = JooSoN/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1514,12 +1520,13 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.koetec.JooSoN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JooSoN/Controllers/Nfc/JooSoN-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
