@@ -86,7 +86,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Aq3-Ti-0xP">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="JRV-KE-gyH">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="eOm-Vt-HR1">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="eOm-Vt-HR1">
                                 <rect key="frame" x="16" y="0.0" width="142" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ico_kdca"/>
