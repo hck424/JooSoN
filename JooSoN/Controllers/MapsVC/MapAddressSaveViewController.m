@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSMutableArray *arrCallState;
 @property (nonatomic, assign) NSTimeInterval callConectedTimeInterval;
 @property (nonatomic, strong) NSString *callType;
+@property (nonatomic, strong) PlaceInfo *curPlaceInfo;
 @end
 
 @implementation MapAddressSaveViewController
@@ -70,6 +71,27 @@
     [_googleMapView setMarker:_passPlaceInfo draggable:NO];
     [_googleMapView moveMarker:_passPlaceInfo zoom:15];
 }
+#pragma mark - LocationViewDelegate
+- (void)locationView:(id)locationView curPlaceInfo:(PlaceInfo *)curPlaceInfo {
+    self.curPlaceInfo = curPlaceInfo;
+    [locationView stopCurrentLocationUpdatingLocation];
+    
+    self.selPlaceInfo = _curPlaceInfo;
+    if ([self.selPlaceInfo.jibun_address length] > 0) {
+        _lbAddress.text = self.selPlaceInfo.jibun_address;
+    }
+    [self.googleMapView setCurrentMarker];
+    [self.googleMapView moveMarker:self.curPlaceInfo zoom:15];
+    [self.googleMapView setMarker:self.curPlaceInfo draggable:YES];
+}
+
+- (void)mapViewSelectedPlaceInfo:(PlaceInfo *)info {
+    self.selPlaceInfo = info;
+    if ([self.selPlaceInfo.jibun_address length] > 0) {
+        _lbAddress.text = self.selPlaceInfo.jibun_address;
+    }
+}
+
 - (void)longPressGesture:(UILongPressGestureRecognizer *)gestrue {
     UIButton *btn = (UIButton *)gestrue.view;
     if (gestrue.state == UIGestureRecognizerStateChanged) {
@@ -124,8 +146,8 @@
 //            y : 37.530766
 //            _passPlaceInfo
             
-            NSString *geoLng = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:_passPlaceInfo.x]];
-            NSString *geoLat = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:_passPlaceInfo.y]];
+            NSString *geoLat = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:_passPlaceInfo.x]];
+            NSString *geoLng = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:_passPlaceInfo.y]];
             
             NSMutableDictionary *param = [NSMutableDictionary dictionary];
             [param setObject:_passPlaceInfo.name forKey:@"name"];

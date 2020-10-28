@@ -70,6 +70,9 @@
         [param setObject:[NSNumber numberWithDouble:placeInfo.x] forKey:@"geoLat"];
         [param setObject:[NSNumber numberWithDouble:placeInfo.y] forKey:@"geoLng"];
     }
+    if (placeInfo.phone_number != nil) {
+        [param setObject:placeInfo.phone_number forKey:@"phoneNumber"];
+    }
     [DBManager.instance insertHistory:param success:nil fail:nil];
 }
 

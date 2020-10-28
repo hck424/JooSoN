@@ -301,8 +301,8 @@
             info.name = _passJooso.placeName;
         }
         else if (_passHistory != nil) {
-            info.x = _passHistory.geoLng;
-            info.y = _passHistory.geoLat;
+            info.x = _passHistory.geoLat;
+            info.y = _passHistory.geoLng;
             info.name = _passHistory.address;
         }
         
@@ -476,8 +476,8 @@
         info.name = _passJooso.placeName;
     }
     else if (_passHistory != nil) {
-        info.x = _passHistory.geoLng;
-        info.y = _passHistory.geoLat;
+        info.x = _passHistory.geoLat;
+        info.y = _passHistory.geoLng;
         info.name = _passHistory.address;
     }
     [_googleMapView setMarker:info draggable:NO];

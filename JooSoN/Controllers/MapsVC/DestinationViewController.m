@@ -86,7 +86,7 @@ static NSString *cellIdentity = @"MapSearchCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.view endEditing:YES];
-
+    self.tfSearch.text = @"";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:NotiSelectPlaceInfo object:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated {

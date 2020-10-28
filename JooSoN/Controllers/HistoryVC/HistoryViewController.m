@@ -53,6 +53,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reloadDate];
+    self.textField.text = @"";
 }
 
 - (void)reloadDate {

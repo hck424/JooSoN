@@ -115,12 +115,26 @@
         if (_passPhoneNumber.length > 0) {
             _lbMainPhone.text = [_nbaFomater inputString:_passPhoneNumber];
         }
-        if (_placeInfo != nil) {
+        else if (_placeInfo != nil) {
             _tfAddress.text = _placeInfo.jibun_address;
             _tfName.text = _placeInfo.name;
             if (_placeInfo.phone_number != nil && _placeInfo.phone_number.length > 0) {
                 _lbMainPhone.text = [_nbaFomater inputString:_placeInfo.phone_number];
                 [self addPhoneFiledWithTitle:@"" phoneNumber:_lbMainPhone.text isMainPhone:YES];
+            }
+        }
+        else if (_passHistory != nil) {
+            _tfAddress.text = _passHistory.address;
+            _tfName.text = _passHistory.name;
+            if (_passHistory.phoneNumber != nil) {
+                _lbMainPhone.text = [_nbaFomater inputString:_passHistory.phoneNumber];
+            }
+            if (_passHistory.geoLat > 0 && _passHistory.geoLng > 0) {
+                self.placeInfo = [[PlaceInfo alloc] init];
+                self.placeInfo.x = _passHistory.geoLat;
+                self.placeInfo.y = _passHistory.geoLng;
+                self.placeInfo.name = _passHistory.name;
+                self.placeInfo.jibun_address = _passHistory.address;
             }
         }
     }

@@ -88,8 +88,8 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:UIKeyboardWillHideNotification object:nil];
-//    _tfSearch.text = @"";
-//    self.searchStr = @"";
+    _tfSearch.text = @"";
+    self.searchStr = @"";
 //    [self.view endEditing:YES];
 }
 - (void)viewDidAppear:(BOOL)animated {

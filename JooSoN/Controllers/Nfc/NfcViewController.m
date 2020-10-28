@@ -64,8 +64,8 @@
     _lbName.text = _passPlaceInfo.name;
     _lbAddress.text = _passPlaceInfo.jibun_address;
 
-    self.lat = _passPlaceInfo.y;
-    self.lng = _passPlaceInfo.x;
+    self.lat = _passPlaceInfo.x;
+    self.lng = _passPlaceInfo.y;
     self.address = _passPlaceInfo.jibun_address;
 
     
@@ -107,10 +107,10 @@
         
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [formatter setMaximumFractionDigits:10];
+        [formatter setMaximumFractionDigits:7];
         [formatter setRoundingMode: NSNumberFormatterRoundUp];
-        NSString *lat = [formatter stringFromNumber:[NSNumber numberWithDouble:_passPlaceInfo.y]];
-        NSString *lng = [formatter stringFromNumber:[NSNumber numberWithDouble:_passPlaceInfo.x]];
+        NSString *lat = [formatter stringFromNumber:[NSNumber numberWithDouble:_passPlaceInfo.x]];
+        NSString *lng = [formatter stringFromNumber:[NSNumber numberWithDouble:_passPlaceInfo.y]];
         
         NSString *name = _passPlaceInfo.name;
         if (name == nil) {
@@ -119,7 +119,7 @@
         //한글 넣으면 nfc 라이브러리에서 죽는다. 안넣어도 위경도 좌표만 있으면 인식함
         //참고 type을 앞으로 땡겼더니 인식 못함
         //별찌랄 끝에 dest 앞으로 땡기고 type을 뒤로 옮겼더니 잘 인식함 이것 땜에 고생 깨함 미침
-        NSString *mmm = [NSString stringWithFormat:@"{\"dest\":{\"name\":\"%s\",\"longitude\": %@,\"latitude\": %@},\"type\":1}\r", "Soul", lng, lat];
+        NSString *mmm = [NSString stringWithFormat:@"{\"dest\":{\"name\":\"%s\",\"latitude\": %@,\"longitude\": %@},\"type\":1}\r", "jooson", lat, lng];
 
         NSLog(@"====nfc write : %@", mmm);
         

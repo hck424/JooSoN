@@ -15,6 +15,7 @@
 #import "MapSearchCell.h"
 #import "BannerFlowLayout.h"
 #import "UIView+Toast.h"
+#import "CButton.h"
 
 @interface MapSearchViewController () <LocationViewDelegate, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BannerFlowLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnKeyboardDown;
@@ -24,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (weak, nonatomic) IBOutlet UILabel *lbCurrentLoc;
 @property (weak, nonatomic) IBOutlet UIView *mapContainer;
-@property (weak, nonatomic) IBOutlet UIButton *btnCurLocation;
+@property (weak, nonatomic) IBOutlet CButton *btnCurLocation;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *btnMic;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
@@ -232,6 +233,11 @@
     [self.googleMapView setMarker:self.curPlaceInfo draggable:YES];
 }
 
-
+- (void)mapViewSelectedPlaceInfo:(PlaceInfo *)info {
+    self.selPlaceInfo = info;
+    if (self.selPlaceInfo.jibun_address != nil) {
+        _lbCurrentLoc.text = self.selPlaceInfo.jibun_address;
+    }
+}
 
 @end

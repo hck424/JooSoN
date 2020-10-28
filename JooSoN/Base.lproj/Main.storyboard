@@ -801,7 +801,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.99680811170000005" green="0.4042524099" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="value" red="0.99607843137254903" green="0.40392156862745099" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="borderAll" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHalfCornerRaduis" value="YES"/>
@@ -1254,7 +1254,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="max-JL-LpY">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Jg8-HR-fka">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="hbz-jW-ncc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="tailTruncation" id="hbz-jW-ncc">
                                 <rect key="frame" x="16" y="0.0" width="115" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -1896,7 +1896,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NLC-Nu-p50">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="dXo-7j-vAc">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="nXX-Cw-NNA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="tailTruncation" id="nXX-Cw-NNA">
                                 <rect key="frame" x="16" y="0.0" width="200" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -2747,7 +2747,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kwg-5R-iBM">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="paV-D1-62n">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Av6-Nw-pUu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" id="Av6-Nw-pUu">
                                 <rect key="frame" x="16" y="0.0" width="100" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -2940,25 +2940,13 @@
                                 <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYU-f3-Z15">
-                                <rect key="frame" x="0.0" y="138" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="138" width="375" height="30"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Feq-6O-9aF">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FF-cv-btq">
-                                                <rect key="frame" x="15" y="5" width="25" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="8d0-wK-yTd"/>
-                                                    <constraint firstAttribute="width" constant="25" id="NIK-hX-tpp"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" image="icon_myspot"/>
-                                                <connections>
-                                                    <action selector="onClickedButtonActins:" destination="fs0-2w-iOD" eventType="touchUpInside" id="CtI-uP-lOa"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="서울 특별시 강서구 마곡중앙로 165" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YV-z5-wGB">
-                                                <rect key="frame" x="48" y="9" width="312" height="17"/>
+                                                <rect key="frame" x="15" y="6.6666666666666572" width="345" height="17"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
@@ -2980,6 +2968,29 @@
                                     <constraint firstItem="Feq-6O-9aF" firstAttribute="leading" secondItem="yYU-f3-Z15" secondAttribute="leading" id="UF2-2J-Xl3"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FF-cv-btq" customClass="CButton">
+                                <rect key="frame" x="325" y="178" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5FF-cv-btq" secondAttribute="height" multiplier="1:1" id="FTX-Vz-jhM"/>
+                                    <constraint firstAttribute="width" constant="40" id="u1L-rs-gKu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" image="icon_myspot"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHalfCornerRaduis" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.99607843139999996" green="0.4039215686" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickedButtonActins:" destination="fs0-2w-iOD" eventType="touchUpInside" id="CtI-uP-lOa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="esK-tv-XF1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2994,14 +3005,16 @@
                             <constraint firstItem="lMZ-L6-c7q" firstAttribute="top" secondItem="esK-tv-XF1" secondAttribute="top" id="TF8-Ia-yEw"/>
                             <constraint firstAttribute="bottom" secondItem="drN-fE-LfZ" secondAttribute="bottom" id="ZuV-tu-bQg"/>
                             <constraint firstItem="drN-fE-LfZ" firstAttribute="leading" secondItem="esK-tv-XF1" secondAttribute="leading" id="aEL-yl-GMQ"/>
+                            <constraint firstItem="esK-tv-XF1" firstAttribute="trailing" secondItem="5FF-cv-btq" secondAttribute="trailing" constant="10" id="ePI-o5-bwB"/>
                             <constraint firstItem="yYU-f3-Z15" firstAttribute="top" secondItem="drN-fE-LfZ" secondAttribute="top" id="nNa-nb-bYZ"/>
                             <constraint firstItem="lMZ-L6-c7q" firstAttribute="leading" secondItem="esK-tv-XF1" secondAttribute="leading" id="ncc-LY-5HS"/>
                             <constraint firstItem="drN-fE-LfZ" firstAttribute="trailing" secondItem="esK-tv-XF1" secondAttribute="trailing" id="pBx-Ix-MvM"/>
+                            <constraint firstItem="5FF-cv-btq" firstAttribute="top" secondItem="yYU-f3-Z15" secondAttribute="bottom" constant="10" id="sA9-mT-ypD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4jw-CN-KrJ">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Bjc-LQ-dSD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="kgh-jw-ULh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" id="kgh-jw-ULh">
                                 <rect key="frame" x="16" y="0.0" width="100" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -3399,7 +3412,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SJj-Rl-jFm">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="UwQ-iq-Z4C">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pmK-uP-9uy">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="pmK-uP-9uy">
                                 <rect key="frame" x="16" y="0.0" width="115" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -3568,7 +3581,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NAh-m6-OLk">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="QlY-bM-HGM">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M3V-Ay-gAf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="M3V-Ay-gAf">
                                 <rect key="frame" x="16" y="0.0" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -3646,7 +3659,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Mr7-lE-rev">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="1fa-hB-GtX">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hco-8B-OBm">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="hco-8B-OBm">
                                 <rect key="frame" x="16" y="0.0" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -3871,7 +3884,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QMP-ft-0sj">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Ra2-ir-FGf">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OgV-o3-qdB">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="OgV-o3-qdB">
                                 <rect key="frame" x="16" y="0.0" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -4477,7 +4490,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Z4I-25-Q4Z">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="FXf-fM-ab3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="P9s-bT-pkL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" id="P9s-bT-pkL">
                                 <rect key="frame" x="16" y="0.0" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -4523,6 +4536,9 @@
     <designables>
         <designable name="2uN-B6-ceq">
             <size key="intrinsicContentSize" width="71.666666666666671" height="37.666666666666664"/>
+        </designable>
+        <designable name="5FF-cv-btq">
+            <size key="intrinsicContentSize" width="59.666666666666664" height="66.666666666666671"/>
         </designable>
         <designable name="Ap9-h9-eMI">
             <size key="intrinsicContentSize" width="94.666666666666671" height="37.666666666666664"/>
