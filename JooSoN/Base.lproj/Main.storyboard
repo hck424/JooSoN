@@ -2986,6 +2986,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="borderAll" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onClickedButtonActins:" destination="fs0-2w-iOD" eventType="touchUpInside" id="CtI-uP-lOa"/>

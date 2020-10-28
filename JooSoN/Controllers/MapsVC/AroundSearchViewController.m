@@ -64,6 +64,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tfSearch.text = @"";
 }
 
 #pragma mark - add mapview

@@ -317,7 +317,7 @@
 - (void)tabContainer:(TabContainerController *)tabContainer didChangeTabToIndex:(NSUInteger)index {
     NSLog(@"hck : %ld", index);
     [_tfSearch resignFirstResponder];
-
+    _tfSearch.text = @"";
     if (index == 0) {
         [_favoriteListVC reloadData];
     }
