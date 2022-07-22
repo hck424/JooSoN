@@ -10,10 +10,10 @@
     <td>주소록</td>
   </tr>
   <tr>
-    <td>https://github.com/hck424/JooSoN/blob/master/IMG_0337.PNG</td>
-    <td>https://github.com/hck424/JooSoN/blob/master/IMG_0793.PNG</td>
-    <td>https://github.com/hck424/JooSoN/blob/master/IMG_2486A6C8359C-1.jpeg</td>
-    <td>https://github.com/hck424/JooSoN/blob/master/IMG_0791.PNG</td>
+    <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_0337.PNG" width=270 height=480></td>
+    <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_0793.PNG" width=270 height=480></td>
+    <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_2486A6C8359C-1.jpeg" width=270 height=480></td>
+    <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_0791.PNG" width=270 height=480></td>
   </tr>
   <tr>
     <td>주변검색</td>
@@ -21,9 +21,9 @@
     <td>NFC TAG</td>
   </tr>
   <tr>
-     <td>https://github.com/hck424/JooSoN/blob/master/IMG_0796.PNG</td>
-     <td>https://github.com/hck424/JooSoN/blob/master/IMG_0795.PNG</td>
-     <td>https://github.com/hck424/JooSoN/blob/master/IMG_0794.PNG</td>
+     <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_0796.PNG" width=270 height=480></td>
+     <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_0795.PNG" width=270 height=480></td>
+     <td><img src="https://github.com/hck424/JooSoN/blob/master/IMG_0794.PNG" width=270 height=480></td>
   </tr>
  </table>
 
